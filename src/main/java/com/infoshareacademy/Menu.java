@@ -35,7 +35,7 @@ public class Menu {
         menu.mainMenu();
     }
 
-    public void mainMenu()  {
+    private void mainMenu()  {
 
         System.out.println("1. wypozycz");
         System.out.println("2. oddaj");
@@ -45,21 +45,32 @@ public class Menu {
 
         switch (getChoice(3))  {
 
-            case 1: wypozyczMenu();
-            case 2: oddajMenu();
-            case 3: listaKsiazekMenu();
-            case 4: mainMenu();
+            case 1: {
+                wypozyczMenu();
+                break;
+            }
+            case 2: {
+                oddajMenu();
+                break;
+            }
+            case 3:  {
+                listaKsiazekMenu();
+                break;
+            }
+
             case 0: exit();
         }
 
     }
 
     private void exit() {
+        ClearScreen.clearScreen();
         System.out.println("Dozobaczenia!");
         return;
     }
 
     private void listaKsiazekMenu() {
+        ClearScreen.clearScreen();
         System.out.println("1. sortuj po autorze");
         System.out.println("2. sortuj po gatunku");
         System.out.println("3. sortuj po tytule");
@@ -70,14 +81,15 @@ public class Menu {
             case 1: {}
             case 2: {}
             case 3: {}
-            case 4: mainMenu();
+            case 4: {
+                mainMenu();
+                break;
+            }
             case 0: exit();
         }
 
     }
-    private void mojeKontoMenu() {
 
-    }
     private void oddajMenu()  {
 
     }
