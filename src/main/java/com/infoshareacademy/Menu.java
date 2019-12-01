@@ -1,22 +1,32 @@
 package com.infoshareacademy;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
 
-
+    //int choices = 0;
     Scanner scan = new Scanner(System.in);
-    //boolean isLogged = false;
 
-    public int getChoice() {
+    public int getChoice(int choices) {
 
-        System.out.println("Wybierz: ");
+        System.out.println("Type your choice: ");
         String Choice = scan.nextLine();
-        int choice = Integer.valueOf(Choice);
+        int choice = 0;
+
+        try {
+            choice = Integer.parseInt(Choice);
+        } catch (NumberFormatException e) {
+            System.out.println("You typed a letter! ");
+            getChoice(choices);
+        }
+        if (choice>choices && choice<0)  {
+            System.out.println("Please choice correct number! ");
+            getChoice(choices);
+        }
+
         return choice;
     }
-
-
 
     public static void main(String[] args) {
 
@@ -26,34 +36,52 @@ public class Menu {
     }
 
     public void mainMenu()  {
-        //Menu menu = new Menu();
+
         System.out.println("1. wypozycz");
         System.out.println("2. oddaj");
         System.out.println("3. lista ksiazek");
-        System.out.println("4. moje konto");
+        System.out.println("-----");
+        System.out.println("0. wyjscie");
 
+        switch (getChoice(3))  {
 
-        switch (getChoice())  {
+            case 1: wypozyczMenu();
             case 2: oddajMenu();
             case 3: listaKsiazekMenu();
-            case 5: mainMenu();
+            case 4: mainMenu();
+            case 0: exit();
         }
 
     }
 
-    public void listaKsiazekMenu() {
-        System.out.println("1. po autorze");
-        System.out.println("5. main menu");
+    private void exit() {
+        System.out.println("Dozobaczenia!");
+        return;
+    }
 
-        switch (getChoice()) {
-            case 5: mainMenu();
+    private void listaKsiazekMenu() {
+        System.out.println("1. sortuj po autorze");
+        System.out.println("2. sortuj po gatunku");
+        System.out.println("3. sortuj po tytule");
+        System.out.println("4. main menu");
+        System.out.println("0. wyjscie");
+
+        switch (getChoice(4)) {
+            case 1: {}
+            case 2: {}
+            case 3: {}
+            case 4: mainMenu();
+            case 0: exit();
         }
 
     }
-    public void mojeKontoMenu() {
+    private void mojeKontoMenu() {
 
     }
-    public void oddajMenu()  {
+    private void oddajMenu()  {
+
+    }
+    private void wypozyczMenu()  {
 
     }
 
