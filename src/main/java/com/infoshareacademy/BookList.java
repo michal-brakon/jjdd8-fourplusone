@@ -37,7 +37,7 @@ public class BookList implements KeyListener {
             list.add(book);
             if (record > recordsLimit) {
 
-                //oczkiwanie na akcje uzytkownika:
+                //TODO: oczekiwanie na akcje uzytkownika:
 
 
                 ClearScreen.clearScreen();
