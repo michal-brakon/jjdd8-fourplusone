@@ -1,27 +1,29 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
+
 public class Menu {
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    private int choice = 0;
+    private Scanner scan = new Scanner(System.in);
 
-    //int choices = 0;
-    Scanner scan = new Scanner(System.in);
+    private int getChoice(int choices) {
 
-    public int getChoice(int choices) {
-
-        System.out.println("Type your choice: ");
+        stdout.info("\nType your choice: ");
         String Choice = scan.nextLine();
-        int choice = 0;
+        //int choice = 0;
 
         try {
             choice = Integer.parseInt(Choice);
         } catch (NumberFormatException e) {
-            System.out.println("You typed a letter! ");
+            stdout.info("\nYou typed a letter! ");
             getChoice(choices);
         }
-        if (choice>choices && choice<0)  {
-            System.out.println("Please choice correct number! ");
+        if (choice>choices || choice<0)  {
+            stdout.info("\nPlease choice correct number! ");
             getChoice(choices);
         }
 
@@ -37,11 +39,11 @@ public class Menu {
 
     private void mainMenu()  {
 
-        System.out.println("1. wypozycz");
-        System.out.println("2. oddaj");
-        System.out.println("3. lista ksiazek");
-        System.out.println("-----");
-        System.out.println("0. wyjscie");
+        stdout.info("\n1. wypozycz");
+        stdout.info("\n2. oddaj");
+        stdout.info("\n3. lista ksiazek");
+        stdout.info("\n-----");
+        stdout.info("\n0. wyjscie");
 
         switch (getChoice(3))  {
 
@@ -65,17 +67,16 @@ public class Menu {
 
     private void exit() {
         ClearScreen.clearScreen();
-        System.out.println("Dozobaczenia!");
-        return;
+        stdout.info("\nDo zobaczenia!");
     }
 
     private void listaKsiazekMenu() {
         ClearScreen.clearScreen();
-        System.out.println("1. sortuj po autorze");
-        System.out.println("2. sortuj po gatunku");
-        System.out.println("3. sortuj po tytule");
-        System.out.println("4. main menu");
-        System.out.println("0. wyjscie");
+        stdout.info("\n1. sortuj po autorze");
+        stdout.info("\n2. sortuj po gatunku");
+        stdout.info("\n3. sortuj po tytule");
+        stdout.info("\n4. main menu");
+        stdout.info("\n0. wyjscie");
 
         switch (getChoice(4)) {
             case 1: {}
