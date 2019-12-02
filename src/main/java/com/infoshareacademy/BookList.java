@@ -1,22 +1,26 @@
 package com.infoshareacademy;
 
+import com.sun.jdi.Value;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
-public class BookList {
+public class BookList implements KeyListener {
 
-    ArrayList<Book> books = new ArrayList<Book>();
-    private int record = 0;
+    private int record = 1;
     private int recordsLimit = 0;
-    Map mapa = new HashMap<String, Integer>();
+    ArrayList list = new ArrayList<Book>();
 
 
     public static void main(String[] args) {
 
-        BookList bookList = new BookList();
-        //bookList.printBooks();
+       // BookList bookList = new BookList();
+
     }
 
     public void printBooks(ArrayList<Book> books) {
@@ -28,12 +32,17 @@ public class BookList {
             if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Wrong number!");
         }
 
-        for (Book books1 : books) {
-            System.out.println("Title: " + books1.title + "Author: " + books1.author + "Genre: " + books1.genre);
-            mapa.put(books1.title, record);
+        for (Book book : books) {
+            System.out.println(book);
+            list.add(book);
             if (record > recordsLimit) {
+
+                //oczkiwanie na akcje uzytkownika:
+
+
                 ClearScreen.clearScreen();
-                record = 0;
+
+                //record = 1;
             }
         }
     }
@@ -43,10 +52,23 @@ public class BookList {
         System.out.println("Type your choice: ");
         int choice = scanner.nextInt();
 
-        for (Book books2 : books) {
-            if (Map)
+        System.out.println(list.get(choice));
 
-            System.out.println();
         }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
