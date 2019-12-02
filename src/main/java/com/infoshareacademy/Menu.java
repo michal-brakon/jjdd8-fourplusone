@@ -54,7 +54,7 @@ public class Menu {
 
     }
 
-    private void exit() {
+    public void exit() {
         System.out.println("Dozobaczenia!");
         return;
     }
