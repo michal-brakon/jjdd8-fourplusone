@@ -12,18 +12,18 @@ public class Menu {
 
     private int getChoice(int choices) {
 
-        stdout.info("\nType your choice: ");
+        stdout.info("\nGdzie chcesz się udać: ");
         String Choice = scan.nextLine();
         //int choice = 0;
 
         try {
             choice = Integer.parseInt(Choice);
         } catch (NumberFormatException e) {
-            stdout.info("\nYou typed a letter! ");
+            stdout.info("\nWpisałeś litere! ");
             getChoice(choices);
         }
         if (choice>choices || choice<0)  {
-            stdout.info("\nPlease choice correct number! ");
+            stdout.info("\nProsze wybrać jeden z "+choices+" wyborów");
             getChoice(choices);
         }
 
@@ -75,7 +75,7 @@ public class Menu {
         stdout.info("\n1. sortuj po autorze");
         stdout.info("\n2. sortuj po gatunku");
         stdout.info("\n3. sortuj po tytule");
-        stdout.info("\n4. main menu");
+        stdout.info("\n4. główne menu");
         stdout.info("\n0. wyjscie");
 
         switch (getChoice(4)) {
