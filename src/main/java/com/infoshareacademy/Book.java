@@ -3,7 +3,12 @@ package com.infoshareacademy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class Book {
+    public static List<Book> books;
+    public static List<Book> getBooks() {
+   return Book.books; };
     @JsonProperty("has_audio")
     private boolean hasAudio;
 
@@ -35,6 +40,8 @@ public class Book {
     private String simpleThumb;
 
     private String slug;
+
+
 
     public String getLiked() {
         return liked;
