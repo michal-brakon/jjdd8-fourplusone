@@ -12,30 +12,36 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class BookParser {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-   new BookParser();
+        new BookParser();
+        System.out.println("podaj Autora: ");
+        String searchOfKind = scanner.nextLine();
+        for (int i = 0; i < Book.books.size(); i++) {
+
+            Book record = Book.books.get(i);
+
+
+            if (record.getAuthor().contains(searchOfKind))
+                System.out.println(record.getKind() + "\n" + record.getUrl() + "\n" + record.getAuthor());
+
+        }
     }
-    public BookParser(){
 
-        List<Book> books= new ArrayList<>();
+    public BookParser() {
+
+
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        objectMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
-try{
-        File file = new File("baza.json");
-        Book.books= objectMapper.readValue(file, new TypeReference<List<Book>>() {
-        });
-
-
-
-        System.out.println("");
-
-        System.out.println("Autor ksiażki: " + Book.getBooks());
-
+        try {
+            File file = new File("baza.json");
+            Book.books = objectMapper.readValue(file, new TypeReference<List<Book>>() {
+            });
+            //  System.out.println(Book.getBooks());
 
         } catch (IOException e) {
             e.printStackTrace();

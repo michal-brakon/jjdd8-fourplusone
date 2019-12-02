@@ -7,8 +7,13 @@ import java.util.List;
 
 public class Book {
     public static List<Book> books;
+
     public static List<Book> getBooks() {
-   return Book.books; };
+        return Book.books;
+    }
+
+
+
     @JsonProperty("has_audio")
     private boolean hasAudio;
 
@@ -40,7 +45,6 @@ public class Book {
     private String simpleThumb;
 
     private String slug;
-
 
 
     public String getLiked() {
@@ -166,6 +170,7 @@ public class Book {
     @Override
     public String toString() {
         return "ClassPojo [has_audio = " + hasAudio + ", kind = " + kind + ", author = " + author + ", epoch = " + epoch + ", title = " + title + ", url = " + url + ", cover_color = " + coverColor + ", liked = " + liked + ", cover_thumb = " + coverThumb + ", cover = " + cover + ", genre = " + genre + ", full_sort_key = " + fullSortKey + ", href = " + href + ", simple_thumb = " + simpleThumb + ", slug = " + slug + "]";
-    }}
+    }
+}
 
 
