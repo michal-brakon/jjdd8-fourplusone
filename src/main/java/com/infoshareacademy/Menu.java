@@ -7,12 +7,13 @@ public class Menu {
 
     //int choices = 0;
     Scanner scan = new Scanner(System.in);
+    private int choice = 0;
 
     public int getChoice(int choices) {
 
+
         System.out.println("Type your choice: ");
         String Choice = scan.nextLine();
-        int choice = 0;
 
         try {
             choice = Integer.parseInt(Choice);
@@ -20,7 +21,7 @@ public class Menu {
             System.out.println("You typed a letter! ");
             getChoice(choices);
         }
-        if (choice>choices && choice<0)  {
+        if (choice>choices || choice<0)  {
             System.out.println("Please choice correct number! ");
             getChoice(choices);
         }
@@ -58,7 +59,10 @@ public class Menu {
                 break;
             }
 
-            case 0: exit();
+            case 0: {
+                exit();
+                break;
+            }
         }
 
     }
