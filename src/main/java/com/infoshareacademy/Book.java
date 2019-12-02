@@ -7,45 +7,30 @@ import java.util.List;
 
 public class Book {
     public static List<Book> books;
+    @JsonProperty("has_audio")
+    private boolean hasAudio;
+    private String kind;
+    private String author;
+    private String epoch;
+    private String title;
+    private String url;
+    @JsonProperty("cover_color")
+    private String coverColor;
+    private String liked;
+    @JsonProperty("cover_thumb")
+    private String coverThumb;
+    private String cover;
+    private String genre;
+    @JsonProperty("full_sort_key")
+    private String fullSortKey;
+    private String href;
+    @JsonProperty("simple_thumb")
+    private String simpleThumb;
+    private String slug;
 
     public static List<Book> getBooks() {
         return Book.books;
     }
-
-
-
-    @JsonProperty("has_audio")
-    private boolean hasAudio;
-
-    private String kind;
-
-    private String author;
-
-    private String epoch;
-
-    private String title;
-
-    private String url;
-    @JsonProperty("cover_color")
-    private String coverColor;
-
-    private String liked;
-    @JsonProperty("cover_thumb")
-    private String coverThumb;
-
-    private String cover;
-
-    private String genre;
-    @JsonProperty("full_sort_key")
-    private String fullSortKey;
-
-    private String href;
-
-    @JsonProperty("simple_thumb")
-    private String simpleThumb;
-
-    private String slug;
-
 
     public String getLiked() {
         return liked;
