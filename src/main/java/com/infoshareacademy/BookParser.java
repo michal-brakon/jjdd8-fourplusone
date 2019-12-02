@@ -18,27 +18,22 @@ public class BookParser {
             File file = new File("baza.json");
             Book.books = objectMapper.readValue(file, new TypeReference<List<Book>>() {
             });
-            //  System.out.println(Book.getBooks());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         new BookParser();
-        System.out.println("podaj Autora: ");
+        System.out.println("podaj rodzaj ksiażki: ");
         String searchOfKind = scanner.nextLine();
         for (int i = 0; i < Book.books.size(); i++) {
 
             Book record = Book.books.get(i);
-
-
-            if (record.getAuthor().contains(searchOfKind))
+            if (record.getKind().contains(searchOfKind))
                 System.out.println(record.getKind() + "\n" + record.getUrl() + "\n" + record.getAuthor());
 
         }
