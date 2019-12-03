@@ -2,6 +2,7 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 
 
@@ -10,26 +11,6 @@ public class Menu {
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
-    private int getChoice(int choices) {
-
-        stdout.info("\nGdzie chcesz się udać: ");
-        String Choice = scan.nextLine();
-        //int choice = 0;
-
-        try {
-            choice = Integer.parseInt(Choice);
-        } catch (NumberFormatException e) {
-            stdout.info("\nWpisałeś litere! ");
-            getChoice(choices);
-        }
-        if (choice>choices || choice<0)  {
-            stdout.info("\nProsze wybrać jeden z "+choices+" wyborów");
-            getChoice(choices);
-        }
-
-        return choice;
-    }
-
     public static void main(String[] args) {
 
         Menu menu = new Menu();
@@ -37,7 +18,26 @@ public class Menu {
         menu.mainMenu();
     }
 
-    private void mainMenu()  {
+    private int getChoice(int choices) {
+
+        stdout.info("\nGdzie chcesz się udać: ");
+        String userLineIn = scan.nextLine();
+
+        try {
+            choice = Integer.parseInt(userLineIn);
+        } catch (NumberFormatException e) {
+            stdout.info("\nWpisałeś litere! ");
+            getChoice(choices);
+        }
+        if (choice > choices || choice < 0) {
+            stdout.info("\nProsze wybrać jeden z " + choices + " wyborów");
+            getChoice(choices);
+        }
+
+        return choice;
+    }
+
+    private void mainMenu() {
 
         stdout.info("\n1. wypozycz");
         stdout.info("\n2. oddaj");
@@ -45,22 +45,23 @@ public class Menu {
         stdout.info("\n-----");
         stdout.info("\n0. wyjscie");
 
-        switch (getChoice(3))  {
+        switch (getChoice(3)) {
 
             case 1: {
-                wypozyczMenu();
+                borrowBookMenu();
                 break;
             }
             case 2: {
-                oddajMenu();
+                returnBookMenu();
                 break;
             }
-            case 3:  {
-                listaKsiazekMenu();
+            case 3: {
+                bookListMenu();
                 break;
             }
 
-            case 0: exit();
+            case 0:
+                exit();
         }
 
     }
@@ -70,7 +71,7 @@ public class Menu {
         stdout.info("\nDo zobaczenia!");
     }
 
-    private void listaKsiazekMenu() {
+    private void bookListMenu() {
         ClearScreen.clearScreen();
         stdout.info("\n1. sortuj po autorze");
         stdout.info("\n2. sortuj po gatunku");
@@ -79,22 +80,30 @@ public class Menu {
         stdout.info("\n0. wyjscie");
 
         switch (getChoice(4)) {
-            case 1: {}
-            case 2: {}
-            case 3: {}
+            case 1: {
+                stdout.info("\nMetod not yet implemented");
+            }
+            case 2: {
+                stdout.info("\nMetod not yet implemented");
+            }
+            case 3: {
+                stdout.info("\nMetod not yet implemented");
+            }
             case 4: {
                 mainMenu();
                 break;
             }
-            case 0: exit();
+            case 0:
+                exit();
         }
 
     }
 
-    private void oddajMenu()  {
+    private void returnBookMenu() {
 
     }
-    private void wypozyczMenu()  {
+
+    private void borrowBookMenu() {
 
     }
 
