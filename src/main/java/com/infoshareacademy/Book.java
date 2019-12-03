@@ -53,7 +53,7 @@ public class Book {
         return slug;
     }
 
-    public Book(String kind, String full_sort_key, String title, String url, String author, String epoch, String href, boolean has_audio, String genre, String slug) {
+    public Book(String kind, String full_sort_key, String title, String url, String author, String epoch, String href, boolean has_audio, String genre) {
         this.kind = kind;
         this.full_sort_key = full_sort_key;
         this.title = title;

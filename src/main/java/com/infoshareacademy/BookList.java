@@ -20,8 +20,19 @@ public class BookList {
 
     public static void main(String[] args) {
 
-        // BookList bookList = new BookList();
+        BookList bookList = new BookList();
+        ArrayList<Book> myList = new ArrayList<Book>();
 
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dsdfdssds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysvxcd", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+        myList.add(new Book("dhahasds", "ysud", "gdsh", "sd", "dsas", "sas", "asd", false, "das"));
+
+        bookList.printBooks(myList);
     }
 
     public void printBooks(ArrayList<Book> books) {
@@ -35,6 +46,7 @@ public class BookList {
 
         for (Book book : books) {
             System.out.println(record + ". " + book);
+            System.out.println("limit " +recordsLimit);
             counter++;
             record++;
             list.add(book);
@@ -62,11 +74,13 @@ public class BookList {
                 }
 
             }
-            Scanner scanner = new Scanner(System.in);
-            int bookChoice = scanner.nextInt();
-            printBook(bookChoice);
+
 
         }
+        System.out.println("Wpisz numer do wyswietlenia: ");
+        Scanner scanner = new Scanner(System.in);
+        int bookChoice = scanner.nextInt();
+        printBook(bookChoice);
     }
 
 
