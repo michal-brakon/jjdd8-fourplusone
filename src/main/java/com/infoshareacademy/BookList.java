@@ -62,18 +62,20 @@ public class BookList {
                 }
 
             }
-            printBook();
+            Scanner scanner = new Scanner(System.in);
+            int bookChoice = scanner.nextInt();
+            printBook(bookChoice);
 
         }
     }
 
 
-        private void printBook (){
+        private void printBook (int bookNo){
 
-            System.out.println(list.get(menu.getChoice(record)));
+            System.out.println(list.get(bookNo));
 
         }
 
     }
-}
+
 
