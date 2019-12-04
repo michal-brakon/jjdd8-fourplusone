@@ -1,6 +1,7 @@
 package com.infoshareacademy;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -8,21 +9,19 @@ import java.io.IOException;
 
 public class BookParser {
 
+    private ObjectMapper objectMapper = new ObjectMapper();
 
 
-    public BookParser() {
+    public void parseJsonFileToObject() {
 
-
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = new File("baza.json");
-            ExternalBook.externalBooks = objectMapper.readValue(file, new TypeReference<>() {
+            BookRepository.bookRepository = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .readValue(new File("baza.json"), new TypeReference<>() {
             });
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 }

@@ -1,16 +1,22 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
 
     private String kind;
+
     private String author;
+
     private String epoch;
+
     private String title;
+
+    @JsonProperty("has_audio")
     private boolean hasAudio;
+
     private String genre;
+
 
     public String getKind() {
         return kind;
@@ -60,31 +66,17 @@ public class Book {
         this.genre = genre;
     }
 
-    public Book(ExternalBook exBook) {
-        this.author = exBook.getAuthor();
-        this.genre = exBook.getGenre();
-    }
-
-
-    public List<Book> addbooks () {
-        ArrayList<Book> result = new ArrayList<Book>();
-        for (ExternalBook record : ExternalBook.externalBooks) {
-            result.add(new Book(record));
-        }
-        return result;
-    }
-
     @Override
     public String toString() {
         return "Book{" +
                 "kind='" + kind + '\'' +
                 ", author='" + author + '\'' +
-                ", epoch='" + epoch + '\'' +
                 ", title='" + title + '\'' +
+                ", epoch='" + epoch + '\'' +
                 ", hasAudio=" + hasAudio +
                 ", genre='" + genre + '\'' +
                 '}';
     }
 
 
-   }
+}
