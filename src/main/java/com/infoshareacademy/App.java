@@ -1,6 +1,5 @@
 package com.infoshareacademy;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,6 @@ public class App {
 
 
         // et voila
+        stdout.info("Four-Plus-One");
     }
 }
-
-
