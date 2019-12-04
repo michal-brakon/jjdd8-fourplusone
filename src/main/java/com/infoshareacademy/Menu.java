@@ -11,13 +11,6 @@ public class Menu {
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args) {
-
-        Menu menu = new Menu();
-
-        menu.mainMenu();
-    }
-
     private int getChoice(int choices) {
 
         stdout.info("\nGdzie chcesz się udać: ");
@@ -37,7 +30,7 @@ public class Menu {
         return choice;
     }
 
-    private void mainMenu() {
+    public void mainMenu() {
 
         stdout.info("\n1. wypozycz");
         stdout.info("\n2. oddaj");
@@ -73,7 +66,7 @@ public class Menu {
 
     private void bookListMenu() {
         ClearScreen.clearScreen();
-        stdout.info("\n1. sortuj po autorze");
+        stdout.info("\n1. Pokaż wszystkie pozycje");
         stdout.info("\n2. sortuj po gatunku");
         stdout.info("\n3. sortuj po tytule");
         stdout.info("\n4. główne menu");
@@ -81,7 +74,9 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                stdout.info("\nMetod not yet implemented");
+                stdout.info(String.valueOf(BookRepository.getBooks()));
+                mainMenu();
+                break;
             }
             case 2: {
                 stdout.info("\nMetod not yet implemented");

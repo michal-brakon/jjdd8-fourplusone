@@ -68,15 +68,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "kind='" + kind + '\'' +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", epoch='" + epoch + '\'' +
-                ", hasAudio=" + hasAudio +
-                ", genre='" + genre + '\'' +
-                '}';
+        return "Książka :[ " + '\n' +
+                "Rodzaj literacki : " + kind + '\n' +
+                "Autor : " + author + '\n' +
+                "Tytuł : " + title + '\n' +
+                "Epoka : " + epoch + '\n' +
+                "Czy ma Audio : " + hasAudio + '\n' +
+                "Klasa : " + genre + '\n' + '\n';
     }
-
-
 }

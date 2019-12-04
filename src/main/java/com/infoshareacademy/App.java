@@ -10,18 +10,15 @@ public class App {
     public static void main(String[] args) {
 
         // read json file to collection
-        new BookParser().parseJsonFileToObject();
+        BookParser bookParser = new BookParser();
+        bookParser.parseJsonFileToObject();
 
-        // create target books collection
-        BookRepository.getBooks();
+        // menu init
 
+        Menu menu = new Menu();
+        menu.mainMenu();
 
-        for (Book book : BookRepository.bookRepository) {
-            System.out.println(book);
-        }
-
-
-        // et voila
         stdout.info("Four-Plus-One");
+
     }
 }

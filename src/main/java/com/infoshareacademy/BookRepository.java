@@ -8,9 +8,10 @@ public class BookRepository {
     public static List<Book> bookRepository = new ArrayList<>();
 
 
-    public static void getBooks() {
+    public static List<Book> getBooks() {
         if (bookRepository == null) {
             System.out.println("Baza jest pusta");
         }
+        return bookRepository;
     }
 }
