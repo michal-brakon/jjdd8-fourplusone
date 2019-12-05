@@ -15,10 +15,6 @@ public class BookList {
     private int counter;
     Menu menu = new Menu();
 
-    public static void main(String[] args) {
-        str.split("=");
-    }
-
     public void printBooks(ArrayList<Book> books) {
 
         record = 1;
