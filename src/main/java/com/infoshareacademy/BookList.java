@@ -16,7 +16,7 @@ public class BookList {
     Menu menu = new Menu();
 
     public static void main(String[] args) {
-
+        str.split("=");
     }
 
     public void printBooks(ArrayList<Book> books) {
