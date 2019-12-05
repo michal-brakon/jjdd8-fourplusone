@@ -2,7 +2,12 @@ package com.infoshareacademy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Book {
+
 
     private String kind;
 
@@ -17,6 +22,7 @@ public class Book {
 
     private String genre;
 
+    public static List<Book> book = new ArrayList<>();
 
     public String getKind() {
         return kind;
