@@ -10,7 +10,7 @@ public class Menu {
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
-    private int getChoice(int choices) {
+    public int getChoice(int choices) {
 
         stdout.info("\nType your choice: ");
         String Choice = scan.nextLine();
@@ -37,7 +37,7 @@ public class Menu {
         menu.mainMenu();
     }
 
-    private void mainMenu()  {
+    public void mainMenu()  {
 
         stdout.info("\n1. wypozycz");
         stdout.info("\n2. oddaj");

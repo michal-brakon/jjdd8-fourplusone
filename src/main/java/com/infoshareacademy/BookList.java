@@ -13,6 +13,7 @@ public class BookList {
     private int record;
     private int recordsLimit = 0;
     private int counter;
+    Menu menu = new Menu();
 
     public static void main(String[] args) {
 
@@ -32,7 +33,7 @@ public class BookList {
 
         for (Book book : books) {
 
-            if (record < books.size() + 1) System.out.println(record + ". " + book);
+            if (record < books.size() + 1) stdout.info(record + ". " + book);
             counter++;
             record++;
 
