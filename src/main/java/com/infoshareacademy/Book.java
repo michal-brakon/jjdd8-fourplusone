@@ -22,7 +22,7 @@ public class Book {
 
     private String genre;
 
-    public static ArrayList<Book> book = new ArrayList<>();
+    public static List<Book> book = new ArrayList<>();
 
     public String getKind() {
         return kind;
@@ -69,15 +69,6 @@ public class Book {
     }
 
     public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public Book(String kind, String author, String epoch, String title, boolean hasAudio, String genre) {
-        this.kind = kind;
-        this.author = author;
-        this.epoch = epoch;
-        this.title = title;
-        this.hasAudio = hasAudio;
         this.genre = genre;
     }
 

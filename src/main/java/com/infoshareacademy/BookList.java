@@ -2,28 +2,22 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BookList {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    ArrayList<Book> myList = new ArrayList<>();
-    private int record;
-    private int recordsLimit = 0;
-    private int counter;
-
     Menu menu = new Menu();
 
-    public void printBooks(ArrayList<Book> books) {
+    public void printBooks(List<Book> books) {
 
-        record = 1;
-        counter = 1;
-        recordsLimit = 0;
+        int record = 1;
+        int counter = 0;
+        int recordsLimit = 0;
 
         while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
+
             stdout.info("\nHow many records on page? (5,10,15) ");
             recordsLimit = menu.getChoice(15);
             if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Wrong number!");
@@ -35,14 +29,15 @@ public class BookList {
             counter++;
             record++;
 
-            if (counter > recordsLimit) {
-                stdout.info("\nType q to finish list, any to continue book list");
+            if (counter >= recordsLimit) {
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste, dowolny klawisz kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
-                String choice = scanner.next();
+                String choice = "";
+                choice = scanner.next();
                 if (choice.equals("q")) {
-                    record = books.size() + 1;
+                    break;
                 }
-                counter = 1;
+                counter = 0;
                 ClearScreen.clearScreen();
             }
         }
@@ -51,8 +46,8 @@ public class BookList {
 
     private void menuBookList() {
 
-        counter = 1;
-        stdout.info("\nType your choice: ");
+        //counter = 1;
+        stdout.info("\nWybierz: ");
         stdout.info("\nc -       choose book");
         stdout.info("\nm -       main menu");
         stdout.info("\nq -       close application");
@@ -66,11 +61,12 @@ public class BookList {
                 break;
             }
             case "m": {
-
+                menu.mainMenu();
                 break;
             }
             case "c": {
-                stdout.info(String.valueOf(myList.get(chooseBookToPrint())));
+                int temp = chooseBookToPrint();
+                stdout.info(temp + 1 +". "+ String.valueOf(BookRepository.getBooks().get(temp)));
                 break;
             }
         }
@@ -79,7 +75,7 @@ public class BookList {
     }
 
     private int chooseBookToPrint() {
-        stdout.info("\nWpisz numer ksiazki: ");
+        stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
         int bookChoice = 0;
         try {
@@ -92,11 +88,13 @@ public class BookList {
         return bookChoice;
 
     }
+
     private void exit() {
         ClearScreen.clearScreen();
         stdout.info("\nDo zobaczenia!");
+        System.exit(0);
+        return;
     }
-
 }
 
 

@@ -18,7 +18,7 @@ public class Menu {
 
     public int getChoice(int choices) {
 
-        stdout.info("\nGdzie chcesz się udać: ");
+        stdout.info("\nGdzie chcesz się udać: \n");
         String userLineIn = scan.nextLine();
 
         try {
