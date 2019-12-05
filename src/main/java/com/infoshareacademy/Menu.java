@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -10,6 +11,10 @@ public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
+
+    //BookList bookList = new BookList();
+
+
 
     public int getChoice(int choices) {
 
@@ -74,7 +79,8 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                stdout.info(String.valueOf(BookRepository.getBooks()));
+                new BookList().printBooks(BookRepository.getBooks());
+                //stdout.info(String.valueOf(BookRepository.getBooks()));
                 mainMenu();
                 break;
             }

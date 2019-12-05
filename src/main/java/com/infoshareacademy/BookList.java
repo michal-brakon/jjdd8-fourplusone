@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookList {
@@ -13,6 +14,7 @@ public class BookList {
     private int record;
     private int recordsLimit = 0;
     private int counter;
+
     Menu menu = new Menu();
 
     public void printBooks(ArrayList<Book> books) {
