@@ -8,6 +8,17 @@ public class App {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     public static void main(String[] args) {
+
+        // read json file to collection
+        BookParser bookParser = new BookParser();
+        bookParser.parseJsonFileToObject();
+
+        // menu init
+
+        Menu menu = new Menu();
+        menu.mainMenu();
+
         stdout.info("Four-Plus-One");
+
     }
 }
