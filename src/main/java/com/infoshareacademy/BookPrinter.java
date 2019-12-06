@@ -50,7 +50,7 @@ public class BookPrinter {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       wybierz nr ksiazki");
-        stdout.info("\nm -       main menu");
+        stdout.info("\nm -       powrot do menu glownego");
         stdout.info("\nq -       zamknij aplikacje\n");
 
         Scanner scanner = new Scanner(System.in);
