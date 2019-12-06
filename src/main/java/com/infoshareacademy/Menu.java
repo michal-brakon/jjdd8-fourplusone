@@ -3,7 +3,6 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -79,7 +78,7 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                new BookList().printBooks(BookRepository.getBooks());
+                new BookPrinter().printBooks(BookRepository.getBooks());
                 //stdout.info(String.valueOf(BookRepository.getBooks()));
                 mainMenu();
                 break;

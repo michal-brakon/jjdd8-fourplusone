@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Scanner;
 
-public class BookList {
+public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     Menu menu = new Menu();
@@ -30,15 +30,17 @@ public class BookList {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste, dowolny klawisz kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste i zamknac aplikacje, dowolny klawisz kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
-                String choice = "";
-                choice = scanner.next();
-                if (choice.equals("q")) {
-                    break;
+                String choice = scanner.next();
+                if (checkChoice(choice)) {
+                    if (choice.equals("q")) {
+                        exit();
+                        break;
+                    }
+                    counter = 0;
+                    ClearScreen.clearScreen();
                 }
-                counter = 0;
-                ClearScreen.clearScreen();
             }
         }
         menuBookList();
@@ -46,48 +48,65 @@ public class BookList {
 
     private void menuBookList() {
 
-        //counter = 1;
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       choose book");
         stdout.info("\nm -       main menu");
-        stdout.info("\nq -       close application");
+        stdout.info("\nq -       close application\n");
 
         Scanner scanner = new Scanner(System.in);
         String choice1 = scanner.next();
 
-        switch (choice1) {
-            case "q": {
-                exit();
-                break;
+        if (checkChoice1(choice1)) {
+            switch (choice1) {
+                case "q": {
+                    exit();
+                    break;
+                }
+                case "m": {
+                    menu.mainMenu();
+                    break;
+                }
+                case "c": {
+                    int temp = chooseBookToPrint();
+                    stdout.info(temp + 1 + ". " + String.valueOf(BookRepository.getBooks().get(temp)));
+                    menuBookList();
+                    break;
+                }
             }
-            case "m": {
-                menu.mainMenu();
-                break;
-            }
-            case "c": {
-                int temp = chooseBookToPrint();
-                stdout.info(temp + 1 +". "+ String.valueOf(BookRepository.getBooks().get(temp)));
-                break;
-            }
+        } else {
+            stdout.info("\nBledny wybor");
+            menuBookList();
         }
 
         return;
+    }
+    private boolean checkChoice (String choice) {
+        return (choice != null);
+    }
+
+    private boolean checkChoice1 (String choice) {
+        return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
+
+    }
+    private boolean checkChooseBook (String choice) {
+        return (choice != null && Integer.valueOf(choice) > 1 && Integer.valueOf(choice) <= BookRepository.getBooks().size());
+
     }
 
     private int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
+        String bookChoiceStr = scanner.next();
         int bookChoice = 0;
-        try {
-            bookChoice = scanner.nextInt() - 1;
-        } catch (NumberFormatException e) {
+        if (checkChooseBook(bookChoiceStr)) {
+            bookChoice = Integer.valueOf(bookChoiceStr) -1;
+        }   else {
             stdout.info("\nType a number of book!");
             chooseBookToPrint();
         }
-
         return bookChoice;
 
-    }
+        }
 
     private void exit() {
         ClearScreen.clearScreen();
