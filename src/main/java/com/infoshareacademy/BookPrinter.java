@@ -18,9 +18,9 @@ public class BookPrinter {
 
         while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
 
-            stdout.info("\nHow many records on page? (5,10,15) ");
+            stdout.info("\nIle rekordow na stronie? (5,10,15) ");
             recordsLimit = menu.getChoice(15);
-            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Wrong number!");
+            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!");
         }
 
         for (Book book : books) {
@@ -49,15 +49,15 @@ public class BookPrinter {
     private void menuBookList() {
 
         stdout.info("\nWybierz: ");
-        stdout.info("\nc -       choose book");
+        stdout.info("\nc -       wybierz nr ksiazki");
         stdout.info("\nm -       main menu");
-        stdout.info("\nq -       close application\n");
+        stdout.info("\nq -       zamknij aplikacje\n");
 
         Scanner scanner = new Scanner(System.in);
-        String choice1 = scanner.next();
+        String choice = scanner.next();
 
-        if (checkChoice1(choice1)) {
-            switch (choice1) {
+        if (checkChoiceEndMenu(choice)) {
+            switch (choice) {
                 case "q": {
                     exit();
                     break;
@@ -84,7 +84,7 @@ public class BookPrinter {
         return (choice != null);
     }
 
-    private boolean checkChoice1 (String choice) {
+    private boolean checkChoiceEndMenu (String choice) {
         return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
 
     }
@@ -92,6 +92,7 @@ public class BookPrinter {
         return (choice != null && Integer.valueOf(choice) > 1 && Integer.valueOf(choice) <= BookRepository.getBooks().size());
 
     }
+    
 
     private int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
