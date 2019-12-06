@@ -15,7 +15,8 @@ public class BookParser {
     public void parseJsonFileToObject() {
 
         try {
-            Book.book = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(new File("baza.json"), new TypeReference<>() {
+            Book.book = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                    false).readValue(new File("baza.json"), new TypeReference<>() {
                     });
 
         } catch (IOException e) {

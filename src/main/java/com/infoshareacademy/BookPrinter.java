@@ -35,8 +35,9 @@ public class BookPrinter {
                 String choice = scanner.next();
                 if (checkChoice(choice)) {
                     if (choice.equals("q")) {
-                        exit();
+                        menuBookList();
                         break;
+
                     }
                     counter = 0;
                     ClearScreen.clearScreen();
@@ -94,7 +95,7 @@ public class BookPrinter {
     }
     
 
-    private int chooseBookToPrint() {
+   public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
         String bookChoiceStr = scanner.next();

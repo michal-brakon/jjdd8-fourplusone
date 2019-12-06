@@ -23,7 +23,7 @@ public class Menu {
             getChoice(choices);
         }
         if (choice > choices || choice < 0) {
-            stdout.info("\nProsze wybrać jeden z " + choices + " wyborów");
+            stdout.info("\nProsze wybrać jeden z " + choices);
             getChoice(choices);
         }
 
@@ -31,7 +31,7 @@ public class Menu {
     }
 
     public void mainMenu() {
-
+        ClearScreen.clearScreen();
         stdout.info("\n1. wypozycz");
         stdout.info("\n2. oddaj");
         stdout.info("\n3. lista ksiazek");
@@ -67,7 +67,7 @@ public class Menu {
     private void bookListMenu() {
         ClearScreen.clearScreen();
         stdout.info("\n1. Pokaż wszystkie pozycje");
-        stdout.info("\n2. sortuj po gatunku");
+        stdout.info("\n2. Wyswietl jedna pozycje");
         stdout.info("\n3. sortuj po tytule");
         stdout.info("\n4. główne menu");
         stdout.info("\n0. wyjscie");
@@ -79,10 +79,14 @@ public class Menu {
                 break;
             }
             case 2: {
-                stdout.info("\nMetod not yet implemented");
+                int n = new BookPrinter().chooseBookToPrint();
+                stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
+                bookListMenu();
+                break;
+
             }
             case 3: {
-                stdout.info("\nMetod not yet implemented");
+
             }
             case 4: {
                 mainMenu();

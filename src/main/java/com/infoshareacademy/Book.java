@@ -74,12 +74,14 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Książka :[ " + '\n' +
+        String test = "tak";
+        if (!hasAudio) test = "nie";
+        return "Książka : " + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
                 "Autor : " + author + '\n' +
                 "Tytuł : " + title + '\n' +
                 "Epoka : " + epoch + '\n' +
-                "Czy ma Audio : " + hasAudio + '\n' +
+                "Czy ma Audio : " + test + '\n' +
                 "Klasa : " + genre + '\n' + '\n';
     }
 }
