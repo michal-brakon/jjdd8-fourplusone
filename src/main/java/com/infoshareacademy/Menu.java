@@ -11,9 +11,9 @@ public class Menu {
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
-    private int getChoice(int choices) {
+    public int getChoice(int choices) {
 
-        stdout.info("\nGdzie chcesz się udać: ");
+        stdout.info("\nGdzie chcesz się udać: \n");
         String userLineIn = scan.nextLine();
 
         try {
@@ -74,7 +74,7 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                stdout.info(String.valueOf(BookRepository.getBooks()));
+                new BookPrinter().printBooks(BookRepository.getBooks());
                 mainMenu();
                 break;
             }
