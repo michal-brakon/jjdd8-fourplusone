@@ -102,7 +102,7 @@ public class BookPrinter {
         if (checkChooseBook(bookChoiceStr)) {
             bookChoice = Integer.valueOf(bookChoiceStr) -1;
         }   else {
-            stdout.info("\nType a number of book!");
+            stdout.info("\nWpisz numer ksiazki!");
             chooseBookToPrint();
         }
         return bookChoice;
