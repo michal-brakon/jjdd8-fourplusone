@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class UserInput {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
@@ -11,13 +12,16 @@ public class UserInput {
     private Scanner scan = new Scanner(System.in);
     public int getChoice(int choices) {
 
-        stdout.info("\nGdzie chcesz się udać: \n");
-        String userLineIn = scan.nextLine();
 
-        try {
-            choice = Integer.parseInt(userLineIn);
-        } catch (NumberFormatException e) {
-            stdout.info("\nWpisałeś litere! ");
+        String userLineIn = scan.nextLine();
+        if (Pattern.matches(("[0-9]"), userLineIn) || Pattern.matches(("[0-9][0-9]"), userLineIn)) {
+            try {
+                choice = Integer.parseInt(userLineIn);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            stdout.info("Źle wpisałeś!");
             getChoice(choices);
         }
         if (choice > choices || choice < 0) {

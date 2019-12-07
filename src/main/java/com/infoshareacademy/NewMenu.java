@@ -4,26 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.Stack;
+
 
 public class NewMenu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput getNumber = new UserInput();
-    public int position = 1;
-    Stack<String> breadcrumbs = new Stack<>();
-
-
-
- /*   public void menuBreadcrumbs(int position) {
-        String crumbs = " ";
-
-        stdout.info("Menu główne<" + crumbs);
-    }*/
-
-
-
 
 
     public void newMenu(int position) {
@@ -33,7 +20,7 @@ public class NewMenu {
         MenuOptions menu4 = new MenuOptions("dostępne książki",4, 1);
         MenuOptions menu5 = new MenuOptions("lista książek",41, 4);
         MenuOptions menu6 = new MenuOptions("glowne menu",42, 4);
-        List<MenuOptions> newMenuList = new ArrayList();
+        List<MenuOptions> newMenuList = new ArrayList<>();
         newMenuList.add(menu1);
         newMenuList.add(menu2);
         newMenuList.add(menu3);
@@ -44,34 +31,30 @@ public class NewMenu {
             if (position == 1) {
                 stdout.info("\033[H\033[2J");
                 stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
-              //  menuBreadcrumbs(position);
-            } else if (position == 0) {
-                stdout.info("\033[H\033[2J");
-                stdout.info("zapraszamy ponownie");
-                break;
+
             }
 
 
 
 
             int parent= 0;
-            for (int i=0; i<newMenuList.size();i++){
-                if (newMenuList.get(i).getPosition()==position){
-                    parent=newMenuList.get(i).getParent();
+            for (MenuOptions menuOptions : newMenuList) {
+                if (menuOptions.getPosition() == position) {
+                    parent = menuOptions.getParent();
                 }
 
-                }
+            }
             int[] choicesNumber = new int[10];
             int pressNumber = 1;
-            for (int i=0; i<newMenuList.size();i++){
+            for (MenuOptions menuOptions : newMenuList) {
 
-                if (newMenuList.get(i).getParent() == position){
+                if (menuOptions.getParent() == position) {
 
-                    stdout.info("\n"+pressNumber+ " "+newMenuList.get(i).getDisplayedText());
+                    stdout.info("\n" + pressNumber + " " + menuOptions.getDisplayedText());
 
-                    choicesNumber[pressNumber]= newMenuList.get(i).getPosition();
+                    choicesNumber[pressNumber] = menuOptions.getPosition();
                     pressNumber++;
-            }
+                }
 
             }
             stdout.info("\n0 wróć do poprzedniego menu");
@@ -79,7 +62,7 @@ public class NewMenu {
             if (userChoice!=0) {
                 position = choicesNumber[pressNumber-1];
 
-            } else if (userChoice == 0){
+            } else {
                 position = parent;
 
             }
