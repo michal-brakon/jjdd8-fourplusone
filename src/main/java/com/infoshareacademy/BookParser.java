@@ -17,7 +17,7 @@ public class BookParser {
         try {
             Book.book = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                     false).readValue(new File("baza.json"), new TypeReference<>() {
-                    });
+            });
 
         } catch (IOException e) {
             e.printStackTrace();

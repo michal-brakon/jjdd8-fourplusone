@@ -17,7 +17,7 @@ public class Menu {
 
 
         String userLineIn = scan.nextLine();
-        if (Pattern.matches(("[0-9]"), userLineIn)) {
+        if (Pattern.matches(("[0-9]"), userLineIn) || Pattern.matches(("[0-9][0-9]"), userLineIn)) {
             try {
                 choice = Integer.parseInt(userLineIn);
             } catch (NumberFormatException e) {
@@ -98,8 +98,8 @@ public class Menu {
                 stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
-                if(choice!=null)
-                bookListMenu();
+                if (choice != null)
+                    bookListMenu();
                 break;
 
             }
