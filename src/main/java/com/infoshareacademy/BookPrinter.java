@@ -2,8 +2,10 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
@@ -17,10 +19,10 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
-
-            stdout.info("\nIle rekordow na stronie? (5,10,15) ");
+            ClearScreen.clearScreen();
+            stdout.info("\nIle rekordow na stronie? (5,10,15)\n ");
             recordsLimit = menu.getChoice(15);
-            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!");
+            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!\n");
         }
 
         for (Book book : books) {
@@ -30,7 +32,7 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste i zamknac aplikacje, dowolny klawisz kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny klawisz kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (checkChoice(choice)) {
@@ -50,7 +52,7 @@ public class BookPrinter {
     private void menuBookList() {
 
         stdout.info("\nWybierz: ");
-        stdout.info("\nc -       wybierz nr ksiazki");
+        stdout.info("\nc -       widok pojedyńczej ksiazki");
         stdout.info("\nm -       powrot do menu glownego");
         stdout.info("\nq -       zamknij aplikacje\n");
 
@@ -69,52 +71,57 @@ public class BookPrinter {
                 }
                 case "c": {
                     int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + String.valueOf(BookRepository.getBooks().get(temp)));
+                    stdout.info(temp + 1 + ". " + BookRepository.getBooks().get(temp));
                     menuBookList();
                     break;
                 }
             }
         } else {
-            stdout.info("\nBledny wybor");
+            stdout.info("\nBledny wybor\n");
             menuBookList();
         }
 
-        return;
     }
-    private boolean checkChoice (String choice) {
+
+    private boolean checkChoice(String choice) {
         return (choice != null);
     }
 
-    private boolean checkChoiceEndMenu (String choice) {
+    private boolean checkChoiceEndMenu(String choice) {
         return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
 
     }
-    private boolean checkChooseBook (String choice) {
-        return (choice != null && Integer.valueOf(choice) > 1 && Integer.valueOf(choice) <= BookRepository.getBooks().size());
+
+    private boolean checkChooseBook(String choice) {
+        return (choice != null && Integer.parseInt(choice) > 1 && Integer.parseInt(choice) <= BookRepository.getBooks().size());
 
     }
-    
 
-   public int chooseBookToPrint() {
+
+    public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
         String bookChoiceStr = scanner.next();
         int bookChoice = 0;
-        if (checkChooseBook(bookChoiceStr)) {
-            bookChoice = Integer.valueOf(bookChoiceStr) -1;
-        }   else {
-            stdout.info("\nWpisz numer ksiazki!");
-            chooseBookToPrint();
-        }
-        return bookChoice;
+
+        if (Pattern.matches(("[0-9][0-9]"), bookChoiceStr) || Pattern.matches(("[0-9]"), bookChoiceStr)) {
+
+            if (checkChooseBook(bookChoiceStr)) {
+                bookChoice = Integer.parseInt(bookChoiceStr) - 1;
+            }
+            return bookChoice;
 
         }
+        stdout.info("błędny znak! ");
+
+        return chooseBookToPrint();
+    }
 
     private void exit() {
         ClearScreen.clearScreen();
-        stdout.info("\nDo zobaczenia!");
+        stdout.info("\n  Do zobaczenia!\n");
         System.exit(0);
-        return;
+
     }
 }
 

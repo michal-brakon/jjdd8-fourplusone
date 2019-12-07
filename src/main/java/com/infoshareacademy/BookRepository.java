@@ -1,11 +1,10 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookRepository {
 
-    private static List<Book> bookRepository = Book.book;
+    private static List<Book> bookRepository = Book.bookList;
 
 
     public static List<Book> getBooks() {

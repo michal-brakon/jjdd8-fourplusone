@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class NewMenu {
@@ -15,13 +16,13 @@ public class NewMenu {
 
     public void newMenu(int position) {
         MenuOptions menu1 = new MenuOptions("glowne menu", 1, 0);
-        MenuOptions menu2 = new MenuOptions("zwróć książke", 2, 1);
-        MenuOptions menu3 = new MenuOptions("wypożycz książke", 3, 1);
+        MenuOptions menu2 = new MenuOptions("Przeglądaj zbiór książek", 2, 1);
+        MenuOptions menu3 = new MenuOptions("Rezerwacja pozycji", 3, 1);
         MenuOptions menu4 = new MenuOptions("dostępne książki", 4, 1);
+        MenuOptions menu8 = new MenuOptions("Ulubione", 5, 1);
         MenuOptions menu5 = new MenuOptions("Pokaż Wszystkie pozycje", 41, 4);
         MenuOptions menu6 = new MenuOptions("wyświetl jedną pozycje", 42, 4);
         MenuOptions menu7 = new MenuOptions("sortuj po tytule", 43, 4);
-        MenuOptions menu8 = new MenuOptions("", 44, 2);
         MenuOptions menu9 = new MenuOptions("", 45, 3);
         MenuOptions menu10 = new MenuOptions("", 46, 44);
         List<MenuOptions> newMenuList = new ArrayList<>();
@@ -39,20 +40,26 @@ public class NewMenu {
 
         while (position != 0) {
             stdout.info("\033[H\033[2J");
+            stdout.info("\n");
+            Header.headerPrinter();
             if (position == 1) {
 
                 stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
 
 
-            } /*else if (position == 41) {
+            } else if (position == 41) {
                 new BookPrinter().printBooks(BookRepository.getBooks());
-            } else if (position == 42) {
-                int n = new BookPrinter().chooseBookToPrint();
+            } else if (position == 42) {                int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
+                stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
+                Scanner scanner = new Scanner(System.in);
+                String choice = scanner.next();
+                if (choice != null)
+                    continue;
             } else if (position == 43) {
                 bookPrinter.chooseBookToPrint();
-            }*/
-            //stdout.info("\n jestes na pozycji  "+position);
+                new SearchBook().searchFromAuthor();
+            }
 
             int parent = 0;
             for (int i=0; i<newMenuList.size();i++){

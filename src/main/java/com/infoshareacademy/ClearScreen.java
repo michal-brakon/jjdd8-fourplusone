@@ -20,6 +20,7 @@ public class ClearScreen {
             p.waitFor();
             p.destroy();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

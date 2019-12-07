@@ -4,16 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
     public int getChoice(int choices) {
 
-        stdout.info("\nGdzie chcesz się udać: \n");
+
         String userLineIn = scan.nextLine();
 
         try {
