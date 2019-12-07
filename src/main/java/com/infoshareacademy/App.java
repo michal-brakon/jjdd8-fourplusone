@@ -14,9 +14,9 @@ public class App {
         bookParser.parseJsonFileToObject();
 
         // menu init
-
-        Menu menu = new Menu();
-        menu.mainMenu();
+        NewMenu menu = new NewMenu();
+        //Menu menu = new Menu();
+        menu.newMenu(1);
 
         stdout.info("Four-Plus-One");
 
