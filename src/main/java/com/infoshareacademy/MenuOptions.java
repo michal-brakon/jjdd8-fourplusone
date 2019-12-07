@@ -6,21 +6,10 @@ public class MenuOptions {
     private int position;
     private int parent;
 
-    public void setDisplayedText(String displayedText) {
-        this.displayedText = displayedText;
-    }
-
-    public void setParent(int parent) {
-        this.parent = parent;
-    }
-
     public int getParent() {
         return parent;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 
     public MenuOptions(String displayedText, int position, int parent) {
         this.displayedText = displayedText;

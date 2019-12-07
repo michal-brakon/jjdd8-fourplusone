@@ -1,4 +1,5 @@
 package com.infoshareacademy;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,7 @@ public class UserInput {
 
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
+
     public int getChoice(int choices) {
 
 
@@ -30,4 +32,5 @@ public class UserInput {
         }
 
         return choice;
-}}
+    }
+}
