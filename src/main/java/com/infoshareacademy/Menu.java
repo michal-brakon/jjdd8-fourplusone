@@ -18,11 +18,9 @@ public class Menu {
 
         String userLineIn = scan.nextLine();
         if (Pattern.matches(("[0-9]"), userLineIn) || Pattern.matches(("[0-9][0-9]"), userLineIn)) {
-            try {
+
                 choice = Integer.parseInt(userLineIn);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+
         } else {
             stdout.info("Źle wpisałeś!");
             getChoice(choices);
