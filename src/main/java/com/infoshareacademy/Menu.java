@@ -4,22 +4,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
     public int getChoice(int choices) {
 
-        stdout.info("\nGdzie chcesz się udać: \n");
-        String userLineIn = scan.nextLine();
 
-        try {
-            choice = Integer.parseInt(userLineIn);
-        } catch (NumberFormatException e) {
-            stdout.info("\nWpisałeś litere! ");
+        String userLineIn = scan.nextLine();
+        if (Pattern.matches(("[0-9]"), userLineIn)) {
+            try {
+                choice = Integer.parseInt(userLineIn);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            stdout.info("Źle wpisałeś!");
             getChoice(choices);
         }
         if (choice > choices || choice < 0) {
@@ -32,29 +37,36 @@ public class Menu {
 
     public void mainMenu() {
         ClearScreen.clearScreen();
-        stdout.info("\n1. wypozycz");
-        stdout.info("\n2. oddaj");
-        stdout.info("\n3. lista ksiazek");
-        stdout.info("\n-----");
-        stdout.info("\n0. wyjscie");
+        Header.headerPrinter();
+        stdout.info("\n1. Przeglądaj zbiór książek");
+        stdout.info("\n2. Rezerwacja pozycji");
+        stdout.info("\n3. Ulubione");
+        stdout.info("\n4  Zarzadzanie zbiorem");
 
-        switch (getChoice(3)) {
+        stdout.info("\n0. wyjscie\n");
+
+        switch (getChoice(4)) {
 
             case 1: {
-                borrowBookMenu();
+                bookListMenu();
                 break;
             }
             case 2: {
-                returnBookMenu();
+                borrowBookMenu();
                 break;
             }
             case 3: {
-                bookListMenu();
+                favoritesMenu();
+                break;
+            }
+            case 4: {
+                managerBookMenu();
                 break;
             }
 
             case 0:
                 exit();
+                break;
         }
 
     }
@@ -62,15 +74,17 @@ public class Menu {
     private void exit() {
         ClearScreen.clearScreen();
         stdout.info("\nDo zobaczenia!");
+        System.exit(0);
     }
 
-    private void bookListMenu() {
+    void bookListMenu() {
         ClearScreen.clearScreen();
+        Header.headerPrinter();
         stdout.info("\n1. Pokaż wszystkie pozycje");
         stdout.info("\n2. Wyswietl jedna pozycje");
-        stdout.info("\n3. sortuj po tytule");
+        stdout.info("\n3. Szukaj");
         stdout.info("\n4. główne menu");
-        stdout.info("\n0. wyjscie");
+        stdout.info("\n0. wyjscie\n");
 
         switch (getChoice(4)) {
             case 1: {
@@ -81,11 +95,18 @@ public class Menu {
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
+                stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
+                Scanner scanner = new Scanner(System.in);
+                String choice = scanner.next();
+                if(choice!=null)
                 bookListMenu();
                 break;
 
             }
             case 3: {
+                new SearchBook().searchFromAuthor();
+
+                break;
 
             }
             case 4: {
@@ -98,12 +119,51 @@ public class Menu {
 
     }
 
-    private void returnBookMenu() {
+    private void favoritesMenu() {
+        stdout.info("Feature in progress\n");
+        mainMenu();
+        exit();
 
     }
 
     private void borrowBookMenu() {
+        ClearScreen.clearScreen();
+        Header.headerPrinter();
+        stdout.info("\n1. Dodaj ksiażke do rezerwacji");
+        stdout.info("\n2. Usuń ksiażkę z rezerwacji");
+        stdout.info("\n3. Powrot do menu glownego");
+        stdout.info("\n4. Zamknij aplikacje\n");
 
+
+        switch (getChoice(4)) {
+            case 1: {
+                stdout.info("Feature in progress!\n");
+                borrowBookMenu();
+                break;
+            }
+            case 2: {
+                stdout.info("Feature in progress!\n");
+                borrowBookMenu();
+                break;
+            }
+            case 3: {
+                mainMenu();
+                break;
+            }
+            case 4: {
+                exit();
+                break;
+
+            }
+
+
+        }
+    }
+
+    private void managerBookMenu() {
+        stdout.info("Feature in progress\n");
+        mainMenu();
+        exit();
     }
 
 }
