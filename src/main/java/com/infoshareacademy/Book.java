@@ -22,7 +22,7 @@ public class Book {
 
     private String genre;
 
-    public static List<Book> book = new ArrayList<>();
+    static List<Book> bookList = new ArrayList<>();
 
     public String getKind() {
         return kind;
