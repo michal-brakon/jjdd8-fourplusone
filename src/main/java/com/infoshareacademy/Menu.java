@@ -37,7 +37,7 @@ public class Menu {
 
     public void mainMenu() {
         ClearScreen.clearScreen();
-        Header.headerPrinter();
+
         stdout.info("\n1. Przeglądaj zbiór książek");
         stdout.info("\n2. Rezerwacja pozycji");
         stdout.info("\n3. Ulubione");
@@ -79,7 +79,7 @@ public class Menu {
 
     void bookListMenu() {
         ClearScreen.clearScreen();
-        Header.headerPrinter();
+
         stdout.info("\n1. Pokaż wszystkie pozycje");
         stdout.info("\n2. Wyswietl jedna pozycje");
         stdout.info("\n3. Szukaj");
@@ -128,7 +128,7 @@ public class Menu {
 
     private void borrowBookMenu() {
         ClearScreen.clearScreen();
-        Header.headerPrinter();
+
         stdout.info("\n1. Dodaj ksiażke do rezerwacji");
         stdout.info("\n2. Usuń ksiażkę z rezerwacji");
         stdout.info("\n3. Powrot do menu glownego");
