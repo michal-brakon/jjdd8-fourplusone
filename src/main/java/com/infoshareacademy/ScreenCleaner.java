@@ -19,8 +19,8 @@ public class ScreenCleaner {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(p.getInputStream()));
             while ((s = br.readLine()) != null) {
-                System.out.println("CHARS: " + getChars(s));
-                System.out.println(s);
+               stdout.info("CHARS: " + getChars(s));
+                stdout.info(s);
             }
             p.waitFor();
             p.destroy();
