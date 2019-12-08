@@ -17,7 +17,6 @@ public class Menu {
 
     public int getChoice(int choices) {
 
-
         String userLineIn = scan.nextLine();
         if (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) {
 
@@ -150,6 +149,7 @@ public class Menu {
             }
         }
     }
+
     private void managerBookMenu() {
         stdout.info("Feature in progress\n");
         mainMenu();
