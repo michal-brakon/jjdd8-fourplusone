@@ -51,18 +51,15 @@ public class Menu {
                 break;
             }
             case 2: {
-                borrowBookMenu();
+                borrowBook();
                 break;
             }
-            case 3: {
-                favoritesMenu();
-                break;
-            }
+            case 3:
             case 4: {
-                managerBookMenu();
-                break;
+                stdout.info("Funkcjonalnosc w budowie\n");
+                mainMenu();
+                return;
             }
-
             case 0: {
                 exit();
                 break;
@@ -99,14 +96,11 @@ public class Menu {
                 break;
 
             }
-            case 3: {
-
-                break;
-
-            }
+            case 3:
             case 4: {
+                stdout.info("Funkcjonalnosc w budowie\n");
                 mainMenu();
-                break;
+                return;
             }
             case 0: {
                 exit();
@@ -116,14 +110,7 @@ public class Menu {
 
     }
 
-    private void favoritesMenu() {
-        stdout.info("Feature in progress\n");
-        mainMenu();
-        return;
-
-    }
-
-    private void borrowBookMenu() {
+    private void borrowBook() {
         ClearScreen.clearScreen();
 
         stdout.info("\n1. Dodaj ksiażke do rezerwacji");
@@ -135,8 +122,8 @@ public class Menu {
         switch (getChoice(4)) {
             case 1:
             case 2: {
-                stdout.info("Feature in progress!\n");
-                borrowBookMenu();
+                stdout.info("Funkcjonalnosc w budowie!\n");
+                borrowBook();
                 break;
             }
             case 3: {
@@ -149,11 +136,4 @@ public class Menu {
             }
         }
     }
-
-    private void managerBookMenu() {
-        stdout.info("Feature in progress\n");
-        mainMenu();
-        exit();
-    }
-
 }
