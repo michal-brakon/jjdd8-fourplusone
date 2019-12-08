@@ -19,18 +19,17 @@ public class BookParser {
 
 
     public List<Book> parseJsonFileToObject() {
-      List <Book> parseJson = null;
+        List<Book> parseJson = null;
 
         try {
-            parseJson=objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+            parseJson = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                     false).readValue(new File("baza.json"), new TypeReference<>() {
             });
         } catch (IOException e) {
-            stdout.info("File not found");
+            stdout.info("\nNie wczytano bazy z pliku!");
         }
 
 
         return parseJson;
     }
-
 }

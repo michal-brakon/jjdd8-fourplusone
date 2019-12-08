@@ -13,12 +13,14 @@ public class App {
 
         // read json file to collection
 
+        stdout.info("Four-Plus-One");
+
         // menu init
 
         Menu menu = new Menu();
         menu.mainMenu();
 
-        stdout.info("Four-Plus-One");
+
 
     }
 }

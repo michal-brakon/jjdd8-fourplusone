@@ -2,10 +2,6 @@ package com.infoshareacademy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Book {
 
 
@@ -59,9 +55,7 @@ public class Book {
     }
 
     public void setHasAudio(boolean hasAudio) {
-
-
-                this.hasAudio = hasAudio;
+        this.hasAudio = hasAudio;
     }
 
     public String getGenre() {
@@ -72,14 +66,15 @@ public class Book {
         this.genre = genre;
     }
 
+    private String hasAudioString = hasAudio ? "tak" : "nie";
+
     @Override
     public String toString() {
-        return "Książka :[ " + '\n' +
+        return "Tytuł : " + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
                 "Autor : " + author + '\n' +
-                "Tytuł : " + title + '\n' +
                 "Epoka : " + epoch + '\n' +
-                "Czy ma Audio : " + hasAudio + '\n' +
+                "Czy ma Audio : " + hasAudioString + '\n' +
                 "Klasa : " + genre + '\n' + '\n';
     }
 }
