@@ -13,12 +13,16 @@ public class App {
         BookParser bookParser = new BookParser();
         bookParser.parseJsonFileToObject();
 
+        stdout.info("Four-Plus-One");
+
+        stdout.info("\n Rozmiar listy: " + BookRepository.getBooks().size());
+
         // menu init
 
         Menu menu = new Menu();
         menu.mainMenu();
 
-        stdout.info("Four-Plus-One");
+
 
     }
 }

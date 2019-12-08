@@ -12,6 +12,7 @@ public class BookPrinter {
 
     Menu menu = new Menu();
     boolean isExit = false;
+    int bookChoice = 0;
 
 
     public void printBooks(List<Book> books) {
@@ -66,8 +67,8 @@ public class BookPrinter {
                     break;
                 }
                 case "c": {
-                    int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + BookRepository.getBooks().get(temp));
+                    chooseBookToPrint();
+                    stdout.info(bookChoice + 1 + ". " + BookRepository.getBooks().get(bookChoice));
                     menuBookList();
                     break;
                 }
@@ -89,28 +90,25 @@ public class BookPrinter {
     }
 
     private boolean checkChooseBook(String choice) {
-        return (choice != null && Integer.parseInt(choice) > 1 && Integer.parseInt(choice) <= BookRepository.getBooks().size());
+        return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getBooks().size()));
 
     }
-
 
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
-        String bookChoiceStr = scanner.next();
-        int bookChoice = 0;
+        String choice = scanner.next();
 
-        if (Pattern.matches(("[0-9][0-9]"), bookChoiceStr) || Pattern.matches(("[0-9]"), bookChoiceStr)) {
-
-            if (checkChooseBook(bookChoiceStr)) {
-                bookChoice = Integer.parseInt(bookChoiceStr) - 1;
+            if (!checkChooseBook(choice)) {
+                stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
+                bookChoice = 0;
+                chooseBookToPrint();
+            }  else {
+                bookChoice = Integer.valueOf(choice) -1 ;
+                return bookChoice;
             }
-            return bookChoice;
 
-        }
-        stdout.info("błędny znak! ");
-
-        return chooseBookToPrint();
+        return bookChoice;
     }
 
 }
