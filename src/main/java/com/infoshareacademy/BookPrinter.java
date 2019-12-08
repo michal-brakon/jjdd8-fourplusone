@@ -2,6 +2,8 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ public class BookPrinter {
 
     Menu menu = new Menu();
 
-    public void printBooks(List<Book> books) {
+    public void printBooks(List<Book> books) throws IOException {
 
         int record = 1;
         int counter = 0;
@@ -46,7 +48,7 @@ public class BookPrinter {
         menuBookList();
     }
 
-    private void menuBookList() {
+    private void menuBookList() throws IOException {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       wybierz nr ksiazki");
@@ -68,7 +70,7 @@ public class BookPrinter {
                 }
                 case "c": {
                     int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + String.valueOf(BookRepository.getBooks().get(temp)));
+                    stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
                     menuBookList();
                     break;
                 }
@@ -89,7 +91,7 @@ public class BookPrinter {
 
     }
     private boolean checkChooseBook (String choice) {
-        return (choice != null && Integer.valueOf(choice) > 1 && Integer.valueOf(choice) <= BookRepository.getBooks().size());
+        return (choice != null && Integer.parseInt(choice) > 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size());
 
     }
     
@@ -100,7 +102,7 @@ public class BookPrinter {
         String bookChoiceStr = scanner.next();
         int bookChoice = 0;
         if (checkChooseBook(bookChoiceStr)) {
-            bookChoice = Integer.valueOf(bookChoiceStr) -1;
+            bookChoice = Integer.parseInt(bookChoiceStr) -1;
         }   else {
             stdout.info("\nWpisz numer ksiazki!");
             chooseBookToPrint();

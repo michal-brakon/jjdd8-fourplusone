@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -30,7 +31,7 @@ public class Menu {
         return choice;
     }
 
-    public void mainMenu() {
+    public void mainMenu() throws IOException {
 
         stdout.info("\n1. wypozycz");
         stdout.info("\n2. oddaj");
@@ -64,7 +65,7 @@ public class Menu {
         stdout.info("\nDo zobaczenia!");
     }
 
-    private void bookListMenu() {
+    private void bookListMenu() throws IOException {
         ClearScreen.clearScreen();
         stdout.info("\n1. Pokaż wszystkie pozycje");
         stdout.info("\n2. sortuj po gatunku");
@@ -74,7 +75,7 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                new BookPrinter().printBooks(BookRepository.getBooks());
+                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
                 mainMenu();
                 break;
             }

@@ -3,15 +3,15 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 public class App {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // read json file to collection
-        BookParser bookParser = new BookParser();
-        bookParser.parseJsonFileToObject();
 
         // menu init
 

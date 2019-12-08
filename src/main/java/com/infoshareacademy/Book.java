@@ -22,8 +22,6 @@ public class Book {
 
     private String genre;
 
-    public static List<Book> book = new ArrayList<>();
-
     public String getKind() {
         return kind;
     }
@@ -61,7 +59,9 @@ public class Book {
     }
 
     public void setHasAudio(boolean hasAudio) {
-        this.hasAudio = hasAudio;
+
+
+                this.hasAudio = hasAudio;
     }
 
     public String getGenre() {
