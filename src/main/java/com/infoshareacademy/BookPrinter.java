@@ -11,8 +11,8 @@ public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     Menu menu = new Menu();
-    boolean isExit = false;
-    int bookChoice = 0;
+    private int bookChoice = 0;
+    private boolean isExit = false;
 
 
     public void printBooks(List<Book> books) {
@@ -22,7 +22,7 @@ public class BookPrinter {
         int recordsLimit = 0;
 
             ClearScreen.clearScreen();
-            stdout.info("\nIle rekordow na stronie? \n ");
+            stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getBooks().size() +")\n ");
             recordsLimit = menu.getChoice(BookRepository.getBooks().size());
 
         for (Book book : books) {
@@ -32,18 +32,15 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny klawisz kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
-                if (checkChoice(choice)) {
-                    if (choice.equals("q")) {
+                if (choice.equals("q")) {
                         menuBookList();
                         break;
-
                     }
                     counter = 0;
                     ClearScreen.clearScreen();
-                }
             }
         }
         if (!isExit) menuBookList();
@@ -72,16 +69,13 @@ public class BookPrinter {
                     menuBookList();
                     break;
                 }
+                default: break;
             }
         } else {
             stdout.info("\nBledny wybor\n");
             menuBookList();
         }
 
-    }
-
-    private boolean checkChoice(String choice) {
-        return (choice != null);
     }
 
     private boolean checkChoiceEndMenu(String choice) {
