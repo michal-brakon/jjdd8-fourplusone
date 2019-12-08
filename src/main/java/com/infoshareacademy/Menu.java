@@ -35,7 +35,7 @@ public class Menu {
     }
 
     public void mainMenu() {
-        ClearScreen.clearScreen();
+        ScreenCleaner.clearScreen();
 
         stdout.info("\n1. Przeglądaj zbiór książek");
         stdout.info("\n2. Rezerwacja pozycji");
@@ -47,7 +47,7 @@ public class Menu {
         switch (getChoice(4)) {
 
             case 1: {
-                bookListMenu();
+                showRepository();
                 break;
             }
             case 2: {
@@ -70,13 +70,13 @@ public class Menu {
 
     private void exit() {
         isExit = true;
-        ClearScreen.clearScreen();
+        ScreenCleaner.clearScreen();
         stdout.info("\nDo zobaczenia!");
         return;
     }
 
-    void bookListMenu() {
-        ClearScreen.clearScreen();
+    void showRepository() {
+        ScreenCleaner.clearScreen();
 
         stdout.info("\n1. Pokaż wszystkie pozycje");
         stdout.info("\n2. Wyswietl jedna pozycje");
@@ -92,7 +92,7 @@ public class Menu {
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
-                bookListMenu();
+                showRepository();
                 break;
 
             }
@@ -111,7 +111,7 @@ public class Menu {
     }
 
     private void borrowBook() {
-        ClearScreen.clearScreen();
+        ScreenCleaner.clearScreen();
 
         stdout.info("\n1. Dodaj ksiażke do rezerwacji");
         stdout.info("\n2. Usuń ksiażkę z rezerwacji");
