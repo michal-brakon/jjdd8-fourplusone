@@ -53,18 +53,14 @@ public class BookPrinter {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       widok pojedyńczej ksiazki");
-        stdout.info("\nm -       powrot do menu glownego");
-        stdout.info("\nq -       zamknij aplikacje\n");
+        stdout.info("\nm -       powrot do menu glownego\n");
 
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
         if (checkChoiceEndMenu(choice)) {
             switch (choice) {
-                case "q": {
-                    exit();
-                    break;
-                }
+
                 case "m": {
                     menu.mainMenu();
                     break;
@@ -88,7 +84,7 @@ public class BookPrinter {
     }
 
     private boolean checkChoiceEndMenu(String choice) {
-        return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
+        return (choice != null && (choice.equals("m") || choice.equals("c")));
 
     }
 
@@ -120,7 +116,7 @@ public class BookPrinter {
     private void exit() {
         ClearScreen.clearScreen();
         stdout.info("\n  Do zobaczenia!\n");
-        System.exit(0);
+        return;
 
     }
 }

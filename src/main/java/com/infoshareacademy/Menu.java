@@ -17,18 +17,18 @@ public class Menu {
 
 
         String userLineIn = scan.nextLine();
-        if (Pattern.matches(("[0-9]"), userLineIn) || Pattern.matches(("[0-9][0-9]"), userLineIn)) {
+        if (Pattern.matches(("[0-"+choices+"]"), userLineIn)) {
 
                 choice = Integer.parseInt(userLineIn);
 
         } else {
-            stdout.info("Źle wpisałeś!");
+            stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
             getChoice(choices);
         }
-        if (choice > choices || choice < 0) {
-            stdout.info("\nProsze wybrać jeden z " + choices);
-            getChoice(choices);
-        }
+//        if (choice > choices || choice < 0) {
+//            stdout.info("\nProsze wybrać jeden z " + choices);
+//            getChoice(choices);
+//        }
 
         return choice;
     }
@@ -72,7 +72,7 @@ public class Menu {
     private void exit() {
         ClearScreen.clearScreen();
         stdout.info("\nDo zobaczenia!");
-        System.exit(0);
+        return;
     }
 
     void bookListMenu() {
@@ -113,6 +113,7 @@ public class Menu {
             }
             case 0:
                 exit();
+                break;
         }
 
     }
@@ -120,7 +121,7 @@ public class Menu {
     private void favoritesMenu() {
         stdout.info("Feature in progress\n");
         mainMenu();
-        exit();
+        return;
 
     }
 
