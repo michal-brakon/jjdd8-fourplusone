@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
+    BookRepository bookRepository = new BookRepository();
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
     public static boolean isExit = false;
@@ -89,18 +90,17 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                new BookPrinter().printBooks(BookRepository.getBooks());
+                new BookPrinter().printBooks(bookRepository.getBooks());
                 break;
             }
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
+                stdout.info(n + 1 + ". " + bookRepository.getBooks().get(n));
                 bookListMenu();
                 break;
 
             }
             case 3: {
-                new SearchBook().searchFromAuthor();
 
                 break;
 
