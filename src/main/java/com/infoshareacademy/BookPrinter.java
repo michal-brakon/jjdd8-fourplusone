@@ -11,6 +11,8 @@ public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     Menu menu = new Menu();
+    boolean isExit = false;
+
 
     public void printBooks(List<Book> books) {
 
@@ -18,12 +20,9 @@ public class BookPrinter {
         int counter = 0;
         int recordsLimit = 0;
 
-        while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
             ClearScreen.clearScreen();
-            stdout.info("\nIle rekordow na stronie? (5,10,15)\n ");
-            recordsLimit = menu.getChoice(15);
-            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!\n");
-        }
+            stdout.info("\nIle rekordow na stronie? \n ");
+            recordsLimit = menu.getChoice(BookRepository.getBooks().size());
 
         for (Book book : books) {
 
@@ -46,7 +45,7 @@ public class BookPrinter {
                 }
             }
         }
-        menuBookList();
+        if (!isExit) menuBookList();
     }
 
     private void menuBookList() {
@@ -62,6 +61,7 @@ public class BookPrinter {
             switch (choice) {
 
                 case "m": {
+                    isExit = true;
                     menu.mainMenu();
                     break;
                 }
@@ -113,12 +113,6 @@ public class BookPrinter {
         return chooseBookToPrint();
     }
 
-    private void exit() {
-        ClearScreen.clearScreen();
-        stdout.info("\n  Do zobaczenia!\n");
-        return;
-
-    }
 }
 
 

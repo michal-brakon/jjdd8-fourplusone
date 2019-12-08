@@ -12,23 +12,24 @@ public class Menu {
 
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
+    public static boolean isExit = false;
 
     public int getChoice(int choices) {
 
 
         String userLineIn = scan.nextLine();
-        if (Pattern.matches(("[0-"+choices+"]"), userLineIn)) {
+        if (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) {
 
-                choice = Integer.parseInt(userLineIn);
+            choice = Integer.parseInt(userLineIn);
 
         } else {
             stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
             getChoice(choices);
         }
-//        if (choice > choices || choice < 0) {
-//            stdout.info("\nProsze wybrać jeden z " + choices);
-//            getChoice(choices);
-//        }
+        if (choice > choices || choice < 0) {
+            stdout.info("\nProsze wybrać jeden z " + choices + "\n");
+            getChoice(choices);
+        }
 
         return choice;
     }
@@ -62,14 +63,16 @@ public class Menu {
                 break;
             }
 
-            case 0:
+            case 0: {
                 exit();
                 break;
+            }
         }
 
     }
 
     private void exit() {
+        isExit = true;
         ClearScreen.clearScreen();
         stdout.info("\nDo zobaczenia!");
         return;
@@ -87,17 +90,12 @@ public class Menu {
         switch (getChoice(4)) {
             case 1: {
                 new BookPrinter().printBooks(BookRepository.getBooks());
-                mainMenu();
                 break;
             }
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
-                stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
-                Scanner scanner = new Scanner(System.in);
-                String choice = scanner.next();
-                if (choice != null)
-                    bookListMenu();
+                bookListMenu();
                 break;
 
             }
@@ -111,9 +109,10 @@ public class Menu {
                 mainMenu();
                 break;
             }
-            case 0:
+            case 0: {
                 exit();
                 break;
+            }
         }
 
     }
@@ -135,11 +134,7 @@ public class Menu {
 
 
         switch (getChoice(4)) {
-            case 1: {
-                stdout.info("Feature in progress!\n");
-                borrowBookMenu();
-                break;
-            }
+            case 1:
             case 2: {
                 stdout.info("Feature in progress!\n");
                 borrowBookMenu();
@@ -152,13 +147,9 @@ public class Menu {
             case 4: {
                 exit();
                 break;
-
             }
-
-
         }
     }
-
     private void managerBookMenu() {
         stdout.info("Feature in progress\n");
         mainMenu();
