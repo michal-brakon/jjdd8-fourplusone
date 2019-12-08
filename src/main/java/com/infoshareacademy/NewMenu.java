@@ -15,33 +15,26 @@ public class NewMenu {
 
 
     public void newMenu(int position) {
-        MenuOptions menu1 = new MenuOptions("glowne menu", 1, 0);
-        MenuOptions menu2 = new MenuOptions("Przeglądaj zbiór książek", 2, 1);
-        MenuOptions menu3 = new MenuOptions("Rezerwacja pozycji", 3, 1);
-        MenuOptions menu4 = new MenuOptions("dostępne książki", 4, 1);
-        MenuOptions menu8 = new MenuOptions("Ulubione", 5, 1);
-        MenuOptions menu5 = new MenuOptions("Pokaż Wszystkie pozycje", 41, 4);
-        MenuOptions menu6 = new MenuOptions("wyświetl jedną pozycje", 42, 4);
-        MenuOptions menu7 = new MenuOptions("sortuj po tytule", 43, 4);
-        MenuOptions menu9 = new MenuOptions("", 45, 3);
-        MenuOptions menu10 = new MenuOptions("", 46, 44);
+
+
         List<MenuOptions> newMenuList = new ArrayList<>();
-        newMenuList.add(menu1);
-        newMenuList.add(menu2);
-        newMenuList.add(menu3);
-        newMenuList.add(menu4);
-        newMenuList.add(menu5);
-        newMenuList.add(menu6);
-        newMenuList.add(menu7);
-        newMenuList.add(menu8);
-        newMenuList.add(menu9);
-        newMenuList.add(menu10);
+        newMenuList.add(new MenuOptions("glowne menu", 1, 0));
+        newMenuList.add(new MenuOptions("Przeglądaj zbiór książek", 2, 1));
+        newMenuList.add(new MenuOptions("zwróć książke", 2, 1));
+        newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
+        newMenuList.add(new MenuOptions("Ulubione", 5, 1));
+        newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
+        newMenuList.add(new MenuOptions("wyświetl jedną pozycje", 42, 4));
+        newMenuList.add(new MenuOptions("sortuj po tytule", 43, 4));
+        newMenuList.add(new MenuOptions("", 45, 3));
+        newMenuList.add(new MenuOptions("", 46, 44));
 
 
         while (position != 0) {
             stdout.info("\033[H\033[2J");
             stdout.info("\n");
             Header.headerPrinter();
+            // adding functionality on positions here
             if (position == 1) {
 
                 stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
@@ -49,7 +42,8 @@ public class NewMenu {
 
             } else if (position == 41) {
                 new BookPrinter().printBooks(BookRepository.getBooks());
-            } else if (position == 42) {                int n = new BookPrinter().chooseBookToPrint();
+            } else if (position == 42) {
+                int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
                 stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
                 Scanner scanner = new Scanner(System.in);
@@ -62,32 +56,34 @@ public class NewMenu {
             }
 
             int parent = 0;
-            for (int i=0; i<newMenuList.size();i++){
-                if (newMenuList.get(i).getPosition()==position){
-                    parent=newMenuList.get(i).getParent();
+            for (MenuOptions menuOptions : newMenuList) {
+                if (menuOptions.getPosition() == position) {
+                    parent = menuOptions.getParent();
                 }
 
             }
+            stdout.info("wybie");
             int[] choicesNumber = new int[10];
             int pressNumber = 1;
-            for (int i=0; i<newMenuList.size();i++){
+            for (MenuOptions menuOptions : newMenuList) {
 
-                if (newMenuList.get(i).getParent() == position){
+                if (menuOptions.getParent() == position) {
 
-                    stdout.info("\n"+pressNumber+ " "+newMenuList.get(i).getDisplayedText());
+                    stdout.info("\n" + pressNumber + "<-  " + menuOptions.getDisplayedText());
 
-                    choicesNumber[pressNumber]= newMenuList.get(i).getPosition();
+                    choicesNumber[pressNumber] = menuOptions.getPosition();
                     pressNumber++;
                 }
 
             }
-            stdout.info("\n0 wróć do poprzedniego menu  ");
-            int userChoice = getNumber.getChoice(pressNumber-1);
-            stdout.info("\nwybrales "+userChoice);
+            stdout.info("\n0<-  wróć do poprzedniego menu  ");
+            stdout.info("\n wybież numer opcji którą chcesz wybrać: ");
+            int userChoice = getNumber.getChoice(pressNumber - 1);
+            stdout.info("\nwybrales " + userChoice);
             if (userChoice != 0) {
                 position = choicesNumber[userChoice];
 
-            } else if (userChoice == 0){
+            } else {
                 position = parent;
 
             }

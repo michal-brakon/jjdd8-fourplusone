@@ -6,15 +6,15 @@ public class MenuOptions {
     private int position;
     private int parent;
 
-    public int getParent() {
-        return parent;
-    }
-
-
     public MenuOptions(String displayedText, int position, int parent) {
         this.displayedText = displayedText;
         this.position = position;
         this.parent = parent;
+
+    }
+
+    public int getParent() {
+        return parent;
     }
 
     public int getPosition() {
