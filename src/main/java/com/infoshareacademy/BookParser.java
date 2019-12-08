@@ -3,6 +3,8 @@ package com.infoshareacademy;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.io.IOException;
 public class BookParser {
 
     private ObjectMapper objectMapper = new ObjectMapper();
-
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     public void parseJsonFileToObject() {
 
@@ -20,7 +22,7 @@ public class BookParser {
             });
 
         } catch (IOException e) {
-            e.printStackTrace();
+            stdout.info("\nNie wczytano bazy z pliku!");
         }
     }
 }
