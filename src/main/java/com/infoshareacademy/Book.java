@@ -76,10 +76,9 @@ public class Book {
     public String toString() {
         String test = "tak";
         if (!hasAudio) test = "nie";
-        return "Książka : " + '\n' +
+        return "Tytuł : " + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
                 "Autor : " + author + '\n' +
-                "Tytuł : " + title + '\n' +
                 "Epoka : " + epoch + '\n' +
                 "Czy ma Audio : " + test + '\n' +
                 "Klasa : " + genre + '\n' + '\n';

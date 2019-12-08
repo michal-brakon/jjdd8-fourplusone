@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
+    BookRepository bookRepository = new BookRepository();
     Menu menu = new Menu();
     private int bookChoice = 0;
     private boolean isExit = false;
@@ -22,8 +23,8 @@ public class BookPrinter {
         int recordsLimit = 0;
 
             ClearScreen.clearScreen();
-            stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getBooks().size() +")\n ");
-            recordsLimit = menu.getChoice(BookRepository.getBooks().size());
+            stdout.info("\nIle rekordow na stronie? (1-"+ bookRepository.getBooks().size() +")\n ");
+            recordsLimit = menu.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
@@ -43,7 +44,9 @@ public class BookPrinter {
                     ClearScreen.clearScreen();
             }
         }
-        if (!isExit) menuBookList();
+        if (!isExit) {
+            menuBookList();
+        }
     }
 
     private void menuBookList() {
@@ -55,7 +58,7 @@ public class BookPrinter {
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
-        if (checkChoiceEndMenu(choice)) {
+        if (isCorrectChoiceEndMenu(choice)) {
             switch (choice) {
 
                 case "m": {
@@ -65,7 +68,7 @@ public class BookPrinter {
                 }
                 case "c": {
                     chooseBookToPrint();
-                    stdout.info(bookChoice + 1 + ". " + BookRepository.getBooks().get(bookChoice));
+                    stdout.info(bookChoice + 1 + ". " + bookRepository.getBooks().get(bookChoice));
                     menuBookList();
                     break;
                 }
@@ -78,13 +81,13 @@ public class BookPrinter {
 
     }
 
-    private boolean checkChoiceEndMenu(String choice) {
+    private boolean isCorrectChoiceEndMenu(String choice) {
         return (choice != null && (choice.equals("m") || choice.equals("c")));
 
     }
 
-    private boolean checkChooseBook(String choice) {
-        return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getBooks().size()));
+    private boolean isCorrectChooseBook(String choice) {
+        return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= bookRepository.getBooks().size()));
 
     }
 
@@ -93,7 +96,7 @@ public class BookPrinter {
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
-            if (!checkChooseBook(choice)) {
+            if (!isCorrectChooseBook(choice)) {
                 stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
                 bookChoice = 0;
                 chooseBookToPrint();
