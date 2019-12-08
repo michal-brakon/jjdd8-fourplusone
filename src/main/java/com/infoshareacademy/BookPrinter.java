@@ -12,7 +12,7 @@ public class BookPrinter {
 
     Menu menu = new Menu();
 
-    public void printBooks(List<Book> books) throws IOException {
+    public void printBooks(List<Book> books)  {
 
         int record = 1;
         int counter = 0;
@@ -48,7 +48,7 @@ public class BookPrinter {
         menuBookList();
     }
 
-    private void menuBookList() throws IOException {
+    private void menuBookList() {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       wybierz nr ksiazki");
@@ -114,7 +114,7 @@ public class BookPrinter {
     private void exit() {
         ClearScreen.clearScreen();
         stdout.info("\nDo zobaczenia!");
-        System.exit(0);
+
         return;
     }
 }
