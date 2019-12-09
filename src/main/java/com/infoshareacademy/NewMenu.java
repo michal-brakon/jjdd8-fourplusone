@@ -50,6 +50,7 @@ public class NewMenu {
             } else if (position == 41) {
                 position = parent;
                 new BookPrinter().printBooks(BookRepository.getBooks());
+                continue;
 
             } else if (position == 42) {
                 position = parent;
@@ -65,6 +66,7 @@ public class NewMenu {
                 position = parent;
                 bookPrinter.chooseBookToPrint();
                 new SearchBook().searchFromAuthor();
+                continue;
 
             }
 
@@ -86,7 +88,7 @@ public class NewMenu {
             stdout.info("\n0<-  wróć do poprzedniego menu  ");
             stdout.info("\n wybierz numer opcji którą chcesz wybrać: ");
             int userChoice = getNumber.getChoice(pressNumber - 1);
-            stdout.info("\nwybrales " + userChoice+" \n");
+            stdout.info("\nwybrales " + userChoice + " \n");
             if (userChoice != 0) {
                 position = choicesNumber[userChoice];
 

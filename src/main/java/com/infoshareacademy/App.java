@@ -17,7 +17,7 @@ public class App {
         NewMenu menu = new NewMenu();
                menu.newMenu(1);
 
-        stdout.info("Four-Plus-One");
+        stdout.info("\nFour-Plus-One");
 
     }
 }
