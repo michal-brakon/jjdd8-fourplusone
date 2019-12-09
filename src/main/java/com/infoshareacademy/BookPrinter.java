@@ -2,6 +2,7 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -20,9 +21,9 @@ public class BookPrinter {
         int counter = 0;
         int recordsLimit = 0;
 
-            ScreenCleaner.clearScreen();
-            stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
-            recordsLimit = menu.getChoice(BookRepository.getInstance().getBookRepository().size());
+        ScreenCleaner.clearScreen();
+        stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
+        recordsLimit = menu.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
 
@@ -35,11 +36,11 @@ public class BookPrinter {
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
-                        menuBookList();
-                        break;
-                    }
-                    counter = 0;
-                    ScreenCleaner.clearScreen();
+                    menuBookList();
+                    break;
+                }
+                counter = 0;
+                ScreenCleaner.clearScreen();
             }
         }
         if (!isExit) {
@@ -47,7 +48,7 @@ public class BookPrinter {
         }
     }
 
-    private void menuBookList() {
+   public void menuBookList() {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       widok pojedyńczej ksiazki");
@@ -65,14 +66,13 @@ public class BookPrinter {
                     break;
                 }
                 case "c": {
-//                    int temp = chooseBookToPrint();
-//                    stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
                     menuBookList();
                     break;
                 }
-                default: break;
+                default:
+                    break;
             }
         } else {
             stdout.info("\nBledny wybor\n");
@@ -90,21 +90,21 @@ public class BookPrinter {
         return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size()));
 
     }
-    
+
 
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
-            if (!isCorrectChooseBook(choice)) {
-                stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
-                bookChoice = 0;
-                chooseBookToPrint();
-            }  else {
-                bookChoice = Integer.parseInt(choice) -1 ;
-                return bookChoice;
-            }
+        if (!isCorrectChooseBook(choice)) {
+            stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
+            bookChoice = 0;
+            chooseBookToPrint();
+        } else {
+            bookChoice = Integer.parseInt(choice) - 1;
+            return bookChoice;
+        }
 
         return bookChoice;
     }
