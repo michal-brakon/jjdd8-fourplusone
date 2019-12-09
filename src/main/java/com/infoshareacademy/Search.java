@@ -1,14 +1,13 @@
 package com.infoshareacademy;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
-import java.util.regex.Pattern;
+
 
 public class Search {
 
     static Set<String> authors = new HashSet<>();
     private static int authorCount = 0;
+    static Set<String> books = new Search().searchAuthors(BookRepository.getInstance().getBookRepository());
 
     private String getLetters() {
         Scanner scanner = new Scanner(System.in);
@@ -29,9 +28,9 @@ public class Search {
     public static void main(String[] args) {
 
         String wybor = new Search().getLetters();
-        new Search().searchAuthors(BookRepository.getInstance().getBookRepository());
+        //Set<String> books = new Search().searchAuthors(BookRepository.getInstance().getBookRepository());
 
-        for(String author : new Search().searchAuthors(BookRepository.getInstance().getBookRepository())) {
+        for(String author : books) {
             if (author.contains(wybor)) {
                 System.out.println(author);
                 authorCount++;
