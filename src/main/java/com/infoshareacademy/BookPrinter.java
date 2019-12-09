@@ -65,8 +65,8 @@ public class BookPrinter {
                     break;
                 }
                 case "c": {
-                    int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
+//                    int temp = chooseBookToPrint();
+//                    stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
                     menuBookList();
