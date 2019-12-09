@@ -1,11 +1,16 @@
 package com.infoshareacademy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClearScreen {
+public class ScreenCleaner {
+
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     static void clearScreen() {
         String s;
         Process p;
@@ -14,12 +19,13 @@ public class ClearScreen {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(p.getInputStream()));
             while ((s = br.readLine()) != null) {
-                System.out.println("CHARS: " + getChars(s));
-                System.out.println(s);
+               stdout.info("CHARS: " + getChars(s));
+                stdout.info(s);
             }
             p.waitFor();
             p.destroy();
         } catch (Exception e) {
+            stdout.info("\nCzyszczenie ekranu zakonczylo sie niepowodzeniem");
         }
     }
 
