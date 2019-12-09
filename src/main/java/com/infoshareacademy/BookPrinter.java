@@ -9,8 +9,11 @@ import java.util.regex.Pattern;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
     UserInput userChoice = new UserInput();
+    //Menu menu = new Menu();
+    private int bookChoice = 0;
+    private boolean isExit = false;
+
 
     public void printBooks(List<Book> books) {
 
@@ -18,12 +21,9 @@ public class BookPrinter {
         int counter = 0;
         int recordsLimit = 0;
 
-        while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
-            ClearScreen.clearScreen();
-            stdout.info("\nIle rekordow na stronie? (5,10,15)\n ");
-            recordsLimit = userChoice.getChoice(15);
-            if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!\n");
-        }
+        ScreenCleaner.clearScreen();
+        stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
+        recordsLimit = userChoice.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
 
@@ -32,48 +32,47 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny klawisz kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
-                if (checkChoice(choice)) {
-                    if (choice.equals("q")) {
-                        // menuBookList();
-                        break;
-
-                    }
-                    counter = 0;
-                    ClearScreen.clearScreen();
+                if (choice.equals("q")) {
+                    menuBookList();
+                    break;
                 }
+                counter = 0;
+                ScreenCleaner.clearScreen();
             }
         }
-        menuBookList();
+        if (!isExit) {
+            menuBookList();
+        }
     }
 
-    private void menuBookList() {
+   public void menuBookList() {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       widok pojedyńczej ksiazki");
-        stdout.info("\nm -       powrot do menu glownego");
-        stdout.info("\nq -       zamknij aplikacje\n");
+        stdout.info("\nm -       powrot do menu glownego\n");
 
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
-        if (checkChoiceEndMenu(choice)) {
+        if (isCorrectChoiceEndMenu(choice)) {
             switch (choice) {
-                case "q": {
-                    exit();
-                    break;
-                }
+
                 case "m": {
+                   // isExit = true;
+
                     break;
                 }
                 case "c": {
-                    int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + BookRepository.getBooks().get(temp));
-      //              menuBookList();
+                    chooseBookToPrint();
+                    stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
+                    menuBookList();
                     break;
                 }
+                default:
+                    break;
             }
         } else {
             stdout.info("\nBledny wybor\n");
@@ -82,17 +81,13 @@ public class BookPrinter {
 
     }
 
-    private boolean checkChoice(String choice) {
-        return (choice != null);
-    }
-
-    private boolean checkChoiceEndMenu(String choice) {
-        return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
+    private boolean isCorrectChoiceEndMenu(String choice) {
+        return (choice != null && (choice.equals("m") || choice.equals("c")));
 
     }
 
-    private boolean checkChooseBook(String choice) {
-        return (choice != null && Integer.parseInt(choice) > 1 && Integer.parseInt(choice) <= BookRepository.getBooks().size());
+    private boolean isCorrectChooseBook(String choice) {
+        return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size()));
 
     }
 
@@ -100,28 +95,20 @@ public class BookPrinter {
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");
         Scanner scanner = new Scanner(System.in);
-        String bookChoiceStr = scanner.next();
-        int bookChoice = 0;
+        String choice = scanner.next();
 
-        if (Pattern.matches(("[0-9][0-9]"), bookChoiceStr) || Pattern.matches(("[0-9]"), bookChoiceStr)) {
-
-            if (checkChooseBook(bookChoiceStr)) {
-                bookChoice = Integer.parseInt(bookChoiceStr) - 1;
-            }
+        if (!isCorrectChooseBook(choice)) {
+            stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
+            bookChoice = 0;
+            chooseBookToPrint();
+        } else {
+            bookChoice = Integer.parseInt(choice) - 1;
             return bookChoice;
-
         }
-        stdout.info("błędny znak! ");
 
-        return chooseBookToPrint();
+        return bookChoice;
     }
 
-    private void exit() {
-        ClearScreen.clearScreen();
-        stdout.info("\n  Do zobaczenia!\n");
-        System.exit(0);
-
-    }
 }
 
 

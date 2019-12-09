@@ -9,13 +9,13 @@ public class SearchBook {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    public void searchFromAuthor() {
+    /*public void searchFromAuthor() {
         stdout.info("Podaj nazwisko autora książki\n");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine().toLowerCase();
 
 
-        for (Book book : BookRepository.getBooks()) {
+        for (Book book : BookRepository.getInstance()) {
             if (book.getAuthor().toLowerCase().contains(choice)) {
                 stdout.info(String.valueOf(book));
 
@@ -36,7 +36,7 @@ public class SearchBook {
        // new Menu().bookListMenu();
 
 
-    }
+    }*/
 
 
 }

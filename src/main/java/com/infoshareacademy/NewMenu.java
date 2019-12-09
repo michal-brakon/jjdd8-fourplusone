@@ -25,7 +25,7 @@ public class NewMenu {
         newMenuList.add(new MenuOptions("last test menu", 5, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
         newMenuList.add(new MenuOptions("wyświetl jedną pozycje", 42, 4));
-        newMenuList.add(new MenuOptions("sortuj po tytule", 43, 4));
+        newMenuList.add(new MenuOptions("test three", 43, 4));
         newMenuList.add(new MenuOptions("test", 45, 2));
         newMenuList.add(new MenuOptions("testTwo", 46, 3));
 
@@ -49,24 +49,26 @@ public class NewMenu {
 
             } else if (position == 41) {
                 position = parent;
-                new BookPrinter().printBooks(BookRepository.getBooks());
-                continue;
+                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
+                break;
 
             } else if (position == 42) {
                 position = parent;
                 int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
-                stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
-                Scanner scanner = new Scanner(System.in);
-                String choice = scanner.next();
-                if (choice != null)
+                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
+                new BookPrinter().menuBookList();
                     continue;
 
             } else if (position == 43) {
-                position = parent;
-                bookPrinter.chooseBookToPrint();
-                new SearchBook().searchFromAuthor();
-                continue;
+                    stdout.info("\n          ###################################              \n  ");
+        stdout.info("        #          for your eyes only     #   \n  ");
+        stdout.info("        #             Library             #              \n  ");
+        stdout.info("        ###################################              \n  ");
+            //  position = parent;
+            //  stdout.info("not yet implemented");
+             //   bookPrinter.chooseBookToPrint();
+            //    new SearchBook().searchFromAuthor();
+            //  continue;
 
             }
 
