@@ -1,3 +1,4 @@
+/*
 package com.infoshareacademy;
 
 import org.slf4j.Logger;
@@ -108,4 +109,4 @@ public class Menu {
 
     }
 
-}
+}*/

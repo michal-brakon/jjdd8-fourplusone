@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    Menu menu = new Menu();
+  //  Menu menu = new Menu();
+    UserInput userChoice = new UserInput();
 
     public void printBooks(List<Book> books) {
 
@@ -21,7 +22,7 @@ public class BookPrinter {
         while (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) {
             ClearScreen.clearScreen();
             stdout.info("\nIle rekordow na stronie? (5,10,15)\n ");
-            recordsLimit = menu.getChoice(15);
+            recordsLimit = userChoice.getChoice(15);
             if (recordsLimit != 5 && recordsLimit != 10 && recordsLimit != 15) System.out.println("Zly wybor!\n");
         }
 
