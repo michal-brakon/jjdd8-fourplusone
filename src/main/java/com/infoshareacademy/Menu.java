@@ -1,4 +1,4 @@
-/*
+package com.infoshareacademy;/*
 package com.infoshareacademy;
 
 import org.slf4j.Logger;

@@ -19,10 +19,10 @@ public class NewMenu {
 
         List<MenuOptions> newMenuList = new ArrayList<>();
         newMenuList.add(new MenuOptions("glowne menu", 1, 0));
-        newMenuList.add(new MenuOptions("Przeglądaj zbiór książek", 2, 1));
-        newMenuList.add(new MenuOptions("zwróć książke", 2, 1));
+        newMenuList.add(new MenuOptions("test menu", 2, 1));
+        newMenuList.add(new MenuOptions("another test menu", 2, 1));
         newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
-        newMenuList.add(new MenuOptions("Ulubione", 5, 1));
+        newMenuList.add(new MenuOptions("last test menu", 5, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
         newMenuList.add(new MenuOptions("wyświetl jedną pozycje", 42, 4));
         newMenuList.add(new MenuOptions("sortuj po tytule", 43, 4));
@@ -48,6 +48,7 @@ public class NewMenu {
 
 
             } else if (position == 41) {
+                position = parent;
                 new BookPrinter().printBooks(BookRepository.getBooks());
 
             } else if (position == 42) {
@@ -68,7 +69,7 @@ public class NewMenu {
             }
 
 
-            stdout.info("wybie");
+            stdout.info("Masz do wyboru:");
             int[] choicesNumber = new int[10];
             int pressNumber = 1;
             for (MenuOptions menuOptions : newMenuList) {
