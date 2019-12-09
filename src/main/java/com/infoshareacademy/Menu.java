@@ -77,7 +77,7 @@ public class Menu {
         switch (getChoice(4)) {
             case 1: {
                 new BookPrinter().printBooks(BookRepository.getBooks());
-                mainMenu();
+                bookListMenu();
                 break;
             }
             case 2: {
@@ -91,7 +91,7 @@ public class Menu {
 
             }
             case 4: {
-                mainMenu();
+               // mainMenu();
                 break;
             }
             case 0:

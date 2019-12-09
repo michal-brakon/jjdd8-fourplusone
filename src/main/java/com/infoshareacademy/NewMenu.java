@@ -26,14 +26,21 @@ public class NewMenu {
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
         newMenuList.add(new MenuOptions("wyświetl jedną pozycje", 42, 4));
         newMenuList.add(new MenuOptions("sortuj po tytule", 43, 4));
-        newMenuList.add(new MenuOptions("", 45, 3));
-        newMenuList.add(new MenuOptions("", 46, 44));
+        newMenuList.add(new MenuOptions("test", 45, 2));
+        newMenuList.add(new MenuOptions("testTwo", 46, 3));
 
 
         while (position != 0) {
             stdout.info("\033[H\033[2J");
             stdout.info("\n");
             Header.headerPrinter();
+            int parent = 0;
+            for (MenuOptions menuOptions : newMenuList) {
+                if (menuOptions.getPosition() == position) {
+                    parent = menuOptions.getParent();
+                }
+
+            }
             // adding functionality on positions here
             if (position == 1) {
 
@@ -42,7 +49,9 @@ public class NewMenu {
 
             } else if (position == 41) {
                 new BookPrinter().printBooks(BookRepository.getBooks());
+
             } else if (position == 42) {
+                position = parent;
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
                 stdout.info("\n Nacisnij dowolny klawisz aby kontynuawać\n");
@@ -50,18 +59,15 @@ public class NewMenu {
                 String choice = scanner.next();
                 if (choice != null)
                     continue;
+
             } else if (position == 43) {
+                position = parent;
                 bookPrinter.chooseBookToPrint();
                 new SearchBook().searchFromAuthor();
-            }
-
-            int parent = 0;
-            for (MenuOptions menuOptions : newMenuList) {
-                if (menuOptions.getPosition() == position) {
-                    parent = menuOptions.getParent();
-                }
 
             }
+
+
             stdout.info("wybie");
             int[] choicesNumber = new int[10];
             int pressNumber = 1;
@@ -77,9 +83,9 @@ public class NewMenu {
 
             }
             stdout.info("\n0<-  wróć do poprzedniego menu  ");
-            stdout.info("\n wybież numer opcji którą chcesz wybrać: ");
+            stdout.info("\n wybierz numer opcji którą chcesz wybrać: ");
             int userChoice = getNumber.getChoice(pressNumber - 1);
-            stdout.info("\nwybrales " + userChoice);
+            stdout.info("\nwybrales " + userChoice+" \n");
             if (userChoice != 0) {
                 position = choicesNumber[userChoice];
 
