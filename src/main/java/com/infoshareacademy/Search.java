@@ -1,6 +1,8 @@
 package com.infoshareacademy;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 public class Search {
@@ -16,27 +18,25 @@ public class Search {
         return letters;
     }
 
-    private Set<String> searchAuthors(List<Book> books) {
+    static private Set<String> searchAuthors(List<Book> books) {
 
         Set<String> authors = new HashSet<>();
         for (Book book : books) {
             authors.add(book.getAuthor());
         }
-        return authors;
+
+        Set<String> collect = authors.stream()
+                .filter(author -> author.contains(getLetters()))
+                .collect(Collectors.toSet());
+
+        return collect;
+
     }
+        public static void main (String[]args){
 
-    public static void main(String[] args) {
+            System.out.println(new Search().searchAuthors(books));
 
-        String wybor = new Search().getLetters();
-        //Set<String> books = new Search().searchAuthors(BookRepository.getInstance().getBookRepository());
-
-        for(String author : books) {
-            if (author.contains(wybor)) {
-                System.out.println(author);
-                authorCount++;
-            }
         }
-        System.out.println(authorCount);
     }
-}
+
 
