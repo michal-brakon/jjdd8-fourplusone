@@ -1,29 +1,17 @@
 package com.infoshareacademy;
 
+
 import java.util.List;
 
 public class BookRepository {
 
-    private BookParser bookParser;
+    private static List<Book> bookRepository = Book.book;
 
-    private static BookRepository instance;
-    private static List<Book> bookRepository;
 
-    private BookRepository() {
-        bookParser = new BookParser();
-    }
-
-    public List<Book> getBookRepository() {
-        bookRepository = bookParser.parseJsonFileToObject();
+    public static List<Book> getBooks() {
+        if (bookRepository == null) {
+            System.out.println("Baza jest pusta");
+        }
         return bookRepository;
     }
-
-    public static synchronized BookRepository getInstance() {
-        if (instance == null) {
-            instance = new BookRepository();
-        }
-        return instance;
-    }
-
-
 }

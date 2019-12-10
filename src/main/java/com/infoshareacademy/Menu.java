@@ -1,112 +1,99 @@
-package com.infoshareacademy;/*
 package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
-    private int choice = 0;
-    private Scanner scan = new Scanner(System.in);
-
-    public int getChoice(int choices) {
+    UserInput getNumber = new UserInput();
 
 
-        String userLineIn = scan.nextLine();
 
-        try {
-            choice = Integer.parseInt(userLineIn);
-        } catch (NumberFormatException e) {
-            stdout.info("\nWpisałeś litere! ");
-            getChoice(choices);
-        }
-        if (choice > choices || choice < 0) {
-            stdout.info("\nProsze wybrać jeden z " + choices);
-            getChoice(choices);
-        }
+    public void showMenu(int position) {
 
-        return choice;
-    }
 
-    public void mainMenu() {
-        ClearScreen.clearScreen();
-        stdout.info("\n1. wypozycz");
-        stdout.info("\n2. oddaj");
-        stdout.info("\n3. lista ksiazek");
-        stdout.info("\n-----");
-        stdout.info("\n0. wyjscie");
+        List<MenuOptions> newMenuList = new ArrayList<>();
+        newMenuList.add(new MenuOptions("glowne menu", 1, 0));
+        newMenuList.add(new MenuOptions("test menu", 2, 1));
+        newMenuList.add(new MenuOptions("another test menu", 2, 1));
+        newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
+        newMenuList.add(new MenuOptions("last test menu", 5, 1));
+        newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
+        newMenuList.add(new MenuOptions("secret menu number four", 42, 4));
+        newMenuList.add(new MenuOptions("secret three", 43, 4));
+        newMenuList.add(new MenuOptions("test", 45, 2));
+        newMenuList.add(new MenuOptions("testTwo", 46, 3));
 
-        switch (getChoice(3)) {
 
-            case 1: {
-                borrowBookMenu();
-                break;
-            }
-            case 2: {
-                returnBookMenu();
-                break;
-            }
-            case 3: {
-                bookListMenu();
-                break;
+        while (position != 0) {
+            stdout.info("\033[H\033[2J");
+            stdout.info("\n");
+
+            int parent = 0;
+            for (MenuOptions menuOptions : newMenuList) {
+                if (menuOptions.getPosition() == position) {
+                    parent = menuOptions.getParent();
+                }
             }
 
-            case 0:
-                exit();
-        }
+            // adding functionality on positions here
+            if (position == 1) {
 
-    }
+                stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
 
-    private void exit() {
-        ClearScreen.clearScreen();
-        stdout.info("\nDo zobaczenia!");
-    }
 
-    private void bookListMenu() {
-        ClearScreen.clearScreen();
-        stdout.info("\n1. Pokaż wszystkie pozycje");
-        stdout.info("\n2. Wyswietl jedna pozycje");
-        stdout.info("\n3. sortuj po tytule");
-        stdout.info("\n4. główne menu");
-        stdout.info("\n0. wyjscie");
-
-        switch (getChoice(4)) {
-            case 1: {
+            } else if (position == 41) {
+                position = parent;
                 new BookPrinter().printBooks(BookRepository.getBooks());
-                bookListMenu();
-                break;
-            }
-            case 2: {
-                int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getBooks().get(n));
-                bookListMenu();
-                break;
+
+
+            } else if (position == 42) {
+                position = parent;
+
+
+            } else if (position == 43) {
+                stdout.info("\n          ###################################              \n  ");
+                stdout.info("        #          for your eyes only     #   \n  ");
+                stdout.info("        #             Library             #              \n  ");
+                stdout.info("        ###################################              \n  ");
+
 
             }
-            case 3: {
+
+
+            stdout.info("Masz do wyboru:");
+            int[] choicesNumber = new int[10];
+            int pressNumber = 1;
+            for (MenuOptions menuOptions : newMenuList) {
+
+                if (menuOptions.getParent() == position) {
+
+                    stdout.info("\n" + pressNumber + "<-  " + menuOptions.getDisplayedText());
+
+                    choicesNumber[pressNumber] = menuOptions.getPosition();
+                    pressNumber++;
+                }
 
             }
-            case 4: {
-               // mainMenu();
-                break;
+            stdout.info("\n0<-  wróć do poprzedniego menu  ");
+            stdout.info("\n wybierz numer opcji z menu: ");
+            int userChoice = getNumber.getChoice(pressNumber - 1);
+            stdout.info("\nwybrales " + userChoice + " \n");
+            if (userChoice != 0) {
+                position = choicesNumber[userChoice];
+
+            } else {
+                position = parent;
+
             }
-            case 0:
-                exit();
+
+
         }
 
     }
 
-    private void returnBookMenu() {
-
-    }
-
-    private void borrowBookMenu() {
-
-    }
-
-}*/
+}
