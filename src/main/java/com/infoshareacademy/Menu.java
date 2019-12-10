@@ -12,7 +12,6 @@ public class Menu {
     UserInput getNumber = new UserInput();
 
 
-
     public void showMenu(int position) {
 
 
@@ -24,9 +23,6 @@ public class Menu {
         newMenuList.add(new MenuOptions("last test menu", 5, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
         newMenuList.add(new MenuOptions("secret menu number four", 42, 4));
-        newMenuList.add(new MenuOptions("secret three", 43, 4));
-        newMenuList.add(new MenuOptions("test", 45, 2));
-        newMenuList.add(new MenuOptions("testTwo", 46, 3));
 
 
         while (position != 0) {
@@ -49,17 +45,6 @@ public class Menu {
             } else if (position == 41) {
                 position = parent;
                 new BookPrinter().printBooks(BookRepository.getBooks());
-
-
-            } else if (position == 42) {
-                position = parent;
-
-
-            } else if (position == 43) {
-                stdout.info("\n          ###################################              \n  ");
-                stdout.info("        #          for your eyes only     #   \n  ");
-                stdout.info("        #             Library             #              \n  ");
-                stdout.info("        ###################################              \n  ");
 
 
             }

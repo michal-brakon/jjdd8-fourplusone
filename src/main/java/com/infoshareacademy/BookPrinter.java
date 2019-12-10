@@ -2,13 +2,13 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput userChoice = new UserInput();
-
 
 
     public void printBooks(List<Book> books) {
@@ -36,7 +36,7 @@ public class BookPrinter {
                 String choice = scanner.next();
                 if (checkChoice(choice)) {
                     if (choice.equals("q")) {
-                        exit();
+                        ClearScreen.screenCleaner();
                         break;
                     }
                     counter = 0;
@@ -82,15 +82,17 @@ public class BookPrinter {
 
         return;
     }
-    private boolean checkChoice (String choice) {
+
+    private boolean checkChoice(String choice) {
         return (choice != null);
     }
 
-    private boolean checkChoiceEndMenu (String choice) {
+    private boolean checkChoiceEndMenu(String choice) {
         return (choice != null && (choice.equals("q") || choice.equals("m") || choice.equals("c")));
 
     }
-    private boolean checkChooseBook (String choice) {
+
+    private boolean checkChooseBook(String choice) {
         return (choice != null && Integer.valueOf(choice) > 1 && Integer.valueOf(choice) <= BookRepository.getBooks().size());
 
     }
@@ -102,14 +104,14 @@ public class BookPrinter {
         String bookChoiceStr = scanner.next();
         int bookChoice = 0;
         if (checkChooseBook(bookChoiceStr)) {
-            bookChoice = Integer.valueOf(bookChoiceStr) -1;
-        }   else {
+            bookChoice = Integer.valueOf(bookChoiceStr) - 1;
+        } else {
             stdout.info("\nWpisz numer ksiazki!");
             chooseBookToPrint();
         }
         return bookChoice;
 
-        }
+    }
 
     private void exit() {
         ClearScreen.screenCleaner();
