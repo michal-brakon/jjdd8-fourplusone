@@ -7,34 +7,53 @@ import java.util.stream.Collectors;
 
 public class Search {
 
-    static Set<String> authors = new HashSet<>();
-    private static int authorCount = 0;
-    static Set<String> books = new Search().searchAuthors(BookRepository.getInstance().getBookRepository());
+    //Search search = new Search();
 
     private String getLetters() {
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Wybierz: ");
-        String letters = scanner.next();
+        String letters = "";
+        while (letters.length() < 3) {
+
+            System.out.println("Wpisz conajmniej 3 znakowy ciąg znaków: ");
+            letters = scanner.next();
+        }
         return letters;
     }
 
-    static private Set<String> searchAuthors(List<Book> books) {
+    
+
+    private Set<String> getAuthors(List<Book> books) {
 
         Set<String> authors = new HashSet<>();
         for (Book book : books) {
             authors.add(book.getAuthor());
         }
-
-        Set<String> collect = authors.stream()
-                .filter(author -> author.contains(getLetters()))
-                .collect(Collectors.toSet());
-
-        return collect;
-
+        return authors;
     }
-        public static void main (String[]args){
+    private List<String> getAuthorsContainsLetters (String letters)  {
 
-            System.out.println(new Search().searchAuthors(books));
+        //Set<String> collect = getAuthors(BookRepository.getInstance().getBookRepository());
+
+        List<String> authorsContainsLetters = getAuthors(BookRepository.getInstance().getBookRepository()).stream()
+                .filter(c -> c.contains(letters))
+                .collect(Collectors.toList());
+
+        if (authorsContainsLetters.size() > 1) {
+            System.out.println(authorsContainsLetters);
+            System.out.println("Proszę uściślić wybór: ");
+            System.out.println(getAuthorsContainsLetters(getLetters()));
+        }
+
+        return authorsContainsLetters;
+    }
+
+    public static void main (String[]args)  {
+
+
+        Search search = new Search();
+
+        System.out.println(search.getAuthorsContainsLetters(search.getLetters()));
 
         }
     }
