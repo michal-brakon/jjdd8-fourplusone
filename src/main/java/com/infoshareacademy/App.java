@@ -8,6 +8,8 @@ public class App {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     public static void main(String[] args) {
+
+
         // menu init
         Menu menu = new Menu();
         menu.mainMenu();

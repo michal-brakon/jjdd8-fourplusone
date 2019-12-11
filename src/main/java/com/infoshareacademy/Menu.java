@@ -68,7 +68,7 @@ public class Menu {
 
     }
 
-    private void exit() {
+    public void exit() {
         isExit = true;
         ScreenCleaner.clearScreen();
         stdout.info("\nDo zobaczenia!");
