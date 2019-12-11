@@ -36,7 +36,7 @@ public class BookPrinter {
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
-                    menuBookList();
+                    showBookMenu();
                     break;
                 }
                 counter = 0;
@@ -44,11 +44,11 @@ public class BookPrinter {
             }
         }
         if (!isExit) {
-            menuBookList();
+            showBookMenu();
         }
     }
 
-   public void menuBookList() {
+   public void showBookMenu() {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       widok pojedyńczej ksiazki");
@@ -68,7 +68,7 @@ public class BookPrinter {
                 case "c": {
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
-                    menuBookList();
+                    showBookMenu();
                     break;
                 }
                 default:
@@ -76,7 +76,7 @@ public class BookPrinter {
             }
         } else {
             stdout.info("\nBledny wybor\n");
-            menuBookList();
+            showBookMenu();
         }
 
     }

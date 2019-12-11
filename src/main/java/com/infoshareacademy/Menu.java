@@ -92,7 +92,7 @@ public class Menu {
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
-                new BookPrinter().menuBookList();
+                new BookPrinter().showBookMenu();
                 break;
 
             }
