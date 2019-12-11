@@ -1,14 +1,17 @@
 package com.infoshareacademy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
 public class Search {
+
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
 
@@ -28,40 +31,67 @@ public class Search {
 
     private String getAuthors(String letters) {
 
-        List<String> authors = new ArrayList<>();
+        Set<String> authorsSet = new TreeSet<>();
+        List<String> authorsList = new ArrayList<>();
+        String author = "";
 
-        List<Book> booksVerified = BOOKS.stream()
+        List<Book> booksContainsLetters = BOOKS.stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().contains(letters))
-                .filter(b -> !(authors.contains(b.getAuthor())))
+                .filter(b -> !(authorsSet.contains(b.getAuthor())))
                 .distinct()
                 .collect(Collectors.toList());
 
-        booksVerified.forEach(b -> authors.add(b.getAuthor()));
+        booksContainsLetters.forEach(b -> authorsSet.add(b.getAuthor()));
 
-        if (authors.isEmpty()) {
+        authorsList.addAll(authorsSet);
+
+        if (authorsList.isEmpty()) {
             System.out.println("Nie znaleziono pasujących rekordów, spróbuj ponownie: ");
-            //TODO wywołanie metody
-        } else if (authors.size() > 1)  {
-            System.out.println("Znaleziono "+ authors.size() + " pasujących autorów: ");
-            for (String author : authors) {
-                int counter;
-                System.out.println(counter);
-            }
+            getAuthors(getLetters());
+        } else if (authorsList.size() > 1)  {
+            System.out.println("Znaleziono "+ authorsSet.size() + " pasujących autorów: ");
+            printAuthorsList(authorsList);
+            System.out.println("Uściślij swój wybór");
+            getAuthors(getLetters());
+        } else {
+            author = authorsList.get(0);
+            System.out.println("Czy chodzilo ci o " + author + " ?  (t - tak)");
+            Scanner scanner = new Scanner(System.in);
+            String yesOrNot = scanner.next();
+                if (!yesOrNot.equalsIgnoreCase("t")) {
+                    System.out.println("Sprobuj ponownie ");
+                    getAuthors(getLetters());
+                }
         }
-
-
-
-
-        return null;
+      return author;
     }
+    private static void printAuthorsList(List<String> list) {
+        int counter = 1;
+        for (String author : list) {
+            System.out.println(counter + ". " + author);
+            counter++;
+        }
+    }
+
+    private void printFilteredBooks (String authors) {
+
+        List<Book> filteredBooks = BOOKS.stream()
+                .filter(b -> b != null)
+                .filter(b -> b.getAuthor().equals(authors))
+                .collect(Collectors.toList());
+
+        filteredBooks.forEach(System.out::println);
+    }
+
+
 
     public static void main (String[]args)  {
 
         Search search = new Search();
-
-        System.out.println(search.getAuthors(BOOKS, search.getLetters()));
-
+        String author = search.getAuthors(search.getLetters());
+        System.out.println(author);
+        search.printFilteredBooks(author);
         }
     }
 
