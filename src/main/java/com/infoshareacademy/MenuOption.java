@@ -1,12 +1,12 @@
 package com.infoshareacademy;
 
-public class MenuOptions {
+public class MenuOption {
 
     private String displayedText;
     private int position;
     private int parent;
 
-    public MenuOptions(String displayedText, int position, int parent) {
+    public MenuOption(String displayedText, int position, int parent) {
         this.displayedText = displayedText;
         this.position = position;
         this.parent = parent;

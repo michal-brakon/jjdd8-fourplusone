@@ -22,7 +22,7 @@ public class BookPrinter {
         int recordsLimit = 0;
 
             ScreenCleaner.clearScreen();
-            stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
+            stdout.info("\nIle rekordów na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
 
             recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
 
@@ -33,7 +33,7 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuśić liste , dowolny znak kontynuuje wyświetlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
@@ -53,7 +53,7 @@ public class BookPrinter {
 
         stdout.info("\nWybierz: ");
         stdout.info("\nc -       widok pojedyńczej ksiazki");
-        stdout.info("\nm -       powrot do menu glownego\n");
+        stdout.info("\nm -       powrót do menu glównego\n");
 
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
@@ -76,7 +76,7 @@ public class BookPrinter {
                 default: break;
             }
         } else {
-            stdout.info("\nBledny wybor\n");
+            stdout.info("\nBłędny wybor\n");
             menuBookList();
         }
 
@@ -93,12 +93,12 @@ public class BookPrinter {
     }
 
     public int chooseBookToPrint() {
-        stdout.info("\nWpisz numer ksiazki: \n");
+        stdout.info("\nWpisz numer książki: \n");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
             if (!isCorrectChooseBook(choice)) {
-                stdout.info("Błędny wybor! Spróbuj ponownie!: \n");
+                stdout.info("Błędny wybór! Spróbuj ponownie!: \n");
                 bookChoice = 0;
                 chooseBookToPrint();
             }  else {

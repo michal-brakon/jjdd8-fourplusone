@@ -7,22 +7,28 @@ import java.util.List;
 
 
 
+
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
+    protected static final int MAIN_MENU_POSITION = 1;
+    protected static final int BOOK_MENU_POSITION = 4;
+    protected static final int EXIT_POSITION = 0;
+    protected static final int SHOW_ALL_BOOKS_POSITION = 41;
+    protected static final int SHOW_ONE_BOOK_POSITION = 42;
+    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 10;
     UserInput getNumber = new UserInput();
 
     public void showMenu(int position) {
 
 
 
-        List<MenuOptions> newMenuList = new ArrayList<>();
-        newMenuList.add(new MenuOptions("glowne menu", 1, 0));
-        newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
-        newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
-        newMenuList.add(new MenuOptions("Wyświetl jedna pozycje", 42, 4));
+        List<MenuOption> newMenuList = new ArrayList<>();
+        newMenuList.add(new MenuOption("głowne menu", MAIN_MENU_POSITION, EXIT_POSITION));
+        newMenuList.add(new MenuOption("dostępne książki", BOOK_MENU_POSITION, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption("Pokaż Wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
 
-        while (position != 0) {
+        while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
 
             int parent = 0;
@@ -31,17 +37,17 @@ public class Menu {
             // adding functionality on positions here
 
 
-            if (position == 1) {
+            if (position == MAIN_MENU_POSITION) {
 
 
-                stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
+                stdout.info("Witamy na Głównej stronie biblioteki 'For Plus One'");
 
 
-            } else if (position == 41) {
+            } else if (position == SHOW_ALL_BOOKS_POSITION) {
                 position = parent;
                 new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
 
-            } else if (position==42){
+            } else if (position==SHOW_ONE_BOOK_POSITION){
                 position = parent;
                 int n = new BookPrinter().chooseBookToPrint();
                 stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
@@ -56,17 +62,17 @@ public class Menu {
 
     }
 
-    private int printMenu(int position, List<MenuOptions> newMenuList, int parent) {
+    private int printMenu(int position, List<MenuOption> newMenuList, int parent) {
         stdout.info("Masz do wyboru:");
-        int[] choicesNumber = new int[10];
+        int[] choicesNumber = new int[MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE];
         int pressNumber = 1;
-        for (MenuOptions menuOptions : newMenuList) {
+        for (MenuOption menuOption : newMenuList) {
 
-            if (menuOptions.getParent() == position) {
+            if (menuOption.getParent() == position) {
 
-                stdout.info("\n" + pressNumber + "<-  " + menuOptions.getDisplayedText());
+                stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
 
-                choicesNumber[pressNumber] = menuOptions.getPosition();
+                choicesNumber[pressNumber] = menuOption.getPosition();
                 pressNumber++;
             }
 
@@ -74,7 +80,7 @@ public class Menu {
         stdout.info("\n0<-  wróć do poprzedniego menu  ");
         stdout.info("\n wybierz numer opcji z menu: ");
         int userChoice = getNumber.getChoice(pressNumber - 1);
-        stdout.info("\nwybrales " + userChoice + " \n");
+        stdout.info("\nwybraleś " + userChoice + " \n");
         if (userChoice != 0) {
             position = choicesNumber[userChoice];
 
@@ -85,10 +91,10 @@ public class Menu {
         return position;
     }
 
-    private int getParent(int position, List<MenuOptions> newMenuList, int parent) {
-        for (MenuOptions menuOptions : newMenuList) {
-            if (menuOptions.getPosition() == position) {
-                parent = menuOptions.getParent();
+    private int getParent(int position, List<MenuOption> newMenuList, int parent) {
+        for (MenuOption menuOption : newMenuList) {
+            if (menuOption.getPosition() == position) {
+                parent = menuOption.getParent();
             }
         }
         return parent;
