@@ -4,16 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
-public class Search {
+public class BooksSearcher {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
+    final static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
 
     private String getLetters() {
 
@@ -21,47 +19,39 @@ public class Search {
         String letters = "";
         while (letters.length() < 3) {
 
-            System.out.println("Wpisz conajmniej 3 znakowy ciąg znaków: ");
+            stdout.info("\nWpisz conajmniej 3 znakowy ciąg liter: ");
             letters = scanner.next();
         }
         return letters;
     }
 
-    
+    private String getAuthor (String letters) {
 
-    private String getAuthors(String letters) {
-
-        Set<String> authorsSet = new TreeSet<>();
-        List<String> authorsList = new ArrayList<>();
         String author = "";
 
-        List<Book> booksContainsLetters = BOOKS.stream()
+        List<String> authorsList = BookRepository.getInstance().getBookRepository().stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().contains(letters))
-                .filter(b -> !(authorsSet.contains(b.getAuthor())))
+                .map(Book::getAuthor)
                 .distinct()
                 .collect(Collectors.toList());
 
-        booksContainsLetters.forEach(b -> authorsSet.add(b.getAuthor()));
-
-        authorsList.addAll(authorsSet);
-
         if (authorsList.isEmpty()) {
-            System.out.println("Nie znaleziono pasujących rekordów, spróbuj ponownie: ");
-            getAuthors(getLetters());
+            stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
+            getAuthor(getLetters());
         } else if (authorsList.size() > 1)  {
-            System.out.println("Znaleziono "+ authorsSet.size() + " pasujących autorów: ");
+            stdout.info("\nZnaleziono "+ authorsList.size() + " pasujących autorów: ");
             printAuthorsList(authorsList);
-            System.out.println("Uściślij swój wybór");
-            getAuthors(getLetters());
+            stdout.info("\nUściślij swój wybór\n ");
+            getAuthor(getLetters());
         } else {
             author = authorsList.get(0);
-            System.out.println("Czy chodzilo ci o " + author + " ?  (t - tak)");
+            stdout.info("\nCzy chodzilo ci o " + author + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
             String yesOrNot = scanner.next();
                 if (!yesOrNot.equalsIgnoreCase("t")) {
-                    System.out.println("Sprobuj ponownie ");
-                    getAuthors(getLetters());
+                    stdout.info("\nSprobuj ponownie\n ");
+                    getAuthor(getLetters());
                 }
         }
       return author;
@@ -77,22 +67,13 @@ public class Search {
     private void printFilteredBooks (String authors) {
 
         List<Book> filteredBooks = BOOKS.stream()
-                .filter(b -> b != null)
+                .filter(Objects::nonNull)
                 .filter(b -> b.getAuthor().equals(authors))
                 .collect(Collectors.toList());
 
         filteredBooks.forEach(System.out::println);
     }
 
-
-
-    public static void main (String[]args)  {
-
-        Search search = new Search();
-        String author = search.getAuthors(search.getLetters());
-        System.out.println(author);
-        search.printFilteredBooks(author);
-        }
-    }
+}
 
 
