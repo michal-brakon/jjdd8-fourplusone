@@ -1,13 +1,16 @@
 package com.infoshareacademy;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
 public class Search {
 
-    //Search search = new Search();
+    static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
 
     private String getLetters() {
 
@@ -23,39 +26,41 @@ public class Search {
 
     
 
-    private Set<String> getAuthors(List<Book> books) {
+    private String getAuthors(String letters) {
 
-        Set<String> authors = new HashSet<>();
-        for (Book book : books) {
-            authors.add(book.getAuthor());
-        }
+        List<String> authors = new ArrayList<>();
 
-
-        return authors;
-    }
-    private List<String> getAuthorsContainsLetters (String letters)  {
-
-        //Set<String> collect = getAuthors(BookRepository.getInstance().getBookRepository());
-
-        List<String> authorsContainsLetters = getAuthors(BookRepository.getInstance().getBookRepository()).stream()
-                .filter(c -> c.contains(letters))
+        List<Book> booksVerified = BOOKS.stream()
+                .filter(b -> b.getAuthor() != null)
+                .filter(b -> b.getAuthor().contains(letters))
+                .filter(b -> !(authors.contains(b.getAuthor())))
+                .distinct()
                 .collect(Collectors.toList());
 
-        if (authorsContainsLetters.size() > 1) {
-            System.out.println(authorsContainsLetters);
-            System.out.println("Proszę uściślić wybór: ");
-            System.out.println(getAuthorsContainsLetters(getLetters()));
+        booksVerified.forEach(b -> authors.add(b.getAuthor()));
+
+        if (authors.isEmpty()) {
+            System.out.println("Nie znaleziono pasujących rekordów, spróbuj ponownie: ");
+            //TODO wywołanie metody
+        } else if (authors.size() > 1)  {
+            System.out.println("Znaleziono "+ authors.size() + " pasujących autorów: ");
+            for (String author : authors) {
+                int counter;
+                System.out.println(counter);
+            }
         }
 
-        return authorsContainsLetters;
+
+
+
+        return null;
     }
 
     public static void main (String[]args)  {
 
-
         Search search = new Search();
 
-        System.out.println(search.getAuthorsContainsLetters(search.getLetters()));
+        System.out.println(search.getAuthors(BOOKS, search.getLetters()));
 
         }
     }
