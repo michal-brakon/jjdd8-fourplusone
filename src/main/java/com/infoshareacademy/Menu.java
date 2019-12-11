@@ -17,21 +17,18 @@ public class Menu {
 
         List<MenuOptions> newMenuList = new ArrayList<>();
         newMenuList.add(new MenuOptions("glowne menu", 1, 0));
-        newMenuList.add(new MenuOptions("test menu", 2, 1));
-        newMenuList.add(new MenuOptions("drukuj", 2, 1));
         newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
-        newMenuList.add(new MenuOptions("last test menu", 5, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
-        newMenuList.add(new MenuOptions("secret menu number four", 42, 4));
 
 
         while (position != 0) {
             ClearScreen.screenCleaner();
 
             int parent = 0;
-            parent = getParent(position, newMenuList, parent);
+
 
             // adding functionality on positions here
+
             if (position == 1) {
 
                 stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
@@ -41,12 +38,10 @@ public class Menu {
                 position = parent;
                 new BookPrinter().printBooks(BookRepository.getBooks());
 
-
             }
 
-
+            parent = getParent(position, newMenuList, parent);
             position = printMenu(position, newMenuList, parent);
-
 
         }
 
