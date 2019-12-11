@@ -8,6 +8,7 @@ import java.io.IOException;
 public class App {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    protected static final int MAIN_MENU_POSITION = 1;
 
     public static void main(String[] args) {
 
@@ -18,7 +19,7 @@ public class App {
         // menu init
 
         Menu menu = new Menu();
-               menu.showMenu(1);
+               menu.showMenu(MAIN_MENU_POSITION);
 
 
 

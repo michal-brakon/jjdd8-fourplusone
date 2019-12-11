@@ -9,25 +9,24 @@ import java.util.regex.Pattern;
 public class UserInput {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
+
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
+    public static boolean isExit = false;
 
-    public static int getChoice(int choices) {
-
+    public int getChoice(int choices) {
 
         String userLineIn = scan.nextLine();
-        if (Pattern.matches(("[0-9]"), userLineIn) || Pattern.matches(("[0-9][0-9]"), userLineIn)) {
-            try {
-                choice = Integer.parseInt(userLineIn);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+        if (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) {
+
+            choice = Integer.parseInt(userLineIn);
+
         } else {
-            stdout.info("Źle wpisałeś!");
+            stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
             getChoice(choices);
         }
         if (choice > choices || choice < 0) {
-            stdout.info("\nProsze wybrać jeden z " + choices);
+            stdout.info("\nProsze wybrać jeden z " + choices + "\n");
             getChoice(choices);
         }
 

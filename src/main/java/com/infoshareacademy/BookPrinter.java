@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    Menu menu = new Menu();
+    UserInput getNumber = new UserInput();
     private int bookChoice = 0;
     private boolean isExit = false;
 
@@ -22,7 +22,7 @@ public class BookPrinter {
 
             ScreenCleaner.clearScreen();
             stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
-            recordsLimit = UserInput.getChoice(BookRepository.getInstance().getBookRepository().size());
+            recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
 
