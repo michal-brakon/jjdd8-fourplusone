@@ -12,8 +12,6 @@ public class BookPrinter {
     UserInput getNumber = new UserInput();
 
     private int bookChoice = 0;
-    private boolean isExit = false;
-
 
     public void printBooks(List<Book> books) {
 
@@ -37,53 +35,22 @@ public class BookPrinter {
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
-                        menuBookList();
+
                         break;
                     }
                     counter = 0;
                     ScreenCleaner.clearScreen();
             }
         }
-        if (!isExit) {
-            menuBookList();
-        }
+
     }
 
-    private void menuBookList() {
+    public void getOneBook() {
 
-        stdout.info("\nWybierz: ");
-        stdout.info("\nc -       widok pojedyńczej ksiazki");
-        stdout.info("\nm -       powrót do menu glównego\n");
-
-        Scanner scanner = new Scanner(System.in);
-        String choice = scanner.next();
-
-        if (isCorrectChoiceEndMenu(choice)) {
-            switch (choice) {
-
-                case "m": {
-
-                    break;
-                }
-                case "c": {
                     int temp = chooseBookToPrint();
                     stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
-                    menuBookList();
-                    break;
-                }
-                default: break;
-            }
-        } else {
-            stdout.info("\nBłędny wybor\n");
-            menuBookList();
-        }
-
-    }
-
-    private boolean isCorrectChoiceEndMenu(String choice) {
-        return (choice != null && (choice.equals("m") || choice.equals("c")));
 
     }
 

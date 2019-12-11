@@ -49,9 +49,7 @@ public class Menu {
 
             } else if (position==SHOW_ONE_BOOK_POSITION){
                 position = parent;
-                int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
-
+                new BookPrinter().getOneBook();
             }
 
             parent = getParent(position, newMenuList, parent);
