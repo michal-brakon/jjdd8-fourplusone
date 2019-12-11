@@ -7,15 +7,13 @@ public class BookRepository {
     private BookParser bookParser;
 
     private static BookRepository instance;
-    private static List<Book> bookRepository;
 
     private BookRepository() {
         bookParser = new BookParser();
     }
 
     public List<Book> getBookRepository() {
-        bookRepository = bookParser.parseJsonFileToObject();
-        return bookRepository;
+        return bookParser.parseJsonFileToObject();
     }
 
     public static synchronized BookRepository getInstance() {
@@ -24,6 +22,5 @@ public class BookRepository {
         }
         return instance;
     }
-
 
 }
