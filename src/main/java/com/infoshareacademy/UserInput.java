@@ -12,7 +12,7 @@ public class UserInput {
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
 
-    public int getChoice(int choices) {
+    public static int getChoice(int choices) {
 
 
         String userLineIn = scan.nextLine();

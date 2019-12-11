@@ -8,10 +8,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClearScreen {
+public class ScreenCleaner {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    static void screenCleaner() {
+    static void clearScreen() {
         String s;
         Process p;
         try {

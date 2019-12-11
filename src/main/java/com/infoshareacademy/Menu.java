@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Menu {
@@ -19,10 +21,10 @@ public class Menu {
         newMenuList.add(new MenuOptions("glowne menu", 1, 0));
         newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
-
+        newMenuList.add(new MenuOptions("Wyświetl jedna pozycje", 42, 4));
 
         while (position != 0) {
-            ClearScreen.screenCleaner();
+            ScreenCleaner.clearScreen();
 
             int parent = 0;
 
@@ -36,7 +38,12 @@ public class Menu {
 
             } else if (position == 41) {
                 position = parent;
-                new BookPrinter().printBooks(BookRepository.getBooks());
+                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
+
+            } else if (position==42){
+                position = parent;
+                int n = new BookPrinter().chooseBookToPrint();
+                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
 
             }
 
