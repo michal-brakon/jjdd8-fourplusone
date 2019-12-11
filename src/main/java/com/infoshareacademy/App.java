@@ -21,7 +21,5 @@ public class App {
         Menu menu = new Menu();
                menu.showMenu(MAIN_MENU_POSITION);
 
-
-
     }
 }

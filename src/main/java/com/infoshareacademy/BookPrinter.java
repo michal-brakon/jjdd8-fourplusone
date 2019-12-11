@@ -10,6 +10,7 @@ public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     UserInput getNumber = new UserInput();
+
     private int bookChoice = 0;
     private boolean isExit = false;
 
@@ -22,6 +23,7 @@ public class BookPrinter {
 
             ScreenCleaner.clearScreen();
             stdout.info("\nIle rekordow na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
+
             recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
@@ -89,7 +91,6 @@ public class BookPrinter {
         return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size()));
 
     }
-
 
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer ksiazki: \n");

@@ -2,17 +2,18 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
     UserInput getNumber = new UserInput();
 
-
     public void showMenu(int position) {
+
 
 
         List<MenuOptions> newMenuList = new ArrayList<>();
@@ -29,7 +30,9 @@ public class Menu {
 
             // adding functionality on positions here
 
+
             if (position == 1) {
+
 
                 stdout.info("Witamy na Glownej stronie biblioteki For Plus One");
 
@@ -47,6 +50,7 @@ public class Menu {
 
             parent = getParent(position, newMenuList, parent);
             position = printMenu(position, newMenuList, parent);
+
 
         }
 
@@ -91,3 +95,4 @@ public class Menu {
     }
 
 }
+
