@@ -18,7 +18,7 @@ public class Menu {
         List<MenuOptions> newMenuList = new ArrayList<>();
         newMenuList.add(new MenuOptions("glowne menu", 1, 0));
         newMenuList.add(new MenuOptions("test menu", 2, 1));
-        newMenuList.add(new MenuOptions("another test menu", 2, 1));
+        newMenuList.add(new MenuOptions("drukuj", 2, 1));
         newMenuList.add(new MenuOptions("dostępne książki", 4, 1));
         newMenuList.add(new MenuOptions("last test menu", 5, 1));
         newMenuList.add(new MenuOptions("Pokaż Wszystkie pozycje", 41, 4));
@@ -26,15 +26,10 @@ public class Menu {
 
 
         while (position != 0) {
-            stdout.info("\033[H\033[2J");
-            stdout.info("\n");
+            ClearScreen.screenCleaner();
 
             int parent = 0;
-            for (MenuOptions menuOptions : newMenuList) {
-                if (menuOptions.getPosition() == position) {
-                    parent = menuOptions.getParent();
-                }
-            }
+            parent = getParent(position, newMenuList, parent);
 
             // adding functionality on positions here
             if (position == 1) {
@@ -50,35 +45,49 @@ public class Menu {
             }
 
 
-            stdout.info("Masz do wyboru:");
-            int[] choicesNumber = new int[10];
-            int pressNumber = 1;
-            for (MenuOptions menuOptions : newMenuList) {
-
-                if (menuOptions.getParent() == position) {
-
-                    stdout.info("\n" + pressNumber + "<-  " + menuOptions.getDisplayedText());
-
-                    choicesNumber[pressNumber] = menuOptions.getPosition();
-                    pressNumber++;
-                }
-
-            }
-            stdout.info("\n0<-  wróć do poprzedniego menu  ");
-            stdout.info("\n wybierz numer opcji z menu: ");
-            int userChoice = getNumber.getChoice(pressNumber - 1);
-            stdout.info("\nwybrales " + userChoice + " \n");
-            if (userChoice != 0) {
-                position = choicesNumber[userChoice];
-
-            } else {
-                position = parent;
-
-            }
+            position = printMenu(position, newMenuList, parent);
 
 
         }
 
+    }
+
+    private int printMenu(int position, List<MenuOptions> newMenuList, int parent) {
+        stdout.info("Masz do wyboru:");
+        int[] choicesNumber = new int[10];
+        int pressNumber = 1;
+        for (MenuOptions menuOptions : newMenuList) {
+
+            if (menuOptions.getParent() == position) {
+
+                stdout.info("\n" + pressNumber + "<-  " + menuOptions.getDisplayedText());
+
+                choicesNumber[pressNumber] = menuOptions.getPosition();
+                pressNumber++;
+            }
+
+        }
+        stdout.info("\n0<-  wróć do poprzedniego menu  ");
+        stdout.info("\n wybierz numer opcji z menu: ");
+        int userChoice = getNumber.getChoice(pressNumber - 1);
+        stdout.info("\nwybrales " + userChoice + " \n");
+        if (userChoice != 0) {
+            position = choicesNumber[userChoice];
+
+        } else {
+            position = parent;
+
+        }
+        return position;
+    }
+
+    private int getParent(int position, List<MenuOptions> newMenuList, int parent) {
+        for (MenuOptions menuOptions : newMenuList) {
+            if (menuOptions.getPosition() == position) {
+                parent = menuOptions.getParent();
+            }
+        }
+        return parent;
     }
 
 }
