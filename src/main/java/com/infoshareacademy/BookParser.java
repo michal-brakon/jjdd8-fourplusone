@@ -13,7 +13,7 @@ import java.util.List;
 public class BookParser {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    public static final String PATHNAME = "baza.json";
+    private static final String PATHNAME = "baza.json";
 
     public List<Book> loadBooks() {
         return parseJsonFileToObject();

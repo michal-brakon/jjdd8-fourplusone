@@ -1,9 +1,7 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BookRepository {
 
@@ -14,9 +12,11 @@ public class BookRepository {
     private BookRepository() {
         BookParser bookParser = new BookParser();
         books = bookParser.loadBooks();
+
     }
 
     public List<Book> getBooks() {
+
         return books;
     }
 

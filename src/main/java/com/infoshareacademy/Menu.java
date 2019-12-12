@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    private final BookRepository repository = BookRepository.getInstance();
 
 
     private int choice = 0;
@@ -86,12 +87,12 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                new BookPrinter().printBooks(BookRepository.getInstance().getBooks());
+                new BookPrinter().printBooks(repository.getBooks());
                 break;
             }
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBooks().get(n));
+                stdout.info(n + 1 + ". " + repository.getBooks().get(n));
                 new BookPrinter().showBookMenu();
                 break;
 
