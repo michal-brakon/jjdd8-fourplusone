@@ -23,8 +23,8 @@ public class ExceptionMenu {
             switch (choice) {
 
                 case "1": {
-                    BookRepository.getInstance().getBookRepository();
-                    if (BookRepository.getInstance().getBookRepository()!=null)
+                    BookRepository.getInstance().getBooks();
+                    if (BookRepository.getInstance().getBooks()!=null)
                     {menu.mainMenu();}
                     break;
                 }
