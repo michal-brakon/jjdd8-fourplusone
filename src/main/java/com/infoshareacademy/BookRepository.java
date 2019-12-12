@@ -14,8 +14,7 @@ public class BookRepository {
     }
 
     public List<Book> getBookRepository() {
-        bookRepository = bookParser.parseJsonFileToObject();
-        return bookRepository;
+        return bookParser.parseJsonFileToObject();
     }
 
     public static synchronized BookRepository getInstance() {

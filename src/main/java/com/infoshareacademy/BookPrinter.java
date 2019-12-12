@@ -2,6 +2,7 @@ package com.infoshareacademy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -19,10 +20,9 @@ public class BookPrinter {
         int counter = 0;
         int recordsLimit = 0;
 
-            ScreenCleaner.clearScreen();
-            stdout.info("\nIle rekordów na stronie? (1-"+ BookRepository.getInstance().getBookRepository().size() +")\n ");
-
-            recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
+        ScreenCleaner.clearScreen();
+        stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
+        recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
 
@@ -31,7 +31,7 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuśić liste , dowolny znak kontynuuje wyświetlanie\n");
+                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
