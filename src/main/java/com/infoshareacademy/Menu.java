@@ -68,7 +68,7 @@ public class Menu {
 
     }
 
-    private void exit() {
+    public void exit() {
         isExit = true;
         ScreenCleaner.clearScreen();
         stdout.info("\nDo zobaczenia!");
@@ -86,13 +86,13 @@ public class Menu {
 
         switch (getChoice(4)) {
             case 1: {
-                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
+                new BookPrinter().printBooks(BookRepository.getInstance().getBooks());
                 break;
             }
             case 2: {
                 int n = new BookPrinter().chooseBookToPrint();
-                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBookRepository().get(n));
-                showRepository();
+                stdout.info(n + 1 + ". " + BookRepository.getInstance().getBooks().get(n));
+                new BookPrinter().showBookMenu();
                 break;
 
             }
