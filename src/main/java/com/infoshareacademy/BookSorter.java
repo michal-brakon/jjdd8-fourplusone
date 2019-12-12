@@ -1,16 +1,13 @@
 package com.infoshareacademy;
-
+import org.apache.logging.log4j.util.PropertySource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class BookSorter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
@@ -19,9 +16,16 @@ public class BookSorter {
 
             List<Book> sorting (List toSort) {
 
-             List<Book> tralalala = (List<Book>) toSort.stream()
-                        .sorted(Comparator.reverseOrder())
-                        .collect(Collectors.toList());
+             List<Book> tralalala = toSort.stream()
+                     .sorted )
+
+
+
+
+
+//                         .sorted(Comparator.comparing(Book::getEpoch))
+//                         .collect(Collectors.toList());
+
 
                 return tralalala;
             }
