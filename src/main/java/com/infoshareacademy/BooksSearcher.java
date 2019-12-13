@@ -13,7 +13,7 @@ public class BooksSearcher {
 
     final static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
 
-    private int chooseSearchingMethod () {
+    private int chooseSearchingMethod() {
 
         List<String> searchingLetters = new ArrayList<>();
 
@@ -25,20 +25,21 @@ public class BooksSearcher {
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
         int searchingMethod = Integer.valueOf(choice);
-        if (searchingMethod == 1)  {
+        if (searchingMethod == 1) {
             stdout.info("Szukanie po autorze: ");
             findAuthorByName(getLetters());
-        } else if (searchingMethod == 2)  {
+        } else if (searchingMethod == 2) {
             stdout.info("\nSzukanie po tytule: ");
             findTitleByName(getLetters());
-        } else if (searchingMethod == 3)  {
+        } else if (searchingMethod == 3) {
             stdout.info("\nSzukanie po autorze i tytule");
             stdout.info("\nSzukaj autora: ");
             stdout.info("\nSzukaj autora: ");
             findAuthorByName(getLetters());
             stdout.info("\nSzukaj tytulu: ");
             findTitleByName(getLetters());
-;        }
+            ;
+        }
         return searchingMethod;
     }
 
@@ -68,8 +69,8 @@ public class BooksSearcher {
         if (authorsList.isEmpty()) {
             stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
             findAuthorByName(getLetters());
-        } else if (authorsList.size() > 1)  {
-            stdout.info("\nZnaleziono "+ authorsList.size() + " pasujących autorów: ");
+        } else if (authorsList.size() > 1) {
+            stdout.info("\nZnaleziono " + authorsList.size() + " pasujących autorów: ");
             printAuthorsList(authorsList);
             stdout.info("\nUściślij swój wybór\n ");
             findAuthorByName(getLetters());
@@ -78,12 +79,12 @@ public class BooksSearcher {
             stdout.info("\nCzy chodzilo ci o " + author + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
             String yesOrNot = scanner.next();
-                if (!yesOrNot.equalsIgnoreCase("t")) {
-                    stdout.info("\nSprobuj ponownie\n ");
-                    findAuthorByName(getLetters());
-                }
+            if (!yesOrNot.equalsIgnoreCase("t")) {
+                stdout.info("\nSprobuj ponownie\n ");
+                findAuthorByName(getLetters());
+            }
         }
-      return author;
+        return author;
     }
 
     private String findTitleByName(String letters) {
@@ -100,8 +101,8 @@ public class BooksSearcher {
         if (titlesList.isEmpty()) {
             stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
             findTitleByName(getLetters());
-        } else if (titlesList.size() > 1)  {
-            stdout.info("\nZnaleziono "+ titlesList.size() + " pasujących autorów: ");
+        } else if (titlesList.size() > 1) {
+            stdout.info("\nZnaleziono " + titlesList.size() + " pasujących autorów: ");
             printAuthorsList(titlesList);
             stdout.info("\nUściślij swój wybór\n ");
             findTitleByName(getLetters());
@@ -126,7 +127,7 @@ public class BooksSearcher {
         }
     }
 
-    private void printFilteredBooks (int searchingMethod, String author, String title) {
+    private void printFilteredBooks(int searchingMethod, String author, String title) {
 
         if (searchingMethod == 1) {
             List<Book> filteredBooks = BOOKS.stream()
@@ -136,22 +137,23 @@ public class BooksSearcher {
 
             filteredBooks.forEach(System.out::println);
 
-        }  else if (searchingMethod == 2)  {
+        } else if (searchingMethod == 2) {
             List<Book> filteredBooks = BOOKS.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .collect(Collectors.toList());
 
             filteredBooks.forEach(System.out::println);
-        } else if (searchingMethod == 3)   {
+        } else if (searchingMethod == 3) {
             List<Book> filteredBooks = BOOKS.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
-        }
-    }
 
+        }
+
+    }
 }
 
 
