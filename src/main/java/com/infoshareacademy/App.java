@@ -3,7 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
+import java.util.Optional;
 
 public class App {
 
@@ -11,15 +11,16 @@ public class App {
 
     public static void main(String[] args) {
 
-        // read json file to collection
-
-        stdout.info("Four-Plus-One");
-
-        // menu init
-
+        // load file
+        // if file does not exist, show exception menu
+        // else run main menu
+//        // menu init
         Menu menu = new Menu();
         menu.mainMenu();
-
+//
+//        String a = "fasfafsaf";
+//
+//        Optional.ofNullable(a).ifPresentOrElse(System.out::println, () -> {System.out.println("aaa");});
 
 
     }

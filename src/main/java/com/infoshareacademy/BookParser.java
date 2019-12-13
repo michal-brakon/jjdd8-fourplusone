@@ -13,18 +13,20 @@ import java.util.List;
 public class BookParser {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    public static final String PATHNAME = "baza.json";
 
+    public List<Book> loadBooks() {
+        return parseJsonFileToObject();
+    }
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-
-    public List<Book> parseJsonFileToObject() {
+    private List<Book> parseJsonFileToObject() {
         List<Book> parseJson = null;
 
         try {
-            parseJson = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                    false).readValue(new File("baza.json"), new TypeReference<>() {
-            });
+            parseJson = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
+                    .readValue(new File(PATHNAME), new TypeReference<>() {});
         } catch (IOException e) {
             stdout.info("\nNie wczytano bazy z pliku!");
         }
