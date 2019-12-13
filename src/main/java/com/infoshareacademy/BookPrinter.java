@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
+    Menu menu = new Menu();
     UserInput getNumber = new UserInput();
 
     private int bookChoice = 0;
@@ -42,7 +42,7 @@ public class BookPrinter {
                     ScreenCleaner.clearScreen();
             }
         }
-
+        menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
     public void getOneBook() {
@@ -51,7 +51,7 @@ public class BookPrinter {
                     stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
-
+        menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
     private boolean isCorrectChooseBook(String choice) {
@@ -74,6 +74,7 @@ public class BookPrinter {
             }
 
         return bookChoice;
+
     }
 
 }

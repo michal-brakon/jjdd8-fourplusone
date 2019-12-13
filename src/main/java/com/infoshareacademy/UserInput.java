@@ -12,12 +12,12 @@ public class UserInput {
 
     private int choice = 0;
     private Scanner scan = new Scanner(System.in);
-    public static boolean isExit = false;
+
 
     public int getChoice(int choices) {
 
         String userLineIn = scan.nextLine();
-        if (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) {
+        if (isANumber(userLineIn)) {
 
             choice = Integer.parseInt(userLineIn);
 
@@ -31,5 +31,9 @@ public class UserInput {
         }
 
         return choice;
+    }
+
+    public boolean isANumber(String userLineIn) {
+        return (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) && userLineIn != null;
     }
 }
