@@ -12,10 +12,9 @@ public class App {
     private static Menu menu;
 
     public static void main(String[] args) {
-        List<Book> initParser = new BookParser().loadBooks();
         FileNotFindMenu fileNotFindMenu = new FileNotFindMenu();
         menu = new Menu();
-        Optional.ofNullable(initParser)
+        Optional.ofNullable( BookRepository.getInstance().getBooks())
                 .ifPresentOrElse(books -> {
                     stdout.info("\nBaza json załadowana\n");
                     menu.mainMenu();

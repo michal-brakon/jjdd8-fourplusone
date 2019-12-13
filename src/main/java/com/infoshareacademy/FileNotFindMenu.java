@@ -25,10 +25,10 @@ public class FileNotFindMenu {
             switch (choice) {
 
                 case "1": {
-                    List<Book> parser =new BookParser().loadBooks();
+                    List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
-                       System.out.println("\nBaza.json załadowana\n");
-                       menu.mainMenu();
+                        System.out.println("\nBaza.json załadowana\n");
+                        menu.mainMenu();
                     }, this::showLoaderFileMenu);
                     break;
                 }
