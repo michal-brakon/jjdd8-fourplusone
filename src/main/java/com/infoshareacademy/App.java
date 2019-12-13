@@ -26,8 +26,8 @@ public class App {
 
         // menu init
 
-        Menu menu = new Menu();
-        menu.mainMenu();
+//        Menu menu = new Menu();
+//        menu.mainMenu();
 
 
 
