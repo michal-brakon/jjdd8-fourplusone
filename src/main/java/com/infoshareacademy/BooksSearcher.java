@@ -15,14 +15,17 @@ public class BooksSearcher {
 
     private void bookFinderSetup(int param) {
 
-        String author;
+        String author = "";
         String title;
 
         if (param == 1)  {
             stdout.info("\nSzukanie ksiazek po autorze podajac ciag znakow ktory zawiera sie w imieniu lub nazwisku \n");
-            List<String> authorsList = findAuthorByName(getLetters());
-            //author = verifyFindingAuthor(authorsList);
-            printFilteredBooks(1, verifyFindingAuthor(authorsList), "" );
+            List<String> authorslist;
+            while (author == "") {
+                authorslist = findAuthorByName(getLetters());
+                author = verifyFindingAuthor(authorslist);
+            }
+            printFilteredBooks(1, author, "" );
         }
         if (param == 2)  {
             stdout.info("\nSzukanie ksiazek po tytule podajac ciag znakow ktory zawiera sie w tytule \n ");
@@ -32,14 +35,16 @@ public class BooksSearcher {
         }
         if (param == 3)  {
             stdout.info("\nSzukanie ksiazek po autorze i tytule podajac najpierw ciag znakow ktory zawiera sie \n w tytule , nastepnie ciag znakow zawierajacy sie w imieniu lub nazwisku autora \n");
-
-            List<String> authorsList = findAuthorByName(getLetters());
-            //author = verifyFindingAuthor(authorsList);
+            List<String> authorslist;
+            while (author == "") {
+                authorslist = findAuthorByName(getLetters());
+                author = verifyFindingAuthor(authorslist);
+            }
             stdout.info("\nTeraz tytul");
             List<String> titlesList = findTitleByName(getLetters());
             title = verifyFindingTitle(titlesList);
 
-            printFilteredBooks(3, verifyFindingAuthor(authorsList), verifyFindingTitle(titlesList));
+            printFilteredBooks(3, author, verifyFindingTitle(titlesList));
         }
     }
 
@@ -66,36 +71,40 @@ public class BooksSearcher {
                 .distinct()
                 .collect(Collectors.toList());
 
-        verifyFindingAuthor(authorsList);
+        //System.out.println(authorsList);
+        //verifyFindingAuthor(authorsList);
 
         return  authorsList;
     }
 
     private String verifyFindingAuthor (List<String> authorsList)  {
 
-        String author = "";
+        //String author = "";
 
         if (authorsList.isEmpty()) {
             stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
-            findAuthorByName(getLetters());
+            authorsList.removeAll(authorsList);
         } else if (authorsList.size() > 1) {
             stdout.info("\nZnaleziono " + authorsList.size() + " pasujących autorów:\n");
             printList(authorsList);
             stdout.info("\nUściślij swój wybór\n ");
-            findAuthorByName(getLetters());
+            authorsList.removeAll(authorsList);
+
         } else {
-            author = authorsList.get(0);
-            stdout.info("\nCzy chodzilo ci o " + author + " ?  (t - tak) \n");
+            //author = authorsList.get(0);
+            stdout.info("\nCzy chodzilo ci o " + authorsList.get(0) + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
             String yesOrNot = scanner.next();
             if (!yesOrNot.equalsIgnoreCase("t")) {
                 stdout.info("\nSprobuj ponownie\n ");
-                findAuthorByName(getLetters());
+                //findAuthorByName(getLetters());
+            }  else {
+                return authorsList.get(0);
             }
         }
 
 
-        return author;
+        return "";
     }
 
     private List<String> findTitleByName(String letters) {
@@ -137,12 +146,14 @@ public class BooksSearcher {
         return title;
     }
 
-    private static void printList (List<String> list) {
+    private void printList (List<String> list) {
         int counter = 1;
         for (String element : list) {
             System.out.println(counter + ". " + element);
             counter++;
+
         }
+        return;
     }
 
     private void printFilteredBooks(int searchingMethod, String author, String title) {
