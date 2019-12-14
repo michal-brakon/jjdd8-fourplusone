@@ -16,6 +16,8 @@ public class Menu {
     protected static final int SHOW_ALL_BOOKS_POSITION = 3;
     protected static final int SHOW_ONE_BOOK_POSITION = 4;
     protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 5;
+    protected static final int STARTING_MENU_OPTION_NUMBER = 1;
+    protected static final int GO_BACK_OPTION_NUMBER = 0;
 
     public void populateMenu() {
 
@@ -48,14 +50,8 @@ public class Menu {
                 new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
                 break;
 
-            } else if (position == SEARCH_BY_AUTHOR_POSITION) {
-                new BookFinder().bookFinderSetup(1, chooseAudioOrNoAudio());
-                break;
-            } else if (position == SEARCH_BY_TITLE_POSITION) {
-                new BookFinder().bookFinderSetup(2, chooseAudioOrNoAudio());
-                break;
-            } else if (position == SEARCH_BY_AUTHOR_OR_TITLE) {
-                new BookFinder().bookFinderSetup(3, chooseAudioOrNoAudio());
+            } else if (position == SHOW_ONE_BOOK_POSITION) {
+                new BookPrinter().getOneBook();
                 break;
             }
 
@@ -65,18 +61,13 @@ public class Menu {
         }
     }
 
-    private int chooseAudioOrNoAudio() {
-        stdout.info("\nCzy czy ma być \n1) z Audio\n2) bez Audio \n3) obojętne czy ma audio");
-        return getNumber.getChoice(3);
-    }
-
     private int printMenu(int position) {
         stdout.info("Masz do wyboru:");
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
         stdout.info("\nwybraleś " + userChoice + " \n");
-        if (userChoice != 0) {
+        if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
 
@@ -87,7 +78,7 @@ public class Menu {
 
     int[] printMenuOptions(int position) {
         int[] choicesNumber = new int[MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE];
-        int pressNumber = 1;
+        int pressNumber = STARTING_MENU_OPTION_NUMBER;
         for (MenuOption menuOption : newMenuList) {
             if (menuOption.getParent() == position) {
                 stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
@@ -104,11 +95,11 @@ public class Menu {
     }
 
     void menuBreadcrumbs(int position) {
-        int currentIndex = 0;
+
         String crumbs = "Glowne Menu";
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
-            currentIndex = getIndexFromList(crumbPosition);
+            int currentIndex = getIndexFromList(crumbPosition);
             crumbs = crumbs + " / " + newMenuList.get(currentIndex).getDisplayedText();
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
@@ -116,7 +107,7 @@ public class Menu {
     }
 
     private int getIndexFromList(int position) {
-        int currentMenuIndex = 0;
+        int currentMenuIndex = EXIT_POSITION;
         for (int i = 0; i < newMenuList.size(); i++) {
             if (newMenuList.get(i).getPosition() == position) {
                 currentMenuIndex = i;
@@ -127,7 +118,7 @@ public class Menu {
     }
 
     int getParentFromList(int position) {
-        int parent = 0;
+        int parent = EXIT_POSITION;
 
         for (int i = 0; i < newMenuList.size(); i++) {
             if (position == newMenuList.get(i).getPosition()) {

@@ -11,7 +11,6 @@ public class App {
 
         Menu menu = new Menu();
         menu.populateMenu();
-        // menu init
 
         menu.showMenu(Menu.MAIN_MENU_POSITION);
 

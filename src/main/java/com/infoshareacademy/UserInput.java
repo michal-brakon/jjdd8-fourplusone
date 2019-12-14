@@ -6,11 +6,13 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static com.infoshareacademy.Menu.EXIT_POSITION;
+
 public class UserInput {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
 
-    private int choice = 0;
+    private int choice = EXIT_POSITION;
     private Scanner scan = new Scanner(System.in);
 
 
@@ -23,10 +25,10 @@ public class UserInput {
             choice = Integer.parseInt(userLineIn);
 
         } else {
-            wrongChoiceChooseAgain(choices);
+            isNotANumber(choices);
         }
         if (choice > choices || choice < 0) {
-           wrongNumberChooseAgain(choices);
+            incorrectNumberRetry(choices);
         }
 
         return choice;
@@ -36,11 +38,12 @@ public class UserInput {
         return (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) && userLineIn != null;
     }
 
-    private void wrongChoiceChooseAgain(int choices) {
+    private void isNotANumber(int choices) {
         stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
         getChoice(choices);
     }
-    private void wrongNumberChooseAgain(int choices) {
+
+    private void incorrectNumberRetry(int choices) {
         stdout.info("\nProsze wybrać jeden z " + choices + "\n");
         getChoice(choices);
     }
