@@ -22,6 +22,7 @@ public class BookPrinter {
 
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
+
         recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
@@ -52,6 +53,7 @@ public class BookPrinter {
                     chooseBookToPrint();
                     stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
         menu.showMenu(Menu.BOOK_MENU_POSITION);
+
     }
 
     private boolean isCorrectChooseBook(String choice) {
@@ -63,6 +65,7 @@ public class BookPrinter {
         stdout.info("\nWpisz numer książki: \n");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
+
 
             if (!isCorrectChooseBook(choice)) {
                 stdout.info("Błędny wybór! Spróbuj ponownie!: \n");

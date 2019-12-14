@@ -7,7 +7,6 @@ public class BookRepository {
     private BookParser bookParser;
 
     private static BookRepository instance;
-    private static List<Book> bookRepository;
 
     private BookRepository() {
         bookParser = new BookParser();
@@ -23,6 +22,5 @@ public class BookRepository {
         }
         return instance;
     }
-
 
 }

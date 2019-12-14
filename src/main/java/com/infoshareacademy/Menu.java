@@ -51,7 +51,9 @@ public class Menu {
 
             if (menuOption.getParent() == position) {
 
+
                 stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
+
 
                 choicesNumber[pressNumber] = menuOption.getPosition();
                 pressNumber++;
