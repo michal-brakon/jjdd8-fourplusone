@@ -34,8 +34,8 @@ public class Menu {
                 new BookPrinter().getOneBook();
                 break;
             }
-            stdout.info("\n" + menuBreadcrumbs(position) + "\n");
 
+            menuBreadcrumbs(position);
 
             position = printMenu(position);
         }
@@ -70,16 +70,16 @@ public class Menu {
         return position;
     }
 
-    private String menuBreadcrumbs(int position) {
+    private void menuBreadcrumbs(int position) {
         int currentIndex = 0;
         String crumbs = "";
         int crumbPosition = position;
-        while (crumbPosition != EXIT_POSITION) {
+        while (crumbPosition != MAIN_MENU_POSITION) {
             currentIndex = getIndexFromList(crumbPosition);
-            crumbs = App.newMenuList.get(currentIndex).getDisplayedText() + "< " + crumbs;
+            crumbs = App.newMenuList.get(currentIndex).getDisplayedText() + " / " + crumbs;
             crumbPosition = App.newMenuList.get(currentIndex).getParent();
         }
-        return crumbs;
+        stdout.info("\nGlowne Menu " + crumbs + "\n");
     }
 
     private int getIndexFromList(int position) {
