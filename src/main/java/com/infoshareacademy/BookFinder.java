@@ -7,16 +7,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class BooksSearcher {
+public class BookFinder {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     final static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
 
-    private void bookFinderSetup(int param) {
+    public void bookFinderSetup(int param, int hasAudio) {
 
         String author = "";
-        String title;
+        String title = "";
 
         if (param == 1)  {
             stdout.info("\nSzukanie ksiazek po autorze podajac ciag znakow ktory zawiera sie w imieniu lub nazwisku \n");
@@ -25,13 +25,17 @@ public class BooksSearcher {
                 authorslist = findAuthorByName(getLetters());
                 author = verifyFindingAuthor(authorslist);
             }
-            printFilteredBooks(1, author, "" );
+
+            printFilteredBooks(param, hasAudio, author, "" );
         }
         if (param == 2)  {
             stdout.info("\nSzukanie ksiazek po tytule podajac ciag znakow ktory zawiera sie w tytule \n ");
-            List<String> titlesList = findTitleByName(getLetters());
-            title = verifyFindingTitle(titlesList);
-            printFilteredBooks(2, "", title);
+            List<String> titleslist;
+            while (title == "") {
+                titleslist = findTitleByName(getLetters());
+                title = verifyFindingAuthor(titleslist);
+            }
+            printFilteredBooks(param, hasAudio, "", title);
         }
         if (param == 3)  {
             stdout.info("\nSzukanie ksiazek po autorze i tytule podajac najpierw ciag znakow ktory zawiera sie \n w tytule , nastepnie ciag znakow zawierajacy sie w imieniu lub nazwisku autora \n");
@@ -41,10 +45,13 @@ public class BooksSearcher {
                 author = verifyFindingAuthor(authorslist);
             }
             stdout.info("\nTeraz tytul");
-            List<String> titlesList = findTitleByName(getLetters());
-            title = verifyFindingTitle(titlesList);
+            List<String> titleslist;
+            while (title == "") {
+                titleslist = findTitleByName(getLetters());
+                title = verifyFindingTitle(titleslist);
+            }
 
-            printFilteredBooks(3, author, verifyFindingTitle(titlesList));
+            printFilteredBooks(param, hasAudio, author, title);
         }
     }
 
@@ -66,7 +73,7 @@ public class BooksSearcher {
 
         List <String> authorsList = BOOKS.stream()
                 .filter(b -> b.getAuthor() != null)
-                .filter(b -> b.getAuthor().contains(letters))
+                .filter(b -> b.getAuthor().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getAuthor)
                 .distinct()
                 .collect(Collectors.toList());
@@ -97,7 +104,6 @@ public class BooksSearcher {
             String yesOrNot = scanner.next();
             if (!yesOrNot.equalsIgnoreCase("t")) {
                 stdout.info("\nSprobuj ponownie\n ");
-                //findAuthorByName(getLetters());
             }  else {
                 return authorsList.get(0);
             }
@@ -110,13 +116,13 @@ public class BooksSearcher {
     private List<String> findTitleByName(String letters) {
 
         List<String> titlesList =  BOOKS.stream()
-                .filter(b -> b.getAuthor() != null)
-                .filter(b -> b.getAuthor().contains(letters))
-                .map(Book::getAuthor)
+                .filter(b -> b.getTitle() != null)
+                .filter(b -> b.getTitle().toLowerCase().contains(letters.toLowerCase()))
+                .map(Book::getTitle)
                 .distinct()
                 .collect(Collectors.toList());
 
-        verifyFindingTitle(titlesList);
+        //verifyFindingTitle(titlesList);
 
         return titlesList;
     }
@@ -134,13 +140,14 @@ public class BooksSearcher {
             stdout.info("\nUściślij swój wybór\n ");
             findTitleByName(getLetters());
         } else {
-            title = titlesList.get(0);
-            stdout.info("\nCzy chodzilo ci o " + title + " ?  (t - tak) \n");
+            //title = titlesList.get(0);
+            stdout.info("\nCzy chodzilo ci o " + titlesList.get(0) + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
             String yesOrNot = scanner.next();
             if (!yesOrNot.equalsIgnoreCase("t")) {
                 stdout.info("\nSprobuj ponownie\n ");
-                findTitleByName(getLetters());
+            }  else {
+                return titlesList.get(0);
             }
         }
         return title;
@@ -156,10 +163,23 @@ public class BooksSearcher {
         return;
     }
 
-    private void printFilteredBooks(int searchingMethod, String author, String title) {
+    private void printFilteredBooks(int searchingMethod, int hasAudio, String author, String title) {
+
+        List<Book> filteredBooks = BOOKS;
+
+        if (hasAudio == 1)  {
+            filteredBooks = filteredBooks.stream()
+                    .filter(b -> b.isHasAudio())
+                    .collect(Collectors.toList());
+        }
+        if (hasAudio == 2)  {
+            filteredBooks = filteredBooks.stream()
+                    .filter(b -> !b.isHasAudio())
+                    .collect(Collectors.toList());
+        }
 
         if (searchingMethod == 1) {
-            List<Book> filteredBooks = BOOKS.stream()
+            filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
@@ -167,26 +187,31 @@ public class BooksSearcher {
             filteredBooks.forEach(System.out::println);
 
         } else if (searchingMethod == 2) {
-            List<Book> filteredBooks = BOOKS.stream()
+            filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .collect(Collectors.toList());
 
             filteredBooks.forEach(System.out::println);
+
         } else if (searchingMethod == 3) {
-            List<Book> filteredBooks = BOOKS.stream()
+            filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
 
+            filteredBooks.forEach(System.out::println);
+        }
+        if (filteredBooks.isEmpty())      {
+            stdout.info("\nBrak książek spełniających kryteria");
         }
 
     }
 
     public static void main(String[] args) {
 
-        new BooksSearcher().bookFinderSetup(1);
+        new BookFinder().bookFinderSetup(3, 1);
     }
 }
 
