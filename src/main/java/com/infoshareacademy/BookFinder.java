@@ -196,10 +196,6 @@ public class BookFinder {
 
     }
 
-    public static void main(String[] args) {
-
-        new BookFinder().bookFinderSetup(3, 1);
-    }
 }
 
 
