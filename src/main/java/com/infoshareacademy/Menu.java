@@ -19,11 +19,11 @@ public class Menu {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
-
+            Header.headerPrinter();
             // adding functionality on positions here from this point
             if (position == MAIN_MENU_POSITION) {
 
-                stdout.info("Witamy na Głównej stronie biblioteki 'For Plus One'");
+                stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
 
@@ -72,14 +72,14 @@ public class Menu {
 
     private void menuBreadcrumbs(int position) {
         int currentIndex = 0;
-        String crumbs = "";
+        String crumbs = "Glowne Menu";
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             currentIndex = getIndexFromList(crumbPosition);
-            crumbs = App.newMenuList.get(currentIndex).getDisplayedText() + " / " + crumbs;
+            crumbs = crumbs+ " / " + App.newMenuList.get(currentIndex).getDisplayedText() ;
             crumbPosition = App.newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\nGlowne Menu " + crumbs + "\n");
+        stdout.info("\n" + crumbs + "\n");
     }
 
     private int getIndexFromList(int position) {

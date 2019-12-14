@@ -14,8 +14,8 @@ public class App {
     public static void main(String[] args) {
 
         Menu menu = new Menu();
-        newMenuList.add(new MenuOption("głowne menu", menu.MAIN_MENU_POSITION, menu.EXIT_POSITION));
-        newMenuList.add(new MenuOption("dostępne książki", menu.BOOK_MENU_POSITION, menu.MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption("Głowne menu", menu.MAIN_MENU_POSITION, menu.EXIT_POSITION));
+        newMenuList.add(new MenuOption("Dostępne książki", menu.BOOK_MENU_POSITION, menu.MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption("Pokaż Wszystkie pozycje", menu.SHOW_ALL_BOOKS_POSITION, menu.BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", menu.SHOW_ONE_BOOK_POSITION, menu.BOOK_MENU_POSITION));
         // menu init
