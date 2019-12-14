@@ -5,12 +5,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     Menu menu = new Menu();
-    UserInput getNumber = new UserInput();
+    UserInput userInput = new UserInput();
 
     private int bookChoice = 0;
 
@@ -23,7 +22,7 @@ public class BookPrinter {
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
 
-        recordsLimit = getNumber.getChoice(BookRepository.getInstance().getBookRepository().size());
+        recordsLimit = userInput.getChoice(BookRepository.getInstance().getBookRepository().size());
 
         for (Book book : books) {
 
@@ -57,7 +56,7 @@ public class BookPrinter {
     }
 
     private boolean isCorrectChooseBook(String choice) {
-        return (getNumber.isANumber(choice)) && areThereThatManyBooks(choice);
+        return (userInput.isANumber(choice)) && areThereThatManyBooks(choice);
 
     }
     private boolean areThereThatManyBooks(String choice){
