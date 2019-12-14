@@ -1,22 +1,22 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BookRepository {
 
     private static BookRepository instance;
 
     private List<Book> books;
+    private BookParser bookParser = new BookParser();
 
     private BookRepository() {
-        BookParser bookParser = new BookParser();
-        books = bookParser.loadBooks();
-    }
+           }
 
     public List<Book> getBooks() {
+            if(books==null){
+                books = bookParser.loadBooks();
+            }
         return books;
     }
 

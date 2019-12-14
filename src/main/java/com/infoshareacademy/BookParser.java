@@ -13,7 +13,8 @@ import java.util.List;
 public class BookParser {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    public static final String PATHNAME = "baza.json";
+    private static final String PATHNAME = "baza.json";
+    private static List<Book> parseJson ;
 
     public List<Book> loadBooks() {
         return parseJsonFileToObject();
@@ -22,7 +23,6 @@ public class BookParser {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private List<Book> parseJsonFileToObject() {
-        List<Book> parseJson = null;
 
         try {
             parseJson = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
