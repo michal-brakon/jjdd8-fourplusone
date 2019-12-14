@@ -19,15 +19,14 @@ public class UserInput {
         String userLineIn = scan.nextLine();
         if (isANumber(userLineIn)) {
 
+
             choice = Integer.parseInt(userLineIn);
 
         } else {
-            stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
-            getChoice(choices);
+            wrongChoiceChooseAgain(choices);
         }
         if (choice > choices || choice < 0) {
-            stdout.info("\nProsze wybrać jeden z " + choices + "\n");
-            getChoice(choices);
+           wrongNumberChooseAgain(choices);
         }
 
         return choice;
@@ -35,5 +34,14 @@ public class UserInput {
 
     public boolean isANumber(String userLineIn) {
         return (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) && userLineIn != null;
+    }
+
+    private void wrongChoiceChooseAgain(int choices) {
+        stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
+        getChoice(choices);
+    }
+    private void wrongNumberChooseAgain(int choices) {
+        stdout.info("\nProsze wybrać jeden z " + choices + "\n");
+        getChoice(choices);
     }
 }

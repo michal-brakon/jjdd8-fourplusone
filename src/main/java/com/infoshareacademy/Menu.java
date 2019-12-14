@@ -23,7 +23,6 @@ public class Menu {
             // adding functionality on positions here from this point
             if (position == MAIN_MENU_POSITION) {
 
-
                 stdout.info("Witamy na Głównej stronie biblioteki 'For Plus One'");
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
@@ -32,7 +31,6 @@ public class Menu {
                 break;
 
             } else if (position == SHOW_ONE_BOOK_POSITION) {
-
                 new BookPrinter().getOneBook();
                 break;
             }
@@ -78,14 +76,14 @@ public class Menu {
         int crumbPosition = position;
         while (crumbPosition != EXIT_POSITION) {
             currentIndex = getIndexFromList(crumbPosition);
-            crumbs = App.newMenuList.get(currentIndex).getDisplayedText() + "<" + crumbs;
+            crumbs = App.newMenuList.get(currentIndex).getDisplayedText() + "< " + crumbs;
             crumbPosition = App.newMenuList.get(currentIndex).getParent();
         }
         return crumbs;
     }
 
     private int getIndexFromList(int position) {
-        int currentMenuIndex=0;
+        int currentMenuIndex = 0;
         for (int i = 0; i < App.newMenuList.size(); i++) {
             if (App.newMenuList.get(i).getPosition() == position) {
                 currentMenuIndex = i;
@@ -100,7 +98,7 @@ public class Menu {
 
         for (int i = 0; i < App.newMenuList.size(); i++) {
             if (position == App.newMenuList.get(i).getPosition()) {
-                 App.newMenuList.get(i).getParent();
+                App.newMenuList.get(i).getParent();
                 return parent;
             }
         }

@@ -57,8 +57,11 @@ public class BookPrinter {
     }
 
     private boolean isCorrectChooseBook(String choice) {
-        return ((Pattern.matches(("[0-9][0-9]"), choice) || Pattern.matches(("[0-9]"), choice)) && (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size()));
+        return (getNumber.isANumber(choice)) && areThereThatManyBooks(choice);
 
+    }
+    private boolean areThereThatManyBooks(String choice){
+        return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size());
     }
 
     public int chooseBookToPrint() {

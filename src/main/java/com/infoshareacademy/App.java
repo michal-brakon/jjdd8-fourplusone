@@ -3,14 +3,14 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+public class App {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-     static List<MenuOption> newMenuList = new ArrayList<>();
+    static List<MenuOption> newMenuList = new ArrayList<>();
+
     public static void main(String[] args) {
 
         Menu menu = new Menu();
@@ -20,7 +20,7 @@ import java.util.List;
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", menu.SHOW_ONE_BOOK_POSITION, menu.BOOK_MENU_POSITION));
         // menu init
 
-               menu.showMenu(menu.MAIN_MENU_POSITION);
+        menu.showMenu(menu.MAIN_MENU_POSITION);
 
     }
 }
