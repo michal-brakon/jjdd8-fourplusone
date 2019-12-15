@@ -3,7 +3,9 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
@@ -19,9 +21,9 @@ public class BookFinder {
         String title = "";
 
         if (param == 1) {
-            stdout.info("\nSzukanie ksiazek po autorze podajac ciag znakow ktory zawiera sie w imieniu lub nazwisku \n");
+            stdout.info("\nSzukanie książek po autorze podając ciąg znaków który zawiera się w imieniu lub nazwisku \n");
             List<String> authorslist;
-            while (author.equals("")) {
+            while (author.isEmpty()) {
                 authorslist = findAuthorByName(getLetters());
                 author = verifyFindingAuthor(authorslist);
             }
@@ -29,32 +31,30 @@ public class BookFinder {
             printFilteredBooks(param, hasAudio, author, "");
         }
         if (param == 2) {
-            stdout.info("\nSzukanie ksiazek po tytule podajac ciag znakow ktory zawiera sie w tytule \n ");
+            stdout.info("\nSzukanie ksiązek po tytule podając ciag znaków który zawiera się w tytule \n ");
             List<String> titleslist;
-            while (title.equals("")) {
+            while (title.isEmpty()) {
                 titleslist = findTitleByName(getLetters());
                 title = verifyFindingAuthor(titleslist);
             }
             printFilteredBooks(param, hasAudio, "", title);
         }
         if (param == 3) {
-            stdout.info("\nSzukanie ksiazek po autorze i tytule podajac najpierw ciag znakow ktory zawiera sie \n w tytule , nastepnie ciag znakow zawierajacy sie w imieniu lub nazwisku autora \n");
+            stdout.info("\nSzukanie książek po autorze i tytule podając najpierw ciąg znaków który zawiera się \n w tytule , następnie ciąg znaków zawierający się w imieniu lub nazwisku autora \n");
             List<String> authorslist;
-            while (author.equals("")) {
+            while (author.isEmpty()) {
                 authorslist = findAuthorByName(getLetters());
                 author = verifyFindingAuthor(authorslist);
             }
-            stdout.info("\nTeraz tytul");
+            stdout.info("\nTeraz tytuł ");
             List<String> titleslist;
-            while (title.equals("")) {
+            while (title.isEmpty()) {
                 titleslist = findTitleByName(getLetters());
                 title = verifyFindingTitle(titleslist);
             }
-
             printFilteredBooks(param, hasAudio, author, title);
         }
     }
-
     private String getLetters() {
 
         Scanner scanner = new Scanner(System.in);
@@ -66,7 +66,16 @@ public class BookFinder {
         }
         return letters;
     }
+    private enum confirmationType {
+        TAK(true),
+        NIE(false);
 
+        boolean confirmationType;
+
+        private confirmationType (boolean confirmationType)  {
+            
+        }
+    }
 
     private List<String> findAuthorByName(String letters) {
 
@@ -90,11 +99,11 @@ public class BookFinder {
             stdout.info("\nUściślij swój wybór\n ");
             authorsList.removeAll(authorsList);
         } else {
-            stdout.info("\nCzy chodzilo ci o " + authorsList.get(0) + " ?  (t - tak) \n");
+            stdout.info("\nCzy chodziło ci o " + authorsList.get(0) + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
-            String yesOrNot = scanner.next();
-            if (!yesOrNot.equalsIgnoreCase("t")) {
-                stdout.info("\nSprobuj ponownie\n ");
+            String confirmationType = scanner.next();
+            if (!confirmationType.equalsIgnoreCase("t")) {
+                stdout.info("\nSpróbuj ponownie\n ");
             } else {
                 return authorsList.get(0);
             }
@@ -128,11 +137,11 @@ public class BookFinder {
             stdout.info("\nUściślij swój wybór\n ");
             findTitleByName(getLetters());
         } else {
-            stdout.info("\nCzy chodzilo ci o " + titlesList.get(0) + " ?  (t - tak) \n");
+            stdout.info("\nCzy chodziło ci o " + titlesList.get(0) + " ?  (t - tak) \n");
             Scanner scanner = new Scanner(System.in);
-            String yesOrNot = scanner.next();
-            if (!yesOrNot.equalsIgnoreCase("t")) {
-                stdout.info("\nSprobuj ponownie\n ");
+            String confirmationType = scanner.next();
+            if (!confirmationType.equalsIgnoreCase("t")) {
+                stdout.info("\nSpróbuj ponownie\n ");
             } else {
                 return titlesList.get(0);
             }
