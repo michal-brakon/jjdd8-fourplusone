@@ -22,7 +22,7 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\nIle rekordow na stronie? (1-" + bookRepository.getBooks().size() + ")\n ");
+        stdout.info("\nIle rekordów na stronie? (1-" + bookRepository.getBooks().size() + ")\n ");
         recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
@@ -32,7 +32,7 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
+                stdout.info("\nWpisz 'q' jeśli chcesz opuścić listę , dowolny znak kontynuuje wyświetlanie\n");
                 Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {

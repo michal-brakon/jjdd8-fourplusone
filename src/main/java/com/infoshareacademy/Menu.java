@@ -56,7 +56,7 @@ public class Menu {
                 break;
             }
 
-            menuBreadcrumbs(position);
+            showBreadCrumbsPosition(position);
 
             position = printMenu(position);
         }
@@ -95,9 +95,9 @@ public class Menu {
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
-    void menuBreadcrumbs(int position) {
+    void showBreadCrumbsPosition(int position) {
 
-        String crumbs = "Glowne Menu";
+        String crumbs = "Główne Menu";
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);

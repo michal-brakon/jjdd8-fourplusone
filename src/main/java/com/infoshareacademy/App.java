@@ -15,7 +15,7 @@ private static Menu menu = new Menu() ;
         JsonReaderExcp missingFileMenu = new JsonReaderExcp();
         Optional.ofNullable(BookRepository.getInstance().getBooks())
                 .ifPresentOrElse(books -> {
-                    stdout.info("\nBaza json załadowana\n");
+                    stdout.info("Baza json załadowana\n");
                     menu.populateMenu();
                     menu.showMenu(Menu.MAIN_MENU_POSITION);
                 }, missingFileMenu::showLoaderFileMenu);
