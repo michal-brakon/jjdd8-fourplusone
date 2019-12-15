@@ -4,10 +4,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.infoshareacademy.App.newMenuList;
 import static com.infoshareacademy.Menu.SEARCH_BY_AUTHOR_OR_TITLE;
 import static com.infoshareacademy.Menu.SHOW_ONE_BOOK_POSITION;
 import static org.junit.jupiter.api.Assertions.*;

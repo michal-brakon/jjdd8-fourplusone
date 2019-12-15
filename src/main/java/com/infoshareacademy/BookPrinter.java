@@ -36,10 +36,10 @@ public class BookPrinter {
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
-                        break;
-                    }
-                    counter = 0;
-                    ScreenCleaner.clearScreen();
+                    break;
+                }
+                counter = 0;
+                ScreenCleaner.clearScreen();
             }
         }
         menu.showMenu(Menu.BOOK_MENU_POSITION);
@@ -47,19 +47,26 @@ public class BookPrinter {
 
     public void getOneBook() {
 
-                    int temp = chooseBookToPrint();
-                    stdout.info(temp + 1 + ". " + BookRepository.getInstance().getBookRepository().get(temp));
-                    chooseBookToPrint();
-                    stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
+        chooseBookToPrint();
+        stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
+        pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
+    }
+    private void pressEnterKeyToContinue(){
+        stdout.info("Przyciśnij Enter aby kontynuować");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+        }
     }
 
     private boolean isCorrectChooseBook(String choice) {
         return (userInput.isANumber(choice)) && areThereThatManyBooks(choice);
 
     }
-    private boolean areThereThatManyBooks(String choice){
+
+    private boolean areThereThatManyBooks(String choice) {
         return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size());
     }
 
@@ -69,14 +76,14 @@ public class BookPrinter {
         String choice = scanner.next();
 
 
-            if (!isCorrectChooseBook(choice)) {
-                stdout.info("Błędny wybór! Spróbuj ponownie!: \n");
-                bookChoice = 0;
-                chooseBookToPrint();
-            }  else {
-                bookChoice = Integer.parseInt(choice) -1 ;
-                return bookChoice;
-            }
+        if (!isCorrectChooseBook(choice)) {
+            stdout.info("Błędny wybór! Spróbuj ponownie!: \n");
+            bookChoice = 0;
+            chooseBookToPrint();
+        } else {
+            bookChoice = Integer.parseInt(choice) - 1;
+            return bookChoice;
+        }
 
         return bookChoice;
 
