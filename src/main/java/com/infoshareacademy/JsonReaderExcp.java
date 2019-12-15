@@ -3,15 +3,16 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class JsonFileMissingMenu {
+public class JsonReaderExcp {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
+    static List<MenuOption> newMenuList = new ArrayList<>();
     public void showLoaderFileMenu() {
 
         Scanner scanner = new Scanner(System.in);
@@ -28,6 +29,7 @@ public class JsonFileMissingMenu {
                     List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
                         System.out.println("\nBaza.json załadowana\n");
+                        menu.populateMenu();
                         menu.showMenu(Menu.MAIN_MENU_POSITION);
                     }, this::showLoaderFileMenu);
                     break;

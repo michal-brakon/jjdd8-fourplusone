@@ -12,7 +12,7 @@ public class App {
     static List<MenuOption> newMenuList = new ArrayList<>();
 private static Menu menu = new Menu() ;
     public static void main(String[] args) {
-        JsonFileMissingMenu missingFileMenu = new JsonFileMissingMenu();
+        JsonReaderExcp missingFileMenu = new JsonReaderExcp();
         Optional.ofNullable(BookRepository.getInstance().getBooks())
                 .ifPresentOrElse(books -> {
                     stdout.info("\nBaza json załadowana\n");
