@@ -19,7 +19,7 @@ public class Book {
 
     private String genre;
 
-    public String getKind() {
+    public  String getKind() {
         return kind;
     }
 
