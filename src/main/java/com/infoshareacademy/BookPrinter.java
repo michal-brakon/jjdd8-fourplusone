@@ -23,6 +23,7 @@ public class BookPrinter {
 
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordow na stronie? (1-" + bookRepository.getBooks().size() + ")\n ");
+        recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
