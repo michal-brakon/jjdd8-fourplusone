@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class FileNotFindMenu {
+public class JsonFileMissingMenu {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
