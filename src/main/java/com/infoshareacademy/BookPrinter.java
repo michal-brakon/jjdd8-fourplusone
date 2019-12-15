@@ -22,11 +22,7 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
-
-        recordsLimit = userInput.getChoice(BookRepository.getInstance().getBookRepository().size());
         stdout.info("\nIle rekordow na stronie? (1-" + bookRepository.getBooks().size() + ")\n ");
-        recordsLimit = menu.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
@@ -57,7 +53,8 @@ public class BookPrinter {
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
     }
-    private void pressEnterKeyToContinue(){
+
+    private void pressEnterKeyToContinue() {
         stdout.info("Przyciśnij Enter aby kontynuować");
         try {
             System.in.read();
@@ -71,7 +68,7 @@ public class BookPrinter {
     }
 
     private boolean areThereThatManyBooks(String choice) {
-        return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <=bookRepository.getBooks().size());
+        return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= bookRepository.getBooks().size());
     }
 
     public int chooseBookToPrint() {

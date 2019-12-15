@@ -1,6 +1,7 @@
 package com.infoshareacademy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookRepository {
 
@@ -10,12 +11,12 @@ public class BookRepository {
     private BookParser bookParser = new BookParser();
 
     private BookRepository() {
-           }
+    }
 
     public List<Book> getBooks() {
-            if(books==null){
-                books = bookParser.loadBooks();
-            }
+        if (books == null) {
+            books = bookParser.loadBooks();
+        }
         return books;
     }
 

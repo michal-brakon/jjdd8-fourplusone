@@ -28,7 +28,7 @@ public class JsonFileMissingMenu {
                     List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
                         System.out.println("\nBaza.json załadowana\n");
-                        menu.mainMenu();
+                        menu.showMenu(Menu.MAIN_MENU_POSITION);
                     }, this::showLoaderFileMenu);
                     break;
                 }
