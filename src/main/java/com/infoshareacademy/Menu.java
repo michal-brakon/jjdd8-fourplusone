@@ -18,6 +18,7 @@ public class Menu {
     protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 5;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
+    protected static final int SAVE_TO_FILE = 5;
 
     public void populateMenu() {
 
@@ -27,6 +28,7 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
 
     }
@@ -51,6 +53,11 @@ public class Menu {
                 break;
             } else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
+                break;
+            } else if (position == SAVE_TO_FILE) {
+               new BookParser().saveObjectsToFile();
+               stdout.info("Baza Została zapisana");
+
                 break;
             }
 
@@ -119,9 +126,9 @@ public class Menu {
     int getParentFromList(int position) {
         int parent = EXIT_POSITION;
 
-        for (int i = 0; i < newMenuList.size(); i++) {
-            if (position == newMenuList.get(i).getPosition()) {
-                parent = newMenuList.get(i).getParent();
+        for (MenuOption menuOption : newMenuList) {
+            if (position == menuOption.getPosition()) {
+                parent = menuOption.getParent();
                 return parent;
             }
         }
