@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    private static final Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu();
     UserInput userInput = new UserInput();
 
@@ -22,18 +23,19 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\nIle rekordów na stronie? (1-" + bookRepository.getBooks().size() + ")\n ");
+        stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
         recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
-            if (record < books.size() + 1) stdout.info(record + ". " + book);
+            if (record < books.size() + 1) {
+                stdout.info("{}. {} ", record, book);
+            }
             counter++;
             record++;
 
             if (counter >= recordsLimit) {
                 stdout.info("\nWpisz 'q' jeśli chcesz opuścić listę , dowolny znak kontynuuje wyświetlanie\n");
-                Scanner scanner = new Scanner(System.in);
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
@@ -49,7 +51,7 @@ public class BookPrinter {
     public void printChosenBook() {
 
         chooseBookToPrint();
-        stdout.info(bookChoice + 1 + ". " + bookRepository.getBooks().get(bookChoice));
+        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
@@ -57,10 +59,7 @@ public class BookPrinter {
 
     private void pressEnterKeyToContinue() {
         stdout.info("Przyciśnij Enter aby kontynuować");
-        try {
-            System.in.read();
-        } catch (Exception e) {
-        }
+        scanner.nextLine();
     }
 
     private boolean isCorrectChooseBook(String choice) {
@@ -74,7 +73,6 @@ public class BookPrinter {
 
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer książki: \n");
-        Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
 
         if (!isCorrectChooseBook(choice)) {

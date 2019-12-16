@@ -14,7 +14,7 @@ public class BookParser {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String PATHNAME = "baza.json";
-    private static List<Book> parseJson ;
+    private List<Book> parseJson ;
 
     public List<Book> loadBooks() {
         return parseJsonFileToObject();

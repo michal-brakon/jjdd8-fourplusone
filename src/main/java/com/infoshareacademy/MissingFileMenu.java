@@ -24,7 +24,7 @@ public class MissingFileMenu {
         if (isNumber(choice)) {
             switch (choice) {
 
-                case "1": {
+                case "1":
                     List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
                         stdout.info("\nBaza danych z książkami została załadowana\n");
@@ -32,11 +32,11 @@ public class MissingFileMenu {
                         menu.showMenu(Menu.MAIN_MENU_POSITION);
                     }, this::showMenu);
                     break;
-                }
-                case "2": {
+
+                case "2":
                     stdout.info("\nDo zobaczenia\n");
                     break;
-                }
+
                 default:
                     break;
             }
