@@ -4,16 +4,19 @@ import java.util.List;
 
 public class BookRepository {
 
-    private BookParser bookParser;
-
     private static BookRepository instance;
 
+    private List<Book> books;
+    private BookParser bookParser = new BookParser();
+
     private BookRepository() {
-        bookParser = new BookParser();
     }
 
-    public List<Book> getBookRepository() {
-        return bookParser.parseJsonFileToObject();
+    public List<Book> getBooks() {
+        if (books == null) {
+            books = bookParser.loadBooks();
+        }
+        return books;
     }
 
     public static synchronized BookRepository getInstance() {
