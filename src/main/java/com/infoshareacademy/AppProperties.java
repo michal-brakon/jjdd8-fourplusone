@@ -8,7 +8,7 @@ import java.util.Properties;
 public class AppProperties {
     Properties properties = new Properties();
 
-    public String getProp() {
+    public String getProp(String config) {
         try {
             File file = new File("config.properties");
             FileInputStream fileInput = new FileInputStream(file);
@@ -17,13 +17,9 @@ public class AppProperties {
         } catch (FileNotFoundException e) {
             System.out.println("Brak pliku!");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("Blad odczytu pliku!");
         }
-        return properties.getProperty("sortByTitle");
-    }
-
-    public static void main(String[] args) {
-        AppProperties n = new AppProperties();
-        System.out.println(n.getProp());
+        return properties.getProperty(config);
     }
 }
+

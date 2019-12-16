@@ -1,7 +1,6 @@
 package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,23 +8,30 @@ import java.util.stream.Collectors;
 public class BookSorter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
+    private AppProperties properties = new AppProperties();
 
     public List<Book> sortingByTitle(List<Book> books) {
-        return books.stream()
-                .sorted(Comparator.comparing(Book::getTitle))
-                .collect(Collectors.toList());
-    }
-
-    public List<Book> sortingByKind(List<Book> books) {
-        return books.stream()
-                .sorted(Comparator.comparing(Book::getKind))
-                .collect(Collectors.toList());
+        if (properties.getProp("sortByTitle").equals("ASC")) {
+            return books.stream()
+                    .sorted(Comparator.comparing(Book::getTitle))
+                    .collect(Collectors.toList());
+        } else {
+            return books.stream()
+                    .sorted(Comparator.comparing(Book::getTitle).reversed())
+                    .collect(Collectors.toList());
+        }
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
+        if (properties.getProp("sortByAuthor").equals("ASC"))
         return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor))
                 .collect(Collectors.toList());
+
+        else {
+            return books.stream()
+                .sorted(Comparator.comparing(Book::getAuthor).reversed())
+                .collect(Collectors.toList());}
     }
 
     public List<Book> sortingByEpoch(List<Book> books) {
@@ -37,6 +43,11 @@ public class BookSorter {
     public List<Book> sortingByGenre(List<Book> books) {
         return books.stream()
                 .sorted(Comparator.comparing(Book::getGenre))
+                .collect(Collectors.toList());
+    }
+    public List<Book> sortingByKind(List<Book> books) {
+        return books.stream()
+                .sorted(Comparator.comparing(Book::getKind))
                 .collect(Collectors.toList());
     }
 }
