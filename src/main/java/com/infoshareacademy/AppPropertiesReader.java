@@ -12,7 +12,9 @@ public class AppPropertiesReader {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private Properties properties = new Properties();
 
-    private File file = new File("config.properties");
+    private final String PATHNAME = "config.properties";
+
+    private File file = new File(PATHNAME);
 
     public String getProp(String config) {
         try {
