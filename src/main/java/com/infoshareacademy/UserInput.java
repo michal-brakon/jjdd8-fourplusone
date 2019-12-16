@@ -39,12 +39,12 @@ public class UserInput {
     }
 
     private void isNotANumber(int choices) {
-        stdout.info("Źle wpisałeś! \nSprobuj ponownie:\n");
+        stdout.info("Źle wpisałeś! \nSpróbuj ponownie:\n");
         getChoice(choices);
     }
 
     private void incorrectNumberRetry(int choices) {
-        stdout.info("\nProsze wybrać jeden z " + choices + "\n");
+        stdout.info("\nProszę wybrać jeden z " + choices + "\n");
         getChoice(choices);
     }
 }

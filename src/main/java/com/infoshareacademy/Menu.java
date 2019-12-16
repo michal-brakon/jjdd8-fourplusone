@@ -31,6 +31,7 @@ public class Menu {
 
     }
 
+    private final BookRepository repository = BookRepository.getInstance();
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput getNumber = new UserInput();
@@ -47,15 +48,15 @@ public class Menu {
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
 
-                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
+                new BookPrinter().printBooks(repository.getBooks());
                 break;
 
             } else if (position == SHOW_ONE_BOOK_POSITION) {
-                new BookPrinter().getOneBook();
+                new BookPrinter().printChosenBook();
                 break;
             }
 
-            menuBreadcrumbs(position);
+            showBreadCrumbsPosition(position);
 
             position = printMenu(position);
         }
@@ -94,9 +95,9 @@ public class Menu {
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
-    void menuBreadcrumbs(int position) {
+    void showBreadCrumbsPosition(int position) {
 
-        String crumbs = "Glowne Menu";
+        String crumbs = "Główne Menu";
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
