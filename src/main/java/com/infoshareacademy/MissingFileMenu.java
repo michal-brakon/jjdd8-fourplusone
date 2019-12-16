@@ -8,11 +8,11 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class FileLoaderMenu {
+public class MissingFileMenu {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    public void showLoaderFileMenu() {
+    public void showMenu() {
 
         Scanner scanner = new Scanner(System.in);
         stdout.info("\nWybierz: ");
@@ -30,7 +30,7 @@ public class FileLoaderMenu {
                         System.out.println("\nBaza.json załadowana\n");
                         menu.populateMenu();
                         menu.showMenu(Menu.MAIN_MENU_POSITION);
-                    }, this::showLoaderFileMenu);
+                    }, this::showMenu);
                     break;
                 }
                 case "2": {
