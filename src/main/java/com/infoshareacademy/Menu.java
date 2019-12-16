@@ -40,7 +40,7 @@ public class Menu {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
-            Header.headerPrinter();
+            //Header.headerPrinter();
             // adding functionality on positions here from this point
             if (position == MAIN_MENU_POSITION) {
 

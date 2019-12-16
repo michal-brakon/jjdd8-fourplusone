@@ -13,7 +13,7 @@ public class BookFinder {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    final static List<Book> BOOKS = BookRepository.getInstance().getBookRepository();
+    final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
     public void bookFinderSetup(int param, int hasAudio) {
 
