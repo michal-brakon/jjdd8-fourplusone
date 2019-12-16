@@ -66,8 +66,8 @@ public class Menu {
         stdout.info("Masz do wyboru:");
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
-        int userChoice = getNumber.getChoice(choicesNumber.length);
-        stdout.info("\nwybraleś " + userChoice + " \n");
+        int userChoice = getNumber.getChoice(getMenuSize(position)-1);
+        stdout.info("\nwybraleś {} \n", userChoice);
         if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
@@ -82,7 +82,7 @@ public class Menu {
         int pressNumber = STARTING_MENU_OPTION_NUMBER;
         for (MenuOption menuOption : newMenuList) {
             if (menuOption.getParent() == position) {
-                stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
+                stdout.info("\n {} <- {} ", pressNumber, menuOption.getDisplayedText());
                 choicesNumber[pressNumber] = menuOption.getPosition();
                 pressNumber++;
             }
@@ -90,8 +90,18 @@ public class Menu {
         return choicesNumber;
     }
 
+    private int getMenuSize(int position) {
+        int pressNumber = STARTING_MENU_OPTION_NUMBER;
+        for (MenuOption menuOption : newMenuList) {
+            if (menuOption.getParent() == position) {
+                pressNumber++;
+            }
+        }
+        return pressNumber;
+    }
+
     private void printReturnMenuOption() {
-        stdout.info("\n0<-  wróć do poprzedniego menu  ");
+        stdout.info("\n 0<-  wróć do poprzedniego menu  ");
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
@@ -104,7 +114,7 @@ public class Menu {
             crumbs = crumbs + " / " + newMenuList.get(currentIndex).getDisplayedText();
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\n" + crumbs + "\n");
+        stdout.info("\n{}\n", crumbs);
     }
 
     private int getIndexFromList(int position) {
