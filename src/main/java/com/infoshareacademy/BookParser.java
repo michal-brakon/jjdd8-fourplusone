@@ -30,8 +30,6 @@ public class BookParser {
         } catch (IOException e) {
             stdout.info("\nNie wczytano bazy z pliku!");
         }
-
-
         return parseJson;
     }
 }

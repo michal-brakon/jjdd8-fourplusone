@@ -8,11 +8,11 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class FileNotFindMenu {
+public class MissingFileMenu {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    public void showLoaderFileMenu() {
+    public void showMenu() {
 
         Scanner scanner = new Scanner(System.in);
         stdout.info("\nWybierz: ");
@@ -21,15 +21,16 @@ public class FileNotFindMenu {
         Menu menu = new Menu();
         String choice = scanner.next();
 
-        if (Pattern.matches(("[1-9]"), choice)) {
+        if (isNumber(choice)) {
             switch (choice) {
 
                 case "1": {
                     List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
-                        System.out.println("\nBaza.json załadowana\n");
-                        menu.mainMenu();
-                    }, this::showLoaderFileMenu);
+                        stdout.info("\nBaza danych z książkami została załadowana\n");
+                        menu.populateMenu();
+                        menu.showMenu(Menu.MAIN_MENU_POSITION);
+                    }, this::showMenu);
                     break;
                 }
                 case "2": {
@@ -37,7 +38,6 @@ public class FileNotFindMenu {
                     break;
                 }
                 default:
-                    stdout.info("Gorilla like bananas ug ug ug ug ug :-} ");
                     break;
             }
         } else {
@@ -45,6 +45,10 @@ public class FileNotFindMenu {
             stdout.info("\nBłędny wybór\n");
 
         }
+    }
+
+    private boolean isNumber(String choice) {
+        return Pattern.matches(("[1-9]"), choice);
     }
 }
 
