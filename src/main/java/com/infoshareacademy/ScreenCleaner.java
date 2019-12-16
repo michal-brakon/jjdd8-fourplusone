@@ -25,7 +25,7 @@ public class ScreenCleaner {
             p.waitFor();
             p.destroy();
         } catch (Exception e) {
-            stdout.info("\nCzyszczenie ekranu zakonczylo sie niepowodzeniem");
+            stdout.info("\nCzyszczenie ekranu zakonczyło się niepowodzeniem");
         }
     }
 
