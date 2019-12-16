@@ -15,6 +15,7 @@ public class BookPrinter {
 
     private BookRepository bookRepository = BookRepository.getInstance();
 
+
     public void printBooks(List<Book> books) {
 
         int record = 1;
