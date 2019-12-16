@@ -52,7 +52,7 @@ public class Menu {
                 break;
 
             } else if (position == SHOW_ONE_BOOK_POSITION) {
-                new BookPrinter().getOneBook();
+                new BookPrinter().printChosenBook();
                 break;
             }
 

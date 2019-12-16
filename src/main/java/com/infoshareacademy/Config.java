@@ -1,12 +1,16 @@
 package com.infoshareacademy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Config {
 
+public class Config {
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String PATHNAME = "config.properties";
     private String property;
 
@@ -16,7 +20,7 @@ public class Config {
             sort.load(input);
             property = sort.getProperty(config);
         } catch (IOException ex) {
-            ex.printStackTrace();
+          stdout.info("\n Pliku z konfiguracją nie znaleziono\n ");
         }
     }
 

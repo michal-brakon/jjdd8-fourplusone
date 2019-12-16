@@ -1,7 +1,6 @@
 package com.infoshareacademy;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BookRepository {
 
@@ -18,12 +17,6 @@ public class BookRepository {
             books = bookParser.loadBooks();
         }
         return books;
-    }
-
-    public List<Book> findByAuthor(String author) {
-        return books.stream()
-                .filter(book -> book.getAuthor().equals(author))
-                .collect(Collectors.toList());
     }
 
     public static synchronized BookRepository getInstance() {

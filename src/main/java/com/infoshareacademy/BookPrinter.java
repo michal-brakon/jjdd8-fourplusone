@@ -12,7 +12,7 @@ public class BookPrinter {
     UserInput userInput = new UserInput();
 
     private int bookChoice = 0;
-    private boolean isExit = false;
+
     private BookRepository bookRepository = BookRepository.getInstance();
 
     public void printBooks(List<Book> books) {
@@ -46,7 +46,7 @@ public class BookPrinter {
         menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
-    public void getOneBook() {
+    public void printChosenBook() {
 
         chooseBookToPrint();
         stdout.info(bookChoice + 1 + ". " + bookRepository.getBooks().get(bookChoice));

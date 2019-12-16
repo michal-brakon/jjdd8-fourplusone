@@ -3,16 +3,15 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class JsonReaderExcp {
+public class FileLoaderMenu {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    static List<MenuOption> newMenuList = new ArrayList<>();
+
     public void showLoaderFileMenu() {
 
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +21,7 @@ public class JsonReaderExcp {
         Menu menu = new Menu();
         String choice = scanner.next();
 
-        if (Pattern.matches(("[1-9]"), choice)) {
+        if (isNumber(choice)) {
             switch (choice) {
 
                 case "1": {
@@ -39,7 +38,6 @@ public class JsonReaderExcp {
                     break;
                 }
                 default:
-                    stdout.info("Gorilla like bananas ug ug ug ug ug :-} ");
                     break;
             }
         } else {
@@ -47,6 +45,10 @@ public class JsonReaderExcp {
             stdout.info("\nBłędny wybór\n");
 
         }
+    }
+
+    private boolean isNumber(String choice) {
+        return Pattern.matches(("[1-9]"), choice);
     }
 }
 
