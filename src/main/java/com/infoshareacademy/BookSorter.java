@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 public class BookSorter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    private AppProperties properties = new AppProperties();
+    private AppPropertiesReader propertiesReader = new AppPropertiesReader();
 
     public List<Book> sortingByTitle(List<Book> books) {
-        if (properties.getProp("sortByTitle").equals("ASC")) {
+        if (propertiesReader.getProp("sortByTitle").equals("ASC")) {
             return books.stream()
                     .sorted(Comparator.comparing(Book::getTitle))
                     .collect(Collectors.toList());
@@ -23,7 +23,7 @@ public class BookSorter {
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
-        if (properties.getProp("sortByAuthor").equals("ASC"))
+        if (propertiesReader.getProp("sortByAuthor").equals("ASC"))
         return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor))
                 .collect(Collectors.toList());

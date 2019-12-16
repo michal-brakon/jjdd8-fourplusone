@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class AppProperties {
-    Properties properties = new Properties();
+public class AppPropertiesReader {
+    private Properties properties = new Properties();
 
     public String getProp(String config) {
         try {
