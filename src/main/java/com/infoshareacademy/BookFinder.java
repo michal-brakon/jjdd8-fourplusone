@@ -66,16 +66,6 @@ public class BookFinder {
         }
         return letters;
     }
-    private enum confirmationType {
-        TAK(true),
-        NIE(false);
-
-        boolean confirmationType;
-
-        private confirmationType (boolean confirmationType)  {
-            
-        }
-    }
 
     private List<String> findAuthorByName(String letters) {
 
@@ -202,9 +192,7 @@ public class BookFinder {
         if (filteredBooks.isEmpty()) {
             stdout.info("\nBrak książek spełniających kryteria");
         }
-
     }
-
 }
 
 
