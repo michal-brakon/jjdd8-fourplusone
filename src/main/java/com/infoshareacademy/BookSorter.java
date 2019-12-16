@@ -4,14 +4,16 @@ import org.slf4j.LoggerFactory;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import static com.infoshareacademy.SortType.ASC;
 
 public class BookSorter {
+
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     private AppPropertiesReader propertiesReader = new AppPropertiesReader();
 
     public List<Book> sortingByTitle(List<Book> books) {
-        if (propertiesReader.getProp("sortByTitle").equals("ASC")) {
+        if (propertiesReader.getProp("sortByTitle").equals(ASC.toString())){
             return books.stream()
                     .sorted(Comparator.comparing(Book::getTitle))
                     .collect(Collectors.toList());
@@ -23,7 +25,7 @@ public class BookSorter {
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
-        if (propertiesReader.getProp("sortByAuthor").equals("ASC"))
+        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString()))
         return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor))
                 .collect(Collectors.toList());
