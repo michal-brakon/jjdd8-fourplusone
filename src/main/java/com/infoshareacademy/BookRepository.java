@@ -18,8 +18,8 @@ public class BookRepository {
         ManageBooks manageBooks = new ManageBooks();
         if (books == null) {
             books = bookParser.loadBooks();
-            manageBooks.setId();
-            manageBooks.getLastIdNumber();
+            manageBooks.assignIdsToBookRepository();
+
         }
         return books;
     }

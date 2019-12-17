@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.bookmanagement.BookAdder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +10,7 @@ public class Menu {
 
     protected static final int SEARCH_BY_AUTHOR_POSITION = 6;
     protected static final int SEARCH_BY_TITLE_POSITION = 7;
-    protected static final int SEARCH_BY_AUTHOR_OR_TITLE = 8;
+    protected static final int ADD_BOOK_POSITION = 8;
     protected static final int MAIN_MENU_POSITION = 1;
     protected static final int BOOK_MENU_POSITION = 2;
     protected static final int EXIT_POSITION = 0;
@@ -18,7 +19,7 @@ public class Menu {
     protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 5;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
-    protected static final int SAVE_TO_FILE = 5;
+    protected static final int SAVE_TO_FILE = 10;
 
     public void populateMenu() {
 
@@ -28,8 +29,10 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("Dodaj książke", ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("zapis do pliku", SAVE_TO_FILE, SHOW_ONE_BOOK_POSITION));
+
+
 
     }
 
@@ -51,14 +54,17 @@ public class Menu {
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
                 new BookPrinter().printBooks(repository.getBooks());
                 break;
-            } else if (position == SHOW_ONE_BOOK_POSITION) {
+            } /*else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
                 break;
-            } else if (position == SAVE_TO_FILE) {
+            }*/ else if (position == SAVE_TO_FILE) {
                new BookParser().saveObjectsToFile();
                stdout.info("Baza Została zapisana");
 
                 break;
+            } else  if (position == ADD_BOOK_POSITION){
+                new BookAdder().addBook();
+                position=getParentFromList(position);
             }
 
             showBreadCrumbsPosition(position);
@@ -71,8 +77,8 @@ public class Menu {
         stdout.info("Masz do wyboru:");
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
-        int userChoice = getNumber.getChoice(choicesNumber.length);
-        stdout.info("\nwybraleś {} \n",  userChoice);
+        int userChoice = getNumber.getChoice(getMenuSize(position)-1);
+        stdout.info("\nwybraleś {} \n", userChoice);
         if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
@@ -94,9 +100,19 @@ public class Menu {
         }
         return choicesNumber;
     }
+    private int getMenuSize(int position) {
+        int pressNumber = STARTING_MENU_OPTION_NUMBER;
+        for (MenuOption menuOption : newMenuList) {
+            if (menuOption.getParent() == position) {
+                pressNumber++;
+            }
+        }
+        return pressNumber;
+    }
+
 
     private void printReturnMenuOption() {
-        stdout.info("\n0<-  wróć do poprzedniego menu  ");
+        stdout.info("\n 0 <-  wróć do poprzedniego menu  ");
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
@@ -109,7 +125,7 @@ public class Menu {
             crumbs.append(" / ").append(newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\n{}", crumbs);
+        stdout.info("\n{}\n", crumbs);
     }
 
     private int getIndexFromList(int position) {

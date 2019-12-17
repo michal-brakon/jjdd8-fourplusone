@@ -35,7 +35,7 @@ public class BookParser {
     }
     public void saveObjectsToFile() {
         try {
-            objectMapper.writeValue(new File("books.json"), BookRepository.getInstance().getBooks());
+            objectMapper.writeValue(new File(PATHNAME), BookRepository.getInstance().getBooks());
         } catch (IOException e) {
             stdout.info("Problem z zapisem do pliku!");
         }
