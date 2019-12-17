@@ -17,7 +17,7 @@ public class Menu {
     protected static final int EXIT_POSITION = 0;
     protected static final int SHOW_ALL_BOOKS_POSITION = 3;
     protected static final int SHOW_ONE_BOOK_POSITION = 4;
-    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 5;
+    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 10;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
     protected static final int SORT_ALL_BOOKS_BY_AUTHOR = 21;
@@ -59,15 +59,20 @@ public class Menu {
                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
                 bookSorter.sortingByAuthor(listOfBooks);
                 break;
-            }else if (position == SEARCH_BY_TITLE_POSITION) {
+            }else if (position == SORT_ALL_BOOKS_BY_TITLE) {
                 BookSorter bookSorter = new BookSorter();
                 List<Book> listForTest = BookRepository.getInstance().getBooks();
-                bookSorter.sortingByTitle(listForTest);
+                stdout.info(bookSorter.sortingByTitle(listForTest)+"");
             }else if (position == SORT_ALL_BOOKS_BY_GENRE) {
                 BookSorter bookSorter = new BookSorter();
                 List<Book> ListOfBooks = BookRepository.getInstance().getBooks();
-                bookSorter.sortingByGenre(ListOfBooks);
-            } /*else if (position == SHOW_ALL_BOOKS_POSITION) {
+                stdout.info(bookSorter.sortingByGenre(ListOfBooks)+"");
+            }else if (position == SORT_ALL_BOOKS_BY_AUTHOR) {
+            BookSorter bookSorter = new BookSorter();
+            List<Book> ListOfBooks = BookRepository.getInstance().getBooks();
+            stdout.info(bookSorter.sortingByAuthor(ListOfBooks)+"");
+        }
+            /*else if (position == SHOW_ALL_BOOKS_POSITION) {
                 new BookPrinter().printBooks(repository.getBooks());
                 break;
             } */else if (position == SHOW_ONE_BOOK_POSITION) {
@@ -120,7 +125,7 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info("\n 0<-  wróć do poprzedniego menu  ");
+        stdout.info("\n 0 <- wróć do poprzedniego menu  ");
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
