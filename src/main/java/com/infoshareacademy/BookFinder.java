@@ -199,8 +199,9 @@ public class BookFinder {
 
         if (books.isEmpty()) {
             stdout.info("\nBrak książek spełniających kryteria");
+        }  else {
+            books.forEach(x -> stdout.info(String.valueOf(x)));
         }
-        books.forEach(x -> stdout.info(String.valueOf(x)));
     }
 }
 
