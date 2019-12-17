@@ -89,7 +89,7 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info("\n0<-  wróć do poprzedniego menu  ");
+        stdout.info("\n 0 <-  wróć do poprzedniego menu  ");
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
