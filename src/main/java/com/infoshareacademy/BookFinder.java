@@ -15,7 +15,7 @@ public class BookFinder {
 
     final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
-    public void bookFinderSetup(int param, int hasAudio) {
+    public void runBookFinder(int param, int hasAudio) {
 
         String author = "";
         String title = "";
