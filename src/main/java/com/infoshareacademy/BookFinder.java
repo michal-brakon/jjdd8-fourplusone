@@ -15,22 +15,29 @@ public class BookFinder {
 
     final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
+    final int SEARCH_BY_AUTHOR = 1;
+    final int SEARCH_BY_TITLE = 2;
+    final int SEARCH_BY_AUTHOR_AND_TITLE = 3;
+    final int HAS_AUDIO = 1;
+    final int HAS_NOT_AUDIO = 2;
+
+
     public void runBookFinder(int param, int hasAudio) {
 
         String author = "";
         String title = "";
 
-        if (param == 1) {
+        if (param == SEARCH_BY_AUTHOR) {
             stdout.info("\nSzukanie książek po autorze podając ciąg znaków który zawiera się w imieniu lub nazwisku \n");
-            List<String> authorslist;
+            List<String> authorsList;
             while (author.isEmpty()) {
-                authorslist = findAuthorByName(getLetters());
-                author = verifyFindingAuthor(authorslist);
+                authorsList = findAuthorByName(getLetters());
+                author = verifyFindingAuthor(authorsList);
             }
 
             findBooks(param, hasAudio, author, "");
         }
-        if (param == 2) {
+        if (param == SEARCH_BY_TITLE) {
             stdout.info("\nSzukanie ksiązek po tytule podając ciag znaków który zawiera się w tytule \n ");
             List<String> titleslist;
             while (title.isEmpty()) {
@@ -39,12 +46,12 @@ public class BookFinder {
             }
             findBooks(param, hasAudio, "", title);
         }
-        if (param == 3) {
+        if (param == SEARCH_BY_AUTHOR_AND_TITLE) {
             stdout.info("\nSzukanie książek po autorze i tytule podając najpierw ciąg znaków który zawiera się \n w tytule , następnie ciąg znaków zawierający się w imieniu lub nazwisku autora \n");
-            List<String> authorslist;
+            List<String> authorsList;
             while (author.isEmpty()) {
-                authorslist = findAuthorByName(getLetters());
-                author = verifyFindingAuthor(authorslist);
+                authorsList = findAuthorByName(getLetters());
+                author = verifyFindingAuthor(authorsList);
             }
             stdout.info("\nTeraz tytuł ");
             List<String> titleslist;
@@ -153,31 +160,31 @@ public class BookFinder {
 
         List<Book> filteredBooks = BOOKS;
 
-        if (hasAudio == 1) {
+        if (hasAudio == HAS_AUDIO) {
             filteredBooks = filteredBooks.stream()
                     .filter(b -> b.isHasAudio())
                     .collect(Collectors.toList());
         }
-        if (hasAudio == 2) {
+        if (hasAudio == HAS_NOT_AUDIO) {
             filteredBooks = filteredBooks.stream()
                     .filter(b -> !b.isHasAudio())
                     .collect(Collectors.toList());
         }
 
-        if (searchingMethod == 1) {
+        if (searchingMethod == SEARCH_BY_AUTHOR) {
             filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
 
-        } else if (searchingMethod == 2) {
+        } else if (searchingMethod == SEARCH_BY_TITLE) {
             filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .collect(Collectors.toList());
 
 
-        } else if (searchingMethod == 3) {
+        } else if (searchingMethod == SEARCH_BY_AUTHOR_AND_TITLE) {
             filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
