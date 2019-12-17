@@ -28,7 +28,7 @@ public class BookFinder {
                 author = verifyFindingAuthor(authorslist);
             }
 
-            printFilteredBooks(param, hasAudio, author, "");
+            findBooks(param, hasAudio, author, "");
         }
         if (param == 2) {
             stdout.info("\nSzukanie ksiązek po tytule podając ciag znaków który zawiera się w tytule \n ");
@@ -37,7 +37,7 @@ public class BookFinder {
                 titleslist = findTitleByName(getLetters());
                 title = verifyFindingAuthor(titleslist);
             }
-            printFilteredBooks(param, hasAudio, "", title);
+            findBooks(param, hasAudio, "", title);
         }
         if (param == 3) {
             stdout.info("\nSzukanie książek po autorze i tytule podając najpierw ciąg znaków który zawiera się \n w tytule , następnie ciąg znaków zawierający się w imieniu lub nazwisku autora \n");
@@ -52,7 +52,7 @@ public class BookFinder {
                 titleslist = findTitleByName(getLetters());
                 title = verifyFindingTitle(titleslist);
             }
-            printFilteredBooks(param, hasAudio, author, title);
+            findBooks(param, hasAudio, author, title);
         }
     }
     private String getLetters() {
@@ -149,7 +149,7 @@ public class BookFinder {
         return;
     }
 
-    private void printFilteredBooks(int searchingMethod, int hasAudio, String author, String title) {
+    private void findBooks(int searchingMethod, int hasAudio, String author, String title) {
 
         List<Book> filteredBooks = BOOKS;
 
@@ -170,15 +170,12 @@ public class BookFinder {
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
 
-            filteredBooks.forEach(x -> stdout.info(String.valueOf(x)));
-
         } else if (searchingMethod == 2) {
             filteredBooks = filteredBooks.stream()
                     .filter(Objects::nonNull)
                     .filter(b -> b.getTitle().equals(title))
                     .collect(Collectors.toList());
 
-            filteredBooks.forEach(x -> stdout.info(String.valueOf(x)));
 
         } else if (searchingMethod == 3) {
             filteredBooks = filteredBooks.stream()
@@ -186,12 +183,17 @@ public class BookFinder {
                     .filter(b -> b.getTitle().equals(title))
                     .filter(b -> b.getAuthor().equals(author))
                     .collect(Collectors.toList());
-
-            filteredBooks.forEach(x -> stdout.info(String.valueOf(x)));
         }
-        if (filteredBooks.isEmpty()) {
+
+        printBooks(filteredBooks);
+    }
+
+    private void printBooks (List<Book> books)  {
+
+        if (books.isEmpty()) {
             stdout.info("\nBrak książek spełniających kryteria");
         }
+        books.forEach(x -> stdout.info(String.valueOf(x)));
     }
 }
 
