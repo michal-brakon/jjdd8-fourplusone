@@ -11,6 +11,10 @@ import java.util.List;
 public class ScreenCleaner {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
+    private ScreenCleaner() {
+    }
+
     static void clearScreen() {
         String s;
         Process p;
@@ -19,7 +23,7 @@ public class ScreenCleaner {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(p.getInputStream()));
             while ((s = br.readLine()) != null) {
-               stdout.info("CHARS: " + getChars(s));
+               stdout.info("CHARS: {}", getChars(s));
                 stdout.info(s);
             }
             p.waitFor();

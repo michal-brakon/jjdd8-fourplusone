@@ -14,7 +14,6 @@ public class BookParser {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String PATHNAME = "baza.json";
-    private static List<Book> parseJson ;
 
     public List<Book> loadBooks() {
         return parseJsonFileToObject();
@@ -23,13 +22,14 @@ public class BookParser {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private List<Book> parseJsonFileToObject() {
+        List<Book> bookList = List.of();
 
         try {
-            parseJson = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
+            bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
                     .readValue(new File(PATHNAME), new TypeReference<>() {});
         } catch (IOException e) {
             stdout.info("\nNie wczytano bazy z pliku!");
         }
-        return parseJson;
+        return bookList;
     }
 }

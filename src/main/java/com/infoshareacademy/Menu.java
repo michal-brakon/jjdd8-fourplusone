@@ -3,6 +3,8 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 import static com.infoshareacademy.App.newMenuList;
 
 public class Menu {
@@ -18,6 +20,9 @@ public class Menu {
     protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 5;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
+    protected static final int SORT_ALL_BOOKS_BY_AUTHOR = 21;
+    protected static final int SORT_ALL_BOOKS_BY_TITLE = 22;
+    protected static final int SORT_ALL_BOOKS_BY_GENRE = 23;
 
     public void populateMenu() {
 
@@ -28,6 +33,9 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("Sortuj po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Sortuj po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Sortuj po autorze  tytule", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
 
     }
 
@@ -46,12 +54,23 @@ public class Menu {
 
                 stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
 
-            } else if (position == SHOW_ALL_BOOKS_POSITION) {
-
+            }else if (position == 0) {
+                BookSorter bookSorter = new BookSorter();
+                List<Book> listOfBooks = BookRepository.getInstance().getBooks();
+                bookSorter.sortingByAuthor(listOfBooks);
+                break;
+            }else if (position == SEARCH_BY_TITLE_POSITION) {
+                BookSorter bookSorter = new BookSorter();
+                List<Book> listForTest = BookRepository.getInstance().getBooks();
+                bookSorter.sortingByTitle(listForTest);
+            }else if (position == SORT_ALL_BOOKS_BY_GENRE) {
+                BookSorter bookSorter = new BookSorter();
+                List<Book> ListOfBooks = BookRepository.getInstance().getBooks();
+                bookSorter.sortingByGenre(ListOfBooks);
+            } /*else if (position == SHOW_ALL_BOOKS_POSITION) {
                 new BookPrinter().printBooks(repository.getBooks());
                 break;
-
-            } else if (position == SHOW_ONE_BOOK_POSITION) {
+            } */else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
                 break;
             }
@@ -107,11 +126,11 @@ public class Menu {
 
     void showBreadCrumbsPosition(int position) {
 
-        String crumbs = "Główne Menu";
+        StringBuilder crumbs = new StringBuilder("Główne Menu");
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
-            crumbs = crumbs + " / " + newMenuList.get(currentIndex).getDisplayedText();
+            crumbs.append(" / ").append(newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
         stdout.info("\n{}\n", crumbs);
