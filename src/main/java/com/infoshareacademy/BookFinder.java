@@ -91,12 +91,12 @@ public class BookFinder {
         if (authorsList.isEmpty()) {
             stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
         } else if (authorsList.size() > 1) {
-            stdout.info("\nZnaleziono " + authorsList.size() + " pasujących autorów:\n");
+            stdout.info("\nZnaleziono {} pasujących autorów: \n", authorsList.size());
             printList(authorsList);
             stdout.info("\nUściślij swój wybór\n ");
             authorsList.removeAll(authorsList);
         } else {
-            stdout.info("\nCzy chodziło ci o " + authorsList.get(0) + " ?  (t - tak) \n");
+            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
             if (!confirmationType.equalsIgnoreCase("t")) {
@@ -129,12 +129,12 @@ public class BookFinder {
             stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
             findTitleByName(getLetters());
         } else if (titlesList.size() > 1) {
-            stdout.info("\nZnaleziono " + titlesList.size() + " pasujących autorów: ");
+            stdout.info("\nZnaleziono {} pasujących autorów: \n", titlesList.size());
             printList(titlesList);
             stdout.info("\nUściślij swój wybór\n ");
             findTitleByName(getLetters());
         } else {
-            stdout.info("\nCzy chodziło ci o " + titlesList.get(0) + " ?  (t - tak) \n");
+            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", titlesList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
             if (!confirmationType.equalsIgnoreCase("t")) {
@@ -149,7 +149,7 @@ public class BookFinder {
     private void printList(List<String> list) {
         int counter = 1;
         for (String element : list) {
-            stdout.info(counter + ". " + element);
+            stdout.info("{}. {}", counter, element);
             counter++;
 
         }
