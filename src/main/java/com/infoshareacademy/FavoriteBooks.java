@@ -1,6 +1,8 @@
 package com.infoshareacademy;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,12 +15,13 @@ public class FavoriteBooks {
 
     //private static List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
-    public List<String> getFavouritesFromFile() throws FileNotFoundException {
+    public List<String> getFavouritesFromFile() throws IOException {
         File file = new File("favourites.txt");
             if (!file.isFile()) {
                 System.out.println("Błąd odczytu pliku");
                 return Collections.emptyList();
             }
+
         List<String> favouriteTitles = new ArrayList<>();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
@@ -36,9 +39,20 @@ public class FavoriteBooks {
             out.close();
         }
     }
+    public void removeFromFavourites (String title) throws IOException {
 
-//    public static void main(String[] args) throws IOException {
-//        new FavoriteBooks().addToFavourites("title");
-//        System.out.println(new FavoriteBooks().getFavouritesFromFile());
-//    }
+        File file = new File("favourites.txt");
+        List<String> out = Files.lines(file.toPath())
+                .filter(line -> !line.contains(title))
+                .collect(Collectors.toList());
+        Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public static void main(String[] args) throws IOException {
+        //new FavoriteBooks().addToFavourites("lineContent");
+        //new FavoriteBooks().addToFavourites("title");
+        System.out.println(new FavoriteBooks().getFavouritesFromFile());
+        new FavoriteBooks().removeFromFavourites("lineContent");
+        System.out.println(new FavoriteBooks().getFavouritesFromFile());
+    }
 }
