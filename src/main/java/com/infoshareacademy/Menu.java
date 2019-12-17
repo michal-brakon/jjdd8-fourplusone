@@ -31,6 +31,7 @@ public class Menu {
 
     }
 
+    private final BookRepository repository = BookRepository.getInstance();
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput getNumber = new UserInput();
@@ -46,16 +47,14 @@ public class Menu {
                 stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
-
-                new BookPrinter().printBooks(BookRepository.getInstance().getBookRepository());
+                new BookPrinter().printBooks(repository.getBooks());
                 break;
-
             } else if (position == SHOW_ONE_BOOK_POSITION) {
-                new BookPrinter().getOneBook();
+                new BookPrinter().printChosenBook();
                 break;
             }
 
-            menuBreadcrumbs(position);
+            showBreadCrumbsPosition(position);
 
             position = printMenu(position);
         }
@@ -66,7 +65,7 @@ public class Menu {
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
-        stdout.info("\nwybraleś " + userChoice + " \n");
+        stdout.info("\nwybraleś {} \n",  userChoice);
         if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
@@ -81,7 +80,7 @@ public class Menu {
         int pressNumber = STARTING_MENU_OPTION_NUMBER;
         for (MenuOption menuOption : newMenuList) {
             if (menuOption.getParent() == position) {
-                stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
+                stdout.info("\n {} <- {}", pressNumber, menuOption.getDisplayedText());
                 choicesNumber[pressNumber] = menuOption.getPosition();
                 pressNumber++;
             }
@@ -94,16 +93,16 @@ public class Menu {
         stdout.info("\n wybierz numer opcji z menu: ");
     }
 
-    void menuBreadcrumbs(int position) {
+    void showBreadCrumbsPosition(int position) {
 
-        String crumbs = "Glowne Menu";
+        StringBuilder crumbs = new StringBuilder("Główne Menu");
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
-            crumbs = crumbs + " / " + newMenuList.get(currentIndex).getDisplayedText();
+            crumbs.append(" / ").append(newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\n" + crumbs + "\n");
+        stdout.info("\n{}", crumbs);
     }
 
     private int getIndexFromList(int position) {

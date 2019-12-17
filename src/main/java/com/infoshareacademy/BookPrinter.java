@@ -8,10 +8,14 @@ import java.util.Scanner;
 
 public class BookPrinter {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    private static final Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu();
     UserInput userInput = new UserInput();
 
     private int bookChoice = 0;
+
+    private BookRepository bookRepository = BookRepository.getInstance();
+
 
     public void printBooks(List<Book> books) {
 
@@ -20,19 +24,19 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\nIle rekordow na stronie? (1-" + BookRepository.getInstance().getBookRepository().size() + ")\n ");
-
-        recordsLimit = userInput.getChoice(BookRepository.getInstance().getBookRepository().size());
+        stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
+        recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
-            if (record < books.size() + 1) stdout.info(record + ". " + book);
+            if (record < books.size() + 1) {
+                stdout.info("{}. {} ", record, book);
+            }
             counter++;
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jesli chcesz opuscic liste , dowolny znak kontynuuje wyswietlanie\n");
-                Scanner scanner = new Scanner(System.in);
+                stdout.info("\nWpisz 'q' jeśli chcesz opuścić listę , dowolny znak kontynuuje wyświetlanie\n");
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
@@ -45,20 +49,18 @@ public class BookPrinter {
         menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
-    public void getOneBook() {
+    public void printChosenBook() {
 
         chooseBookToPrint();
-        stdout.info(bookChoice + 1 + ". " + BookRepository.getInstance().getBookRepository().get(bookChoice));
+        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
     }
-    private void pressEnterKeyToContinue(){
+
+    private void pressEnterKeyToContinue() {
         stdout.info("Przyciśnij Enter aby kontynuować");
-        try {
-            System.in.read();
-        } catch (Exception e) {
-        }
+        scanner.nextLine();
     }
 
     private boolean isCorrectChooseBook(String choice) {
@@ -67,14 +69,12 @@ public class BookPrinter {
     }
 
     private boolean areThereThatManyBooks(String choice) {
-        return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= BookRepository.getInstance().getBookRepository().size());
+        return (Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= bookRepository.getBooks().size());
     }
 
     public int chooseBookToPrint() {
         stdout.info("\nWpisz numer książki: \n");
-        Scanner scanner = new Scanner(System.in);
         String choice = scanner.next();
-
 
         if (!isCorrectChooseBook(choice)) {
             stdout.info("Błędny wybór! Spróbuj ponownie!: \n");
@@ -84,9 +84,7 @@ public class BookPrinter {
             bookChoice = Integer.parseInt(choice) - 1;
             return bookChoice;
         }
-
         return bookChoice;
-
     }
 
 }
