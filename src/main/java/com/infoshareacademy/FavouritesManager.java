@@ -29,7 +29,7 @@ public class FavouritesManager {
             System.out.println("Pozycja jest juz w ulubionych");
             return;
         }
-        if (lines.size() <= 2 && !lines.contains(title) {
+        if (lines.size() <= 2 && !lines.contains(title)) {
 
             PrintWriter printWriter = new PrintWriter("favourites.txt");
             printWriter.println(title);

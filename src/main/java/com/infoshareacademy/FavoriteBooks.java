@@ -44,13 +44,16 @@ public class FavoriteBooks {
         File file = new File("favourites.txt");
         List<String> out = Files.lines(file.toPath())
                 .filter(line -> !line.contains(title))
+                .peek(line -> System.out.println(line))
                 .collect(Collectors.toList());
+
+
         Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     public static void main(String[] args) throws IOException {
-        //new FavoriteBooks().addToFavourites("lineContent");
-        //new FavoriteBooks().addToFavourites("title");
+        new FavoriteBooks().addToFavourites("lineContent");
+        new FavoriteBooks().addToFavourites("title");
         System.out.println(new FavoriteBooks().getFavouritesFromFile());
         new FavoriteBooks().removeFromFavourites("lineContent");
         System.out.println(new FavoriteBooks().getFavouritesFromFile());
