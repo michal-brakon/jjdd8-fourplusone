@@ -25,7 +25,6 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_GENRE = 23;
     protected static final int SORT_ALL_BOOKS_BY_KIND = 24;
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
-    protected static final int SHOW_ALL_TITLES = 26;
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private final BookRepository repository = BookRepository.getInstance();
     UserInput getNumber = new UserInput();
@@ -39,12 +38,11 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Sortuj po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Sortuj po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Sortuj po autorze  tytule", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie tytuły", SHOW_ALL_TITLES, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Sortuj po epoce  tytule", SORT_ALL_BOOKS_BY_EPOCH, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Sortuj po rodzaju  tytule", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze ", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po epoce", SORT_ALL_BOOKS_BY_EPOCH, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po rodzaju", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
 
     }
 
@@ -52,30 +50,35 @@ public class Menu {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
-            if (position<=10){Header.headerPrinter();}
+            if (position <= 10) {
+                Header.headerPrinter();
+            }
             // adding functionality on positions here from this point
-             if (position == SORT_ALL_BOOKS_BY_TITLE) {
+            if (position == SORT_ALL_BOOKS_BY_TITLE) {
                 BookSorter bookSorter = new BookSorter();
-                List<Book> listForTest = BookRepository.getInstance().getBooks();
-                stdout.info("{}", bookSorter.sortingByTitle(listForTest));
+                List<Book> listOfBooks = bookSorter.sortingByTitle(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
             } else if (position == SORT_ALL_BOOKS_BY_GENRE) {
                 BookSorter bookSorter = new BookSorter();
-                List<Book> listOfBooks = BookRepository.getInstance().getBooks();
-                stdout.info("{}", bookSorter.sortingByGenre(listOfBooks));
+                List<Book> listOfBooks = bookSorter.sortingByGenre(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
             } else if (position == SORT_ALL_BOOKS_BY_AUTHOR) {
                 BookSorter bookSorter = new BookSorter();
-                List<Book> listOfBooks = BookRepository.getInstance().getBooks();
-                stdout.info("{}", bookSorter.sortingByAuthor(listOfBooks));
+                List<Book> listOfBooks = bookSorter.sortingByAuthor(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
             } else if (position == SORT_ALL_BOOKS_BY_EPOCH) {
-                 BookSorter bookSorter = new BookSorter();
-                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
-                 stdout.info("{}", bookSorter.sortingByEpoch(listOfBooks));
-             } else if (position == SORT_ALL_BOOKS_BY_KIND) {
-                 BookSorter bookSorter = new BookSorter();
-                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
-                 stdout.info("{}", bookSorter.sortingByKind(listOfBooks));
-             } else if (position == SHOW_ALL_TITLES) {
-                new BookPrinter().printBooks(repository.getBooks());
+                BookSorter bookSorter = new BookSorter();
+                List<Book> listOfBooks = bookSorter.sortingByEpoch(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
+            } else if (position == SORT_ALL_BOOKS_BY_KIND) {
+                BookSorter bookSorter = new BookSorter();
+                List<Book> listOfBooks = bookSorter.sortingByKind(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
             } else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
                 break;
