@@ -11,26 +11,27 @@ import java.util.Scanner;
 public class DeleteBook {
 
 
+    private Scanner scanner = new Scanner(System.in);
+    private Book book = new Book();
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-        private Scanner scanner = new Scanner(System.in);
-        private Book book = new Book();
-        private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-        private UserInput userInput = new UserInput();
+    private ManageBooks manageBooks=new ManageBooks();
 
-        public Book bookFinder(Long id){
-            return BookRepository.getInstance().getBooks().stream()
-                    .filter(i -> i.getId().equals(id))
-                    .findFirst()
-                    .orElse(null);
+    public void deleteBook() {
+
+        stdout.info("podaj id książki którą chcesz usunąć: \n");
+        String s = scanner.next();
+        Long id = 0L;
+        UserInput userInput = new UserInput();
+        if (userInput.isANumber(s)) {
+            id = Long.parseLong(s);
+        } else {
+            stdout.info("źle wpisałeś spróbuj ponownie\n");
+            deleteBook();
         }
+        book = manageBooks.findBookById(id);
 
-        public void deletebook(){
-
-            stdout.info("podaj id książki którą chcesz usunąć: \n");
-
-           Long id=0L;
-            book= bookFinder(id);
-            BookRepository.getInstance().getBooks().remove(book);
+        BookRepository.getInstance().getBooks().remove(book);
     }
 
 }

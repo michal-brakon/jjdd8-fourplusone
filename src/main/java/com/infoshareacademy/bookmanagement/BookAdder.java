@@ -31,17 +31,25 @@ public class BookAdder {
         stdout.info("Podaj rodzaj literacki \n");
         String genre = scanner.next();
         book.setGenre(genre);
-        String checkAudio;
         stdout.info("Czy ma audio t/n :");
-        checkAudio = scanner.next().toLowerCase();
-        if (checkAudio.equals("t")) {
-            book.setHasAudio(true);
-        } else if (checkAudio.equals("n")) {
-            book.setHasAudio(false);
-        } else {
-            stdout.info("Zle wprowadziłeś");
-        }
+        boolean audio = audioChanger();
+        book.setHasAudio(audio);
         BookRepository.getInstance().getBooks().add(book);
 
+
+    }
+
+    public boolean audioChanger() {
+        String checkAudio;
+        checkAudio = scanner.next().toLowerCase();
+        if (checkAudio.equals("t")) {
+           return true;
+        } else if (checkAudio.equals("n")) {
+           return false;
+        } else {
+            stdout.info("Zle wprowadziłeś");
+            audioChanger();
+        }
+        return false;
     }
 }

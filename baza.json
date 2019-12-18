@@ -39,15 +39,6 @@
     "kind": "Epika",
     "author": "Józef Ignacy Kraszewski",
     "epoch": "Pozytywizm",
-    "title": "Anafielas. Pieśń II. Mindows",
-    "genre": "Epos",
-    "id": 5,
-    "has_audio": false
-  },
-  {
-    "kind": "Epika",
-    "author": "Józef Ignacy Kraszewski",
-    "epoch": "Pozytywizm",
     "title": "Anafielas. Pieśń III. Witoldowe boje",
     "genre": "Epos",
     "id": 6,
@@ -366,6 +357,15 @@
     "title": "Żydek",
     "genre": "Bajka",
     "id": 41,
+    "has_audio": false
+  },
+  {
+    "kind": "xvbc",
+    "author": "fgfdfg",
+    "epoch": "vf",
+    "title": "fg",
+    "genre": "fd",
+    "id": 42,
     "has_audio": false
   }
 ]

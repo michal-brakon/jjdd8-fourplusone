@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.bookeditmenu.BookEditMenu;
 import com.infoshareacademy.bookmanagement.BookAdder;
 import com.infoshareacademy.bookmanagement.DeleteBook;
 import org.slf4j.Logger;
@@ -17,11 +18,13 @@ public class Menu {
     protected static final int EXIT_POSITION = 0;
     protected static final int SHOW_ALL_BOOKS_POSITION = 3;
     protected static final int SHOW_ONE_BOOK_POSITION = 4;
-    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 6;
+    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 7;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
     protected static final int SAVE_TO_FILE = 10;
     protected static final int DELETE_BOOK = 9;
+    protected static final int EDIT_BOOK = 13;
+
 
     public void populateMenu() {
 
@@ -34,6 +37,7 @@ public class Menu {
         newMenuList.add(new MenuOption("Dodaj książke", ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("zapis do pliku", SAVE_TO_FILE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("USUN REKORD ", DELETE_BOOK, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("EDYTUJ KSIĄŻKE ",EDIT_BOOK, SHOW_ONE_BOOK_POSITION));
 
 
 
@@ -58,16 +62,22 @@ public class Menu {
                 new BookPrinter().printBooks(repository.getBooks());
                 break;
             } else if (position == DELETE_BOOK) {
-                new DeleteBook().deletebook();
+                new DeleteBook().deleteBook();
                 stdout.info("pozycja została usunięta \n");
                 new BookParser().saveObjectsToFile();
             } else if (position == SAVE_TO_FILE) {
                 new BookParser().saveObjectsToFile();
+                position=getParentFromList(position);
                stdout.info("Baza Została zapisana");
 
                 break;
             } else  if (position == ADD_BOOK_POSITION){
                 new BookAdder().addBook();
+                new BookParser().saveObjectsToFile();
+
+            }
+            else  if (position == EDIT_BOOK){
+                new BookEditMenu().bookEditorMenu();
                 position=getParentFromList(position);
             }
 

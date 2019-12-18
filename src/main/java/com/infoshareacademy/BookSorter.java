@@ -25,10 +25,10 @@ public class BookSorter {
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
-        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString()))
+        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString())){
         return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());}
 
         else {
             return books.stream()
