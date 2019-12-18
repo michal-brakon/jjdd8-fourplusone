@@ -66,7 +66,15 @@ public class Menu {
                 BookSorter bookSorter = new BookSorter();
                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
                 stdout.info("{}", bookSorter.sortingByAuthor(listOfBooks));
-            } else if (position == SHOW_ALL_TITLES) {
+            } else if (position == SORT_ALL_BOOKS_BY_EPOCH) {
+                 BookSorter bookSorter = new BookSorter();
+                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
+                 stdout.info("{}", bookSorter.sortingByEpoch(listOfBooks));
+             } else if (position == SORT_ALL_BOOKS_BY_KIND) {
+                 BookSorter bookSorter = new BookSorter();
+                 List<Book> listOfBooks = BookRepository.getInstance().getBooks();
+                 stdout.info("{}", bookSorter.sortingByKind(listOfBooks));
+             } else if (position == SHOW_ALL_TITLES) {
                 new BookPrinter().printBooks(repository.getBooks());
             } else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
