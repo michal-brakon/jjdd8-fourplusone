@@ -131,14 +131,14 @@ public class Menu {
 
     void showBreadCrumbsPosition(int position) {
 
-        StringBuilder crumbs = new StringBuilder("Główne Menu");
+        StringBuilder crumbs = new StringBuilder("");
         int crumbPosition = position;
-        while (crumbPosition != MAIN_MENU_POSITION) {
+        while (crumbPosition != EXIT_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
-            crumbs.append(" / ").append(newMenuList.get(currentIndex).getDisplayedText());
+            crumbs.insert(0," / ").insert(0,newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\n{}\n", crumbs);
+        stdout.info("\n/ {}\n", crumbs);
     }
 
     private int getIndexFromList(int position) {
