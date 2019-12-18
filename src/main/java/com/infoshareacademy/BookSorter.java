@@ -10,9 +10,10 @@ public class BookSorter {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    private AppPropertiesReader propertiesReader = new AppPropertiesReader();
+
 
     public List<Book> sortingByTitle(List<Book> books) {
+        AppPropertiesReader propertiesReader = new AppPropertiesReader();
         if (propertiesReader.getProp("sortByTitle").equals(ASC.toString())){
             return books.stream()
                     .sorted(Comparator.comparing(Book::getTitle))
@@ -25,12 +26,12 @@ public class BookSorter {
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
-        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString()))
-        return books.stream()
-                .sorted(Comparator.comparing(Book::getAuthor))
-                .collect(Collectors.toList());
-
-        else {
+        AppPropertiesReader propertiesReader = new AppPropertiesReader();
+        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString())) {
+            return books.stream()
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .collect(Collectors.toList());
+        } else {
             return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor).reversed())
                 .collect(Collectors.toList());}

@@ -40,7 +40,7 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze ", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po gatunku ", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po epoce", SORT_ALL_BOOKS_BY_EPOCH, SHOW_ALL_BOOKS_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po rodzaju", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
 
@@ -59,14 +59,14 @@ public class Menu {
                 List<Book> listOfBooks = bookSorter.sortingByTitle(repository.getBooks());
                 new BookPrinter().printBooks(listOfBooks);
                 position = getParentFromList(position);
-            } else if (position == SORT_ALL_BOOKS_BY_GENRE) {
-                BookSorter bookSorter = new BookSorter();
-                List<Book> listOfBooks = bookSorter.sortingByGenre(repository.getBooks());
-                new BookPrinter().printBooks(listOfBooks);
-                position = getParentFromList(position);
             } else if (position == SORT_ALL_BOOKS_BY_AUTHOR) {
                 BookSorter bookSorter = new BookSorter();
                 List<Book> listOfBooks = bookSorter.sortingByAuthor(repository.getBooks());
+                new BookPrinter().printBooks(listOfBooks);
+                position = getParentFromList(position);
+            } else if (position == SORT_ALL_BOOKS_BY_GENRE) {
+                BookSorter bookSorter = new BookSorter();
+                List<Book> listOfBooks = bookSorter.sortingByGenre(repository.getBooks());
                 new BookPrinter().printBooks(listOfBooks);
                 position = getParentFromList(position);
             } else if (position == SORT_ALL_BOOKS_BY_EPOCH) {
@@ -81,7 +81,7 @@ public class Menu {
                 position = getParentFromList(position);
             } else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
-                break;
+                position = getParentFromList(position);
             }
 
             showBreadCrumbsPosition(position);

@@ -46,7 +46,6 @@ public class BookPrinter {
                 ScreenCleaner.clearScreen();
             }
         }
-        menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
     public void printChosenBook() {
