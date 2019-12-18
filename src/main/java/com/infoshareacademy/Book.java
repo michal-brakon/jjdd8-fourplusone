@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Book {
 
 
+
     private String kind;
 
     private String author;
@@ -18,7 +19,7 @@ public class Book {
 
     private String genre;
 
-    public String getKind() {
+    public  String getKind() {
         return kind;
     }
 
