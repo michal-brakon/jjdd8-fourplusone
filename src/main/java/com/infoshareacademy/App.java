@@ -1,18 +1,18 @@
 package com.infoshareacademy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    static List<MenuOption> newMenuList = new ArrayList<>();
 
     public static void main(String[] args) {
-        // menu init
+
         Menu menu = new Menu();
-        menu.mainMenu();
+        menu.populateMenu();
 
-
+        menu.showMenu(Menu.MAIN_MENU_POSITION);
 
     }
 }
