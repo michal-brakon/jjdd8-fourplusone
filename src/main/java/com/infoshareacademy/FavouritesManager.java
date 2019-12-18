@@ -1,73 +1,56 @@
 package com.infoshareacademy;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
 
 public class FavouritesManager {
 
-    private static List<Book> BOOKS = new BookRepository().getInstance().getBookRepository();
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    public void addFavourites (String title) throws FileNotFoundException {
+    public List<String> getFavouritesFromFile() throws IOException {
 
-        List<String> lines = new ArrayList<>();
         File file = new File("favourites.txt");
-        if (!isFileExist(file))  {
-            System.out.println("Blad odczytu pliku");
-            return;
-        }
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine())  {
-            lines.add(scanner.nextLine());
-        }
-        if (lines.contains(title)) {
-            System.out.println("Pozycja jest juz w ulubionych");
-            return;
-        }
-        if (lines.size() <= 2 && !lines.contains(title)) {
+        List<String> favouriteTitles = Files.lines(file.toPath())
+                .filter(line -> !line.isEmpty())
+                .collect(Collectors.toList());
 
-            PrintWriter printWriter = new PrintWriter("favourites.txt");
-            printWriter.println(title);
-            printWriter.close();
-        }   else if (lines.contains(title))  {
-            System.out.println("Pozycja jest juz w ulubionych");
-            return;
-        }   else  {
-            System.out.println("Lista ulubionych pelna");
-        }
-
+        return favouriteTitles;
     }
+    public void addToFavourites (String title) throws IOException {
 
-    private void printFavourites() throws FileNotFoundException {
+        if (getFavouritesFromFile().size() < 3 && !getFavouritesFromFile().contains(title)) {
+            FileWriter file = new FileWriter("favourites.txt", true);
+            BufferedWriter out = new BufferedWriter(file);
+            out.write("\n" + title);
+            out.close();
+        }
+        else if (getFavouritesFromFile().size() < 3) {
+            stdout.info("\nLista ulubionych jest pelna \n");
+        }
+        else  if (getFavouritesFromFile().contains(title)) {
+            stdout.info("\nPozycja jest juz w ulubionych \n");
+        }
+    }
+    
+    public void removeFromFavourites (String title) throws IOException {
+
         File file = new File("favourites.txt");
-        if (!isFileExist(file))  {
-            System.out.println("Blad odczytu pliku");
-            return;
-        }
-        Scanner scanner = new Scanner(file);
-        List<String> lines = new ArrayList<>();
-        while (scanner.hasNextLine())  {
-            lines.add(scanner.nextLine());
-        }
+        List<String> out = Files.lines(file.toPath())
+                .filter(line -> !line.contains(title))
+                .collect(Collectors.toList());
 
+        Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 
+        stdout.info("\nUsunieto: {}", title);
     }
-
-    private boolean isFileExist(File f) {
-
-        return f.exists() && f.isFile();
-    }
-
 }
-
-
-
-
-
-
-
