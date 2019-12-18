@@ -16,7 +16,7 @@ class BookFinderTest {
 
         String letters = "kra";
 
-        List<String> authorsList = BookRepository.getInstance().getBookRepository().stream()
+        List<String> authorsList = BookRepository.getInstance().getBooks().stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getAuthor)
