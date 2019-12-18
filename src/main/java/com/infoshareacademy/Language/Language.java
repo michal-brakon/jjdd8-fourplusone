@@ -4,10 +4,16 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class EnglishLanguage {
+public class Language {
+
+    String baseName;
+
+    public Language(String baseName) {
+        this.baseName = baseName;
+    }
 
     Locale locale = new Locale("eng");
-    public ResourceBundle messagesBundle = ResourceBundle.getBundle("messages", locale);
+    public ResourceBundle messagesBundle = ResourceBundle.getBundle(baseName, locale);
 
 
     public String getMessageByKey(LangKeyConfig langKeyConfig) {
