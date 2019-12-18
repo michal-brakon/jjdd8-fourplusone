@@ -46,10 +46,8 @@ public class Menu {
                 stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
-
                 new BookPrinter().printBooks(repository.getBooks());
                 break;
-
             } else if (position == SHOW_ONE_BOOK_POSITION) {
                 new BookPrinter().printChosenBook();
                 break;
@@ -66,7 +64,7 @@ public class Menu {
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
-        stdout.info("\nwybraleś " + userChoice + " \n");
+        stdout.info("\nwybraleś {} \n",  userChoice);
         if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
@@ -81,7 +79,7 @@ public class Menu {
         int pressNumber = STARTING_MENU_OPTION_NUMBER;
         for (MenuOption menuOption : newMenuList) {
             if (menuOption.getParent() == position) {
-                stdout.info("\n" + pressNumber + "<-  " + menuOption.getDisplayedText());
+                stdout.info("\n {} <- {}", pressNumber, menuOption.getDisplayedText());
                 choicesNumber[pressNumber] = menuOption.getPosition();
                 pressNumber++;
             }
@@ -96,14 +94,14 @@ public class Menu {
 
     void showBreadCrumbsPosition(int position) {
 
-        String crumbs = "Główne Menu";
+        StringBuilder crumbs = new StringBuilder("Główne Menu");
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
-            crumbs = crumbs + " / " + newMenuList.get(currentIndex).getDisplayedText();
+            crumbs.append(" / ").append(newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
-        stdout.info("\n" + crumbs + "\n");
+        stdout.info("\n{}", crumbs);
     }
 
     private int getIndexFromList(int position) {

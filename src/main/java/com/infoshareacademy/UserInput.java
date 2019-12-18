@@ -44,7 +44,7 @@ public class UserInput {
     }
 
     private void incorrectNumberRetry(int choices) {
-        stdout.info("\nProszę wybrać jeden z " + choices + "\n");
+        stdout.info("\nProszę wybrać jeden z {} \n", choices);
         getChoice(choices);
     }
 }
