@@ -32,23 +32,23 @@ public class BookAdder {
         String genre = scanner.next();
         book.setGenre(genre);
         stdout.info("Czy ma audio t/n :");
-        boolean audio = audioChanger();
+        boolean audio = checkChoice();
         book.setHasAudio(audio);
         BookRepository.getInstance().getBooks().add(book);
 
 
     }
 
-    public boolean audioChanger() {
-        String checkAudio;
-        checkAudio = scanner.next().toLowerCase();
-        if (checkAudio.equals("t")) {
+    public boolean checkChoice() {
+        String checkChoice;
+        checkChoice = scanner.next().toLowerCase();
+        if (checkChoice.equals("t")) {
             return true;
-        } else if (checkAudio.equals("n")) {
+        } else if (checkChoice.equals("n")) {
             return false;
         } else {
             stdout.info("Źle wprowadziłeś");
-            audioChanger();
+            checkChoice();
         }
         return false;
     }

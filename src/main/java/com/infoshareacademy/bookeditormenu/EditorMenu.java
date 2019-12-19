@@ -80,7 +80,7 @@ public class EditorMenu {
                 break;
             case 5:
                 stdout.info(" Podaj, wersja audio T/N ");
-                boolean check = new BookAdder().audioChanger();
+                boolean check = new BookAdder().checkChoice();
                 manageBooks.modifyHasAudio(check, id);
                 stdout.info("czy ma Audio zostało zmienione ");
                 break;

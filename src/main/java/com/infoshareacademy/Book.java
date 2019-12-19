@@ -81,7 +81,8 @@ public class Book {
 
     @Override
     public String toString() {
-        return "id : " + id + "  Tytuł : " + title + '\n' +
+        return "id : " + id +
+                "  Tytuł : " + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
                 "Autor : " + author + '\n' +
                 "Epoka : " + epoch + '\n' +

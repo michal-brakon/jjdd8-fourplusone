@@ -17,9 +17,10 @@ public class DeleteBook {
     private ManageBooks manageBooks = new ManageBooks();
 
     public void deleteBook() {
-        stdout.info("podaj id książkę którą chcesz usunąć: \n");
+        stdout.info("podaj id książki którą chcesz usunąć, lub q żeby przerwać\n");
         String s = scanner.next();
         Long id = 0L;
+        if(s.equalsIgnoreCase("q")){return;}
         UserInput userInput = new UserInput();
         if (userInput.isANumber(s)) {
             id = Long.parseLong(s);
@@ -35,13 +36,14 @@ public class DeleteBook {
             deleteBook();
         }
         stdout.info("Książka którą chcesz usunać to:\n{}", book);
-        stdout.info("Czy na pewno chcesz to usunąć T/N?\n");
+        stdout.info("Czy na pewno chcesz usunąć T/N?\n");
         String t = scanner.next().toLowerCase();
 
         if (t.equals("t")) {
             BookRepository.getInstance().getBooks().remove(book);
+            stdout.info("pozycja została usunięta \n");
         } else if (t.equals("n")) {
-            return;
+          deleteBook();
         }
 
 

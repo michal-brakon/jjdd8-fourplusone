@@ -62,7 +62,6 @@ public class Menu {
                 break;
             } else if (position == DELETE_BOOK) {
                 new DeleteBook().deleteBook();
-                stdout.info("pozycja została usunięta \n");
                 position = getParentFromList(position);
                 new BookParser().saveObjectsToFile();
             } else if (position == SAVE_TO_FILE) {
