@@ -16,26 +16,26 @@ public class BookAdder {
     public void addBook() {
         ManageBooks idChecker = new ManageBooks();
         book.setId(idChecker.getSequenceId());
-        stdout.info("Podaj rodzaj\n");
-        String kind = scanner.next();
-        book.setKind(kind);
         stdout.info("Podaj autora\n");
         String author = scanner.next();
         book.setAuthor(author);
-        stdout.info("Podaj epoke\n");
-        String epoch = scanner.next();
-        book.setEpoch(epoch);
         stdout.info("Podaj tytuł \n");
         String title = scanner.next();
         book.setTitle(title);
-        stdout.info("Podaj rodzaj literacki \n");
+        stdout.info("Podaj rodzaj\n");
+        String kind = scanner.next();
+        book.setKind(kind);
+        stdout.info("Podaj epoke\n");
+        String epoch = scanner.next();
+        book.setEpoch(epoch);
+        stdout.info("Podaj gatunek literacki \n");
         String genre = scanner.next();
         book.setGenre(genre);
         stdout.info("Czy ma audio t/n :");
         boolean audio = checkChoice();
         book.setHasAudio(audio);
         BookRepository.getInstance().getBooks().add(book);
-
+        stdout.info("Książka została dodana do bazy \n");
 
     }
 
