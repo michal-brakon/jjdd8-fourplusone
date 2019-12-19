@@ -40,7 +40,7 @@ public class Menu {
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.ADD_BOOK), ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SAVE_TO_FILE), SAVE_TO_FILE, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DELETED), DELETE_BOOK, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DELETE_BOOK), DELETE_BOOK, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.EDIT_BOOK), EDIT_BOOK, SHOW_ONE_BOOK_POSITION));
 
 
