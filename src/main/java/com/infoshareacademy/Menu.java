@@ -1,6 +1,6 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.bookeditmenu.BookEditMenu;
+import com.infoshareacademy.bookeditormenu.EditorMenu;
 import com.infoshareacademy.bookmanagement.BookAdder;
 import com.infoshareacademy.bookmanagement.DeleteBook;
 import org.slf4j.Logger;
@@ -37,8 +37,7 @@ public class Menu {
         newMenuList.add(new MenuOption("Dodaj książke", ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("zapis do pliku", SAVE_TO_FILE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("USUN REKORD ", DELETE_BOOK, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("EDYTUJ KSIĄŻKE ",EDIT_BOOK, SHOW_ONE_BOOK_POSITION));
-
+        newMenuList.add(new MenuOption("EDYTUJ KSIĄŻKE ", EDIT_BOOK, SHOW_ONE_BOOK_POSITION));
 
 
     }
@@ -67,18 +66,16 @@ public class Menu {
                 new BookParser().saveObjectsToFile();
             } else if (position == SAVE_TO_FILE) {
                 new BookParser().saveObjectsToFile();
-                position=getParentFromList(position);
-               stdout.info("Baza Została zapisana");
+                stdout.info("Baza Została zapisana");
 
                 break;
-            } else  if (position == ADD_BOOK_POSITION){
+            } else if (position == ADD_BOOK_POSITION) {
                 new BookAdder().addBook();
                 new BookParser().saveObjectsToFile();
 
-            }
-            else  if (position == EDIT_BOOK){
-                new BookEditMenu().bookEditorMenu();
-                position=getParentFromList(position);
+            } else if (position == EDIT_BOOK) {
+                new EditorMenu().bookEditorMenu();
+                position = getParentFromList(position);
             }
 
             showBreadCrumbsPosition(position);
@@ -91,7 +88,7 @@ public class Menu {
         stdout.info("Masz do wyboru:");
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
-        int userChoice = getNumber.getChoice(getMenuSize(position)-1);
+        int userChoice = getNumber.getChoice(getMenuSize(position) - 1);
         stdout.info("\nwybraleś {} \n", userChoice);
         if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
@@ -114,6 +111,7 @@ public class Menu {
         }
         return choicesNumber;
     }
+
     private int getMenuSize(int position) {
         int pressNumber = STARTING_MENU_OPTION_NUMBER;
         for (MenuOption menuOption : newMenuList) {

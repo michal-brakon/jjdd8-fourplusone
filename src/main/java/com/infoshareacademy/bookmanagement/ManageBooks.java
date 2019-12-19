@@ -33,36 +33,34 @@ public class ManageBooks {
         return maxId.get() + 1;
     }
 
-    public void modifiesByAuthor(String author, Long id) {
+    public void modifyAuthor(String author, Long id) {
         Book book = findBookById(id);
         book.setAuthor(author);
     }
 
-    public void modifiesByTitle(String title, Long id) {
+    public void modifyTitle(String title, Long id) {
         Book book = findBookById(id);
-        book.setAuthor(title);
+        book.setTitle(title);
     }
 
-    public void modifiesByKind(String kind, Long id) {
+    public void modifyKind(String kind, Long id) {
         Book book = findBookById(id);
         book.setKind(kind);
     }
 
-    public void modifiesByGenre(String genre, Long id) {
+    public void modifyGenre(String genre, Long id) {
         Book book = findBookById(id);
         book.setGenre(genre);
     }
 
-    public void modifiesByEpoch(String epoch, Long id) {
+    public void modifyEpoch(String epoch, Long id) {
         Book book = findBookById(id);
         book.setEpoch(epoch);
     }
 
-    public void modifiesByHasAudio(Long id) {
+    public void modifyHasAudio(boolean audio, Long id) {
         Book book = findBookById(id);
-        BookAdder bookAdder = new BookAdder();
-       boolean audio =  bookAdder.audioChanger();
-       book.setHasAudio(audio);
+        book.setHasAudio(audio);
     }
 }
 

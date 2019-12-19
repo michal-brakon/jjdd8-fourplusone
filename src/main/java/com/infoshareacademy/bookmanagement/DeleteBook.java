@@ -12,13 +12,11 @@ public class DeleteBook {
 
 
     private Scanner scanner = new Scanner(System.in);
-    private Book book = new Book();
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+        private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     private ManageBooks manageBooks=new ManageBooks();
 
     public void deleteBook() {
-
         stdout.info("podaj id książki którą chcesz usunąć: \n");
         String s = scanner.next();
         Long id = 0L;
@@ -29,7 +27,8 @@ public class DeleteBook {
             stdout.info("źle wpisałeś spróbuj ponownie\n");
             deleteBook();
         }
-        book = manageBooks.findBookById(id);
+
+        Book  book = manageBooks.findBookById(id);
 
         BookRepository.getInstance().getBooks().remove(book);
     }
