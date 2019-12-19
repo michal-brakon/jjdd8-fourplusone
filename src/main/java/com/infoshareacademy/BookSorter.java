@@ -1,19 +1,17 @@
 package com.infoshareacademy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static com.infoshareacademy.SortType.ASC;
 
 public class BookSorter {
 
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-
     private AppPropertiesReader propertiesReader = new AppPropertiesReader();
 
     public List<Book> sortingByTitle(List<Book> books) {
-        if (propertiesReader.getProp("sortByTitle").equals(ASC.toString())){
+        if (propertiesReader.getProp("sortByTitle").equals(ASC.toString())) {
             return books.stream()
                     .sorted(Comparator.comparing(Book::getTitle))
                     .collect(Collectors.toList());
@@ -25,15 +23,15 @@ public class BookSorter {
     }
 
     public List<Book> sortingByAuthor(List<Book> books) {
-        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString())){
-        return books.stream()
-                .sorted(Comparator.comparing(Book::getAuthor))
-                .collect(Collectors.toList());}
-
-        else {
+        if (propertiesReader.getProp("sortByAuthor").equals(ASC.toString())) {
             return books.stream()
-                .sorted(Comparator.comparing(Book::getAuthor).reversed())
-                .collect(Collectors.toList());}
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .collect(Collectors.toList());
+        } else {
+            return books.stream()
+                    .sorted(Comparator.comparing(Book::getAuthor).reversed())
+                    .collect(Collectors.toList());
+        }
     }
 
     public List<Book> sortingByEpoch(List<Book> books) {
@@ -47,6 +45,7 @@ public class BookSorter {
                 .sorted(Comparator.comparing(Book::getGenre))
                 .collect(Collectors.toList());
     }
+
     public List<Book> sortingByKind(List<Book> books) {
         return books.stream()
                 .sorted(Comparator.comparing(Book::getKind))
