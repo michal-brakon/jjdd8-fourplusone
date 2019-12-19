@@ -22,7 +22,7 @@ public class Menu {
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
 
-    Language l = new Language(LanguagesToChoose.ENG.getValue());
+    Language l = new Language();
 
 
 

@@ -10,7 +10,6 @@ public enum LangKeyConfig {
     DISPLAY_ONE_ITEM("display_one_item"),
     SEARCH_BY_AUTHOR("search_by_author"),
     SEARCH_BY_TITLE("search_by_title"),
-    CONSOLE_OUT("CONSOLE_OUT"),
     WELCOME("welcome_to_the_main_page_of_the_for_plus_one"),
     YOU_CAN_CHOOSE("you_can_choose"),
     SEARCH_BY_AUTHOR_AND_TITLE("search_by_author_and_title_of_the_book"),
