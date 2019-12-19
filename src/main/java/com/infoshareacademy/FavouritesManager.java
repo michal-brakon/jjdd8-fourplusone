@@ -68,23 +68,7 @@ public class FavouritesManager {
     private void updateBookList() throws IOException {
         List<String> favouritesTitles = getFavouritesFromFile();
         BOOKS.stream()
-                .forEach(b -> {
-                    if (favouritesTitles.contains(b.getTitle())) {
-                        b.favourite = "tak";
-                    } else {
-                        b.favourite = "nie";
-                    }
-                });
-
-
-
-        BOOKS.stream()
-                .filter(b -> favouritesTitles.contains(b.getTitle()))
-                .forEach(b -> b.favourite = "tak");
-
-        BOOKS.stream()
-                .filter(b -> !favouritesTitles.contains(b.getTitle()))
-                .forEach(b -> b.favourite = "nie");
+                .forEach(b -> b.favourite = favouritesTitles.contains(b.getTitle()) ? "tak" : "nie");
 
     }
 
