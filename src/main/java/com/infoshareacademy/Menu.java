@@ -31,14 +31,14 @@ public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
 
-    public static boolean language = true;
+   private static boolean language = true;
     private final BookRepository repository = BookRepository.getInstance();
     UserInput getNumber = new UserInput();
     Language l = new Language();
     Locale locale = new Locale("eng");
 
     public void setLanguage(boolean language) {
-        if (language == true) {
+        if (language) {
             l.setMessagesBundle(ResourceBundle.getBundle("messages_pl", locale));
             Menu.language = language;
         } else l.setMessagesBundle(ResourceBundle.getBundle("messages", locale));
@@ -47,16 +47,14 @@ public class Menu {
 
     public void populateMenu() {
 
-        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
-
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
-        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
-        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Ulubione", 9, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption("Zarządzanie książkami", 10, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SHOW_ALL_ITEMS), SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
@@ -99,8 +97,14 @@ public class Menu {
                 List<Book> listOfBooks = bookSorter.sortingByKind(repository.getBooks());
                 new BookPrinter().printBooks(listOfBooks);
                 position = getParentFromList(position);
-            } else if (position == SHOW_ONE_BOOK_POSITION) {
-                new BookPrinter().printChosenBook();
+            } else if (position == SEARCH_BY_AUTHOR_POSITION) {
+                new BookFinder().runBookFinder(1, choseAudioOrNoAudio());
+                position = getParentFromList(position);
+            } else if (position == SEARCH_BY_TITLE_POSITION) {
+                new BookFinder().runBookFinder(2, choseAudioOrNoAudio());
+                position = getParentFromList(position);
+            } else if (position == SEARCH_BY_AUTHOR_OR_TITLE) {
+                new BookFinder().runBookFinder(3, choseAudioOrNoAudio());
                 position = getParentFromList(position);
             }
 
@@ -108,6 +112,11 @@ public class Menu {
 
             position = printMenu(position);
         }
+    }
+
+    private int choseAudioOrNoAudio() {
+        stdout.info("\n czy pozycja \n 1 <- ma mieć audiobooka \n 2 <- czy nie ma mieć audiobooka");
+        return getNumber.getChoice(2);
     }
 
     private int printMenu(int position) {

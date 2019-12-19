@@ -78,14 +78,12 @@ public class BookFinder {
 
     private List<String> findAuthorByName(String letters) {
 
-        List<String> authorsList = BOOKS.stream()
+        return BOOKS.stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getAuthor)
                 .distinct()
                 .collect(Collectors.toList());
-
-        return authorsList;
     }
 
     private String verifyFindingAuthor(List<String> authorsList) {
