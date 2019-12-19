@@ -37,7 +37,7 @@ class MenuTest {
     public void get_correct_menu_options() {
 
         List<MenuOption> testList = new ArrayList<>();
-        testList.add(new MenuOption("Pokaż Wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
+        testList.add(new MenuOption("Pokaż wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
         testList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         // assert
 
