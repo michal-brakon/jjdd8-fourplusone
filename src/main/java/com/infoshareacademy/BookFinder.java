@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
 
 public class BookFinder {
 
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+   private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
+   private static final  List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
-    final int SEARCH_BY_AUTHOR = 1;
-    final int SEARCH_BY_TITLE = 2;
-    final int SEARCH_BY_AUTHOR_AND_TITLE = 3;
-    final int HAS_AUDIO = 1;
-    final int HAS_NOT_AUDIO = 2;
+   private static final int SEARCH_BY_AUTHOR = 1;
+   private static final int SEARCH_BY_TITLE = 2;
+   private static final int SEARCH_BY_AUTHOR_AND_TITLE = 3;
+   private static final int HAS_AUDIO = 1;
+   private static final int HAS_NOT_AUDIO = 2;
 
 
     public void runBookFinder(int param, int hasAudio) {
@@ -76,14 +76,12 @@ public class BookFinder {
 
     private List<String> findAuthorByName(String letters) {
 
-        List<String> authorsList = BOOKS.stream()
+        return BOOKS.stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getAuthor)
                 .distinct()
                 .collect(Collectors.toList());
-
-        return authorsList;
     }
 
     private String verifyFindingAuthor(List<String> authorsList) {
@@ -94,9 +92,9 @@ public class BookFinder {
             stdout.info("\nZnaleziono {} pasujących autorów: \n", authorsList.size());
             printList(authorsList);
             stdout.info("\nUściślij swój wybór\n ");
-            authorsList.removeAll(authorsList);
+            authorsList.clear();
         } else {
-            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
+            stdout.info("\n Czy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
             if (!confirmationType.equalsIgnoreCase("t")) {
@@ -111,14 +109,12 @@ public class BookFinder {
 
     private List<String> findTitleByName(String letters) {
 
-        List<String> titlesList = BOOKS.stream()
+        return BOOKS.stream()
                 .filter(b -> b.getTitle() != null)
                 .filter(b -> b.getTitle().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getTitle)
                 .distinct()
                 .collect(Collectors.toList());
-
-        return titlesList;
     }
 
     private String verifyFindingTitle(List<String> titlesList) {
@@ -153,7 +149,6 @@ public class BookFinder {
             counter++;
 
         }
-        return;
     }
 
     private void findBooks(int searchingMethod, int hasAudio, String author, String title) {
@@ -162,7 +157,7 @@ public class BookFinder {
 
         if (hasAudio == HAS_AUDIO) {
             filteredBooks = filteredBooks.stream()
-                    .filter(b -> b.isHasAudio())
+                    .filter(Book::isHasAudio)
                     .collect(Collectors.toList());
         }
         if (hasAudio == HAS_NOT_AUDIO) {
