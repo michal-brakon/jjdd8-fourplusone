@@ -42,7 +42,7 @@ public enum LangKeyConfig {
     SEARCHING_FOR_BOOKS_BY_AUTHOR("searching_for_books_by_the_author_by_entering_a_string_of_characters_that_contains_name_or_surname"),
     SEARCHING_BOOKS_TITLE("searching_for_books_by_title_giving_the_string_of_characters_contained_in_the_title"),
     IN_THE_TITLE___("in_the_title_followed_by_a_string_containing_the_author_name_or_surname"),
-    ENTER_LAST_3_CHAR("enter_at_least_3_characters_of_letters"),
+    ENTER_AT_LEAST_3_CHAR("enter_at_least_3_characters_of_letters"),
     NO_MACHING_RES("no_matching_records_found_please_try_again"),
     MAHING_AUTOR_FOUND("matching_authors_found"),
     REFINE_YOUR_SELECTION("refine_your_selection"),
@@ -69,7 +69,9 @@ public enum LangKeyConfig {
     Y("y"),
     N("n"),
     ID_OF_BOOK_TO_DELETE("enter_the_id_of_the_book_you_want_to_delete"),
-    SEARCH_BY_BOOK_AND_AUTHOR("search_for_books_by_author_and_title_by_first_entering_the_string_of_characters_with_contains");
+    SEARCH_BY_BOOK_AND_AUTHOR("search_for_books_by_author_and_title_by_first_entering_the_string_of_characters_with_contains"),
+    KIND("kind"),
+    NOW_TITLE("now_title");
 
 
 

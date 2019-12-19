@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 public class BookFinder {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    Language l = new Language();
 
     final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
@@ -28,7 +31,7 @@ public class BookFinder {
         String title = "";
 
         if (param == SEARCH_BY_AUTHOR) {
-            stdout.info("\nSzukanie książek po autorze podając ciąg znaków który zawiera się w imieniu lub nazwisku \n");
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.SEARCHING_FOR_BOOKS_BY_AUTHOR));
             List<String> authorsList;
             while (author.isEmpty()) {
                 authorsList = findAuthorByName(getLetters());
@@ -38,7 +41,7 @@ public class BookFinder {
             findBooks(param, hasAudio, author, "");
         }
         if (param == SEARCH_BY_TITLE) {
-            stdout.info("\nSzukanie ksiązek po tytule podając ciag znaków który zawiera się w tytule \n ");
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.SEARCHING_BOOKS_TITLE));
             List<String> titleslist;
             while (title.isEmpty()) {
                 titleslist = findTitleByName(getLetters());
@@ -47,13 +50,13 @@ public class BookFinder {
             findBooks(param, hasAudio, "", title);
         }
         if (param == SEARCH_BY_AUTHOR_AND_TITLE) {
-            stdout.info("\nSzukanie książek po autorze i tytule podając najpierw ciąg znaków który zawiera się \n w tytule , następnie ciąg znaków zawierający się w imieniu lub nazwisku autora \n");
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.SEARCH_BY_BOOK_AND_AUTHOR));
             List<String> authorsList;
             while (author.isEmpty()) {
                 authorsList = findAuthorByName(getLetters());
                 author = verifyFindingAuthor(authorsList);
             }
-            stdout.info("\nTeraz tytuł ");
+            stdout.info("\n",l.getMessageByKey(LangKeyConfig.NOW_TITLE));
             List<String> titleslist;
             while (title.isEmpty()) {
                 titleslist = findTitleByName(getLetters());
@@ -68,7 +71,7 @@ public class BookFinder {
         String letters = "";
         while ((letters.length() < 3) && (!letters.contains(" "))) {
 
-            stdout.info("\nWpisz conajmniej 3 znakowy ciąg liter: \n ");
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.ENTER_AT_LEAST_3_CHAR));
             letters = scanner.next();
         }
         return letters;
@@ -89,18 +92,17 @@ public class BookFinder {
     private String verifyFindingAuthor(List<String> authorsList) {
 
         if (authorsList.isEmpty()) {
-            stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
-        } else if (authorsList.size() > 1) {
-            stdout.info("\nZnaleziono {} pasujących autorów: \n", authorsList.size());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.NO_MACHING_RES));        } else if (authorsList.size() > 1) {
+            stdout.info("\n{}\n" , authorsList.size());
             printList(authorsList);
-            stdout.info("\nUściślij swój wybór\n ");
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
             authorsList.removeAll(authorsList);
         } else {
             stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
             if (!confirmationType.equalsIgnoreCase("t")) {
-                stdout.info("\nSpróbuj ponownie\n ");
+                stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return authorsList.get(0);
             }
@@ -126,8 +128,7 @@ public class BookFinder {
         String title = "";
 
         if (titlesList.isEmpty()) {
-            stdout.info("\nNie znaleziono pasujących rekordów, spróbuj ponownie: \n");
-            findTitleByName(getLetters());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.NO_MACHING_RES));            findTitleByName(getLetters());
         } else if (titlesList.size() > 1) {
             stdout.info("\nZnaleziono {} pasujących autorów: \n", titlesList.size());
             printList(titlesList);
@@ -138,7 +139,7 @@ public class BookFinder {
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
             if (!confirmationType.equalsIgnoreCase("t")) {
-                stdout.info("\nSpróbuj ponownie\n ");
+                stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return titlesList.get(0);
             }
@@ -198,7 +199,7 @@ public class BookFinder {
     private void printBooks (List<Book> books)  {
 
         if (books.isEmpty()) {
-            stdout.info("\nBrak książek spełniających kryteria");
+            stdout.info("\n",l.getMessageByKey(LangKeyConfig.THERE_ARE_NO_BOOKS));
         }  else {
             books.forEach(x -> stdout.info(String.valueOf(x)));
         }

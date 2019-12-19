@@ -75,7 +75,7 @@ public class Book {
     @Override
     public String toString() {
         return l.getMessageByKey(LangKeyConfig.TITLE) + title + '\n' +
-                "Rodzaj literacki : " + kind + '\n' +
+                l.getMessageByKey(LangKeyConfig.KIND) + kind + '\n' +
                 l.getMessageByKey(LangKeyConfig.AUTHOR) + author + '\n' +
                 l.getMessageByKey(LangKeyConfig.EPOCH) + epoch + '\n' +
                 l.getMessageByKey(LangKeyConfig.HAS_AUDIO) + hasAudioString + '\n' +
