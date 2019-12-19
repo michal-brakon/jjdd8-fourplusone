@@ -1,9 +1,13 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import static com.infoshareacademy.App.newMenuList;
@@ -25,22 +29,34 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
     protected static final int CHANGE_LANGUAGE_OPTION = 99;
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
+
     public static boolean language = true;
     private final BookRepository repository = BookRepository.getInstance();
     UserInput getNumber = new UserInput();
+    Language l = new Language();
+    Locale locale = new Locale("eng");
 
-//La Language(LanguagesToChoose.ENG.getValue()
+    public void setLanguage(boolean language) {
+        if (language == true) {
+            l.setMessagesBundle(ResourceBundle.getBundle("messages_pl", locale));
+            Menu.language = language;
+        } else l.setMessagesBundle(ResourceBundle.getBundle("messages", locale));
+
+    }
 
     public void populateMenu() {
 
-        newMenuList.add(new MenuOption("Głowne menu", MAIN_MENU_POSITION, EXIT_POSITION));
-        newMenuList.add(new MenuOption("Dostępne książki", BOOK_MENU_POSITION, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
+
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Ulubione", 9, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption("Zarządzanie książkami", 10, MAIN_MENU_POSITION));
-        newMenuList.add(new MenuOption("Pokaż Wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
-        newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SHOW_ALL_ITEMS), SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
@@ -95,14 +111,14 @@ public class Menu {
     }
 
     private int printMenu(int position) {
-        stdout.info(" Masz do wyboru:");
+        stdout.info(l.getMessageByKey(LangKeyConfig.YOU_CAN_CHOOSE));
         List<MenuOption> temporaryMenu = getMenuOptions(position);
         printMenuOptions(temporaryMenu);
         printReturnMenuOption();
 
         int userChoice = getNumber.getChoice(temporaryMenu.size());
         if (userChoice == CHANGE_LANGUAGE_OPTION) {
-            //TODO add changable language option
+            setLanguage(language);
             return position;
         } else if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = temporaryMenu.get(userChoice - 1).getPosition();
@@ -113,7 +129,7 @@ public class Menu {
         return position;
     }
 
-     List<MenuOption> getMenuOptions(int position) {
+    List<MenuOption> getMenuOptions(int position) {
         return newMenuList.stream()
                 .filter(menu -> menu.getParent() == position)
                 .collect(Collectors.toList());
@@ -127,8 +143,8 @@ public class Menu {
 
 
     private void printReturnMenuOption() {
-        stdout.info("\n 0 <- wróć do poprzedniego menu  ");
-        stdout.info("\n wybierz numer opcji z menu: ");
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info(l.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 
     private void showBreadCrumbsPosition(int position) {

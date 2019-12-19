@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +14,7 @@ import static com.infoshareacademy.Menu.EXIT_POSITION;
 public class UserInput {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-
+    Language l = new Language();
     private int choice = EXIT_POSITION;
     private Scanner scan = new Scanner(System.in);
 
@@ -47,7 +49,7 @@ public class UserInput {
     }
 
     private void isNotANumber(int choices) {
-        stdout.info("Źle wpisałeś! \nSpróbuj ponownie:\n");
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.WRONG_INPUT_TRY_AGAIN));
         getChoice(choices);
     }
 
