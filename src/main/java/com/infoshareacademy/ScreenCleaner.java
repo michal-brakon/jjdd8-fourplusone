@@ -31,7 +31,8 @@ public class ScreenCleaner {
             p.waitFor();
             p.destroy();
         } catch (Exception e) {
-            stdout.info("\n", Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+            Language l = new Language();
+            stdout.info("\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
         }
     }
 

@@ -22,15 +22,16 @@ public class Menu {
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
 
+    Language l = new Language();
 
     public void populateMenu() {
 
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.SHOW_ALL_ITEMS), SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption(Language.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SHOW_ALL_ITEMS), SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
 
     }
@@ -48,7 +49,7 @@ public class Menu {
             // adding functionality on positions here from this point
             if (position == MAIN_MENU_POSITION) {
 
-                stdout.info(Language.getMessageByKey(LangKeyConfig.WELCOME));
+                stdout.info(l.getMessageByKey(LangKeyConfig.WELCOME));
 
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
@@ -68,7 +69,7 @@ public class Menu {
 
 
     private int printMenu(int position) {
-        stdout.info(Language.getMessageByKey(LangKeyConfig.YOU_CAN_CHOOSE));
+        stdout.info(l.getMessageByKey(LangKeyConfig.YOU_CAN_CHOOSE));
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
@@ -96,13 +97,13 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info("\n{}\n",Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
-        stdout.info(Language.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
+        stdout.info("\n{}\n",l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info(l.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 
     void showBreadCrumbsPosition(int position) {
 
-        StringBuilder crumbs = new StringBuilder(Language.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION));
+        StringBuilder crumbs = new StringBuilder(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION));
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);

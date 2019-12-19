@@ -13,6 +13,7 @@ import java.util.Properties;
 public class AppPropertiesReader {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private Properties properties = new Properties();
+    Language l = new Language();
 
     private final String PATH_NAME = "config.properties";
 
@@ -24,9 +25,9 @@ public class AppPropertiesReader {
             properties.load(fileInput);
             fileInput.close();
         } catch (FileNotFoundException e) {
-            stdout.info(Language.getMessageByKey(LangKeyConfig.NO_FILE));
+            stdout.info(l.getMessageByKey(LangKeyConfig.NO_FILE));
         } catch (IOException ex) {
-            stdout.info(Language.getMessageByKey(LangKeyConfig.FILE_READING_ERROR));
+            stdout.info(l.getMessageByKey(LangKeyConfig.FILE_READING_ERROR));
         }
         return properties.getProperty(config);
     }

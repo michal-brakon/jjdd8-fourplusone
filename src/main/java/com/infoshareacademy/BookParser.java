@@ -14,6 +14,9 @@ import java.util.List;
 
 public class BookParser {
 
+    Language l = new Language();
+
+
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String PATHNAME = "baza.json";
 
@@ -30,7 +33,7 @@ public class BookParser {
             bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
                     .readValue(new File(PATHNAME), new TypeReference<>() {});
         } catch (IOException e) {
-            stdout.info(Language.getMessageByKey(LangKeyConfig.DATABASE_NOT_READ_FROM_FILE));
+            stdout.info(l.getMessageByKey(LangKeyConfig.DATABASE_NOT_READ_FROM_FILE));
         }
         return bookList;
     }

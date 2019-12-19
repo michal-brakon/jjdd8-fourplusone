@@ -5,6 +5,7 @@ import com.infoshareacademy.Language.LangKeyConfig;
 import com.infoshareacademy.Language.Language;
 
 public class Book {
+    Language l = new Language();
 
 
 
@@ -73,11 +74,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return Language.getMessageByKey(LangKeyConfig.TITLE) + title + '\n' +
+        return l.getMessageByKey(LangKeyConfig.TITLE) + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
-                Language.getMessageByKey(LangKeyConfig.AUTHOR) + author + '\n' +
-                Language.getMessageByKey(LangKeyConfig.EPOCH) + epoch + '\n' +
-                Language.getMessageByKey(LangKeyConfig.HAS_AUDIO) + hasAudioString + '\n' +
-                Language.getMessageByKey(LangKeyConfig.GENRE) + genre + '\n' + '\n';
+                l.getMessageByKey(LangKeyConfig.AUTHOR) + author + '\n' +
+                l.getMessageByKey(LangKeyConfig.EPOCH) + epoch + '\n' +
+                l.getMessageByKey(LangKeyConfig.HAS_AUDIO) + hasAudioString + '\n' +
+                l.getMessageByKey(LangKeyConfig.GENRE) + genre + '\n' + '\n';
     }
 }
