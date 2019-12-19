@@ -63,16 +63,17 @@ public class Menu {
             } else if (position == DELETE_BOOK) {
                 new DeleteBook().deleteBook();
                 stdout.info("pozycja została usunięta \n");
+                position = getParentFromList(position);
                 new BookParser().saveObjectsToFile();
             } else if (position == SAVE_TO_FILE) {
                 new BookParser().saveObjectsToFile();
                 stdout.info("Baza Została zapisana");
+                position = getParentFromList(position);
 
-                break;
             } else if (position == ADD_BOOK_POSITION) {
                 new BookAdder().addBook();
                 new BookParser().saveObjectsToFile();
-
+                position = getParentFromList(position);
             } else if (position == EDIT_BOOK) {
                 new EditorMenu().bookEditorMenu();
                 position = getParentFromList(position);

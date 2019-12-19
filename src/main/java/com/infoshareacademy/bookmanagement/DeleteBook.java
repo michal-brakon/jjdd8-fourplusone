@@ -12,12 +12,12 @@ public class DeleteBook {
 
 
     private Scanner scanner = new Scanner(System.in);
-        private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-    private ManageBooks manageBooks=new ManageBooks();
+    private ManageBooks manageBooks = new ManageBooks();
 
     public void deleteBook() {
-        stdout.info("podaj id książki którą chcesz usunąć: \n");
+        stdout.info("podaj id książkę którą chcesz usunąć: \n");
         String s = scanner.next();
         Long id = 0L;
         UserInput userInput = new UserInput();
@@ -27,10 +27,24 @@ public class DeleteBook {
             stdout.info("źle wpisałeś spróbuj ponownie\n");
             deleteBook();
         }
+        Book book = manageBooks.findBookById(id);
 
-        Book  book = manageBooks.findBookById(id);
 
-        BookRepository.getInstance().getBooks().remove(book);
+        if (book == null) {
+            stdout.info("nie ma książki o takim id! \n ");
+            deleteBook();
+        }
+        stdout.info("Książka którą chcesz usunać to:\n{}", book);
+        stdout.info("Czy na pewno chcesz to usunąć T/N?\n");
+        String t = scanner.next().toLowerCase();
+
+        if (t.equals("t")) {
+            BookRepository.getInstance().getBooks().remove(book);
+        } else if (t.equals("n")) {
+            return;
+        }
+
+
     }
 
 }

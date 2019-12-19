@@ -18,8 +18,8 @@ public class Book {
 
     private String genre;
 
-
     private Long id;
+
 
     public Long getId() {
         return id;
@@ -86,7 +86,7 @@ public class Book {
                 "Autor : " + author + '\n' +
                 "Epoka : " + epoch + '\n' +
                 "Czy ma Audio : " + hasAudioString + '\n' +
-                "Klasa : " + genre + '\n';
+                "Gatunek literacki : " + genre + '\n';
 
 
     }

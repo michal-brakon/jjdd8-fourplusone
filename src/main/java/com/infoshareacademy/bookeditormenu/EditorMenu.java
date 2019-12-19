@@ -58,40 +58,43 @@ public class EditorMenu {
                 stdout.info(" Podaj autora \n");
                 String author = scanner.next();
                 manageBooks.modifyAuthor(author, id);
-
+                stdout.info("Autor został zmieniony ");
                 break;
             case 2:
                 stdout.info(" Podaj tytuł ");
                 String title = scanner.next();
                 manageBooks.modifyTitle(title, id);
-
+                stdout.info("Tytuł został zmieniony ");
                 break;
             case 3:
                 stdout.info(" Podaj rodzaj ");
                 String kind = scanner.next();
                 manageBooks.modifyKind(kind, id);
-
+                stdout.info("Rodzaj został zmieniony ");
                 break;
             case 4:
-                stdout.info(" Podaj rodzaj literacki");
+                stdout.info(" Podaj Gatunek literacki");
                 String genre = scanner.next();
                 manageBooks.modifyGenre(genre, id);
-
+                stdout.info("Gatunek literacki został zmieniony ");
                 break;
             case 5:
                 stdout.info(" Podaj, wersja audio T/N ");
                 boolean check = new BookAdder().audioChanger();
                 manageBooks.modifyHasAudio(check, id);
-
+                stdout.info("czy ma Audio zostało zmienione ");
                 break;
             case 6:
                 stdout.info(" Podaj epoke ");
-                String epoch= scanner.next();
+                String epoch = scanner.next();
                 manageBooks.modifyEpoch(epoch, id);
+                stdout.info("Epoka została zmieniona ");
                 break;
 
             case 0:
                 return;
+            default:
+                break;
 
         }
 

@@ -43,11 +43,11 @@ public class BookAdder {
         String checkAudio;
         checkAudio = scanner.next().toLowerCase();
         if (checkAudio.equals("t")) {
-           return true;
+            return true;
         } else if (checkAudio.equals("n")) {
-           return false;
+            return false;
         } else {
-            stdout.info("Zle wprowadziłeś");
+            stdout.info("Źle wprowadziłeś");
             audioChanger();
         }
         return false;
