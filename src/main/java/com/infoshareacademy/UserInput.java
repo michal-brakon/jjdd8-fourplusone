@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static com.infoshareacademy.Menu.CHANGE_LANGUAGE_OPTION;
 import static com.infoshareacademy.Menu.EXIT_POSITION;
 
 public class UserInput {
@@ -19,11 +20,13 @@ public class UserInput {
     public int getChoice(int choices) {
 
         String userLineIn = scan.nextLine();
-        if (isANumber(userLineIn)) {
+        if (checkIsStringANumber(userLineIn)) {
 
 
             choice = Integer.parseInt(userLineIn);
 
+        } else if (checkIfStringAChangeLanguageButton(userLineIn)) {
+            return CHANGE_LANGUAGE_OPTION;
         } else {
             isNotANumber(choices);
         }
@@ -34,8 +37,13 @@ public class UserInput {
         return choice;
     }
 
-    public boolean isANumber(String userLineIn) {
+    public boolean checkIsStringANumber(String userLineIn) {
         return (Pattern.matches(("[0-9]"), userLineIn) || (Pattern.matches("[0-9][0-9]", userLineIn))) && userLineIn != null;
+    }
+
+    public boolean checkIfStringAChangeLanguageButton(String userLineIn) {
+        return (Pattern.matches("l", userLineIn));
+
     }
 
     private void isNotANumber(int choices) {
@@ -47,4 +55,6 @@ public class UserInput {
         stdout.info("\nProszę wybrać jeden z {} \n", choices);
         getChoice(choices);
     }
+
+
 }

@@ -63,7 +63,7 @@ public class BookPrinter {
     }
 
     private boolean isCorrectChooseBook(String choice) {
-        return (userInput.isANumber(choice)) && areThereThatManyBooks(choice);
+        return (userInput.checkIsStringANumber(choice)) && areThereThatManyBooks(choice);
 
     }
 

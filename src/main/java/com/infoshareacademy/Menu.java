@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.Language;
+import com.infoshareacademy.Language.LanguagesToChoose;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,9 +27,10 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_GENRE = 23;
     protected static final int SORT_ALL_BOOKS_BY_KIND = 24;
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    private final BookRepository repository = BookRepository.getInstance();
-    UserInput getNumber = new UserInput();
+    protected static final int CHANGE_LANGUAGE_OPTION = 99;
+
+    Language l = new Language(LanguagesToChoose.ENG.getValue());
+
 
     public void populateMenu() {
 
@@ -45,6 +48,11 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po rodzaju", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
 
     }
+
+    private final BookRepository repository = BookRepository.getInstance();
+
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    UserInput getNumber = new UserInput();
 
     public void showMenu(int position) {
 
@@ -94,9 +102,12 @@ public class Menu {
         stdout.info("Masz do wyboru:");
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
+
         int userChoice = getNumber.getChoice(getMenuSize(position) - 1);
-        stdout.info("\nwybraleś {} \n", userChoice);
-        if (userChoice != GO_BACK_OPTION_NUMBER) {
+        if (userChoice == CHANGE_LANGUAGE_OPTION) {
+
+            return position;
+        } else if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = choicesNumber[userChoice];
         } else {
 
