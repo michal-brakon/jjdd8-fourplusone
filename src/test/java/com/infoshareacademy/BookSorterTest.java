@@ -1,4 +1,5 @@
 package com.infoshareacademy;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,7 @@ import java.util.List;
 public class BookSorterTest {
 
     @Test
-    public void shouldReturnedListOfBooksSortedByTitle() {
+    void shouldReturnedListOfBooksSortedByTitle() {
 
         BookSorter bookSorter = new BookSorter();
         List<Book> listForTest = BookRepository.getInstance().getBooks();

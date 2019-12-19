@@ -1,16 +1,14 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.Language.Language;
-import com.infoshareacademy.Language.LanguagesToChoose;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.infoshareacademy.App.newMenuList;
 
 public class Menu {
-
     protected static final int SEARCH_BY_AUTHOR_POSITION = 6;
     protected static final int SEARCH_BY_TITLE_POSITION = 7;
     protected static final int SEARCH_BY_AUTHOR_OR_TITLE = 8;
@@ -19,8 +17,6 @@ public class Menu {
     protected static final int EXIT_POSITION = 0;
     protected static final int SHOW_ALL_BOOKS_POSITION = 3;
     protected static final int SHOW_ONE_BOOK_POSITION = 4;
-    protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 10;
-    protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
     protected static final int SORT_ALL_BOOKS_BY_AUTHOR = 21;
     protected static final int SORT_ALL_BOOKS_BY_TITLE = 22;
@@ -28,14 +24,19 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_KIND = 24;
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
     protected static final int CHANGE_LANGUAGE_OPTION = 99;
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    public static boolean language = true;
+    private final BookRepository repository = BookRepository.getInstance();
+    UserInput getNumber = new UserInput();
 
-    Language l = new Language(LanguagesToChoose.ENG.getValue());
-
+//La Language(LanguagesToChoose.ENG.getValue()
 
     public void populateMenu() {
 
         newMenuList.add(new MenuOption("Głowne menu", MAIN_MENU_POSITION, EXIT_POSITION));
         newMenuList.add(new MenuOption("Dostępne książki", BOOK_MENU_POSITION, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption("Ulubione", 9, MAIN_MENU_POSITION));
+        newMenuList.add(new MenuOption("Zarządzanie książkami", 10, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption("Pokaż Wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
@@ -48,11 +49,6 @@ public class Menu {
         newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po rodzaju", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
 
     }
-
-    private final BookRepository repository = BookRepository.getInstance();
-
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
-    UserInput getNumber = new UserInput();
 
     public void showMenu(int position) {
 
@@ -99,16 +95,17 @@ public class Menu {
     }
 
     private int printMenu(int position) {
-        stdout.info("Masz do wyboru:");
-        int[] choicesNumber = printMenuOptions(position);
+        stdout.info(" Masz do wyboru:");
+        List<MenuOption> temporaryMenu = getMenuOptions(position);
+        printMenuOptions(temporaryMenu);
         printReturnMenuOption();
 
-        int userChoice = getNumber.getChoice(getMenuSize(position) - 1);
+        int userChoice = getNumber.getChoice(temporaryMenu.size());
         if (userChoice == CHANGE_LANGUAGE_OPTION) {
-
+            //TODO add changable language option
             return position;
         } else if (userChoice != GO_BACK_OPTION_NUMBER) {
-            position = choicesNumber[userChoice];
+            position = temporaryMenu.get(userChoice - 1).getPosition();
         } else {
 
             position = getParentFromList(position);
@@ -116,28 +113,18 @@ public class Menu {
         return position;
     }
 
-    int[] printMenuOptions(int position) {
-        int[] choicesNumber = new int[MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE];
-        int pressNumber = STARTING_MENU_OPTION_NUMBER;
-        for (MenuOption menuOption : newMenuList) {
-            if (menuOption.getParent() == position) {
-                stdout.info("\n {} <- {} ", pressNumber, menuOption.getDisplayedText());
-                choicesNumber[pressNumber] = menuOption.getPosition();
-                pressNumber++;
-            }
-        }
-        return choicesNumber;
+     List<MenuOption> getMenuOptions(int position) {
+        return newMenuList.stream()
+                .filter(menu -> menu.getParent() == position)
+                .collect(Collectors.toList());
     }
 
-    private int getMenuSize(int position) {
-        int pressNumber = STARTING_MENU_OPTION_NUMBER;
-        for (MenuOption menuOption : newMenuList) {
-            if (menuOption.getParent() == position) {
-                pressNumber++;
-            }
+    private void printMenuOptions(List<MenuOption> list) {
+        for (int i = 0; i < list.size(); i++) {
+            stdout.info("\n {} <- {}", i + 1, list.get(i).getDisplayedText());
         }
-        return pressNumber;
     }
+
 
     private void printReturnMenuOption() {
         stdout.info("\n 0 <- wróć do poprzedniego menu  ");
