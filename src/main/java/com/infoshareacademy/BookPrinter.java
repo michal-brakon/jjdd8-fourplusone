@@ -14,7 +14,9 @@ public class BookPrinter {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
+
     Language l = new Language();
+
 
     private static final Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu();
@@ -44,7 +46,9 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
+
                 stdout.info("\n{}\n", l.getMessageByKey(RETURN_TO_PREVIOUS_MENU));
+
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
@@ -66,7 +70,9 @@ public class BookPrinter {
     }
 
     private void pressEnterKeyToContinue() {
+
         stdout.info(l.getMessageByKey(PRESS_ENTER_TO_CONTINUE));
+
         scanner.nextLine();
     }
 
@@ -80,7 +86,9 @@ public class BookPrinter {
     }
 
     public int chooseBookToPrint() {
+
         stdout.info("\n{}\n", l.getMessageByKey(ENTER_BOOK_NUMBER));
+
         String choice = scanner.next();
 
         if (!isCorrectChooseBook(choice)) {

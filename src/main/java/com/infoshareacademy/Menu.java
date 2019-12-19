@@ -72,6 +72,7 @@ public class Menu {
                 Header.headerPrinter();
             }
             // adding functionality on positions here from this point
+
             if (position == SORT_ALL_BOOKS_BY_TITLE) {
                 BookSorter bookSorter = new BookSorter();
                 List<Book> listOfBooks = bookSorter.sortingByTitle(repository.getBooks());
@@ -105,6 +106,7 @@ public class Menu {
                 position = getParentFromList(position);
             } else if (position == SEARCH_BY_AUTHOR_OR_TITLE) {
                 new BookFinder().runBookFinder(3, choseAudioOrNoAudio());
+
                 position = getParentFromList(position);
             }
 
@@ -125,18 +127,21 @@ public class Menu {
         printMenuOptions(temporaryMenu);
         printReturnMenuOption();
 
+
         int userChoice = getNumber.getChoice(temporaryMenu.size());
         if (userChoice == CHANGE_LANGUAGE_OPTION) {
             setLanguage(language);
             return position;
         } else if (userChoice != GO_BACK_OPTION_NUMBER) {
             position = temporaryMenu.get(userChoice - 1).getPosition();
+
         } else {
 
             position = getParentFromList(position);
         }
         return position;
     }
+
 
     List<MenuOption> getMenuOptions(int position) {
         return newMenuList.stream()
@@ -147,6 +152,7 @@ public class Menu {
     private void printMenuOptions(List<MenuOption> list) {
         for (int i = 0; i < list.size(); i++) {
             stdout.info("\n {} <- {}", i + 1, list.get(i).getDisplayedText());
+
         }
     }
 
@@ -159,13 +165,16 @@ public class Menu {
     private void showBreadCrumbsPosition(int position) {
 
         StringBuilder crumbs = new StringBuilder("");
+
         int crumbPosition = position;
         while (crumbPosition != EXIT_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
+
             crumbs.insert(0, " / ").insert(0, newMenuList.get(currentIndex).getDisplayedText());
             crumbPosition = newMenuList.get(currentIndex).getParent();
         }
         stdout.info("\n/ {}\n", crumbs);
+
     }
 
     private int getIndexFromList(int position) {
