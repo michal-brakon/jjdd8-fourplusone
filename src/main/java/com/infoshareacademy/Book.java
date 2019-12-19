@@ -1,8 +1,11 @@
 package com.infoshareacademy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 
 public class Book {
+    Language l = new Language();
 
 
 
@@ -71,11 +74,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Tytuł : " + title + '\n' +
+        return l.getMessageByKey(LangKeyConfig.TITLE) + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
-                "Autor : " + author + '\n' +
-                "Epoka : " + epoch + '\n' +
-                "Czy ma Audio : " + hasAudioString + '\n' +
-                "Klasa : " + genre + '\n' + '\n';
+                l.getMessageByKey(LangKeyConfig.AUTHOR) + author + '\n' +
+                l.getMessageByKey(LangKeyConfig.EPOCH) + epoch + '\n' +
+                l.getMessageByKey(LangKeyConfig.HAS_AUDIO) + hasAudioString + '\n' +
+                l.getMessageByKey(LangKeyConfig.GENRE) + genre + '\n' + '\n';
     }
 }

@@ -1,13 +1,21 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
 
+import static com.infoshareacademy.Language.LangKeyConfig.*;
+
 public class BookPrinter {
+
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
+    Language l = new Language();
+
     private static final Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu();
     UserInput userInput = new UserInput();
@@ -36,7 +44,7 @@ public class BookPrinter {
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\nWpisz 'q' jeśli chcesz opuścić listę , dowolny znak kontynuuje wyświetlanie\n");
+                stdout.info("\n{}\n", l.getMessageByKey(RETURN_TO_PREVIOUS_MENU));
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
@@ -59,7 +67,7 @@ public class BookPrinter {
     }
 
     private void pressEnterKeyToContinue() {
-        stdout.info("Przyciśnij Enter aby kontynuować");
+        stdout.info(l.getMessageByKey(PRESS_ENTER_TO_CONTINUE));
         scanner.nextLine();
     }
 
@@ -73,11 +81,11 @@ public class BookPrinter {
     }
 
     public int chooseBookToPrint() {
-        stdout.info("\nWpisz numer książki: \n");
+        stdout.info("\n{}\n", l.getMessageByKey(ENTER_BOOK_NUMBER));
         String choice = scanner.next();
 
         if (!isCorrectChooseBook(choice)) {
-            stdout.info("Błędny wybór! Spróbuj ponownie!: \n");
+            stdout.info("\n{}\n", l.getMessageByKey(INCORRECT_SELECTION_TRY_AGAIN)) ;
             bookChoice = 0;
             chooseBookToPrint();
         } else {

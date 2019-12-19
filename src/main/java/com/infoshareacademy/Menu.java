@@ -24,8 +24,6 @@ public class Menu {
 
     Language l = new Language();
 
-
-
     public void populateMenu() {
 
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
@@ -51,7 +49,8 @@ public class Menu {
             // adding functionality on positions here from this point
             if (position == MAIN_MENU_POSITION) {
 
-                stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
+                stdout.info(l.getMessageByKey(LangKeyConfig.WELCOME));
+
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
                 new BookPrinter().printBooks(repository.getBooks());
@@ -67,8 +66,10 @@ public class Menu {
         }
     }
 
+
+
     private int printMenu(int position) {
-        stdout.info("Masz do wyboru:");
+        stdout.info(l.getMessageByKey(LangKeyConfig.YOU_CAN_CHOOSE));
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
@@ -96,13 +97,13 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info("\n 0 <-  wróć do poprzedniego menu  ");
-        stdout.info("\n wybierz numer opcji z menu: ");
+        stdout.info("\n{}\n",l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info(l.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 
     void showBreadCrumbsPosition(int position) {
 
-        StringBuilder crumbs = new StringBuilder("Główne Menu");
+        StringBuilder crumbs = new StringBuilder(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION));
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
@@ -111,7 +112,6 @@ public class Menu {
         }
         stdout.info("\n{}", crumbs);
     }
-
     private int getIndexFromList(int position) {
         int currentMenuIndex = EXIT_POSITION;
         for (int i = 0; i < newMenuList.size(); i++) {
@@ -134,6 +134,4 @@ public class Menu {
         }
         return parent;
     }
-
 }
-

@@ -2,7 +2,6 @@ package com.infoshareacademy.Language;
 
 public enum LangKeyConfig {
 
-
     DATABASE_LOADED("the_book_database_has_been_loaded"),
     AVAILABLE_BOOKS("available_books"),
     MAIN_MENU_POSITION("main_menu"),
@@ -37,24 +36,6 @@ public enum LangKeyConfig {
     SCREEN_CLEANING_FAILED("screen_cleaning_failed"),
     WRONG_INPUT_TRY_AGAIN("you_have_typed_incorrectly_try_again"),
     PLEASE_CHOOSE_ONE_OF("please_choose_one_of");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private String value;
 
