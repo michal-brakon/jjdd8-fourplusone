@@ -77,7 +77,7 @@ public class Book {
                 "Rodzaj literacki : " + kind + '\n' +
                 Language.getMessageByKey(LangKeyConfig.AUTHOR) + author + '\n' +
                 Language.getMessageByKey(LangKeyConfig.EPOCH) + epoch + '\n' +
-                "Czy ma Audio : " + hasAudioString + '\n' +
-                "Klasa : " + genre + '\n' + '\n';
+                Language.getMessageByKey(LangKeyConfig.HAS_AUDIO) + hasAudioString + '\n' +
+                Language.getMessageByKey(LangKeyConfig.GENRE) + genre + '\n' + '\n';
     }
 }
