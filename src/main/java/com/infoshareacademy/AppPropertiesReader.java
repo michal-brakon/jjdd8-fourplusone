@@ -1,4 +1,6 @@
 package com.infoshareacademy;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +14,9 @@ public class AppPropertiesReader {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private Properties properties = new Properties();
 
-    private final String PATHNAME = "config.properties";
+    private final String PATH_NAME = "config.properties";
 
-    private File file = new File(PATHNAME);
+    private File file = new File(PATH_NAME);
 
     public String getProp(String config) {
         try {
@@ -22,9 +24,9 @@ public class AppPropertiesReader {
             properties.load(fileInput);
             fileInput.close();
         } catch (FileNotFoundException e) {
-            stdout.info("\nBrak pliku!");
+            stdout.info(Language.getMessageByKey(LangKeyConfig.NO_FILE));
         } catch (IOException ex) {
-            stdout.info("\nBlad odczytu pliku!");
+            stdout.info(Language.getMessageByKey(LangKeyConfig.FILE_READING_ERROR));
         }
         return properties.getProperty(config);
     }

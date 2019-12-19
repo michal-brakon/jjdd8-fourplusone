@@ -50,7 +50,6 @@ public class Menu {
 
                 stdout.info(Language.getMessageByKey(LangKeyConfig.WELCOME));
 
-//                stdout.info("\nWitamy na Głównej stronie biblioteki 'For Plus One'");
 
             } else if (position == SHOW_ALL_BOOKS_POSITION) {
                 new BookPrinter().printBooks(repository.getBooks());
@@ -66,8 +65,10 @@ public class Menu {
         }
     }
 
+
+
     private int printMenu(int position) {
-        stdout.info("Masz do wyboru:");
+        stdout.info(Language.getMessageByKey(LangKeyConfig.YOU_CAN_CHOOSE));
         int[] choicesNumber = printMenuOptions(position);
         printReturnMenuOption();
         int userChoice = getNumber.getChoice(choicesNumber.length);
@@ -95,13 +96,13 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info("\n 0 <-  wróć do poprzedniego menu  ");
-        stdout.info("\n wybierz numer opcji z menu: ");
+        stdout.info(Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info(Language.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 
     void showBreadCrumbsPosition(int position) {
 
-        StringBuilder crumbs = new StringBuilder("Główne Menu");
+        StringBuilder crumbs = new StringBuilder(Language.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION));
         int crumbPosition = position;
         while (crumbPosition != MAIN_MENU_POSITION) {
             int currentIndex = getIndexFromList(crumbPosition);
@@ -110,7 +111,6 @@ public class Menu {
         }
         stdout.info("\n{}", crumbs);
     }
-
     private int getIndexFromList(int position) {
         int currentMenuIndex = EXIT_POSITION;
         for (int i = 0; i < newMenuList.size(); i++) {
@@ -133,5 +133,4 @@ public class Menu {
         }
         return parent;
     }
-
 }
