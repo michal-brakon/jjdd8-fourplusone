@@ -3,6 +3,8 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 import static com.infoshareacademy.App.newMenuList;
 
 public class Menu {
@@ -36,7 +38,7 @@ public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput getNumber = new UserInput();
 
-    public void showMenu(int position) {
+    public void showMenu(int position) throws IOException {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();

@@ -18,7 +18,7 @@ public class BookPrinter {
     private BookRepository bookRepository = BookRepository.getInstance();
 
 
-    public void printBooks(List<Book> books) {
+    public void printBooks(List<Book> books) throws IOException {
 
         int record = 1;
         int counter = 0;

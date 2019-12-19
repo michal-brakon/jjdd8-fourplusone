@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,11 @@ private static Menu menu = new Menu() ;
                 .ifPresentOrElse(books -> {
                     stdout.info("Baza danych z książkami została załadowana\n");
                     menu.populateMenu();
-                    menu.showMenu(Menu.MAIN_MENU_POSITION);
+                    try {
+                        menu.showMenu(Menu.MAIN_MENU_POSITION);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }, missingFileMenu::showMenu);
     }
 }
