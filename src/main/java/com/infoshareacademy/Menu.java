@@ -96,7 +96,7 @@ public class Menu {
     }
 
     private void printReturnMenuOption() {
-        stdout.info(Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info("\n{}\n",Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
         stdout.info(Language.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 

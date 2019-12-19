@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +31,7 @@ public class ScreenCleaner {
             p.waitFor();
             p.destroy();
         } catch (Exception e) {
-            stdout.info("\nCzyszczenie ekranu zakonczyło się niepowodzeniem");
+            stdout.info("\n", Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
         }
     }
 

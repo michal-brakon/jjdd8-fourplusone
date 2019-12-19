@@ -3,6 +3,8 @@ package com.infoshareacademy;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +30,7 @@ public class BookParser {
             bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
                     .readValue(new File(PATHNAME), new TypeReference<>() {});
         } catch (IOException e) {
-            stdout.info("\nNie wczytano bazy z pliku!");
+            stdout.info(Language.getMessageByKey(LangKeyConfig.DATABASE_NOT_READ_FROM_FILE));
         }
         return bookList;
     }

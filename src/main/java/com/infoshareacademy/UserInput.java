@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +41,7 @@ public class UserInput {
     }
 
     private void isNotANumber(int choices) {
-        stdout.info("Źle wpisałeś! \nSpróbuj ponownie:\n");
+        stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.WRONG_INPUT_TRY_AGAIN));
         getChoice(choices);
     }
 
