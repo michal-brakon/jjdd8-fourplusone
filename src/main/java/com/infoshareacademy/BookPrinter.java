@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,10 +50,26 @@ public class BookPrinter {
         menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
-    public void printChosenBook() {
+    public void printChosenBook() throws IOException {
 
         chooseBookToPrint();
         stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
+
+        if (bookRepository.getBooks().get(bookChoice).favourite == "nie") {
+            stdout.info("Czy dodac ksiazke do ulubionych? (t - tak) ");
+            Scanner scanner = new Scanner(System.in);
+            String confirmationChoice = scanner.next();
+            if (confirmationChoice.equalsIgnoreCase("t")) {
+                new FavouritesManager().addToFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
+            }
+        }  else  {
+            stdout.info("Czy usunac ksiazke z ulubionych? (t - tak) ");
+            Scanner scanner = new Scanner(System.in);
+            String confirmationChoice = scanner.next();
+            if (confirmationChoice.equalsIgnoreCase("t")) {
+                new FavouritesManager().removeFromFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
+            }
+        }
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
