@@ -16,13 +16,13 @@ public class BookFinder {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     Language l = new Language();
 
-    final static List<Book> BOOKS = BookRepository.getInstance().getBooks();
+   private static final  List<Book> BOOKS = BookRepository.getInstance().getBooks();
 
-    final int SEARCH_BY_AUTHOR = 1;
-    final int SEARCH_BY_TITLE = 2;
-    final int SEARCH_BY_AUTHOR_AND_TITLE = 3;
-    final int HAS_AUDIO = 1;
-    final int HAS_NOT_AUDIO = 2;
+   private static final int SEARCH_BY_AUTHOR = 1;
+   private static final int SEARCH_BY_TITLE = 2;
+   private static final int SEARCH_BY_AUTHOR_AND_TITLE = 3;
+   private static final int HAS_AUDIO = 1;
+   private static final int HAS_NOT_AUDIO = 2;
 
 
     public void runBookFinder(int param, int hasAudio) {
@@ -79,14 +79,12 @@ public class BookFinder {
 
     private List<String> findAuthorByName(String letters) {
 
-        List<String> authorsList = BOOKS.stream()
+        return BOOKS.stream()
                 .filter(b -> b.getAuthor() != null)
                 .filter(b -> b.getAuthor().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getAuthor)
                 .distinct()
                 .collect(Collectors.toList());
-
-        return authorsList;
     }
 
     private String verifyFindingAuthor(List<String> authorsList) {
@@ -97,11 +95,13 @@ public class BookFinder {
             printList(authorsList);
             stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
             authorsList.removeAll(authorsList);
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
+            authorsList.clear();
         } else {
-            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.DID_YOU_MEAN_YES), authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
-            if (!confirmationType.equalsIgnoreCase("t")) {
+            if (!confirmationType.equalsIgnoreCase((l.getMessageByKey(LangKeyConfig.Y)))) {
                 stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return authorsList.get(0);
@@ -113,14 +113,12 @@ public class BookFinder {
 
     private List<String> findTitleByName(String letters) {
 
-        List<String> titlesList = BOOKS.stream()
+        return BOOKS.stream()
                 .filter(b -> b.getTitle() != null)
                 .filter(b -> b.getTitle().toLowerCase().contains(letters.toLowerCase()))
                 .map(Book::getTitle)
                 .distinct()
                 .collect(Collectors.toList());
-
-        return titlesList;
     }
 
     private String verifyFindingTitle(List<String> titlesList) {
@@ -130,15 +128,15 @@ public class BookFinder {
         if (titlesList.isEmpty()) {
             stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.NO_MACHING_RES));            findTitleByName(getLetters());
         } else if (titlesList.size() > 1) {
-            stdout.info("\nZnaleziono {} pasujących autorów: \n", titlesList.size());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.MAHING_AUTOR_FOUND), titlesList.size());
             printList(titlesList);
-            stdout.info("\nUściślij swój wybór\n ");
-            findTitleByName(getLetters());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
+           titlesList.clear();
         } else {
-            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", titlesList.get(0));
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.DID_YOU_MEAN_YES), titlesList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
-            if (!confirmationType.equalsIgnoreCase("t")) {
+            if (!confirmationType.equalsIgnoreCase(l.getMessageByKey(LangKeyConfig.Y))) {
                 stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return titlesList.get(0);
@@ -163,7 +161,7 @@ public class BookFinder {
 
         if (hasAudio == HAS_AUDIO) {
             filteredBooks = filteredBooks.stream()
-                    .filter(b -> b.isHasAudio())
+                    .filter(Book::isHasAudio)
                     .collect(Collectors.toList());
         }
         if (hasAudio == HAS_NOT_AUDIO) {

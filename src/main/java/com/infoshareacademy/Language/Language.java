@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Language {
 
       Locale locale = new Locale("eng");
-      ResourceBundle messagesBundle = ResourceBundle.getBundle("messages_pl", locale);
+      ResourceBundle messagesBundle = ResourceBundle.getBundle("messages", locale);
 
     public String getMessageByKey(LangKeyConfig langKeyConfig) {
 

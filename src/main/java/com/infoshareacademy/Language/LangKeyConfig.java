@@ -71,7 +71,15 @@ public enum LangKeyConfig {
     ID_OF_BOOK_TO_DELETE("enter_the_id_of_the_book_you_want_to_delete"),
     SEARCH_BY_BOOK_AND_AUTHOR("search_for_books_by_author_and_title_by_first_entering_the_string_of_characters_with_contains"),
     KIND("kind"),
-    NOW_TITLE("now_title");
+    NOW_TITLE("now_title"),
+    SURE_TO_DEL("sure_to_deleted"),
+    DELETED("book_deleted"),
+    ADD_BOOK("add_book"),
+    SAVE_TO_FILE("save_file"),
+    DELETE_BOOK("delete_book"),
+    EDIT_BOOK("edit_book"),
+    DATABASE_SAVED("database_saved"),
+    COULDNT_SAVE("save_problem");
 
 
 

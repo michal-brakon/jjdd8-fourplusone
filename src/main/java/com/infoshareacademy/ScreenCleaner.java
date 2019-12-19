@@ -17,7 +17,7 @@ public class ScreenCleaner {
     private ScreenCleaner() {
     }
 
-    static void clearScreen() {
+   public static void clearScreen() {
         String s;
         Process p;
         try {
