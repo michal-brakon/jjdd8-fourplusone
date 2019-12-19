@@ -1,6 +1,8 @@
 package com.infoshareacademy.bookeditormenu;
 
 import com.infoshareacademy.Book;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import com.infoshareacademy.ScreenCleaner;
 import com.infoshareacademy.UserInput;
 import com.infoshareacademy.bookmanagement.BookAdder;
@@ -16,6 +18,7 @@ public class EditorMenu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private Scanner scanner = new Scanner(System.in);
     private ManageBooks manageBooks = new ManageBooks();
+    Language l = new Language();
 
     public void bookEditorMenu() {
 
@@ -23,7 +26,7 @@ public class EditorMenu {
         ScreenCleaner.clearScreen();
 
 
-        stdout.info("Podaj id książki : \n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.ENTER_ID_BOOK), "\n");
 
 
         String s = scanner.next();
@@ -32,63 +35,63 @@ public class EditorMenu {
         if (userInput.isANumber(s)) {
             id = Long.parseLong(s);
         } else {
-            stdout.info("źle wpisałeś spróbuj ponownie\n");
+            stdout.info(l.getMessageByKey(LangKeyConfig.YOU_ENTER_INCORRECT), "\n");
             bookEditorMenu();
         }
         Book book = manageBooks.findBookById(id);
         if (book == null) {
-            stdout.info("nie ma książki o takim id! \n ");
+            stdout.info(l.getMessageByKey(LangKeyConfig.NO_BOOK_THIS_ID), "\n");
             bookEditorMenu();
         } else {
-            stdout.info("Wybrana przez Ciebie książka to : \n {}\n ", book);
+            stdout.info(l.getMessageByKey(LangKeyConfig.CHOSEN_BOOK), "\n {}\n ", book);
         }
 
-        stdout.info("\n   Co chcesz edytować?: ");
-        stdout.info("\n1.   autora");
-        stdout.info("\n2.   tytuł");
-        stdout.info("\n3.   rodzaj");
-        stdout.info("\n4.   gatunek literacki");
-        stdout.info("\n5.   wersje audio");
-        stdout.info("\n6.   epoka");
-        stdout.info("\n0.   wyjscie\n");
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.WHAT_TO_EDIT));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.AUT));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.TIT));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.KIN));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.GEN));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.AUD));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.EPO));
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.AUT));
         int choice = scanner.nextInt();
         switch (choice) {
 
             case 1:
-                stdout.info(" Podaj autora \n");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROVIDED_AUTHOR),"\n");
                 String author = scanner.next();
                 manageBooks.modifyAuthor(author, id);
-                stdout.info("Autor został zmieniony ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.AUTHOR_CHANGED));
                 break;
             case 2:
-                stdout.info(" Podaj tytuł ");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROV_TITLE),"\n");
                 String title = scanner.next();
                 manageBooks.modifyTitle(title, id);
-                stdout.info("Tytuł został zmieniony ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.TITLE_CHANGED));
                 break;
             case 3:
-                stdout.info(" Podaj rodzaj ");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROV_KIND),"\n");
                 String kind = scanner.next();
                 manageBooks.modifyKind(kind, id);
-                stdout.info("Rodzaj został zmieniony ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.KIND_CHANGED));
                 break;
             case 4:
-                stdout.info(" Podaj Gatunek literacki");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROV_GENRE),"\n");
                 String genre = scanner.next();
                 manageBooks.modifyGenre(genre, id);
-                stdout.info("Gatunek literacki został zmieniony ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.GENRE_CHANGED));
                 break;
             case 5:
-                stdout.info(" Podaj, wersja audio T/N ");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROV_AUDIO),"\n");
                 boolean check = new BookAdder().checkChoice();
                 manageBooks.modifyHasAudio(check, id);
-                stdout.info("czy ma Audio zostało zmienione ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.AUDIO_CHANGED));
                 break;
             case 6:
-                stdout.info(" Podaj epoke ");
+                stdout.info( l.getMessageByKey(LangKeyConfig.PROV_EPOCH),"\n");
                 String epoch = scanner.next();
                 manageBooks.modifyEpoch(epoch, id);
-                stdout.info("Epoka została zmieniona ");
+                stdout.info(l.getMessageByKey(LangKeyConfig.EPOCH_CHANGED));
                 break;
 
             case 0:

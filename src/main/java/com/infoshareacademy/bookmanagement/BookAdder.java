@@ -45,9 +45,9 @@ public class BookAdder {
     public boolean checkChoice() {
         String checkChoice;
         checkChoice = scanner.next().toLowerCase();
-        if (checkChoice.equals("t")) {
+        if (checkChoice.equals(l.getMessageByKey(LangKeyConfig.Y))) {
             return true;
-        } else if (checkChoice.equals("n")) {
+        } else if (checkChoice.equals(l.getMessageByKey(LangKeyConfig.N))) {
             return false;
         } else {
             stdout.info(l.getMessageByKey(LangKeyConfig.YOU_ENTER_INCORRECT));
