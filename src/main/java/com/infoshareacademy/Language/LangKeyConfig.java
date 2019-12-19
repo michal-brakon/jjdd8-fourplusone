@@ -2,7 +2,6 @@ package com.infoshareacademy.Language;
 
 public enum LangKeyConfig {
 
-
     DATABASE_LOADED("the_book_database_has_been_loaded"),
     AVAILABLE_BOOKS("available_books"),
     MAIN_MENU_POSITION("main_menu"),
@@ -10,7 +9,6 @@ public enum LangKeyConfig {
     DISPLAY_ONE_ITEM("display_one_item"),
     SEARCH_BY_AUTHOR("search_by_author"),
     SEARCH_BY_TITLE("search_by_title"),
-    CONSOLE_OUT("CONSOLE_OUT"),
     WELCOME("welcome_to_the_main_page_of_the_for_plus_one"),
     YOU_CAN_CHOOSE("you_can_choose"),
     SEARCH_BY_AUTHOR_AND_TITLE("search_by_author_and_title_of_the_book"),
@@ -38,24 +36,6 @@ public enum LangKeyConfig {
     SCREEN_CLEANING_FAILED("screen_cleaning_failed"),
     WRONG_INPUT_TRY_AGAIN("you_have_typed_incorrectly_try_again"),
     PLEASE_CHOOSE_ONE_OF("please_choose_one_of");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private String value;
 
