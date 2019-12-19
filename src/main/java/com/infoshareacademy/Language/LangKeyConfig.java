@@ -79,7 +79,20 @@ public enum LangKeyConfig {
     DELETE_BOOK("delete_book"),
     EDIT_BOOK("edit_book"),
     DATABASE_SAVED("database_saved"),
-    COULDNT_SAVE("save_problem");
+    COULDNT_SAVE("save_problem"),
+    EPOCH_CHANGED("epoch_has_changed"),
+    GENRE_CHANGED("genre_has_changed"),
+   KIND_CHANGED ("kind_has_changed"),
+    TITLE_CHANGED("title_has_changed"),
+    AUTHOR_CHANGED("autor_has_changed"),
+    AUDIO_CHANGED("audio_has_changed"),
+    AUT("aut"),
+    TIT("tit"),
+    KIN("kin"),
+    GEN("gen"),
+    AUD("aud"),
+    EPO("epo"),
+    EXI("exi");
 
 
 
