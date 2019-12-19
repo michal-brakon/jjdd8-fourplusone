@@ -94,7 +94,7 @@ public class BookFinder {
             stdout.info("\nZnaleziono {} pasujących autorów: \n", authorsList.size());
             printList(authorsList);
             stdout.info("\nUściślij swój wybór\n ");
-            authorsList.removeAll(authorsList);
+            authorsList.clear();
         } else {
             stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
@@ -132,7 +132,7 @@ public class BookFinder {
             stdout.info("\nZnaleziono {} pasujących autorów: \n", titlesList.size());
             printList(titlesList);
             stdout.info("\nUściślij swój wybór\n ");
-            findTitleByName(getLetters());
+            titlesList.clear();
         } else {
             stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", titlesList.get(0));
             Scanner scanner = new Scanner(System.in);
