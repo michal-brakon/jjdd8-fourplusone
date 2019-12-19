@@ -14,6 +14,8 @@ public class FavouritesManager {
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String FAVOURITES = "favourites.txt";
+    private static final List<Book> BOOKS = BookRepository.getInstance().getBooks();
+
 
     public List<String> getFavouritesFromFile() throws IOException {
 
@@ -24,31 +26,66 @@ public class FavouritesManager {
 
         return favouriteTitles;
     }
-    public void addToFavourites (String title) throws IOException {
+
+    public void addToFavourites(String title) throws IOException {
 
         if (getFavouritesFromFile().size() < 3 && !getFavouritesFromFile().contains(title)) {
             FileWriter file = new FileWriter(FAVOURITES, true);
             BufferedWriter out = new BufferedWriter(file);
             out.write("\n" + title);
             out.close();
-        }
-        else if (getFavouritesFromFile().size() < 3) {
+            updateBookList();
+        } else if (getFavouritesFromFile().size() > 2) {
             stdout.info("\nLista ulubionych jest pelna \n");
-        }
-        else  if (getFavouritesFromFile().contains(title)) {
-            stdout.info("\nPozycja jest juz w ulubionych \n");
+        } else if (getFavouritesFromFile().contains(title)) {
+            stdout.info("\nPozycja " + title + " jest juz w ulubionych \n");
         }
     }
-    
-    public void removeFromFavourites (String title) throws IOException {
+
+    public void removeFromFavourites(String title) throws IOException {
 
         File file = new File(FAVOURITES);
         List<String> out = Files.lines(file.toPath())
                 .filter(line -> !line.contains(title))
+                .filter(line -> !line.isEmpty())
                 .collect(Collectors.toList());
 
         Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 
-        stdout.info("\nUsunieto: {}", title);
+        updateBookList();
+
+        stdout.info("\nUsunieto: {} \n", title);
     }
+
+    public void printFavBooks() throws IOException {
+
+        List<String> favouritesTitles = getFavouritesFromFile();
+        BOOKS.stream()
+                .filter(b -> favouritesTitles.contains(b.getTitle()))
+                .forEach(b -> stdout.info("\n" + b));
+    }
+
+    private void updateBookList() throws IOException {
+        List<String> favouritesTitles = getFavouritesFromFile();
+        BOOKS.stream()
+                .forEach(b -> {
+                    if (favouritesTitles.contains(b.getTitle())) {
+                        b.favourite = "tak";
+                    } else {
+                        b.favourite = "nie";
+                    }
+                });
+
+
+
+        BOOKS.stream()
+                .filter(b -> favouritesTitles.contains(b.getTitle()))
+                .forEach(b -> b.favourite = "tak");
+
+        BOOKS.stream()
+                .filter(b -> !favouritesTitles.contains(b.getTitle()))
+                .forEach(b -> b.favourite = "nie");
+
+    }
+
 }
