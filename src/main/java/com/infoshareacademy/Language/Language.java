@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 
 public class Language {
 
-    Locale locale = new Locale("eng");
+   static Locale locale = new Locale("eng");
 
 
-    ResourceBundle messagesBundle = ResourceBundle.getBundle("messages_pl", locale);
+    static ResourceBundle messagesBundle = ResourceBundle.getBundle("messages_pl", locale);
 
     public String getMessageByKey(LangKeyConfig langKeyConfig) {
 

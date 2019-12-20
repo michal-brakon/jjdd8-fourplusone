@@ -57,7 +57,7 @@ public class BookFinder {
                 authorsList = findAuthorByName(getLetters());
                 author = verifyFindingAuthor(authorsList);
             }
-            stdout.info("\n",l.getMessageByKey(LangKeyConfig.NOW_TITLE));
+            stdout.info("\n{}",l.getMessageByKey(LangKeyConfig.NOW_TITLE));
             List<String> titleslist;
             while (title.isEmpty()) {
                 titleslist = findTitleByName(getLetters());

@@ -46,10 +46,15 @@ public class Menu {
 
     public void setLanguage(boolean language) {
         if (language) {
-            l.setMessagesBundle(ResourceBundle.getBundle("messages_pl", locale));
-            Menu.language = language;
-        } else l.setMessagesBundle(ResourceBundle.getBundle("messages", locale));
 
+            l.setMessagesBundle(ResourceBundle.getBundle("messages", locale));
+
+            language = false;
+
+        } else {
+            l.setMessagesBundle(ResourceBundle.getBundle("messages_pl", locale));
+            language = true;
+        }
     }
 
     public void populateMenu() {
@@ -145,7 +150,7 @@ public class Menu {
     }
 
     private int choseAudioOrNoAudio() {
-        stdout.info("\n czy pozycja \n 1 <- ma mieć audiobooka \n 2 <- czy nie ma mieć audiobooka");
+        stdout.info("\n czy pozycja: \n 1 <- ma mieć audiobooka \n 2 <- czy nie ma mieć audiobooka");
         return getNumber.getChoice(2);
     }
 
@@ -186,7 +191,7 @@ public class Menu {
 
 
     private void printReturnMenuOption() {
-        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+        stdout.info("\n {}\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
         stdout.info(l.getMessageByKey(LangKeyConfig.SELECT_THE_OPTION_NUMBER_FROM_MENU));
     }
 

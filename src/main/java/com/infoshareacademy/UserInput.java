@@ -28,6 +28,7 @@ public class UserInput {
             choice = Integer.parseInt(userLineIn);
 
         } else if (checkIfStringAChangeLanguageButton(userLineIn)) {
+
             return CHANGE_LANGUAGE_OPTION;
         } else {
             isNotANumber(choices);
@@ -44,7 +45,7 @@ public class UserInput {
     }
 
     public boolean checkIfStringAChangeLanguageButton(String userLineIn) {
-        return (Pattern.matches("l", userLineIn));
+        return (Pattern.matches("l", userLineIn))||(Pattern.matches("L", userLineIn));
 
     }
 
