@@ -2,6 +2,8 @@ package com.infoshareacademy.bookmanagement;
 
 import com.infoshareacademy.Book;
 import com.infoshareacademy.BookRepository;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import com.infoshareacademy.UserInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,37 +17,36 @@ public class DeleteBook {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
     private ManageBooks manageBooks = new ManageBooks();
+    Language l = new Language();
 
     public void deleteBook() {
-        stdout.info("podaj id książki którą chcesz usunąć, lub q żeby przerwać\n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.ID_OF_BOOK_TO_DELETE) ,"\n");
         String s = scanner.next();
         Long id = 0L;
-        if (s.equalsIgnoreCase("q")) {
-            return;
-        }
+        if(s.equalsIgnoreCase("q")){return;}
         UserInput userInput = new UserInput();
         if (userInput.checkIsStringANumber(s)) {
             id = Long.parseLong(s);
         } else {
-            stdout.info("źle wpisałeś spróbuj ponownie\n");
+            stdout.info(l.getMessageByKey(LangKeyConfig.INCORRECT_SELECTION_TRY_AGAIN) ,"\n");
             deleteBook();
         }
         Book book = manageBooks.findBookById(id);
 
 
         if (book == null) {
-            stdout.info("nie ma książki o takim id! \n ");
+            stdout.info(l.getMessageByKey(LangKeyConfig.NO_BOOK_THIS_ID) ,"\n");
             deleteBook();
         }
-        stdout.info("Książka którą chcesz usunać to:\n{}", book);
-        stdout.info("Czy na pewno chcesz usunąć T/N?\n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.CHOSEN_BOOK), "\n{}", book);
+        stdout.info(l.getMessageByKey(LangKeyConfig.SURE_TO_DEL) ,"\n");
         String t = scanner.next().toLowerCase();
 
-        if (t.equals("t")) {
+        if (t.equals(l.getMessageByKey(LangKeyConfig.Y))) {
             BookRepository.getInstance().getBooks().remove(book);
-            stdout.info("pozycja została usunięta \n");
-        } else if (t.equals("n")) {
-            deleteBook();
+            stdout.info(l.getMessageByKey(LangKeyConfig.DELETED) ,"\n");
+        } else if (t.equals(l.getMessageByKey(LangKeyConfig.Y))) {
+          deleteBook();
         }
 
 

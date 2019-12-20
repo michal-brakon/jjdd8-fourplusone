@@ -2,7 +2,6 @@ package com.infoshareacademy;
 
 import com.infoshareacademy.Language.LangKeyConfig;
 import com.infoshareacademy.Language.Language;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,11 +96,13 @@ public class BookFinder {
             printList(authorsList);
             stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
             authorsList.removeAll(authorsList);
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
+            authorsList.clear();
         } else {
-            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", authorsList.get(0));
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.DID_YOU_MEAN_YES), authorsList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
-            if (!confirmationType.equalsIgnoreCase("t")) {
+            if (!confirmationType.equalsIgnoreCase((l.getMessageByKey(LangKeyConfig.Y)))) {
                 stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return authorsList.get(0);
@@ -128,15 +129,15 @@ public class BookFinder {
         if (titlesList.isEmpty()) {
             stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.NO_MACHING_RES));            findTitleByName(getLetters());
         } else if (titlesList.size() > 1) {
-            stdout.info("\nZnaleziono {} pasujących autorów: \n", titlesList.size());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.MAHING_AUTOR_FOUND), titlesList.size());
             printList(titlesList);
-            stdout.info("\nUściślij swój wybór\n ");
-            findTitleByName(getLetters());
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.REFINE_YOUR_SELECTION));
+           titlesList.clear();
         } else {
-            stdout.info("\nCzy chodziło ci o {}  ?  (t - tak) \n", titlesList.get(0));
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.DID_YOU_MEAN_YES), titlesList.get(0));
             Scanner scanner = new Scanner(System.in);
             String confirmationType = scanner.next();
-            if (!confirmationType.equalsIgnoreCase("t")) {
+            if (!confirmationType.equalsIgnoreCase(l.getMessageByKey(LangKeyConfig.Y))) {
                 stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.TRY_AGAIN));
             } else {
                 return titlesList.get(0);

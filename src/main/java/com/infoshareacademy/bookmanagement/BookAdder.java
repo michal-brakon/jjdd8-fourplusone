@@ -2,6 +2,8 @@ package com.infoshareacademy.bookmanagement;
 
 import com.infoshareacademy.Book;
 import com.infoshareacademy.BookRepository;
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,42 +14,43 @@ public class BookAdder {
     private Scanner scanner = new Scanner(System.in);
     private Book book = new Book();
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    Language l = new Language();
 
     public void addBook() {
         ManageBooks idChecker = new ManageBooks();
         book.setId(idChecker.getSequenceId());
-        stdout.info("Podaj autora\n");
-        String author = scanner.next();
-        book.setAuthor(author);
-        stdout.info("Podaj tytuł \n");
-        String title = scanner.next();
-        book.setTitle(title);
-        stdout.info("Podaj rodzaj\n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROV_KIND) ,"\n");
         String kind = scanner.next();
         book.setKind(kind);
-        stdout.info("Podaj epoke\n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROVIDED_AUTHOR) ,"\n");
+        String author = scanner.next();
+        book.setAuthor(author);
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROV_EPOCH) ,"\n");
         String epoch = scanner.next();
         book.setEpoch(epoch);
-        stdout.info("Podaj gatunek literacki \n");
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROV_TITLE) ,"\n");
+        String title = scanner.next();
+        book.setTitle(title);
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROV_GENRE) ,"\n");
         String genre = scanner.next();
         book.setGenre(genre);
-        stdout.info("Czy ma audio t/n :");
+        stdout.info(l.getMessageByKey(LangKeyConfig.PROV_AUDIO) ,"\n");
         boolean audio = checkChoice();
         book.setHasAudio(audio);
         BookRepository.getInstance().getBooks().add(book);
-        stdout.info("Książka została dodana do bazy \n");
+
 
     }
 
     public boolean checkChoice() {
         String checkChoice;
         checkChoice = scanner.next().toLowerCase();
-        if (checkChoice.equals("t")) {
+        if (checkChoice.equals(l.getMessageByKey(LangKeyConfig.Y))) {
             return true;
-        } else if (checkChoice.equals("n")) {
+        } else if (checkChoice.equals(l.getMessageByKey(LangKeyConfig.N))) {
             return false;
         } else {
-            stdout.info("Źle wprowadziłeś");
+            stdout.info(l.getMessageByKey(LangKeyConfig.YOU_ENTER_INCORRECT));
             checkChoice();
         }
         return false;

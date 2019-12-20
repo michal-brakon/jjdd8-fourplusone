@@ -15,7 +15,6 @@ private static Menu menu = new Menu() ;
         MissingFileMenu missingFileMenu = new MissingFileMenu();
         Optional.ofNullable(BookRepository.getInstance().getBooks())
                 .ifPresentOrElse(books -> {
-                    stdout.info("Baza danych z książkami została załadowana\n");
                     menu.populateMenu();
                     menu.showMenu(Menu.MAIN_MENU_POSITION);
                 }, missingFileMenu::showMenu);

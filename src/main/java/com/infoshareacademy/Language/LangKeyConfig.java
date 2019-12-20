@@ -72,7 +72,28 @@ public enum LangKeyConfig {
     SEARCH_BY_BOOK_AND_AUTHOR("search_for_books_by_author_and_title_by_first_entering_the_string_of_characters_with_contains"),
     KIND("kind"),
     NOW_TITLE("now_title"),
-    PRESS_L_TO_CHANGE_LANGUAGE("To change language to English enter 'l' or 'L'");
+    SURE_TO_DEL("sure_to_deleted"),
+    DELETED("book_deleted"),
+    ADD_BOOK("add_book"),
+    SAVE_TO_FILE("save_file"),
+    DELETE_BOOK("delete_book"),
+    EDIT_BOOK("edit_book"),
+    DATABASE_SAVED("database_saved"),
+    COULDNT_SAVE("save_problem"),
+    EPOCH_CHANGED("epoch_has_changed"),
+    GENRE_CHANGED("genre_has_changed"),
+   KIND_CHANGED ("kind_has_changed"),
+    TITLE_CHANGED("title_has_changed"),
+    AUTHOR_CHANGED("autor_has_changed"),
+    AUDIO_CHANGED("audio_has_changed"),
+    AUT("aut"),
+    TIT("tit"),
+    KIN("kin"),
+    GEN("gen"),
+    AUD("aud"),
+    EPO("epo"),
+    EXI("exi"),
+    PRESS_L_TO_CHANGE_LANGUAGE("to_change_language_to_english_enter_l_or_L");
 
 
 

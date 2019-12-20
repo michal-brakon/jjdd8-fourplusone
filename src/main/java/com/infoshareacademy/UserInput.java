@@ -72,9 +72,7 @@ public class UserInput {
     }
 
     private void incorrectNumberRetry(int choices) {
-
-        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.PLEASE_CHOOSE_ONE_OF));
-
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.PLEASE_CHOOSE_ONE_OF), choices);
         getChoice(choices);
     }
 }

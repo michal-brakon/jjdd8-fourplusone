@@ -39,7 +39,7 @@ public class BookParser {
         try {
             objectMapper.writeValue(new File(PATHNAME), BookRepository.getInstance().getBooks());
         } catch (IOException e) {
-            stdout.info("Problem z zapisem do pliku!");
+            stdout.info(l.getMessageByKey(LangKeyConfig.COULDNT_SAVE));
         }
     }
 }

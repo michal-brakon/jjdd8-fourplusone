@@ -1,6 +1,5 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.Language.LangKeyConfig;
 import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +27,13 @@ public class BookPrinter {
         int recordsLimit = 0;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
+        stdout.info("\n{}\n", l.getMessageByKey(HOW_MANY_RECORDS_PER_PAGE), bookRepository.getBooks().size());
         recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
             if (record < books.size() + 1) {
-                stdout.info("{}. {} ", record, book);
+                stdout.info("{} ", book);
             }
             counter++;
             record++;
@@ -55,7 +54,7 @@ public class BookPrinter {
     public void printChosenBook() {
 
         chooseBookToPrint();
-        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
+        stdout.info("{}",bookRepository.getBooks().get(bookChoice));
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
