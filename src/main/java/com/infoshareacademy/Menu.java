@@ -1,10 +1,10 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.Language.LangKeyConfig;
+import com.infoshareacademy.Language.Language;
 import com.infoshareacademy.bookeditormenu.EditorMenu;
 import com.infoshareacademy.bookmanagement.BookAdder;
 import com.infoshareacademy.bookmanagement.DeleteBook;
-import com.infoshareacademy.Language.LangKeyConfig;
-import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ public class Menu {
     protected static final int EDIT_BOOK = 13;
 
 
-   private static boolean language = true;
+    private static boolean language = true;
     private final BookRepository repository = BookRepository.getInstance();
     UserInput getNumber = new UserInput();
     Language l = new Language();
@@ -82,8 +82,14 @@ public class Menu {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
+
             if (position <= 10) {
                 Header.headerPrinter();
+            }
+            if (language) {
+                stdout.info("To change language to English enter 'l' or 'L'");
+            } else {
+                stdout.info("\nAby zmienić język na Polski przyciśnij 'l' lub 'L'\n");
             }
             // adding functionality on positions here from this point
 
@@ -161,7 +167,7 @@ public class Menu {
         printReturnMenuOption();
 
 
-        int userChoice = getNumber.getChoice(temporaryMenu.size());
+        int userChoice = getNumber.getMenuChoice(temporaryMenu.size());
         if (userChoice == CHANGE_LANGUAGE_OPTION) {
             setLanguage(language);
             return position;

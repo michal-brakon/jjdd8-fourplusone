@@ -27,6 +27,23 @@ public class UserInput {
 
             choice = Integer.parseInt(userLineIn);
 
+        } else {
+            isNotANumber(choices);
+        }
+        if (choice > choices || choice < 0) {
+            incorrectNumberRetry(choices);
+        }
+
+        return choice;
+    }
+    public int getMenuChoice(int choices) {
+
+        String userLineIn = scan.nextLine();
+        if (checkIsStringANumber(userLineIn)) {
+
+
+            choice = Integer.parseInt(userLineIn);
+
         } else if (checkIfStringAChangeLanguageButton(userLineIn)) {
 
             return CHANGE_LANGUAGE_OPTION;
