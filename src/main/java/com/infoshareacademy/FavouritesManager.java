@@ -72,4 +72,15 @@ public class FavouritesManager {
 
     }
 
+    public static void main(String[] args) throws IOException {
+        FavouritesManager favouritesManager = new FavouritesManager();
+
+        favouritesManager.addToFavourites("Iliada");
+        favouritesManager.addToFavourites("Alegoria");
+        favouritesManager.removeFromFavourites("Iliada");
+        favouritesManager.addToFavourites("Alegoria");
+        favouritesManager.addToFavourites("Odyseja");
+        favouritesManager.printFavBooks();
+    }
+
 }
