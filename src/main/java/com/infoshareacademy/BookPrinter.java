@@ -56,14 +56,14 @@ public class BookPrinter {
         stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
 
         if (bookRepository.getBooks().get(bookChoice).favourite == "nie") {
-            stdout.info("Czy dodac ksiazke do ulubionych? (t - tak) ");
+            stdout.info("\nCzy dodac ksiazke do ulubionych? (t - tak) ");
             Scanner scanner = new Scanner(System.in);
             String confirmationChoice = scanner.next();
             if (confirmationChoice.equalsIgnoreCase("t")) {
                 new FavouritesManager().addToFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
             }
         }  else  {
-            stdout.info("Czy usunac ksiazke z ulubionych? (t - tak) ");
+            stdout.info("\nCzy usunac ksiazke z ulubionych? (t - tak) ");
             Scanner scanner = new Scanner(System.in);
             String confirmationChoice = scanner.next();
             if (confirmationChoice.equalsIgnoreCase("t")) {
