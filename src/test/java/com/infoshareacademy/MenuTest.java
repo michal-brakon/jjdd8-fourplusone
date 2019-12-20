@@ -1,3 +1,4 @@
+/*
 package com.infoshareacademy;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -46,4 +47,4 @@ class MenuTest {
     }
 
 
-}
+}*/

@@ -32,13 +32,12 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_KIND = 24;
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
     protected static final int CHANGE_LANGUAGE_OPTION = 99;
-    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     protected static final int SAVE_TO_FILE = 11;
     protected static final int DELETE_BOOK = 9;
     protected static final int EDIT_BOOK = 13;
+    private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-
-    private static boolean language = true;
+    public static boolean language = true;
     private final BookRepository repository = BookRepository.getInstance();
     UserInput getNumber = new UserInput();
     Language l = new Language();
@@ -85,13 +84,9 @@ public class Menu {
 
             if (position <= 10) {
                 Header.headerPrinter();
+                stdout.info("\n{}\n",l.getMessageByKey(LangKeyConfig.PRESS_L_TO_CHANGE_LANGUAGE));
             }
-            if (language) {
-                stdout.info("To change language to English enter 'l' or 'L'");
-            } else {
-                stdout.info("\nAby zmienić język na Polski przyciśnij 'l' lub 'L'\n");
-            }
-            // adding functionality on positions here from this point
+                   // adding functionality on positions here from this point
 
             if (position == SORT_ALL_BOOKS_BY_TITLE) {
                 BookSorter bookSorter = new BookSorter();
@@ -230,9 +225,9 @@ public class Menu {
     int getParentFromList(int position) {
         int parent = EXIT_POSITION;
 
-        for (int i = 0; i < newMenuList.size(); i++) {
-            if (position == newMenuList.get(i).getPosition()) {
-                parent = newMenuList.get(i).getParent();
+        for (MenuOption menuOption : newMenuList) {
+            if (position == menuOption.getPosition()) {
+                parent = menuOption.getParent();
                 return parent;
             }
         }

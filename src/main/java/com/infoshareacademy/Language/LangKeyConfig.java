@@ -71,7 +71,8 @@ public enum LangKeyConfig {
     ID_OF_BOOK_TO_DELETE("enter_the_id_of_the_book_you_want_to_delete"),
     SEARCH_BY_BOOK_AND_AUTHOR("search_for_books_by_author_and_title_by_first_entering_the_string_of_characters_with_contains"),
     KIND("kind"),
-    NOW_TITLE("now_title");
+    NOW_TITLE("now_title"),
+    PRESS_L_TO_CHANGE_LANGUAGE("To change language to English enter 'l' or 'L'");
 
 
 
