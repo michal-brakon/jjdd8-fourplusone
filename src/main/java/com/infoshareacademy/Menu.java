@@ -6,6 +6,8 @@ import com.infoshareacademy.bookmanagement.DeleteBook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 import static com.infoshareacademy.App.newMenuList;
 
 public class Menu {
@@ -18,6 +20,7 @@ public class Menu {
     protected static final int EXIT_POSITION = 0;
     protected static final int SHOW_ALL_BOOKS_POSITION = 3;
     protected static final int SHOW_ONE_BOOK_POSITION = 4;
+    protected static final int SHOW_FAVOURITES = 5;
     protected static final int MAX_MENU_OPTIONS_NUMBER_FOR_ONE_NODE = 7;
     protected static final int STARTING_MENU_OPTION_NUMBER = 1;
     protected static final int GO_BACK_OPTION_NUMBER = 0;
@@ -32,6 +35,7 @@ public class Menu {
         newMenuList.add(new MenuOption("Dostępne książki", BOOK_MENU_POSITION, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption("Pokaż Wszystkie pozycje", SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyświetl jedną pozycję", SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
+        newMenuList.add(new MenuOption("Wyświetl ulubione", SHOW_FAVOURITES, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po autorze", SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Wyszukaj po tytule", SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption("Dodaj książke", ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
@@ -47,7 +51,7 @@ public class Menu {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     UserInput getNumber = new UserInput();
 
-    public void showMenu(int position) {
+    public void showMenu(int position) throws IOException {
 
         while (position != EXIT_POSITION) {
             ScreenCleaner.clearScreen();
@@ -76,6 +80,12 @@ public class Menu {
             } else if (position == EDIT_BOOK) {
                 new EditorMenu().bookEditorMenu();
                 position = getParentFromList(position);
+            } else if (position == SHOW_ONE_BOOK_POSITION) {
+                new BookPrinter().printChosenBook();
+                break;
+            } else if (position == SHOW_FAVOURITES) {
+                new FavouritesManager().printFavBooks();
+                break;
             }
 
             showBreadCrumbsPosition(position);

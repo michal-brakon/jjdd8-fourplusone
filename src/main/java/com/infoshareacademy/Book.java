@@ -79,6 +79,8 @@ public class Book {
 
     private String hasAudioString = hasAudio ? "tak" : "nie";
 
+    public String favourite = "nie";
+
     @Override
     public String toString() {
         return "id : " + id +
@@ -87,8 +89,7 @@ public class Book {
                 "Autor : " + author + '\n' +
                 "Epoka : " + epoch + '\n' +
                 "Czy ma Audio : " + hasAudioString + '\n' +
-                "Gatunek literacki : " + genre + '\n';
-
-
+                "Gatunek literacki : " + genre + '\n'+
+                "Czy ulubiona : " + favourite + '\n' + '\n';
     }
 }

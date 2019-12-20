@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -30,7 +31,11 @@ public class MissingFileMenu {
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
                         stdout.info("\nBaza danych z książkami została załadowana\n");
                         menu.populateMenu();
-                        menu.showMenu(Menu.MAIN_MENU_POSITION);
+                        try {
+                            menu.showMenu(Menu.MAIN_MENU_POSITION);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }, this::showMenu);
                     break;
 

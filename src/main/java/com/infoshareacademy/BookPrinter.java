@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,11 +18,11 @@ public class BookPrinter {
     private BookRepository bookRepository = BookRepository.getInstance();
 
 
-    public void printBooks(List<Book> books) {
+    public void printBooks(List<Book> books) throws IOException {
 
         int record = 1;
         int counter = 0;
-        int recordsLimit ;
+        int recordsLimit;
 
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
@@ -49,10 +50,25 @@ public class BookPrinter {
         menu.showMenu(Menu.BOOK_MENU_POSITION);
     }
 
-    public void printChosenBook() {
+    public void printChosenBook() throws IOException {
 
         chooseBookToPrint();
-        stdout.info("{}",bookRepository.getBooks().get(bookChoice));
+        stdout.info("{}", bookRepository.getBooks().get(bookChoice));
+        if (bookRepository.getBooks().get(bookChoice).favourite == "nie") {
+            stdout.info("\nCzy dodac ksiazke do ulubionych? (t - tak) ");
+            Scanner scanner = new Scanner(System.in);
+            String confirmationChoice = scanner.next();
+            if (confirmationChoice.equalsIgnoreCase("t")) {
+                new FavouritesManager().addToFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
+            }
+        } else {
+            stdout.info("\nCzy usunac ksiazke z ulubionych? (t - tak) ");
+            Scanner scanner = new Scanner(System.in);
+            String confirmationChoice = scanner.next();
+            if (confirmationChoice.equalsIgnoreCase("t")) {
+                new FavouritesManager().removeFromFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
+            }
+        }
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
