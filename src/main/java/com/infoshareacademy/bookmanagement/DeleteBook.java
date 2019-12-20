@@ -24,7 +24,7 @@ public class DeleteBook {
             return;
         }
         UserInput userInput = new UserInput();
-        if (userInput.isANumber(s)) {
+        if (userInput.checkIsStringANumber(s)) {
             id = Long.parseLong(s);
         } else {
             stdout.info("źle wpisałeś spróbuj ponownie\n");
