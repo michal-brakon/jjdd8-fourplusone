@@ -7,12 +7,10 @@ import java.util.Scanner;
 
 public class Language {
 
-
-
       Locale locale = new Locale("eng");
-       ResourceBundle messagesBundle = ResourceBundle.getBundle("messages", locale);
+      ResourceBundle messagesBundle = ResourceBundle.getBundle("messages", locale);
 
-    public  String getMessageByKey(LangKeyConfig langKeyConfig) {
+    public String getMessageByKey(LangKeyConfig langKeyConfig) {
 
         Arrays.asList(LangKeyConfig.values()).forEach(key -> {
             LanguageMessagesHolder.getMessages().put(key.getValue(), messagesBundle.getString(key.getValue()));

@@ -1,5 +1,7 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.bookmanagement.ManageBooks;
+
 import java.util.List;
 
 public class BookRepository {
@@ -13,8 +15,11 @@ public class BookRepository {
     }
 
     public List<Book> getBooks() {
+        ManageBooks manageBooks = new ManageBooks();
         if (books == null) {
             books = bookParser.loadBooks();
+            manageBooks.assignIdsToBookRepository();
+
         }
         return books;
     }

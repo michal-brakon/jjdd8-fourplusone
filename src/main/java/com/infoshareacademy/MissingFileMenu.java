@@ -14,13 +14,14 @@ public class MissingFileMenu {
 
 
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    Language l = new Language();
 
     public void showMenu() {
 
         Scanner scanner = new Scanner(System.in);
-        stdout.info("\n", Language.getMessageByKey(LangKeyConfig.SELECT));
-        stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.LOAD_JSON_FROM_FILE_AGAIN));
-        stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.EXIT_FROM_APPLICATION));
+        stdout.info("\n", l.getMessageByKey(LangKeyConfig.SELECT));
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.LOAD_JSON_FROM_FILE_AGAIN));
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.EXIT_FROM_APPLICATION));
         Menu menu = new Menu();
         String choice = scanner.next();
 
@@ -30,14 +31,14 @@ public class MissingFileMenu {
                 case "1":
                     List<Book> parser = BookRepository.getInstance().getBooks();
                     Optional.ofNullable(parser).ifPresentOrElse(a -> {
-                        stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.DATABASE_LOADED));
+                        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.DATABASE_LOADED));
                         menu.populateMenu();
                         menu.showMenu(Menu.MAIN_MENU_POSITION);
                     }, this::showMenu);
                     break;
 
                 case "2":
-                    stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
+                    stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
                     break;
 
                 default:
@@ -45,7 +46,7 @@ public class MissingFileMenu {
             }
         } else {
 
-            stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.INCORRECT_SELECTION));
+            stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.INCORRECT_SELECTION));
 
         }
     }

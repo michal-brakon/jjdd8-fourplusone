@@ -11,7 +11,11 @@ import java.util.Scanner;
 import static com.infoshareacademy.Language.LangKeyConfig.*;
 
 public class BookPrinter {
+
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+
+    Language l = new Language();
+
     private static final Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu();
     UserInput userInput = new UserInput();
@@ -25,22 +29,22 @@ public class BookPrinter {
 
         int record = 1;
         int counter = 0;
-        int recordsLimit = 0;
+        int recordsLimit ;
 
         ScreenCleaner.clearScreen();
-        stdout.info("\n{} (1 - {})\n",(Language.getMessageByKey(HOW_MANY_RECORDS_PER_PAGE)), bookRepository.getBooks().size());
+        stdout.info("\n{}\n", l.getMessageByKey(HOW_MANY_RECORDS_PER_PAGE), bookRepository.getBooks().size());
         recordsLimit = userInput.getChoice(bookRepository.getBooks().size());
 
         for (Book book : books) {
 
             if (record < books.size() + 1) {
-                stdout.info("{}. {} ", record, book);
+                stdout.info("{} ", book);
             }
             counter++;
             record++;
 
             if (counter >= recordsLimit) {
-                stdout.info("\n{}\n", Language.getMessageByKey(RETURN_TO_PREVIOUS_MENU));
+                stdout.info("\n{}\n", l.getMessageByKey(RETURN_TO_PREVIOUS_MENU));
                 String choice = scanner.next();
                 if (choice.equals("q")) {
 
@@ -56,14 +60,14 @@ public class BookPrinter {
     public void printChosenBook() {
 
         chooseBookToPrint();
-        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
+        stdout.info("{}",bookRepository.getBooks().get(bookChoice));
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
     }
 
     private void pressEnterKeyToContinue() {
-        stdout.info(Language.getMessageByKey(PRESS_ENTER_TO_CONTINUE));
+        stdout.info(l.getMessageByKey(PRESS_ENTER_TO_CONTINUE));
         scanner.nextLine();
     }
 
@@ -77,11 +81,11 @@ public class BookPrinter {
     }
 
     public int chooseBookToPrint() {
-        stdout.info("\n{}\n", Language.getMessageByKey(ENTER_BOOK_NUMBER));
+        stdout.info("\n{}\n", l.getMessageByKey(ENTER_BOOK_NUMBER));
         String choice = scanner.next();
 
         if (!isCorrectChooseBook(choice)) {
-            stdout.info("\n{}\n", Language.getMessageByKey(INCORRECT_SELECTION_TRY_AGAIN)) ;
+            stdout.info("\n{}\n", l.getMessageByKey(INCORRECT_SELECTION_TRY_AGAIN)) ;
             bookChoice = 0;
             chooseBookToPrint();
         } else {

@@ -13,7 +13,7 @@ import static com.infoshareacademy.Menu.EXIT_POSITION;
 public class UserInput {
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
 
-
+    Language l = new Language();
     private int choice = EXIT_POSITION;
     private Scanner scan = new Scanner(System.in);
 
@@ -41,12 +41,12 @@ public class UserInput {
     }
 
     private void isNotANumber(int choices) {
-        stdout.info("\n{}\n", Language.getMessageByKey(LangKeyConfig.WRONG_INPUT_TRY_AGAIN));
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.WRONG_INPUT_TRY_AGAIN));
         getChoice(choices);
     }
 
     private void incorrectNumberRetry(int choices) {
-        stdout.info("\nProszę wybrać jeden z {} \n", choices);
+        stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.PLEASE_CHOOSE_ONE_OF), choices);
         getChoice(choices);
     }
 }

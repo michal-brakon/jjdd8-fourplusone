@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.infoshareacademy.Menu.SEARCH_BY_AUTHOR_OR_TITLE;
+import static com.infoshareacademy.Menu.ADD_BOOK_POSITION;
 import static com.infoshareacademy.Menu.SHOW_ONE_BOOK_POSITION;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +22,7 @@ class MenuTest {
     @Test
     private void get_proper_parent() {
 
-        int position = SEARCH_BY_AUTHOR_OR_TITLE;
+        int position = ADD_BOOK_POSITION;
 
         // assert
         assertEquals(2,menu.getParentFromList(position));
