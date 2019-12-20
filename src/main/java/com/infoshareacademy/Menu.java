@@ -1,5 +1,8 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.bookeditormenu.EditorMenu;
+import com.infoshareacademy.bookmanagement.BookAdder;
+import com.infoshareacademy.bookmanagement.DeleteBook;
 import com.infoshareacademy.Language.LangKeyConfig;
 import com.infoshareacademy.Language.Language;
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import java.util.stream.Collectors;
 import static com.infoshareacademy.App.newMenuList;
 
 public class Menu {
+    protected static final int ADD_BOOK_POSITION = 10;
     protected static final int SEARCH_BY_AUTHOR_POSITION = 6;
     protected static final int SEARCH_BY_TITLE_POSITION = 7;
     protected static final int SEARCH_BY_AUTHOR_OR_TITLE = 8;
@@ -29,6 +33,9 @@ public class Menu {
     protected static final int SORT_ALL_BOOKS_BY_EPOCH = 25;
     protected static final int CHANGE_LANGUAGE_OPTION = 99;
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
+    protected static final int SAVE_TO_FILE = 11;
+    protected static final int DELETE_BOOK = 9;
+    protected static final int EDIT_BOOK = 13;
 
 
    private static boolean language = true;
@@ -47,9 +54,11 @@ public class Menu {
 
     public void populateMenu() {
 
+        newMenuList.add(new MenuOption("Dodaj książke", ADD_BOOK_POSITION, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("zapis do pliku", SAVE_TO_FILE, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("USUN REKORD ", DELETE_BOOK, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption("EDYTUJ KSIĄŻKE ", EDIT_BOOK, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MAIN_MENU_POSITION), MAIN_MENU_POSITION, EXIT_POSITION));
-        newMenuList.add(new MenuOption("Ulubione", 9, MAIN_MENU_POSITION));
-        newMenuList.add(new MenuOption("Zarządzanie książkami", 10, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.AVAILABLE_BOOKS), BOOK_MENU_POSITION, MAIN_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SHOW_ALL_ITEMS), SHOW_ALL_BOOKS_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
@@ -107,6 +116,25 @@ public class Menu {
             } else if (position == SEARCH_BY_AUTHOR_OR_TITLE) {
                 new BookFinder().runBookFinder(3, choseAudioOrNoAudio());
 
+                position = getParentFromList(position);
+            } else if (position == SHOW_ALL_BOOKS_POSITION) {
+                new BookPrinter().printBooks(repository.getBooks());
+                break;
+            } else if (position == DELETE_BOOK) {
+                new DeleteBook().deleteBook();
+                position = getParentFromList(position);
+                new BookParser().saveObjectsToFile();
+            } else if (position == SAVE_TO_FILE) {
+                new BookParser().saveObjectsToFile();
+                stdout.info("Baza Została zapisana");
+                position = getParentFromList(position);
+
+            } else if (position == ADD_BOOK_POSITION) {
+                new BookAdder().addBook();
+                new BookParser().saveObjectsToFile();
+                position = getParentFromList(position);
+            } else if (position == EDIT_BOOK) {
+                new EditorMenu().bookEditorMenu();
                 position = getParentFromList(position);
             }
 

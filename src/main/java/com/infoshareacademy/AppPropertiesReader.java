@@ -15,9 +15,9 @@ public class AppPropertiesReader {
     private Properties properties = new Properties();
     Language l = new Language();
 
-    private final String PATH_NAME = "config.properties";
+    private static final String PATHNAME = "config.properties";
 
-    private File file = new File(PATH_NAME);
+    private File file = new File(PATHNAME);
 
     public String getProp(String config) {
         try {

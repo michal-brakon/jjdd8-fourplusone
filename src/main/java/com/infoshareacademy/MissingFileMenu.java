@@ -38,9 +38,7 @@ public class MissingFileMenu {
                     break;
 
                 case "2":
-
                     stdout.info("\n{}\n", l.getMessageByKey(LangKeyConfig.RETURN_TO_PREVIOUS_MENU));
-
                     break;
 
                 default:

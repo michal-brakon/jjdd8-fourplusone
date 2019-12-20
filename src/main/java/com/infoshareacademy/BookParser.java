@@ -15,8 +15,6 @@ import java.util.List;
 public class BookParser {
 
     Language l = new Language();
-
-
     private static final Logger stdout = LoggerFactory.getLogger("CONSOLE_OUT");
     private static final String PATHNAME = "baza.json";
 
@@ -36,5 +34,12 @@ public class BookParser {
             stdout.info(l.getMessageByKey(LangKeyConfig.DATABASE_NOT_READ_FROM_FILE));
         }
         return bookList;
+    }
+    public void saveObjectsToFile() {
+        try {
+            objectMapper.writeValue(new File(PATHNAME), BookRepository.getInstance().getBooks());
+        } catch (IOException e) {
+            stdout.info("Problem z zapisem do pliku!");
+        }
     }
 }
