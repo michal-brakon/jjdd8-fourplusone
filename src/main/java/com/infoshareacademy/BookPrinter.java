@@ -21,7 +21,7 @@ public class BookPrinter {
 
         int record = 1;
         int counter = 0;
-        int recordsLimit = 0;
+        int recordsLimit ;
 
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
@@ -30,7 +30,7 @@ public class BookPrinter {
         for (Book book : books) {
 
             if (record < books.size() + 1) {
-                stdout.info("{}. {} ", record, book);
+                stdout.info("{} ", book);
             }
             counter++;
             record++;
@@ -52,7 +52,7 @@ public class BookPrinter {
     public void printChosenBook() {
 
         chooseBookToPrint();
-        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
+        stdout.info("{}",bookRepository.getBooks().get(bookChoice));
         pressEnterKeyToContinue();
         menu.showMenu(Menu.BOOK_MENU_POSITION);
 
