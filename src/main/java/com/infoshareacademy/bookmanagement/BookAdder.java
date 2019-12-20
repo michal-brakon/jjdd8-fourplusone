@@ -38,7 +38,7 @@ public class BookAdder {
         boolean audio = checkChoice();
         book.setHasAudio(audio);
         BookRepository.getInstance().getBooks().add(book);
-
+        stdout.info(l.getMessageByKey(LangKeyConfig.BOOK_ADDED) ,"\n");
 
     }
 

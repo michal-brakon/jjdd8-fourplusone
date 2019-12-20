@@ -92,7 +92,8 @@ public enum LangKeyConfig {
     GEN("gen"),
     AUD("aud"),
     EPO("epo"),
-    EXI("exi");
+    EXI("exi"),
+    BOOK_ADDED("book_added");
 
 
 

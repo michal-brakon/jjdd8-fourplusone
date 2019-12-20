@@ -23,7 +23,9 @@ public class DeleteBook {
         stdout.info(l.getMessageByKey(LangKeyConfig.ID_OF_BOOK_TO_DELETE) ,"\n");
         String s = scanner.next();
         Long id = 0L;
-        if(s.equalsIgnoreCase("q")){return;}
+        if (s.equalsIgnoreCase("q")) {
+            return;
+        }
         UserInput userInput = new UserInput();
         if (userInput.isANumber(s)) {
             id = Long.parseLong(s);
@@ -45,7 +47,7 @@ public class DeleteBook {
         if (t.equals(l.getMessageByKey(LangKeyConfig.Y))) {
             BookRepository.getInstance().getBooks().remove(book);
             stdout.info(l.getMessageByKey(LangKeyConfig.DELETED) ,"\n");
-        } else if (t.equals(l.getMessageByKey(LangKeyConfig.Y))) {
+        } else if (t.equals(l.getMessageByKey(LangKeyConfig.N))) {
           deleteBook();
         }
 
