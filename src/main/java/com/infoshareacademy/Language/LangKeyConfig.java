@@ -93,8 +93,12 @@ public enum LangKeyConfig {
     AUD("aud"),
     EPO("epo"),
     EXI("exi"),
-    PRESS_L_TO_CHANGE_LANGUAGE("to_change_language_to_english_enter_l_or_L");
-
+    PRESS_L_TO_CHANGE_LANGUAGE("to_change_language_to_english_enter_l_or_L"),
+    MENU_ONE_BOOK_BY_AUTHOR("Wyszukaj_po_autorze_tytule"),
+    MENU_SORT_BOOK_BY_TITLE("Wyświetl_wszystkie_pozycje_po_tytule"),
+    MENU_SORT_BOOK_BY_GENRE("Wyświetl_wszystkie_pozycje_po_gatunku"),
+    MENU_SORT_BOOK_BY_EPOCH("Wyświetl_wszystkie pozycje_po_epoce"),
+    MENU_SORT_BOOK_BY_AUTHOR("Wyświetl_wszystkie_pozycje_po_autorze");
 
 
 

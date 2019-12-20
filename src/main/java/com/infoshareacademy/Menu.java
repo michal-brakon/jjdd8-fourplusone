@@ -68,12 +68,12 @@ public class Menu {
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.DISPLAY_ONE_ITEM), SHOW_ONE_BOOK_POSITION, BOOK_MENU_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_AUTHOR), SEARCH_BY_AUTHOR_POSITION, SHOW_ONE_BOOK_POSITION));
         newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.SEARCH_BY_TITLE), SEARCH_BY_TITLE_POSITION, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Wyszukaj po autorze  tytule", SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po autorze", SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po tytule", SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po gatunku ", SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po epoce", SORT_ALL_BOOKS_BY_EPOCH, SHOW_ALL_BOOKS_POSITION));
-        newMenuList.add(new MenuOption("Wyświetl wszystkie pozycje po rodzaju", SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_ONE_BOOK_BY_AUTHOR), SEARCH_BY_AUTHOR_OR_TITLE, SHOW_ONE_BOOK_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_ONE_BOOK_BY_AUTHOR), SORT_ALL_BOOKS_BY_AUTHOR, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_SORT_BOOK_BY_TITLE), SORT_ALL_BOOKS_BY_TITLE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_SORT_BOOK_BY_GENRE), SORT_ALL_BOOKS_BY_GENRE, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_SORT_BOOK_BY_EPOCH), SORT_ALL_BOOKS_BY_EPOCH, SHOW_ALL_BOOKS_POSITION));
+        newMenuList.add(new MenuOption(l.getMessageByKey(LangKeyConfig.MENU_SORT_BOOK_BY_AUTHOR), SORT_ALL_BOOKS_BY_KIND, SHOW_ALL_BOOKS_POSITION));
 
     }
 
