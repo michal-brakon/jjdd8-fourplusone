@@ -20,11 +20,9 @@ public class FavouritesManager {
     public List<String> getFavouritesFromFile() throws IOException {
 
         File file = new File(FAVOURITES);
-        List<String> favouriteTitles = Files.lines(file.toPath())
+        return Files.lines(file.toPath())
                 .filter(line -> !line.isEmpty())
                 .collect(Collectors.toList());
-
-        return favouriteTitles;
     }
 
     public void addToFavourites(String title) throws IOException {
@@ -38,7 +36,7 @@ public class FavouritesManager {
         } else if (getFavouritesFromFile().size() > 2) {
             stdout.info("\nLista ulubionych jest pelna \n");
         } else if (getFavouritesFromFile().contains(title)) {
-            stdout.info("\nPozycja " + title + " jest juz w ulubionych \n");
+            stdout.info("\n Pozycja {} jest juz w ulubionych \n",title);
         }
     }
 
@@ -62,25 +60,12 @@ public class FavouritesManager {
         List<String> favouritesTitles = getFavouritesFromFile();
         BOOKS.stream()
                 .filter(b -> favouritesTitles.contains(b.getTitle()))
-                .forEach(b -> stdout.info("\n" + b));
+                .forEach(b -> stdout.info("\n{}", b));
     }
 
     private void updateBookList() throws IOException {
         List<String> favouritesTitles = getFavouritesFromFile();
-        BOOKS.stream()
-                .forEach(b -> b.favourite = favouritesTitles.contains(b.getTitle()) ? "tak" : "nie");
+        BOOKS.forEach(b -> b.favourite = favouritesTitles.contains(b.getTitle()) ? "tak" : "nie");
 
     }
-
-    public static void main(String[] args) throws IOException {
-        FavouritesManager favouritesManager = new FavouritesManager();
-
-        favouritesManager.addToFavourites("Iliada");
-        favouritesManager.addToFavourites("Alegoria");
-        favouritesManager.removeFromFavourites("Iliada");
-        favouritesManager.addToFavourites("Alegoria");
-        favouritesManager.addToFavourites("Odyseja");
-        favouritesManager.printFavBooks();
-    }
-
 }

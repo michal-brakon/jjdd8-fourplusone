@@ -25,11 +25,19 @@ public class BookParser {
         List<Book> bookList = List.of();
 
         try {
-            bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
-                    .readValue(new File(PATHNAME), new TypeReference<>() {});
+            bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .readValue(new File(PATHNAME), new TypeReference<>() {
+                    });
         } catch (IOException e) {
             stdout.info("\nNie wczytano bazy z pliku!");
         }
         return bookList;
+    }
+    public void saveObjectsToFile() {
+        try {
+            objectMapper.writeValue(new File(PATHNAME), BookRepository.getInstance().getBooks());
+        } catch (IOException e) {
+            stdout.info("Problem z zapisem do pliku!");
+        }
     }
 }

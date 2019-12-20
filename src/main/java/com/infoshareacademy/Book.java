@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Book {
 
 
-
     private String kind;
 
     private String author;
@@ -19,7 +18,18 @@ public class Book {
 
     private String genre;
 
-    public  String getKind() {
+    private Long id;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getKind() {
         return kind;
     }
 
@@ -73,12 +83,13 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Tytuł : " + title + '\n' +
+        return "id : " + id +
+                "  Tytuł : " + title + '\n' +
                 "Rodzaj literacki : " + kind + '\n' +
                 "Autor : " + author + '\n' +
                 "Epoka : " + epoch + '\n' +
                 "Czy ma Audio : " + hasAudioString + '\n' +
-                "Klasa : " + genre + '\n' +
+                "Gatunek literacki : " + genre + '\n'+
                 "Czy ulubiona : " + favourite + '\n' + '\n';
     }
 }

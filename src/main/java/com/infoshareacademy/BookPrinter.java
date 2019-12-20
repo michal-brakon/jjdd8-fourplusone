@@ -22,7 +22,7 @@ public class BookPrinter {
 
         int record = 1;
         int counter = 0;
-        int recordsLimit = 0;
+        int recordsLimit;
 
         ScreenCleaner.clearScreen();
         stdout.info("\nIle rekordów na stronie? (1-{} )\n", bookRepository.getBooks().size());
@@ -31,7 +31,7 @@ public class BookPrinter {
         for (Book book : books) {
 
             if (record < books.size() + 1) {
-                stdout.info("{}. {} ", record, book);
+                stdout.info("{} ", book);
             }
             counter++;
             record++;
@@ -53,8 +53,7 @@ public class BookPrinter {
     public void printChosenBook() throws IOException {
 
         chooseBookToPrint();
-        stdout.info("{} . {}", bookChoice + 1, bookRepository.getBooks().get(bookChoice));
-
+        stdout.info("{}", bookRepository.getBooks().get(bookChoice));
         if (bookRepository.getBooks().get(bookChoice).favourite == "nie") {
             stdout.info("\nCzy dodac ksiazke do ulubionych? (t - tak) ");
             Scanner scanner = new Scanner(System.in);
@@ -62,7 +61,7 @@ public class BookPrinter {
             if (confirmationChoice.equalsIgnoreCase("t")) {
                 new FavouritesManager().addToFavourites(bookRepository.getBooks().get(bookChoice).getTitle());
             }
-        }  else  {
+        } else {
             stdout.info("\nCzy usunac ksiazke z ulubionych? (t - tak) ");
             Scanner scanner = new Scanner(System.in);
             String confirmationChoice = scanner.next();
