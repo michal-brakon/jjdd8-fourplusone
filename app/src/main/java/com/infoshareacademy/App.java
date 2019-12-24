@@ -21,8 +21,9 @@ private static Menu menu = new Menu() ;
                     try {
                         menu.showMenu(Menu.MAIN_MENU_POSITION);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        stdout.info("\nBłąd odczytu");
                     }
+
                 }, missingFileMenu::showMenu);
     }
 }
