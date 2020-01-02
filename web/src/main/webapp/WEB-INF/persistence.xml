@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.infoshareacademy.entity.AuthorEntity</class>
+        <class>com.infoshareacademy.entity.BookEntity</class>
+        <class>com.infoshareacademy.entity.BorrowEntity</class>
+        <class>com.infoshareacademy.entity.EpochEntity</class>
+        <class>com.infoshareacademy.entity.GenreEntity</class>
+        <class>com.infoshareacademy.entity.LiteratureKindEntity</class>
+        <class>com.infoshareacademy.entity.RoleEntity</class>
+        <class>com.infoshareacademy.entity.UserEntity</class>
+        <properties>
+            <property name="javax.persistence.lock.timeout" value="100"/>
+            <property name="javax.persistence.query.timeout" value="100"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
