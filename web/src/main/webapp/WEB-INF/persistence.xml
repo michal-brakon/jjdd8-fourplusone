@@ -1,33 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
-
-    <persistence-unit name="NewPersistenceUnit">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>Library_DB</jta-data-source>
-        <class>com.infoshareacademy.entity.AuthorEntity</class>
-        <class>com.infoshareacademy.entity.BookEntity</class>
-        <class>com.infoshareacademy.entity.BorrowEntity</class>
-        <class>com.infoshareacademy.entity.EpochEntity</class>
-        <class>com.infoshareacademy.entity.GenreEntity</class>
-        <class>com.infoshareacademy.entity.LiteratureKindEntity</class>
-        <class>com.infoshareacademy.entity.RoleEntity</class>
-        <class>com.infoshareacademy.entity.UserEntity</class>
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="vcepersistence" transaction-type="JTA">
+        <jta-data-source>java:ds/web.xml</jta-data-source>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-            <property name="javax.persistence.lock.timeout" value="100"/>
-            <property name="javax.persistence.query.timeout" value="100"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value=""/>
-            <property name="hibernate.connection.password" value=""/>
-            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.dialect.storage_engine" value="innodb"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
+            <property name="hibernate.cache.use_query_cache" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>
