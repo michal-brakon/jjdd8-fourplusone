@@ -69,15 +69,7 @@ public class UserEntity {
         this.roleId = roleId;
     }
 
-    @Id
-    @Column(name = "permission_id")
-    public int getPermissionId() {
-        return permissionId;
-    }
 
-    public void setPermissionId(int permissionId) {
-        this.permissionId = permissionId;
-    }
 
     @Override
     public boolean equals(Object o) {
