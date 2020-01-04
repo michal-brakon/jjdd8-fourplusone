@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "Library_DB")
+@Table(name = "user")
 @IdClass(UserPK.class)
 public class User {
 
@@ -17,7 +17,7 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", length = 100)
     private String name;
     private String email;
     private Date birthdate;
@@ -42,7 +42,7 @@ public class User {
         this.name = name;
     }
 
-    @Basic
+
     @Column(name = "email", nullable = true, length = 100)
     public String getEmail() {
         return email;
@@ -52,7 +52,7 @@ public class User {
         this.email = email;
     }
 
-    @Basic
+
     @Column(name = "birthdate", nullable = true)
     public Date getBirthdate() {
         return birthdate;
@@ -63,7 +63,7 @@ public class User {
     }
 
     @Id
-    @Column(name = "role_id", nullable = false )
+    @Column(name = "role_id")
     public Long getRoleId() {
         return roleId;
     }
@@ -92,9 +92,9 @@ public class User {
     }
 
 
-//
+
     @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false ,insertable = false, updatable = false)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
     public Role getRoleByRoleId() {
         return roleByRoleId;
     }

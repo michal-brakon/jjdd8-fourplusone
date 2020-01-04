@@ -5,12 +5,12 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "borrow", schema = "Library_DB")
+@Table(name = "borrow")
 @IdClass(BorrowPK.class)
 public class Borrow {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -35,7 +35,7 @@ public class Borrow {
     }
 
     @Id
-    @Column(name = "book_id", nullable = false)
+    @Column(name = "book_id")
     public int getBookId() {
         return bookId;
     }
@@ -53,7 +53,7 @@ public class Borrow {
         this.userId = userId;
     }
 
-    @Basic
+
     @Column(name = "borrow_date", nullable = true)
     public Date getBorrowDate() {
         return borrowDate;
@@ -67,7 +67,7 @@ public class Borrow {
         this.borrowDate = borrowDate;
     }
 
-    @Basic
+
     @Column(name = "return_date", nullable = true)
     public Date getReturnDate() {
         return returnDate;

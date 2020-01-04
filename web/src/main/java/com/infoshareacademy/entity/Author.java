@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "author", schema = "Library_DB")
+@Table(name = "author")
 public class Author {
     private int id;
     private String name;

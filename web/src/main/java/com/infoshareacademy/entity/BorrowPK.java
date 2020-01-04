@@ -13,7 +13,7 @@ public class BorrowPK implements Serializable {
     private int userId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @Id
     public int getId() {
         return id;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role", schema = "Library_DB")
+@Table(name = "role")
 public class Role {
     private int id;
     private String name;
@@ -12,7 +12,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -21,7 +21,7 @@ public class Role {
         this.id = id;
     }
 
-    @Basic
+
     @Column(name = "name", nullable = true, length = 45)
     public String getName() {
         return name;
@@ -31,7 +31,7 @@ public class Role {
         this.name = name;
     }
 
-    @Basic
+
     @Column(name = "description", nullable = true, length = 255)
     public String getDescription() {
         return description;

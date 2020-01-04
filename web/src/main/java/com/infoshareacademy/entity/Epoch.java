@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "epoch", schema = "Library_DB")
+@Table(name = "epoch")
 public class Epoch {
     private int id;
     private String name;
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }

@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "literature_kind", schema = "Library_DB")
+@Table(name = "literature_kind")
 public class LiteratureKind {
     private int id;
     private String name;
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -20,7 +20,7 @@ public class LiteratureKind {
         this.id = id;
     }
 
-    @Basic
+
     @Column(name = "name", nullable = true, length = 15)
     public String getName() {
         return name;
