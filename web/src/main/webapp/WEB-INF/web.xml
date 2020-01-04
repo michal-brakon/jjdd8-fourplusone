@@ -13,7 +13,7 @@
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <url>jdbc:mysql://localhost:3306/Library_DB?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
         <user>root</user>
-        <password>password</password>
+        <password>Kontakt11!</password>
     </data-source>
 </web-app>
 

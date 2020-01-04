@@ -10,7 +10,6 @@ import java.util.Objects;
 @IdClass(UserPK.class)
 public class User {
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
