@@ -11,7 +11,7 @@ public class Epoch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public Long getId() {
         return id;
     }

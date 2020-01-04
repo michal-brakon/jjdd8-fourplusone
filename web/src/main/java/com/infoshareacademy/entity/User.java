@@ -92,7 +92,6 @@ public class User {
     }
 
 
-
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
     public Role getRoleByRoleId() {

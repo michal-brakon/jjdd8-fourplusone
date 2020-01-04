@@ -11,9 +11,9 @@ public class UserPK implements Serializable {
     private Long id;
     private Long roleId;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -22,8 +22,9 @@ public class UserPK implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "role_id", nullable = false)
+
     @Id
+    @Column(name = "role_id")
     public Long getRoleId() {
         return roleId;
     }

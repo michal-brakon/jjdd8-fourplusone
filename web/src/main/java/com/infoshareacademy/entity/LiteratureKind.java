@@ -11,7 +11,7 @@ public class LiteratureKind {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -20,7 +20,7 @@ public class LiteratureKind {
         this.id = id;
     }
 
-    @Basic
+
     @Column(name = "name", nullable = true, length = 15)
     public String getName() {
         return name;
