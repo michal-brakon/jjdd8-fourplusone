@@ -5,8 +5,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "book", schema = "Library_DB")
-@IdClass(BookEntityPK.class)
-public class BookEntity {
+@IdClass(BookPK.class)
+public class Book {
     private int id;
     private String title;
     private String cover;
@@ -17,7 +17,7 @@ public class BookEntity {
     private int genreId;
     private int literatureKindId;
     private int authorId;
-    private AuthorEntity authorByAuthorId;
+    private Author authorByAuthorId;
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -124,7 +124,7 @@ public class BookEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookEntity that = (BookEntity) o;
+        Book that = (Book) o;
         return id == that.id &&
                 epochId == that.epochId &&
                 genreId == that.genreId &&
@@ -143,12 +143,12 @@ public class BookEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
-    public AuthorEntity getAuthorByAuthorId() {
+    @JoinColumn(name = "author_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    public Author getAuthorByAuthorId() {
         return authorByAuthorId;
     }
 
-    public void setAuthorByAuthorId(AuthorEntity authorByAuthorId) {
+    public void setAuthorByAuthorId(Author authorByAuthorId) {
         this.authorByAuthorId = authorByAuthorId;
     }
 }

@@ -2,27 +2,35 @@ package com.infoshareacademy.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "borrow", schema = "Library_DB")
-@IdClass(BorrowEntityPK.class)
-public class BorrowEntity {
-    private int id;
-    private int bookId;
-    private int userId;
-    private Date borrowDate;
-    private Date returnDate;
+@IdClass(BorrowPK.class)
+public class Borrow {
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private int bookId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
+
+
+    private Date borrowDate;
+
+    private Date returnDate;
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,13 +44,12 @@ public class BorrowEntity {
         this.bookId = bookId;
     }
 
-    @Id
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
+
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
@@ -66,10 +73,10 @@ public class BorrowEntity {
         return returnDate;
     }
 
-   /* public void setReturnDate(Timestamp returnDate) {
-        this.returnDate = returnDate;
-    }
-*/
+    /* public void setReturnDate(Timestamp returnDate) {
+         this.returnDate = returnDate;
+     }
+ */
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
@@ -78,7 +85,7 @@ public class BorrowEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BorrowEntity that = (BorrowEntity) o;
+        Borrow that = (Borrow) o;
         return id == that.id &&
                 bookId == that.bookId &&
                 userId == that.userId &&

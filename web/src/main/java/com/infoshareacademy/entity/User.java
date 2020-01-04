@@ -1,36 +1,39 @@
 package com.infoshareacademy.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "Library_DB", catalog = "")
-@IdClass(UserEntityPK.class)
-public class UserEntity {
-    private int id;
-    private String name;
-    private String email;
-    private Date birthdate;
-    private int roleId;
-    private int permissionId;
-    private BorrowEntity borrowById;
-    private RoleEntity roleByRoleId;
+@Table(name = "user", schema = "Library_DB")
+@IdClass(UserPK.class)
+public class User {
 
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Column(name = "name", nullable = false, length = 100)
+    private String name;
+    private String email;
+    private Date birthdate;
+    private Long roleId;
+    private Role roleByRoleId;
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name", nullable = false, length = 100)
+
     public String getName() {
         return name;
     }
@@ -60,25 +63,24 @@ public class UserEntity {
     }
 
     @Id
-    @Column(name = "role_id", nullable = false)
-    public int getRoleId() {
+    @Column(name = "role_id", nullable = false )
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
-
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
+        User that = (User) o;
         return id == that.id &&
                 roleId == that.roleId &&
-                permissionId == that.permissionId &&
+
                 Objects.equals(name, that.name) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(birthdate, that.birthdate);
@@ -86,26 +88,18 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, birthdate, roleId, permissionId);
+        return Objects.hash(id, name, email, birthdate, roleId);
     }
 
+
+//
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "user_id", nullable = false)
-    public BorrowEntity getBorrowById() {
-        return borrowById;
-    }
-
-    public void setBorrowById(BorrowEntity borrowById) {
-        this.borrowById = borrowById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
-    public RoleEntity getRoleByRoleId() {
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false ,insertable = false, updatable = false)
+    public Role getRoleByRoleId() {
         return roleByRoleId;
     }
 
-    public void setRoleByRoleId(RoleEntity roleByRoleId) {
+    public void setRoleByRoleId(Role roleByRoleId) {
         this.roleByRoleId = roleByRoleId;
     }
 

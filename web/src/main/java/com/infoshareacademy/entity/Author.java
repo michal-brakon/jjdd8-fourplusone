@@ -3,9 +3,12 @@ package com.infoshareacademy.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+
+
+
 @Entity
 @Table(name = "author", schema = "Library_DB")
-public class AuthorEntity {
+public class Author {
     private int id;
     private String name;
     private String surname;
@@ -45,7 +48,7 @@ public class AuthorEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AuthorEntity that = (AuthorEntity) o;
+        Author that = (Author) o;
         return id == that.id &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(surname, that.surname);

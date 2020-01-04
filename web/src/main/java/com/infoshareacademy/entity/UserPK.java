@@ -7,10 +7,9 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class UserEntityPK implements Serializable {
+public class UserPK implements Serializable {
     private int id;
     private int roleId;
-    private int permissionId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -33,28 +32,20 @@ public class UserEntityPK implements Serializable {
         this.roleId = roleId;
     }
 
-    @Column(name = "permission_id")
-    @Id
-    public int getPermissionId() {
-        return permissionId;
-    }
 
-    public void setPermissionId(int permissionId) {
-        this.permissionId = permissionId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserEntityPK that = (UserEntityPK) o;
+        UserPK that = (UserPK) o;
         return id == that.id &&
-                roleId == that.roleId &&
-                permissionId == that.permissionId;
+                roleId == that.roleId ;
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleId, permissionId);
+        return Objects.hash(id, roleId);
     }
 }

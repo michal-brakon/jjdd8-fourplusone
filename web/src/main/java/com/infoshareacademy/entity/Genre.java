@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "literature_kind", schema = "Library_DB")
-public class LiteratureKindEntity {
+@Table(name = "genre", schema = "Library_DB")
+public class Genre {
     private int id;
     private String name;
 
@@ -34,7 +34,7 @@ public class LiteratureKindEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LiteratureKindEntity that = (LiteratureKindEntity) o;
+        Genre that = (Genre) o;
         return id == that.id &&
                 Objects.equals(name, that.name);
     }

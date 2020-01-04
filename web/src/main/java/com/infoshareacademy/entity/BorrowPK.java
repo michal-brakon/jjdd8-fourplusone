@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BorrowEntityPK implements Serializable {
+public class BorrowPK implements Serializable {
     private int id;
     private int bookId;
     private int userId;
@@ -47,7 +47,7 @@ public class BorrowEntityPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BorrowEntityPK that = (BorrowEntityPK) o;
+        BorrowPK that = (BorrowPK) o;
         return id == that.id &&
                 bookId == that.bookId &&
                 userId == that.userId;

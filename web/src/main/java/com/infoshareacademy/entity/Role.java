@@ -4,10 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "epoch", schema = "Library_DB", catalog = "")
-public class EpochEntity {
+@Table(name = "role", schema = "Library_DB")
+public class Role {
     private int id;
     private String name;
+    private String description;
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class EpochEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 15)
+    @Column(name = "name", nullable = true, length = 45)
     public String getName() {
         return name;
     }
@@ -30,17 +31,28 @@ public class EpochEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "description", nullable = true, length = 255)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpochEntity that = (EpochEntity) o;
+        Role that = (Role) o;
         return id == that.id &&
-                Objects.equals(name, that.name);
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, description);
     }
 }

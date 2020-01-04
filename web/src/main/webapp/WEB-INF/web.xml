@@ -7,12 +7,13 @@
         version="3.1"
         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>isa-four-plus-one</display-name>
     <data-source>
-        <name>java:ds/Library_DB</name>
+        <name>java:ds/libraryDS</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-        <url>jdbc:mysql://mysql:3306/Library_DB/?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        <url>jdbc:mysql://localhost:3306/Library_DB?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
         <user>root</user>
-        <password>Uytghjmnb31527</password>
+        <password>password</password>
     </data-source>
 </web-app>
 
