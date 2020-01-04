@@ -8,38 +8,38 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class BorrowPK implements Serializable {
-    private int id;
-    private int bookId;
-    private int userId;
+    private Long id;
+    private Long bookId;
+    private Long userId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "book_id", nullable = false)
+    @Column(name = "book_id")
     @Id
-    public int getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 
-    @Column(name = "user_id", nullable = false)
     @Id
-    public int getUserId() {
+    @Column(name = "user_id")
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

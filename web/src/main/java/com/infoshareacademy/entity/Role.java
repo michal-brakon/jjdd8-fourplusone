@@ -4,20 +4,20 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role", schema = "Library_DB")
+@Table(name = "role", schema = "Library")
 public class Role {
-    private int id;
+    private Long id;
     private String name;
     private String description;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

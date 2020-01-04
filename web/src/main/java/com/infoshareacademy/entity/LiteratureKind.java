@@ -4,19 +4,19 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "literature_kind", schema = "Library_DB")
+@Table(name = "literature_kind", schema = "Library")
 public class LiteratureKind {
-    private int id;
+    private Long id;
     private String name;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

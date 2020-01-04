@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "borrow", schema = "Library_DB")
+@Table(name = "borrow", schema = "Library")
 @IdClass(BorrowPK.class)
 public class Borrow {
 
@@ -14,7 +14,7 @@ public class Borrow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int bookId;
+    private Long bookId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -36,11 +36,11 @@ public class Borrow {
 
     @Id
     @Column(name = "book_id", nullable = false)
-    public int getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 

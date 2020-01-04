@@ -4,33 +4,32 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "book", schema = "Library_DB")
+@Table(name = "book", schema = "Library")
 @IdClass(BookPK.class)
 public class Book {
-    private int id;
+    private Long id;
     private String title;
     private String cover;
     private Byte hasAudio;
     private String simpleThumb;
     private String coverThumb;
-    private int epochId;
-    private int genreId;
-    private int literatureKindId;
-    private int authorId;
+    private Long epochId;
+    private Long genreId;
+    private Long literatureKindId;
+    private Long authorId;
     private Author authorByAuthorId;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "title", nullable = false, length = 45)
     public String getTitle() {
         return title;
@@ -40,7 +39,6 @@ public class Book {
         this.title = title;
     }
 
-    @Basic
     @Column(name = "cover", nullable = true, length = 255)
     public String getCover() {
         return cover;
@@ -50,7 +48,6 @@ public class Book {
         this.cover = cover;
     }
 
-    @Basic
     @Column(name = "has_audio", nullable = true)
     public Byte getHasAudio() {
         return hasAudio;
@@ -60,7 +57,6 @@ public class Book {
         this.hasAudio = hasAudio;
     }
 
-    @Basic
     @Column(name = "simple_thumb", nullable = true, length = 255)
     public String getSimpleThumb() {
         return simpleThumb;
@@ -70,7 +66,7 @@ public class Book {
         this.simpleThumb = simpleThumb;
     }
 
-    @Basic
+
     @Column(name = "cover_thumb", nullable = true, length = 255)
     public String getCoverThumb() {
         return coverThumb;
@@ -81,42 +77,42 @@ public class Book {
     }
 
     @Id
-    @Column(name = "epoch_id", nullable = false)
-    public int getEpochId() {
+    @Column(name = "epoch_id")
+    public Long getEpochId() {
         return epochId;
     }
 
-    public void setEpochId(int epochId) {
+    public void setEpochId(Long epochId) {
         this.epochId = epochId;
     }
 
     @Id
-    @Column(name = "genre_id", nullable = false)
-    public int getGenreId() {
+    @Column(name = "genre_id")
+    public Long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(int genreId) {
+    public void setGenreId(Long genreId) {
         this.genreId = genreId;
     }
 
     @Id
-    @Column(name = "literature_kind_id", nullable = false)
-    public int getLiteratureKindId() {
+    @Column(name = "literature_kind_id")
+    public Long getLiteratureKindId() {
         return literatureKindId;
     }
 
-    public void setLiteratureKindId(int literatureKindId) {
+    public void setLiteratureKindId(Long literatureKindId) {
         this.literatureKindId = literatureKindId;
     }
 
     @Id
-    @Column(name = "author_id", nullable = false)
-    public int getAuthorId() {
+    @Column(name = "author_id")
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 
@@ -143,7 +139,7 @@ public class Book {
     }
 
     @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    @JoinColumn(name = "author_id", referencedColumnName = "id", insertable = false, updatable = false)
     public Author getAuthorByAuthorId() {
         return authorByAuthorId;
     }
