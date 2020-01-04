@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "role")
 public class Role {
-    private int id;
+    private Long id;
     private String name;
     private String description;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

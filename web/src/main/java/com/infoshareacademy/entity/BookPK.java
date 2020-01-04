@@ -8,60 +8,60 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class BookPK implements Serializable {
-    private int id;
-    private int epochId;
-    private int genreId;
-    private int literatureKindId;
-    private int authorId;
+    private Long id;
+    private Long epochId;
+    private Long genreId;
+    private Long literatureKindId;
+    private Long authorId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Id
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Column(name = "epoch_id", nullable = false)
     @Id
-    public int getEpochId() {
+    public Long getEpochId() {
         return epochId;
     }
 
-    public void setEpochId(int epochId) {
+    public void setEpochId(Long epochId) {
         this.epochId = epochId;
     }
 
     @Column(name = "genre_id", nullable = false)
     @Id
-    public int getGenreId() {
+    public Long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(int genreId) {
+    public void setGenreId(Long genreId) {
         this.genreId = genreId;
     }
 
     @Column(name = "literature_kind_id", nullable = false)
     @Id
-    public int getLiteratureKindId() {
+    public Long getLiteratureKindId() {
         return literatureKindId;
     }
 
-    public void setLiteratureKindId(int literatureKindId) {
+    public void setLiteratureKindId(Long literatureKindId) {
         this.literatureKindId = literatureKindId;
     }
 
     @Column(name = "author_id", nullable = false)
     @Id
-    public int getAuthorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 

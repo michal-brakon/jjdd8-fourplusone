@@ -4,27 +4,25 @@ import javax.persistence.*;
 import java.util.Objects;
 
 
-
-
 @Entity
 @Table(name = "author")
 public class Author {
-    private int id;
+    private Long id;
     private String name;
     private String surname;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Basic
+
     @Column(name = "name", nullable = true, length = 45)
     public String getName() {
         return name;
@@ -34,7 +32,7 @@ public class Author {
         this.name = name;
     }
 
-    @Basic
+
     @Column(name = "surname", nullable = true, length = 45)
     public String getSurname() {
         return surname;

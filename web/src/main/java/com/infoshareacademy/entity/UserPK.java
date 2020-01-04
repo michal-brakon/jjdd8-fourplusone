@@ -8,31 +8,30 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UserPK implements Serializable {
-    private int id;
-    private int roleId;
+    private Long id;
+    private Long roleId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
 
     @Id
     @Column(name = "role_id")
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
-
 
 
     @Override
@@ -41,7 +40,7 @@ public class UserPK implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         UserPK that = (UserPK) o;
         return id == that.id &&
-                roleId == that.roleId ;
+                roleId == that.roleId;
 
     }
 

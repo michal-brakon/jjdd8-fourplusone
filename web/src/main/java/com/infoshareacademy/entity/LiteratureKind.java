@@ -6,17 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "literature_kind")
 public class LiteratureKind {
-    private int id;
+    private Long id;
     private String name;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
