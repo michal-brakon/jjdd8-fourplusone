@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-
+</header>
 		<div class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -47,21 +47,21 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="" width="199" height="52"/></a>
+					<a class="navbar-brand" href="index.ftlh"><img src="img/logo.png" alt="" width="199" height="52"/></a>
 				</div>
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">Strona główna</a></li>
+						<li class="active"><a href="index.ftlh">Strona główna</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
 							   data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="comingsoon.html">Wyszukaj</a></li>
+								<li><a href="comingsoon.ftlh">Wyszukaj</a></li>
 								<li class="dropdown-submenu">
 									<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
 									<ul class="dropdown-menu">
-										<li><a href="comingsoon.html">Książki</a></li>
-										<li><a href="comingsoon.html">AudioBooki</a></li>
+										<li><a href="comingsoon.ftlh">Książki</a></li>
+										<li><a href="comingsoon.ftlh">AudioBooki</a></li>
 									</ul>
 								</li>
 							</ul>
