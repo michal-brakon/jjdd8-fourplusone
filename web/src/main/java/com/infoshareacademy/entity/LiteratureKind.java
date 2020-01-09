@@ -6,12 +6,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "literature_kind", schema = "library")
 public class LiteratureKind {
-    private Long id;
-    private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name", nullable = true, length = 15)
+    private String name;
+
+
     public Long getId() {
         return id;
     }
@@ -21,7 +25,7 @@ public class LiteratureKind {
     }
 
 
-    @Column(name = "name", nullable = true, length = 15)
+
     public String getName() {
         return name;
     }
@@ -30,17 +34,5 @@ public class LiteratureKind {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LiteratureKind that = (LiteratureKind) o;
-        return id == that.id &&
-                Objects.equals(name, that.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }

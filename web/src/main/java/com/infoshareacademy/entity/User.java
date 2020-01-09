@@ -4,8 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user", schema = "Library")
-
+@Table(name = "user", schema = "library")
 public class User {
 
 
@@ -16,10 +15,9 @@ public class User {
 
     @NotNull
     @Column(name = "name", length = 100)
-
     private String name;
-    @Column(name = "email", nullable = true, length = 100)
 
+    @Column(name = "email", nullable = true, length = 100)
     private String email;
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -57,7 +55,7 @@ public class User {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Role roleId) {
         this.roleId = roleId;
     }
 

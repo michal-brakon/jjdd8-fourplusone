@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "borrow", schema = "library")
+@Table(name = "reservation", schema = "library")
 
 public class Reservation {
 
@@ -16,7 +16,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "book_id")
-    private Long bookId;
+    private Book bookId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -38,11 +38,11 @@ public class Reservation {
     }
 
 
-    public Long getBookId() {
+    public Book getBookId() {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
+    public void setBookId(Book bookId) {
         this.bookId = bookId;
     }
 
@@ -61,9 +61,6 @@ public class Reservation {
         return borrowDate;
     }
 
-/*    public void setBorrowDate(Timestamp borrowDate) {
-        this.borrowDate = borrowDate;
-    }*/
 
     public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
@@ -74,28 +71,9 @@ public class Reservation {
         return returnDate;
     }
 
-    /* public void setReturnDate(Timestamp returnDate) {
-         this.returnDate = returnDate;
-     }
- */
+
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Reservation that = (Reservation) o;
-        return id == that.id &&
-                bookId == that.bookId &&
-                userId == that.userId &&
-                Objects.equals(borrowDate, that.borrowDate) &&
-                Objects.equals(returnDate, that.returnDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, bookId, userId, borrowDate, returnDate);
-    }
 }
