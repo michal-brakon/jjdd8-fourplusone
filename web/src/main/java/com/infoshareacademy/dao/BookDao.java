@@ -1,5 +1,7 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.entity.Book;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.Entity;

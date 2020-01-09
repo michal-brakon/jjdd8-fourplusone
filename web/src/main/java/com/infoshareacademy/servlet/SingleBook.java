@@ -1,8 +1,12 @@
 package com.infoshareacademy.servlet;
 
-
+import com.infoshareacademy.dao.BookDao;
+import com.infoshareacademy.entity.Book;
+import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.service.BookService;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -11,24 +15,57 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/single")
 public class SingleBook extends HttpServlet {
+
     @Inject
     private BookService bookService;
 
     @Inject
-    private BookMapper bookMapper;
+    BookMapper bookMapper;
+
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        Long id = // pobrać z parametru
+        String param = req.getParameter("id");
 
-        public JsonObject getById (id) {
-            return bookService.getById(id)
+        if (param == null || param.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+        Long id = Long.valueOf(param);
 
+        Book book = bookService.getById(id);
 
+        JsonObject jsonBook = bookMapper.toJson(book);
+
+        PrintWriter writer = resp.getWriter();
+
+        Template template = templateProvider
+                .getTemplate(getServletContext(),
+                        "singlePage.ftlh");
+        Map<String, Object> model = new HashMap<>();
+
+        if (book != null) {
+            model.put("book", jsonBook);
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                e.printStackTrace();
+            }
+        } else {
+            model.put("errorMessage", "User not found");
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
