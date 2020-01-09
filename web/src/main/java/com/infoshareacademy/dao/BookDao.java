@@ -8,11 +8,10 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 @Local
-public class SingleBookDao {
+public class BookDao {
 @PersistenceContext
 
     private EntityManager em;
 
-    public Book getById(Long id) {
-        return em.find(Book.class, id);}
+    public Book getById(Long id) {return em.find(Book.class, id);}
 }

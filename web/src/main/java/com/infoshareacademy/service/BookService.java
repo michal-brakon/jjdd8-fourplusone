@@ -1,16 +1,19 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.dao.SingleBookDao;
-import com.infoshareacademy.mapper.SingleBookMapper;
+import com.infoshareacademy.dao.BookDao;
+import com.infoshareacademy.mapper.BookMapper;
 
 import javax.inject.Inject;
 
-public class SingleBookService {
+public class BookService {
 
     @Inject
-    private SingleBookDao singleBookDao;
+    private BookDao bookDao;
 
     @Inject
-    private SingleBookMapper singleBookMapper;
+    private BookMapper bookMapper;
+
+
+    public Book getById(Long id) {return this.bookDao.getById(id);}
 
 }
