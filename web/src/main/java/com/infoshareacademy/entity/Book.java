@@ -21,7 +21,7 @@ public class Book {
     private String cover;
 
     @Column(name = "has_audio", nullable = true)
-    private Byte hasAudio;
+    private Boolean hasAudio;
 
     @Column(name = "simple_thumb", nullable = true, length = 255)
     private String simpleThumb;
@@ -75,11 +75,11 @@ public class Book {
     }
 
 
-    public Byte getHasAudio() {
+    public Boolean getHasAudio() {
         return hasAudio;
     }
 
-    public void setHasAudio(Byte hasAudio) {
+    public void setHasAudio(Boolean hasAudio) {
         this.hasAudio = hasAudio;
     }
 
