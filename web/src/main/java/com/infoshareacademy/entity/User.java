@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "user", schema = "library")
 public class User {
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +18,7 @@ public class User {
 
     @Column(name = "email", nullable = true, length = 100)
     private String email;
+
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Role roleId;
