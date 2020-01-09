@@ -4,15 +4,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role")
+@Table(name = "role", schema = "Library")
 public class Role {
-    private Long id;
-    private String name;
-    private String description;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+    @Column(name = "name", nullable = true, length = 45)
+    private String name;
+    @Column(name = "description", nullable = true, length = 255)
+    private String description;
+
+
     public Long getId() {
         return id;
     }
@@ -22,7 +25,7 @@ public class Role {
     }
 
 
-    @Column(name = "name", nullable = true, length = 45)
+
     public String getName() {
         return name;
     }
@@ -32,7 +35,7 @@ public class Role {
     }
 
 
-    @Column(name = "description", nullable = true, length = 255)
+
     public String getDescription() {
         return description;
     }

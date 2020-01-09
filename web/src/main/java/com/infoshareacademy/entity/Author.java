@@ -1,19 +1,36 @@
 package com.infoshareacademy.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "author")
+@Table(name = "author", schema = "library")
 public class Author {
-    private Long id;
-    private String name;
-    private String surname;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+    @Column(name = "name", nullable = true, length = 45)
+    private String name;
+    @Column(name = "surname", nullable = true, length = 45)
+    private String surname;
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
+    @ManyToMany(mappedBy = "authors"
+,fetch = FetchType.LAZY)
+    Set<Book> books = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -23,7 +40,7 @@ public class Author {
     }
 
 
-    @Column(name = "name", nullable = true, length = 45)
+
     public String getName() {
         return name;
     }
@@ -33,7 +50,7 @@ public class Author {
     }
 
 
-    @Column(name = "surname", nullable = true, length = 45)
+
     public String getSurname() {
         return surname;
     }
@@ -42,18 +59,5 @@ public class Author {
         this.surname = surname;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Author that = (Author) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(surname, that.surname);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname);
-    }
 }
