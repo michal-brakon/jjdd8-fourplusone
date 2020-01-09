@@ -66,11 +66,35 @@
 								</li>
 							</ul>
 						</li>
-						<li><a href="login.html">Zaloguj/Rejestracja</a></li>
+						<li><a href="login.ftlh">Zaloguj/Rejestracja</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
+
+	<div class="container">
+
+
+		<#if book.id == 1> </#if>
+
+		<ul>
+			<li>Tytuł: ${book.title} </li>
+			<li>Autor: ${book.authors} </li>
+			<li>Epoka: ${book.epochid} </li>
+			<li>Cover: ${book.cover} </li>
+			<li>Simple Thumb: ${book.simpleThumb} </li>
+			<li>Audio: ${book.hasAudio}</li>
+			<li>Cover Thumb:${book.coverThumb} </li>
+			<li>Rodzaj: ${book.genres}</li>
+			<li>Typ litereatury: ${book.LiteratureKindId}</li>
+
+		</ul>
+
+
+
+
+	</div>
+
 		<footer>
 			<div class="container">
 				<div class="row">
