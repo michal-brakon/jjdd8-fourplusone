@@ -5,10 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "epoch", schema = "library")
 public class Epoch {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "name", nullable = true, length = 15)
     private String name;
 
