@@ -13,5 +13,6 @@ public class SingleBookDao {
 
     private EntityManager em;
 
-    public Book getId(Long id) return em.find(Book.class, id);}
+    public Book getById(Long id) {
+        return em.find(Book.class, id);}
 }
