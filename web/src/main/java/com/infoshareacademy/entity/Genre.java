@@ -1,17 +1,24 @@
 package com.infoshareacademy.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "genre", schema = "Library")
 public class Genre {
-    private Long id;
-    private String name;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+    @Column(name = "name", nullable = true, length = 15)
+    private String name;
+
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
+    Set<Book> books = new HashSet<>();
+
+
     public Long getId() {
         return id;
     }
@@ -21,7 +28,6 @@ public class Genre {
     }
 
 
-    @Column(name = "name", nullable = true, length = 15)
     public String getName() {
         return name;
     }

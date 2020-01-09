@@ -6,12 +6,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "epoch", schema = "Library")
 public class Epoch {
-    private Long id;
-    private String name;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+    @Column(name = "name", nullable = true, length = 15)
+    private String name;
+
+
     public Long getId() {
         return id;
     }
@@ -21,7 +23,7 @@ public class Epoch {
     }
 
 
-    @Column(name = "name", nullable = true, length = 15)
+
     public String getName() {
         return name;
     }
@@ -30,17 +32,5 @@ public class Epoch {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Epoch that = (Epoch) o;
-        return id == that.id &&
-                Objects.equals(name, that.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }

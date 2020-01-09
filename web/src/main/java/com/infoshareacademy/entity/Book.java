@@ -1,27 +1,53 @@
 package com.infoshareacademy.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "book", schema = "Library")
-@IdClass(BookPK.class)
+@Table(name = "book", schema = "library")
+
 public class Book {
-    private Long id;
-    private String title;
-    private String cover;
-    private Byte hasAudio;
-    private String simpleThumb;
-    private String coverThumb;
-    private Long epochId;
-    private Long genreId;
-    private Long literatureKindId;
-    private Long authorId;
-    private Author authorByAuthorId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Long id;
+
+    @Column(name = "title", nullable = false, length = 45)
+    private String title;
+
+    @Column(name = "cover", nullable = true, length = 255)
+    private String cover;
+
+    @Column(name = "has_audio", nullable = true)
+    private Byte hasAudio;
+
+    @Column(name = "simple_thumb", nullable = true, length = 255)
+    private String simpleThumb;
+
+    @Column(name = "cover_thumb", nullable = true, length = 255)
+    private String coverThumb;
+
+
+    @ManyToOne
+    @JoinColumn(name = "epoch_id")
+    private Epoch epochId;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "genre_set", joinColumns = {@JoinColumn(name = "book_id")}
+            , inverseJoinColumns = {@JoinColumn(name = "genre_id")})
+    private Set<Genre> genres = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "literature_kind_id")
+    private LiteratureKind literatureKindId;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "authors_set", joinColumns = {@JoinColumn(name = "book_id")}
+            , inverseJoinColumns = {@JoinColumn(name = "author_id")})
+    private Set<Author> authors = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -30,7 +56,7 @@ public class Book {
         this.id = id;
     }
 
-    @Column(name = "title", nullable = false, length = 45)
+
     public String getTitle() {
         return title;
     }
@@ -39,7 +65,7 @@ public class Book {
         this.title = title;
     }
 
-    @Column(name = "cover", nullable = true, length = 255)
+
     public String getCover() {
         return cover;
     }
@@ -48,7 +74,7 @@ public class Book {
         this.cover = cover;
     }
 
-    @Column(name = "has_audio", nullable = true)
+
     public Byte getHasAudio() {
         return hasAudio;
     }
@@ -57,7 +83,7 @@ public class Book {
         this.hasAudio = hasAudio;
     }
 
-    @Column(name = "simple_thumb", nullable = true, length = 255)
+
     public String getSimpleThumb() {
         return simpleThumb;
     }
@@ -67,7 +93,6 @@ public class Book {
     }
 
 
-    @Column(name = "cover_thumb", nullable = true, length = 255)
     public String getCoverThumb() {
         return coverThumb;
     }
@@ -76,75 +101,42 @@ public class Book {
         this.coverThumb = coverThumb;
     }
 
-    @Id
-    @Column(name = "epoch_id")
-    public Long getEpochId() {
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Epoch getEpochId() {
         return epochId;
     }
 
-    public void setEpochId(Long epochId) {
+    public void setEpochId(Epoch epochId) {
         this.epochId = epochId;
     }
 
-    @Id
-    @Column(name = "genre_id")
-    public Long getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
-    }
-
-    @Id
-    @Column(name = "literature_kind_id")
-    public Long getLiteratureKindId() {
+    public LiteratureKind getLiteratureKindId() {
         return literatureKindId;
     }
 
-    public void setLiteratureKindId(Long literatureKindId) {
+    public void setLiteratureKindId(LiteratureKind literatureKindId) {
         this.literatureKindId = literatureKindId;
     }
-
-    @Id
-    @Column(name = "author_id")
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Book that = (Book) o;
-        return id == that.id &&
-                epochId == that.epochId &&
-                genreId == that.genreId &&
-                literatureKindId == that.literatureKindId &&
-                authorId == that.authorId &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(cover, that.cover) &&
-                Objects.equals(hasAudio, that.hasAudio) &&
-                Objects.equals(simpleThumb, that.simpleThumb) &&
-                Objects.equals(coverThumb, that.coverThumb);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, cover, hasAudio, simpleThumb, coverThumb, epochId, genreId, literatureKindId, authorId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id", insertable = false, updatable = false)
-    public Author getAuthorByAuthorId() {
-        return authorByAuthorId;
-    }
-
-    public void setAuthorByAuthorId(Author authorByAuthorId) {
-        this.authorByAuthorId = authorByAuthorId;
-    }
 }
+
+
+
+
+
+
