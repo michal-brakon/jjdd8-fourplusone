@@ -2,7 +2,6 @@ package com.infoshareacademy.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "reservation", schema = "library")
@@ -27,7 +26,6 @@ public class Reservation {
 
     @Column(name = "return_date", nullable = true)
     private Date returnDate;
-
 
     public Long getId() {
         return id;
@@ -56,11 +54,9 @@ public class Reservation {
     }
 
 
-
     public Date getBorrowDate() {
         return borrowDate;
     }
-
 
     public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
@@ -71,9 +67,7 @@ public class Reservation {
         return returnDate;
     }
 
-
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
-
 }

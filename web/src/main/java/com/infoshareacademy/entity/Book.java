@@ -29,14 +29,16 @@ public class Book {
     @Column(name = "cover_thumb", nullable = true, length = 255)
     private String coverThumb;
 
-
     @ManyToOne
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "genre_set", joinColumns = {@JoinColumn(name = "book_id")}
-            , inverseJoinColumns = {@JoinColumn(name = "genre_id")})
+    @JoinTable(name = "genre_set",
+            joinColumns = {
+                    @JoinColumn(name = "book_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "genre_id")})
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne
@@ -44,8 +46,11 @@ public class Book {
     private LiteratureKind literatureKindId;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "authors_set", joinColumns = {@JoinColumn(name = "book_id")}
-            , inverseJoinColumns = {@JoinColumn(name = "author_id")})
+    @JoinTable(name = "authors_set",
+            joinColumns = {
+                    @JoinColumn(name = "book_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author_id")})
     private Set<Author> authors = new HashSet<>();
 
     public Long getId() {
@@ -110,6 +115,7 @@ public class Book {
         this.genres = genres;
     }
 
+
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -117,6 +123,7 @@ public class Book {
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
+
 
     public Epoch getEpochId() {
         return epochId;
@@ -126,6 +133,7 @@ public class Book {
         this.epochId = epochId;
     }
 
+
     public LiteratureKind getLiteratureKindId() {
         return literatureKindId;
     }
@@ -134,9 +142,3 @@ public class Book {
         this.literatureKindId = literatureKindId;
     }
 }
-
-
-
-
-
-

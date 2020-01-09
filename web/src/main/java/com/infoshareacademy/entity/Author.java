@@ -9,6 +9,9 @@ import java.util.Set;
 @Table(name = "author", schema = "library")
 public class Author {
 
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
+    Set<Book> books = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,9 +30,6 @@ public class Author {
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
-
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
-    Set<Book> books = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -56,6 +56,4 @@ public class Author {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-
 }
