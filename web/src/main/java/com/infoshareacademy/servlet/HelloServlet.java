@@ -17,20 +17,29 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hibernate.bytecode.BytecodeLogger.LOGGER;
+
 @WebServlet("/hello-servlet")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
-    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());
+
+
+    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());  //!
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        LOGGER.info("Error1");
+        LOGGER.debug("Error2");
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-user.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);
+
+        LOGGER.info("Error1");
+        LOGGER.debug("Error2");
+
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException e) {
