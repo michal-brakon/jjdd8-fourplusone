@@ -43,8 +43,6 @@ public class SingleBook extends HttpServlet {
 
         Book book = bookService.getById(id);
 
-        JsonObject jsonBook = bookMapper.toJson(book);
-
         PrintWriter writer = resp.getWriter();
 
         Template template = templateProvider
@@ -53,7 +51,7 @@ public class SingleBook extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
 
         if (book != null) {
-            model.put("book", jsonBook);
+            model.put("book", book);
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

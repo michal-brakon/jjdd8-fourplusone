@@ -5,6 +5,7 @@ import com.infoshareacademy.entity.Book;
 import com.infoshareacademy.mapper.BookMapper;
 
 import javax.inject.Inject;
+import javax.swing.text.ComponentView;
 
 public class BookService {
 
@@ -12,5 +13,7 @@ public class BookService {
     private BookDao bookDao;
 
     public Book getById(Long id) {return this.bookDao.getById(id);}
+
+    ComponentView
 
 }

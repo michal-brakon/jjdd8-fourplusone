@@ -12,7 +12,6 @@ public class BookMapper {
     @Inject
     private BookDao bookDao;
 
-
     public JsonObject toJson(Book book){
 
         if (book == null) {
@@ -29,7 +28,6 @@ public class BookMapper {
                 "cover_thumb", book.getCoverThumb(),
                 "genre", book.getGenres(),
                 "literature", book.getLiteratureKindId());
-
 
     }
 
