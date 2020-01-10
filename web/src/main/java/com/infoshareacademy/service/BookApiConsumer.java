@@ -6,6 +6,8 @@ import com.infoshareacademy.mapper.BookMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
@@ -20,7 +22,7 @@ public class BookApiConsumer {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    private static final String URI = "http://isa-proxy.blueazurit.com/books";
+    private static final String URI = "https://wolnelektury.pl/api/kinds/";
 
     private WebTarget webTarget;
 

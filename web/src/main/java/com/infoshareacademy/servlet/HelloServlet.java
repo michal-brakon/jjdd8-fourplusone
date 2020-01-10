@@ -1,6 +1,7 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.freemarker.TemplateProvider;
+import com.infoshareacademy.service.BookApiConsumer;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/hello-servlet")
+@WebServlet("/four")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
@@ -26,11 +27,12 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Template template = templateProvider.getTemplate(getServletContext(), "welcome-user.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "main.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);
+
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException e) {
