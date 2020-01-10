@@ -12,9 +12,9 @@ public class KindService {
     @Inject
     private KindDao kindDao;
 
-    public long addKind(String name){
+    public long addKind(KindDao kind){
 
-        return this.kindDao.addKind(name);
+        return this.kindDao.addKind(kind);
     }
 
 }

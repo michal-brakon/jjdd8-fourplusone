@@ -1,5 +1,6 @@
 package com.infoshareacademy.dao;
 
+import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.entity.LiteratureKind;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,8 @@ public class KindDao {
     @PersistenceContext
     private EntityManager em;
 
-    public Long addKind(String name){
-        LiteratureKind litKind = new LiteratureKind();
-        litKind.setName(name);
-        this.em.persist(litKind);
-        logger.debug("new kind was created {}", litKind);
-        return litKind.getId();
-    }
+    public void addKind(LiteratureKind kind){
+        em.persist(kind);
+        logger.debug("new kind was created {}", kind);
+           }
 }

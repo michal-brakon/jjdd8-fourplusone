@@ -2,6 +2,7 @@ package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,13 +46,18 @@ public class Book {
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind literatureKindId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "authors_set",
-            joinColumns = {
-                    @JoinColumn(name = "book_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "author_id")})
-    private Set<Author> authors = new HashSet<>();
+
+
+    @Column(name = "author")
+    private String author ;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public Long getId() {
         return id;
@@ -115,14 +121,6 @@ public class Book {
         this.genres = genres;
     }
 
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
-    }
 
 
     public Epoch getEpochId() {

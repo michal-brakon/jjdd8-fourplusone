@@ -1,7 +1,9 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -9,8 +11,9 @@ import java.util.Set;
 @Table(name = "author", schema = "library")
 public class Author {
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
-    Set<Book> books = new HashSet<>();
+    @OneToMany( fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_books")
+    List<Book> books = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +23,11 @@ public class Author {
     @Column(name = "name", nullable = true, length = 45)
     private String name;
 
-    @Column(name = "surname", nullable = true, length = 45)
-    private String surname;
-
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
@@ -49,11 +49,6 @@ public class Author {
     }
 
 
-    public String getSurname() {
-        return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-}
+   }

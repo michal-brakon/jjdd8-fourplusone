@@ -1,7 +1,6 @@
 package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.BookApiConsumer;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
