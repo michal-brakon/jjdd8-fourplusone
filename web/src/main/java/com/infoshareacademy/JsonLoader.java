@@ -14,25 +14,26 @@ import java.util.List;
 public class JsonLoader {
 
 
-    public void getFromURL () throws IOException {
+    public void getFromURL (String url) throws IOException {
 
         List<Book> bookList = List.of();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        URL url = new URL("https://wolnelektury.pl/api/audiobooks/?format=json");
 
-        bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+
+//        bookList = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+//                .readValue(url, new TypeReference<>() {
+//                });
+ //       System.out.println("ilosc ksiazek: "+bookList.size());
+
+        objectMapper.writeValue(new File("json.txt"), objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .readValue(url, new TypeReference<>() {
-                });
-
-        objectMapper.writeValue(new File("json.txt"), bookList);
+                }));
 
     }
 
     public static void main(String[] args) throws IOException {
-        new JsonLoader().getFromURL();
+        new JsonLoader().getFromURL("https://wolnelektury.pl/api/books/?format=json");
     }
-
-
 
 }
