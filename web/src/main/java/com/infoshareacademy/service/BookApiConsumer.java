@@ -18,7 +18,7 @@ public class BookApiConsumer {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    private static final String URI = "https://wolnelektury.pl/api/kinds/";
+   private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
 
     private WebTarget webTarget;
 
@@ -31,6 +31,7 @@ public class BookApiConsumer {
         Response response = webTarget.request().get();
         String resp = response.readEntity(String.class);
         response.close();
+        logger.info("get request done");
         return parserService.parseBookFromUri(resp);
     }
 

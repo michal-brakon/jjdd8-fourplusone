@@ -11,17 +11,18 @@ import java.util.Set;
 @Table(name = "author", schema = "library")
 public class Author {
 
-    @OneToMany( fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_books")
-    List<Book> books = new ArrayList<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 45)
+    @Column(name = "name")
     private String name;
+
+    @ManyToMany(
+            mappedBy = "authors",
+            fetch = FetchType.LAZY)
+    List<Book> books = new ArrayList<>();
 
     public List<Book> getBooks() {
         return books;
@@ -48,7 +49,4 @@ public class Author {
         this.name = name;
     }
 
-
-    }
-
-   }
+}

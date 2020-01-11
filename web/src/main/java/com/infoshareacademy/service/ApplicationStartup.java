@@ -10,11 +10,11 @@ import javax.inject.Inject;
 public class ApplicationStartup {
 
     @Inject
-    private BookApiConsumer bookApiConsumer;
+    private HandlerService handlerService;
 
     @PostConstruct
     protected void initDatabase() {
-        bookApiConsumer.consumeBooks();
+        handlerService.setApi();
     }
 
 }

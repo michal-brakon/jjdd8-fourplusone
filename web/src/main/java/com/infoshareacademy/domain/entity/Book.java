@@ -1,8 +1,8 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,19 +15,20 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 45)
+    @NotNull
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "cover", nullable = true, length = 255)
+    @Column(name = "cover")
     private String cover;
 
-    @Column(name = "has_audio", nullable = true)
+    @Column(name = "has_audio")
     private Boolean hasAudio;
 
-    @Column(name = "simple_thumb", nullable = true, length = 255)
+    @Column(name = "simple_thumb")
     private String simpleThumb;
 
-    @Column(name = "cover_thumb", nullable = true, length = 255)
+    @Column(name = "cover_thumb")
     private String coverThumb;
 
     @ManyToOne
@@ -47,16 +48,21 @@ public class Book {
     private LiteratureKind literatureKindId;
 
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "author_book",
+            joinColumns = {
+                    @JoinColumn(name = "book_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author_id")})
+    private Set<Genre> authors = new HashSet<>();
 
-    @Column(name = "author")
-    private String author ;
 
-    public String getAuthor() {
-        return author;
+    public Set<Genre> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthors(Set<Genre> authors) {
+        this.authors = authors;
     }
 
     public Long getId() {
@@ -120,7 +126,6 @@ public class Book {
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
-
 
 
     public Epoch getEpochId() {

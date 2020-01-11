@@ -1,6 +1,6 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.entity.LiteratureKind;
+import com.infoshareacademy.domain.entity.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,16 +10,19 @@ import javax.persistence.PersistenceContext;
 
 
 @Stateless
-public class KindDao {
-
+public class BookDao {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @PersistenceContext
     private EntityManager em;
 
-    public void addKind(LiteratureKind kind) {
-        em.persist(kind);
-        logger.debug("new kind was created {}", kind);
+
+    public void addBook(Book book){
+
+        em.persist(book);
+        logger.info("book added");
     }
+
+
 }
