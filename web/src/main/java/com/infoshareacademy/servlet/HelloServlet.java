@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/four")
+@WebServlet(urlPatterns = "")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;

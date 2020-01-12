@@ -2,8 +2,6 @@ package com.infoshareacademy.service;
 
 
 import com.infoshareacademy.domain.api.BookJson;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,25 +14,23 @@ import java.util.List;
 @Stateless
 public class BookApiConsumer {
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
    private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
 
     private WebTarget webTarget;
 
-
     @Inject
     private ParserService parserService;
 
     public List<BookJson> consumeBooks() {
-        settingClientTarget();
+        configureClientTarget();
         Response response = webTarget.request().get();
         String resp = response.readEntity(String.class);
         response.close();
         return parserService.parseBookFromUri(resp);
     }
 
-    private void settingClientTarget() {
+    private void configureClientTarget() {
         Client client = ClientBuilder.newClient();
         webTarget = client.target(URI);
     }

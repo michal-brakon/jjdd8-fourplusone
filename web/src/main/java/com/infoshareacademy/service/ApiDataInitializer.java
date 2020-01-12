@@ -7,12 +7,15 @@ import com.infoshareacademy.mapper.ApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.inject.Inject;
 import java.util.List;
 
-@Stateless
-public class SaveToDBService {
+@Startup
+@Singleton
+public class ApiDataInitializer {
 
     @Inject
     private BookApiConsumer bookApiConsumer;
@@ -25,7 +28,7 @@ public class SaveToDBService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
+    @PostConstruct
     public void setApi() {
         List<BookJson> bookJsonList = bookApiConsumer.consumeBooks();
         bookJsonList.forEach(b -> {
