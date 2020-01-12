@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.View;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -25,12 +26,6 @@ public class SingleBookServlet extends HttpServlet {
 
     @Inject
     private BookService bookService;
-
-    @Inject
-    SingleBookFullDTO singleBookFullDTO;
-
-    @Inject
-    BookMapper bookMapper;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -45,20 +40,7 @@ public class SingleBookServlet extends HttpServlet {
         }
         Long id = Long.valueOf(param);
 
-        bookMapper.getById(id);
-
-
-
-
-
-
-
-
-//        Servlet natomiast, przyjmuje HttpServletRequest, następnie sam bądź za pomocą jakiegoś beana RequestScoped przepisuje HttpServletRequest.getParameter na DTO i wysyła go do service.
-
-//        Servlet również przyjmuje od service DTO i następnie samodzielnie bądź za pomocą beana RequestScoped przepisuje jeden lub więcej DTO na mapę modelu danych Freemarkera.
-
-        Book book = bookService.getById(id);
+        View view = bookService.getView(id);
 
         PrintWriter writer = resp.getWriter();
 
@@ -67,8 +49,8 @@ public class SingleBookServlet extends HttpServlet {
                         "singlePage.ftlh");
         Map<String, Object> model = new HashMap<>();
 
-        if (book != null) {
-            model.put("book", book);
+        if (view != null) {
+            model.put("book", view);
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

@@ -4,9 +4,9 @@ import com.infoshareacademy.entity.Book;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.swing.text.View;
 
 @Stateless
 @Local
