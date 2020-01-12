@@ -1,6 +1,7 @@
-package com.infoshareacademy.entity;
+package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,22 +20,23 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 45)
+    @NotNull
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "cover", nullable = true, length = 255)
+    @Column(name = "cover")
     private String cover;
 
-    @Column(name = "has_audio", nullable = true)
+    @Column(name = "has_audio")
     private Boolean hasAudio;
 
-    @Column(name = "simple_thumb", nullable = true, length = 255)
+    @Column(name = "simple_thumb")
     private String simpleThumb;
 
-    @Column(name = "cover_thumb", nullable = true, length = 255)
+    @Column(name = "cover_thumb")
     private String coverThumb;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
@@ -46,17 +48,28 @@ public class Book {
                     @JoinColumn(name = "genre_id")})
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind literatureKindId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "authors_set",
+
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JoinTable(name = "author_book",
             joinColumns = {
                     @JoinColumn(name = "book_id")},
             inverseJoinColumns = {
                     @JoinColumn(name = "author_id")})
     private Set<Author> authors = new HashSet<>();
+
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
 
     public Long getId() {
         return id;
@@ -118,15 +131,6 @@ public class Book {
 
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
-    }
-
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
     }
 
 

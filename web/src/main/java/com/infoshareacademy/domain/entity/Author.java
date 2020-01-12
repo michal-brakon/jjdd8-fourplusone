@@ -1,7 +1,9 @@
-package com.infoshareacademy.entity;
+package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -9,19 +11,18 @@ import java.util.Set;
 @Table(name = "author", schema = "library")
 public class Author {
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
-    Set<Book> books = new HashSet<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 45)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "surname", nullable = true, length = 45)
-    private String surname;
+    @ManyToMany(
+            mappedBy = "authors",
+            fetch = FetchType.LAZY)
+    Set<Book> books = new HashSet<>();
 
     public Set<Book> getBooks() {
         return books;
@@ -48,12 +49,4 @@ public class Author {
         this.name = name;
     }
 
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 }

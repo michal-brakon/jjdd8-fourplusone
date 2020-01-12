@@ -1,16 +1,10 @@
 package com.infoshareacademy.servlet;
 
-
-import com.infoshareacademy.dto.SingleBookFullDTO;
-import com.infoshareacademy.entity.Book;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
 import javax.inject.Inject;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
