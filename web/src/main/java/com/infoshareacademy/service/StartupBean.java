@@ -7,14 +7,14 @@ import javax.inject.Inject;
 
 @Startup
 @Singleton
-public class ApplicationStartup {
+public class StartupBean {
 
     @Inject
-    private HandlerService handlerService;
+    private SaveToDBService saveToDBService;
 
     @PostConstruct
     protected void initDatabase() {
-        handlerService.setApi();
+        saveToDBService.setApi();
     }
 
 }

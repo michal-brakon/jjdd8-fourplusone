@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.util.List;
-
 
 @Stateless
 public class BookDao {
@@ -23,16 +20,11 @@ public class BookDao {
     public void addBook(Book book) {
 
         em.persist(book);
-        logger.info("book added");
+        logger.info("New book was added :{}", book);
     }
 
     public Book findByName(String name) {
         return em.find(Book.class, name);
     }
 
-    public List<Book> findAll() {
-        final Query query = em.createQuery("SELECT b FROM Book b");
-
-        return query.getResultList();
-    }
 }

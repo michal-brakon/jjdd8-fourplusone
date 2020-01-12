@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
-public class HandlerService {
+public class SaveToDBService {
 
     @Inject
     private BookApiConsumer bookApiConsumer;

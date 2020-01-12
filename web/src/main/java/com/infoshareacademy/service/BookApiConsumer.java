@@ -27,15 +27,14 @@ public class BookApiConsumer {
     private ParserService parserService;
 
     public List<BookJson> consumeBooks() {
-        initBooks();
+        settingClientTarget();
         Response response = webTarget.request().get();
         String resp = response.readEntity(String.class);
         response.close();
-        logger.info("get request done");
         return parserService.parseBookFromUri(resp);
     }
 
-    private void initBooks() {
+    private void settingClientTarget() {
         Client client = ClientBuilder.newClient();
         webTarget = client.target(URI);
     }

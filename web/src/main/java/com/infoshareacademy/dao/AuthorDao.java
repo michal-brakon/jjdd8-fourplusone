@@ -12,7 +12,9 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class AuthorDao {
+
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @Inject
     private ApiMapper apiMapper;
 

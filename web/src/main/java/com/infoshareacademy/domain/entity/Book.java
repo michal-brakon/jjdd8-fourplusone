@@ -31,7 +31,7 @@ public class Book {
     @Column(name = "cover_thumb")
     private String coverThumb;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
@@ -43,7 +43,7 @@ public class Book {
                     @JoinColumn(name = "genre_id")})
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind literatureKindId;
 

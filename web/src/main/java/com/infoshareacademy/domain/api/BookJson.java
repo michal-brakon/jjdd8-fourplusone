@@ -49,7 +49,7 @@ public class BookJson {
     private String coverThumb;
 
     @JsonProperty("liked")
-    private Object liked;
+    private Boolean liked;
 
     @JsonProperty("kind")
     public String getKind() {
@@ -192,12 +192,12 @@ public class BookJson {
     }
 
     @JsonProperty("liked")
-    public Object getLiked() {
+    public Boolean getLiked() {
         return liked;
     }
 
     @JsonProperty("liked")
-    public void setLiked(Object liked) {
+    public void setLiked(Boolean liked) {
         this.liked = liked;
     }
 }
