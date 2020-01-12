@@ -1,4 +1,4 @@
-package com.infoshareacademy.entity;
+package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,11 +13,11 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book bookId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userId;
 
