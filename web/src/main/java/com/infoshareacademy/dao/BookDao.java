@@ -23,8 +23,4 @@ public class BookDao {
         logger.info("New book was added :{}", book);
     }
 
-    public Book findByName(String name) {
-        return em.find(Book.class, name);
-    }
-
 }
