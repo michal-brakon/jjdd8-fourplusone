@@ -22,13 +22,13 @@ public class Author {
     @ManyToMany(
             mappedBy = "authors",
             fetch = FetchType.LAZY)
-    List<Book> books = new ArrayList<>();
+    Set<Book> books = new HashSet<>();
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 

@@ -3,7 +3,7 @@ package com.infoshareacademy.service;
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.api.BookJson;
 import com.infoshareacademy.domain.entity.Book;
-import com.infoshareacademy.mapper.BookMapper;
+import com.infoshareacademy.mapper.ApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class HandlerService {
     private BookApiConsumer bookApiConsumer;
 
     @Inject
-    private BookMapper bookMapper;
+    private ApiMapper apiMapper;
 
     @Inject
     private BookDao bookdao;
@@ -29,8 +29,9 @@ public class HandlerService {
     public void setApi() {
         List<BookJson> bookJsonList = bookApiConsumer.consumeBooks();
         bookJsonList.forEach(b -> {
-            Book book = bookMapper.mapApiToEntity(b);
+            Book book = apiMapper.mapApiToEntity(b);
             bookdao.addBook(book);
+
         });
     }
 }

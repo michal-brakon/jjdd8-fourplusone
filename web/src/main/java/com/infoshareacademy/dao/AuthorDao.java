@@ -1,7 +1,7 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.Author;
-import com.infoshareacademy.mapper.BookMapper;
+import com.infoshareacademy.mapper.ApiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +14,12 @@ import javax.persistence.PersistenceContext;
 public class AuthorDao {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @Inject
-    private BookMapper bookMapper;
+    private ApiMapper apiMapper;
 
     @PersistenceContext
     private EntityManager em;
 
-    public void setAuthor(Author author) {
+    public void addAuthor(Author author) {
         em.persist(author);
 
         logger.debug("new author was created {}",author);

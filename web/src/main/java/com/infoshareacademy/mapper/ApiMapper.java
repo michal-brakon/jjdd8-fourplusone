@@ -1,31 +1,35 @@
 package com.infoshareacademy.mapper;
 
 
-import com.infoshareacademy.dao.AuthorDao;
 import com.infoshareacademy.domain.api.BookJson;
-import com.infoshareacademy.domain.entity.Author;
-import com.infoshareacademy.domain.entity.Book;
+import com.infoshareacademy.domain.entity.*;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+import java.util.Set;
 
 @Stateless
-public class BookMapper {
+public class ApiMapper {
 
-    @Inject
-    private AuthorDao authorDao;
 
     public Book mapApiToEntity(BookJson books) {
 
-        Author author = new Author();
+
         Book book = new Book();
+        Author author = new Author();
+        LiteratureKind kind = new LiteratureKind();
+        Genre genre = new Genre();
+        Epoch epoch = new Epoch();
         book.setTitle(books.getTitle());
         book.setCover(books.getCover());
         book.setCoverThumb(books.getCoverThumb());
         book.setHasAudio(books.getHasAudio());
         book.setSimpleThumb(books.getSimpleThumb());
         author.setName(books.getAuthor());
-        authorDao.setAuthor(author);
+        genre.setName(books.getGenre());
+        kind.setName(books.getKind());
+        epoch.setName(books.getEpoch());
+        book.setAuthors(Set.of(author));
+        book.setGenres(Set.of(genre));
 
         return book;
 

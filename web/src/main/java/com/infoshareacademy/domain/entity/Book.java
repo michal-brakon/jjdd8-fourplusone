@@ -48,20 +48,21 @@ public class Book {
     private LiteratureKind literatureKindId;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     @JoinTable(name = "author_book",
             joinColumns = {
                     @JoinColumn(name = "book_id")},
             inverseJoinColumns = {
                     @JoinColumn(name = "author_id")})
-    private Set<Genre> authors = new HashSet<>();
+    private Set<Author> authors = new HashSet<>();
 
 
-    public Set<Genre> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Genre> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 
