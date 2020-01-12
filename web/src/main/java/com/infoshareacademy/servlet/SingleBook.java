@@ -60,7 +60,7 @@ public class SingleBook extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            model.put("errorMessage", "User not found");
+            model.put("errorMessage", "Book not found");
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {
