@@ -6,15 +6,19 @@ import com.infoshareacademy.util.JsonHelper;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
+import javax.swing.text.View;
 
 public class BookMapper {
+
+
+    //Mapper natomiast maa dwie formy metod: mapRequestToEntity oraz mapEntityToView
 
     @Inject
     private BookDao bookDao;
 
-    public JsonObject toJson(Book book){
+    public View toView(Long id){
 
-        if (book == null) {
+        if (id == null) {
             return null;
         }
 

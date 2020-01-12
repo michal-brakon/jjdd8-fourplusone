@@ -1,6 +1,7 @@
 package com.infoshareacademy.servlet;
 
-import com.infoshareacademy.dao.BookDao;
+
+import com.infoshareacademy.dto.SingleBookFullDTO;
 import com.infoshareacademy.entity.Book;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.mapper.BookMapper;
@@ -9,7 +10,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
-import javax.json.JsonObject;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +21,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/single")
-public class SingleBook extends HttpServlet {
+public class SingleBookServlet extends HttpServlet {
 
     @Inject
     private BookService bookService;
+
+    @Inject
+    SingleBookFullDTO singleBookFullDTO;
 
     @Inject
     BookMapper bookMapper;
@@ -40,6 +44,19 @@ public class SingleBook extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         Long id = Long.valueOf(param);
+
+        bookMapper.getById(id);
+
+
+
+
+
+
+
+
+//        Servlet natomiast, przyjmuje HttpServletRequest, następnie sam bądź za pomocą jakiegoś beana RequestScoped przepisuje HttpServletRequest.getParameter na DTO i wysyła go do service.
+
+//        Servlet również przyjmuje od service DTO i następnie samodzielnie bądź za pomocą beana RequestScoped przepisuje jeden lub więcej DTO na mapę modelu danych Freemarkera.
 
         Book book = bookService.getById(id);
 

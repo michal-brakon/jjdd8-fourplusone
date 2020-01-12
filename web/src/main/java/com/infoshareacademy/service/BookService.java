@@ -14,6 +14,6 @@ public class BookService {
 
     public Book getById(Long id) {return this.bookDao.getById(id);}
 
-    ComponentView
+
 
 }
