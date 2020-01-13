@@ -1,32 +1,30 @@
 package com.infoshareacademy.service;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.domain.api.BookJson;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestScoped
+@Stateless
 public class ParserService {
 
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ObjectMapper mapper = new ObjectMapper();
 
-    public <T>List<T> parse(String jsonList, Class<T> tClass) {
-        try {
-            return mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                    .readValues(jsonList, tClass);
-        } catch (JsonProcessingException e) {
-            logger.error("Json parsing fail ", e);
-        }
-        return new ArrayList<>();
+    public <T> List<T> parse(String json, Class<T> tClass) throws IOException {
+        CollectionType listType = mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).getTypeFactory().constructCollectionType(ArrayList.class, tClass);
+        List<T> ts = mapper.readValue(json, listType);
+        logger.debug("class name: {}", ts.get(0).getClass().getName());
+        return ts;
     }
+
 }

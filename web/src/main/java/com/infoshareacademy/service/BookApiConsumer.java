@@ -1,10 +1,14 @@
 package com.infoshareacademy.service;
 
 
+import com.infoshareacademy.domain.api.AuthorJson;
+
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 @Stateless
@@ -14,7 +18,7 @@ public class BookApiConsumer {
     @Inject
     private ParserService parserService;
 
-    public <T> List<T> consume(WebTarget webTarget, Class<T> tClass) {
+    public <T> List<T> consume(WebTarget webTarget, Class<T> tClass) throws IOException {
         Response response = webTarget.request().get();
         String resp = response.readEntity(String.class);
         response.close();

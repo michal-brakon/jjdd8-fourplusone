@@ -5,31 +5,26 @@ import com.infoshareacademy.domain.api.BookJson;
 import com.infoshareacademy.domain.entity.*;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.Set;
 
 @Stateless
 public class ApiMapper {
 
+    @Inject
+    private AuthorMapper authorMapper;
 
-    public Book mapApiToEntity(BookJson books) {
+
+    public Book mapApiToEntity(BookJson bookJson) {
 
 
         Book book = new Book();
-        Author author = new Author();
-        LiteratureKind kind = new LiteratureKind();
-        Genre genre = new Genre();
-        Epoch epoch = new Epoch();
-        book.setTitle(books.getTitle());
-        book.setCover(books.getCover());
-        book.setCoverThumb(books.getCoverThumb());
-        book.setHasAudio(books.getHasAudio());
-        book.setSimpleThumb(books.getSimpleThumb());
-        author.setName(books.getAuthor());
-        genre.setName(books.getGenre());
-        kind.setName(books.getKind());
-        epoch.setName(books.getEpoch());
-        book.setAuthors(Set.of(author));
-        book.setGenres(Set.of(genre));
+        book.setTitle(bookJson.getTitle());
+        book.setCover(bookJson.getCover());
+        book.setCoverThumb(bookJson.getCoverThumb());
+        book.setHasAudio(bookJson.getHasAudio());
+        book.setSimpleThumb(bookJson.getSimpleThumb());
+
 
         return book;
 
