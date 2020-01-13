@@ -1,13 +1,9 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.dao.AuthorDao;
-import com.infoshareacademy.dao.BookDao;
-import com.infoshareacademy.domain.api.AuthorJson;
-import com.infoshareacademy.domain.api.BookJson;
-import com.infoshareacademy.domain.entity.Author;
-import com.infoshareacademy.domain.entity.Book;
-import com.infoshareacademy.mapper.ApiMapper;
-import com.infoshareacademy.mapper.AuthorMapper;
+import com.infoshareacademy.dao.*;
+import com.infoshareacademy.domain.api.*;
+import com.infoshareacademy.domain.entity.*;
+import com.infoshareacademy.mapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +25,7 @@ public class ApiDataInitializer {
     private BookApiConsumer bookApiConsumer;
 
     @Inject
-    private ApiMapper apiMapper;
+    private BookMapper bookMapper;
 
     @Inject
     private AuthorMapper authorMapper;
@@ -40,35 +36,87 @@ public class ApiDataInitializer {
     @Inject
     private AuthorDao authorDao;
 
+    @Inject
+    private KindDao kindDao;
+
+    @Inject
+    private KindMapper kindMapper;
+
+    @Inject
+    private GenreDao genreDao;
+
+    @Inject
+    private GenreMapper genreMapper;
+
+    @Inject
+    private EpochDao epochDao;
+
+    @Inject
+    private EpochMapper epochMapper;
+
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
     private static final String AUTHOR_URI = "http://isa-proxy.blueazurit.com/books/authors/";
+    private static final String KIND_URI = "http://isa-proxy.blueazurit.com/books/kinds/";
+    private static final String GENRE_URI = "http://isa-proxy.blueazurit.com/books/genres/";
+    private static final String EPOCH_URI = "http://isa-proxy.blueazurit.com/books/epochs/";
 
 
     @PostConstruct
     public void setApi() throws IOException {
 
         List<AuthorJson> authorJsons = bookApiConsumer.consume(getAuthorClientTarget(), AuthorJson.class);
-        authorJsons.forEach(authorJson ->{
-                Author author = authorMapper.mapApiRequestToEntity(authorJson);
-        authorDao.addAuthor(author);
-
-
-
-
+        authorJsons.forEach(authorJson -> {
+            Author author = authorMapper.mapApiRequestToEntity(authorJson);
+            authorDao.addAuthor(author);
         });
-        List<BookJson> bookJsonList = bookApiConsumer.consume(getBookClientTarget(),BookJson.class);
+
+
+        List<KindJson> kindJsons = bookApiConsumer.consume(getKindClientTarget(), KindJson.class);
+        kindJsons.forEach(kindJson -> {
+            LiteratureKind kind = kindMapper.mapApiRequestToEntity(kindJson);
+            kindDao.addKind(kind);
+        });
+
+
+        List<BookJson> bookJsonList = bookApiConsumer.consume(getBookClientTarget(), BookJson.class);
         bookJsonList.forEach(b -> {
-            Book book = apiMapper.mapApiToEntity(b);
+            Book book = bookMapper.mapApiToEntity(b);
             bookdao.addBook(book);
 
         });
+        List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
+        genreJsonList.forEach(b -> {
+            Genre genre = genreMapper.mapApiRequestToEntity(b);
+            genreDao.addGenre(genre);
+
+        });
+        List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
+        epochJsonList.forEach(b -> {
+            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+            epochDao.addEpoch(epoch);
+
+        });
+    }
+
+    private WebTarget getGenreClientTarget() {
+        Client client = ClientBuilder.newClient();
+        return client.target(GENRE_URI);
+    }
+    private WebTarget getEpochClientTarget() {
+        Client client = ClientBuilder.newClient();
+        return client.target(EPOCH_URI);
     }
 
     private WebTarget getBookClientTarget() {
         Client client = ClientBuilder.newClient();
         return client.target(URI);
+    }
+
+    private WebTarget getKindClientTarget() {
+        Client client = ClientBuilder.newClient();
+        return client.target(KIND_URI);
     }
 
     private WebTarget getAuthorClientTarget() {

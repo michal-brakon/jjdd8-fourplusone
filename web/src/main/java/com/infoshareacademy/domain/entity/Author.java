@@ -1,12 +1,13 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-
+@NamedQuery(
+        name = "Author.findAuthorByName",
+        query = "SELECT a FROM Author a WHERE a.name = :name"
+)
 @Entity
 @Table(name = "author", schema = "library")
 public class Author {

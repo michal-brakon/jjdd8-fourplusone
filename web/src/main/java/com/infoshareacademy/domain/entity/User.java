@@ -13,10 +13,10 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(name = "name", length = 100)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "email", nullable = true, length = 100)
+    @Column(name = "email")
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)

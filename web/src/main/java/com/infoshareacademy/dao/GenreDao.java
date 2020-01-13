@@ -1,6 +1,6 @@
 package com.infoshareacademy.dao;
 
-import com.infoshareacademy.domain.entity.LiteratureKind;
+import com.infoshareacademy.domain.entity.Genre;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,17 +8,18 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 @Stateless
-public class KindDao {
+public class GenreDao {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @PersistenceContext
     private EntityManager em;
 
-    public void addKind(LiteratureKind kind) {
-        em.persist(kind);
-        logger.debug("new kind was created {}", kind);
+    public void addGenre(Genre genre) {
+        em.persist(genre);
+        logger.debug("new genre was created {}", genre);
     }
 }
+
+
