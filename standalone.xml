@@ -92,13 +92,8 @@
                 </role>
             </role-mapping>
         </access-control>
- </management>
+    </management>
     <profile>
-
-
-
-
-
         <subsystem xmlns="urn:jboss:domain:logging:8.0">
             <console-handler name="CONSOLE">
                 <level name="DEBUG"/>
@@ -113,37 +108,19 @@
                 <file relative-to="jboss.server.log.dir" path="server.log"/>
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
-            </periodic-rotating-file-handler>   
-
-
-<!-- -->
-
-<periodic-rotating-file-handler name="OURLOG" autoflush="true">
-<level name="INFO"/>
-<formatter>
-<pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
-</formatter>
-<file relative-to="jboss.server.log.dir" path="ourlog.log"/>
-<suffix value=".yyyy-MM-dd"/>
-<append value="true"/>
-</periodic-rotating-file-handler>
-
-
-
-<logger category="com.infoshareacademy">   
-<level name="INFO"/>
-<handlers>
-<handler name="OURLOG"/>
-</handlers>
-</logger>
-
-<!-- -->
-
-
-
-
-
-
+            </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="FOURPLUSONE" autoflush="true">
+                <level name="INFO"/>
+                <formatter>
+                    <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="fourplusone.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <logger category="com.infoshareacademy">
+                <level name="DEBUG"/>
+            </logger>
             <logger category="com.arjuna">
                 <level name="WARN"/>
             </logger>
@@ -161,11 +138,9 @@
                 <handlers>
                     <handler name="CONSOLE"/>
                     <handler name="FILE"/>
+                    <handler name="FOURPLUSONE"/>
                 </handlers>
             </root-logger>
-
-
-
             <formatter name="PATTERN">
                 <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
             </formatter>
@@ -565,4 +540,9 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="four-plus-one" runtime-name="four-plus-one.war">
+            <fs-exploded path="/home/adamprzybylowski/jjdd8-fourplusone/web/target/four-plus-one"/>
+        </deployment>
+    </deployments>
 </server>
