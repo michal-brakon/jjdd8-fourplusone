@@ -6,15 +6,13 @@
 	<title>Four+One Library</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="Bootstrap 3 template for corporate business"/>
-	<!-- css -->
-	<link href="css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="plugins/flexslider/flexslider.css" rel="stylesheet" media="screen"/>
-	<link href="css/cubeportfolio.min.css" rel="stylesheet"/>
-	<link href="css/style.css" rel="stylesheet"/>
-	<link id="t-colors" href="skins/default.css" rel="stylesheet"/>
-	<link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css"/>
+	<link href="../../html/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="../../html/plugins/flexslider/flexslider.css" rel="stylesheet" media="screen"/>
+	<link href="../../html/css/cubeportfolio.min.css" rel="stylesheet"/>
+	<link href="../../html/css/style.css" rel="stylesheet"/>
+	<link id="t-colors" href="../../html/skins/default.css" rel="stylesheet"/>
+	<link id="bodybg" href="../../html/bodybg/bg1.css" rel="stylesheet" type="text/css"/>
 </head>
-
 <body>
 <div id="wrapper">
 	<header>
@@ -47,7 +45,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.ftlh"><img src="img/logo.png" alt="" width="199" height="52"/></a>
+					<a class="navbar-brand" href="index.ftlh"><img src="../../html/img/logo.png" alt="" width="199" height="52"/></a>
 				</div>
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
@@ -66,7 +64,7 @@
 								</li>
 							</ul>
 						</li>
-						<li><a href="login.ftlh">Zaloguj/Rejestracja</a></li>
+						<li><a href="../../html/szablony/login.ftlh">Zaloguj/Rejestracja</a></li>
 					</ul>
 				</div>
 			</div>
@@ -136,21 +134,20 @@
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/jquery.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="plugins/flexslider/jquery.flexslider-min.js"></script>
-<script src="plugins/flexslider/flexslider.config.js"></script>
-<script src="js/jquery.appear.js"></script>
-<script src="js/stellar.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/uisearch.js"></script>
-<script src="js/jquery.cubeportfolio.min.js"></script>
-<script src="js/google-code-prettify/prettify.js"></script>
-<script src="js/animate.js"></script>
-<script src="js/custom.js"></script>
+<script src="../../html/js/jquery.min.js"></script>
+<script src="../../html/js/modernizr.custom.js"></script>
+<script src="../../html/js/jquery.easing.1.3.js"></script>
+<script src="../../html/js/bootstrap.min.js"></script>
+<script src="../../html/plugins/flexslider/jquery.flexslider-min.js"></script>
+<script src="../../html/plugins/flexslider/flexslider.config.js"></script>
+<script src="../../html/js/jquery.appear.js"></script>
+<script src="../../html/js/stellar.js"></script>
+<script src="../../html/js/classie.js"></script>
+<script src="../../html/js/uisearch.js"></script>
+<script src="../../html/js/jquery.cubeportfolio.min.js"></script>
+<script src="../../html/js/google-code-prettify/prettify.js"></script>
+<script src="../../html/js/animate.js"></script>
+<script src="../../html/js/custom.js"></script>
 
 
 </body>

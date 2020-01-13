@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = "")
+@WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
@@ -26,7 +26,7 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Template template = templateProvider.getTemplate(getServletContext(), "main.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "emptyTemplate.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
