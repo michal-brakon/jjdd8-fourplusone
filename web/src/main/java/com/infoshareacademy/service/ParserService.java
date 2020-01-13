@@ -33,18 +33,18 @@ public class ParserService {
         return new ArrayList<>();
     }
 
-//    public List<BookJson> parseBookFromFile(String filename) {
-//        try {
-//            File file = new File(filename);
-//            return mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-//                    .readValue(file, new TypeReference<>() {
-//                    });
-//        } catch (JsonProcessingException e) {
-//            logger.error("Json parsing fail ", e);
-//
-//        } catch (IOException e) {
-//            logger.error("Error while loading file ", e);
-//        }
-//        return new ArrayList<>();
-//    }
+    public List<BookJson> parseBookFromFile(String filename) {
+        try {
+            File file = new File(filename);
+            return mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .readValue(file, new TypeReference<>() {
+                    });
+        } catch (JsonProcessingException e) {
+            logger.error("Json parsing fail ", e);
+
+        } catch (IOException e) {
+            logger.error("Error while loading file ", e);
+        }
+        return new ArrayList<>();
+    }
 }
