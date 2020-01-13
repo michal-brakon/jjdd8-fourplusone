@@ -7,11 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
-public class JsonLoader {
+public class ApiLoaderToFile {
 
 
     public void getFromURL (String url) throws IOException {
@@ -33,7 +31,7 @@ public class JsonLoader {
     }
 
     public static void main(String[] args) throws IOException {
-        new JsonLoader().getFromURL("https://wolnelektury.pl/api/books/?format=json");
+        new ApiLoaderToFile().getFromURL("https://wolnelektury.pl/api/books/?format=json");
     }
 
 }
