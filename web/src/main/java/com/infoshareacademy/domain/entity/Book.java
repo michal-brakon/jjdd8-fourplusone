@@ -35,7 +35,8 @@ public class Book {
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     @JoinTable(name = "genre_set",
             joinColumns = {
                     @JoinColumn(name = "book_id")},

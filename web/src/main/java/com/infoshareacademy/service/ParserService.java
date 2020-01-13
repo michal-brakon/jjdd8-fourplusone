@@ -20,11 +20,10 @@ public class ParserService {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ObjectMapper mapper = new ObjectMapper();
 
-    public List<BookJson> parseBookFromUri(String jsonList) {
+    public <T>List<T> parse(String jsonList, Class<T> tClass) {
         try {
             return mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                    .readValue(jsonList, new TypeReference<>() {
-                    });
+                    .readValues(jsonList, tClass);
         } catch (JsonProcessingException e) {
             logger.error("Json parsing fail ", e);
         }

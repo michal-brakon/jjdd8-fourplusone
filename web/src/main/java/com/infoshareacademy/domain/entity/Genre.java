@@ -8,7 +8,8 @@ import java.util.Set;
 @Table(name = "genre", schema = "library")
 public class Genre {
 
-    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
+    @ManyToMany(cascade=CascadeType.ALL,
+            mappedBy = "genres", fetch = FetchType.LAZY)
     Set<Book> books = new HashSet<>();
 
     @Id
@@ -16,7 +17,7 @@ public class Genre {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 15)
+    @Column(name = "name")
     private String name;
 
     public Long getId() {
