@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <form method="post" action="/uploader" enctype="multipart/form-data">
     <title>Upload pliku JSON</title>
-    <input type="button" name="upload" value="upload"/><br/><br/>
+    <input type="file" name="api">
 </head>
 <body>
 
