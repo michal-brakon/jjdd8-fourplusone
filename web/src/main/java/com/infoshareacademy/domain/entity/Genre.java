@@ -1,10 +1,15 @@
-package com.infoshareacademy.entity;
+package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "epoch", schema = "library")
-public class Epoch {
+@Table(name = "genre", schema = "library")
+public class Genre {
+
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
+    Set<Book> books = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +34,5 @@ public class Epoch {
     public void setName(String name) {
         this.name = name;
     }
+
 }
