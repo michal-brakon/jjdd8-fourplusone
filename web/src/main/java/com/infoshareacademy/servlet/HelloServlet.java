@@ -17,7 +17,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hibernate.bytecode.BytecodeLogger.LOGGER;
 
 @WebServlet("/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -29,21 +28,24 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOGGER.info("Error-info1");
-        LOGGER.debug("Error-debug1");
+        logger.info("Error-info1");
+        logger.debug("Error-debug1");
+
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-user.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);
 
-        LOGGER.info("Error-info2");
-        LOGGER.debug("Error -debug2");
-
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException e) {
             logger.error(e.getMessage());
+            logger.info("Error-info4");
+            logger.debug("Error -debug4");
         }
+        logger.info("Error-info5");
+        logger.debug("Error -debug5");
     }
+
 }
