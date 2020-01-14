@@ -69,29 +69,23 @@ public class ApiDataInitializer {
         List<AuthorJson> authorJsons = bookApiConsumer.consume(getAuthorClientTarget(), AuthorJson.class);
         authorJsons.forEach(authorJson -> {
             Author author = authorMapper.mapApiRequestToEntity(authorJson);
-            authorDao.addAuthor(author);
-        });
-
+            authorDao.addAuthor(author);});
 
         List<KindJson> kindJsons = bookApiConsumer.consume(getKindClientTarget(), KindJson.class);
         kindJsons.forEach(kindJson -> {
             LiteratureKind kind = kindMapper.mapApiRequestToEntity(kindJson);
-            kindDao.addKind(kind);
-        });
-
+            kindDao.addKind(kind);});
 
         List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
         genreJsonList.forEach(b -> {
             Genre genre = genreMapper.mapApiRequestToEntity(b);
-            genreDao.addGenre(genre);
+            genreDao.addGenre(genre);});
 
-        });
         List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
         epochJsonList.forEach(b -> {
             Epoch epoch = epochMapper.mapApiRequestToEntity(b);
-            epochDao.addEpoch(epoch);
+            epochDao.addEpoch(epoch);});
 
-        });
         List<BookJson> bookJsonList = bookApiConsumer.consume(getBookClientTarget(), BookJson.class);
         bookJsonList.forEach(b -> {
             Book book = bookMapper.mapApiToEntity(b);
@@ -99,14 +93,11 @@ public class ApiDataInitializer {
             LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
             Genre genreByName = genreDao.findGenreByName(b.getGenre());
             Epoch epochByName = epochDao.findEpochByName(b.getEpoch());
-
             book.setAuthor(authorByName);
             book.setGenre(genreByName);
             book.setKind(kindByName);
             book.setEpoch(epochByName);
-            bookdao.addBook(book);
-
-        });
+            bookdao.addBook(book);});
     }
 
     private WebTarget getGenreClientTarget() {

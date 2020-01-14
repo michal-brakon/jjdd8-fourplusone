@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 @NamedQuery(
         name = "Genre.findGenreByName",
-        query = "SELECT g FROM Genre g WHERE g.name = :name"
-)
+        query = "SELECT g FROM Genre g WHERE g.name = :name")
+
 @Entity
 @Table(name = "genre", schema = "library",
         indexes = {@Index(name = "genre_idx", columnList = "name")})

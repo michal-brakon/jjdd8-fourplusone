@@ -1,11 +1,6 @@
 package com.infoshareacademy.domain.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-
 public class KindJson {
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
 
     private String name;
 

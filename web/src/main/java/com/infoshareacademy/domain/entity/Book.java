@@ -22,7 +22,7 @@ public class Book {
     @Column(name = "cover")
     private String cover;
 
-    @Column(name = "has_audio")
+    @Column(name = "has_audio", columnDefinition = "Boolean")
     private Boolean hasAudio;
 
     @Column(name = "simple_thumb")
