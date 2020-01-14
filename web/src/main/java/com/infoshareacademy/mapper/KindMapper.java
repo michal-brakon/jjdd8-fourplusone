@@ -3,9 +3,9 @@ package com.infoshareacademy.mapper;
 import com.infoshareacademy.domain.api.KindJson;
 import com.infoshareacademy.domain.entity.LiteratureKind;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 
-@Stateless
+@RequestScoped
 public class KindMapper {
 
     public LiteratureKind mapApiRequestToEntity(KindJson kindJson) {

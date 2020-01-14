@@ -46,25 +46,19 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "literature_kind_id")
-    private LiteratureKind literatureKindId;
+    private LiteratureKind kind;
 
 
-    @ManyToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    @JoinTable(name = "author_book",
-            joinColumns = {
-                    @JoinColumn(name = "book_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "author_id")})
-    private Set<Author> authors = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
+    private Author author;
 
-
-    public Set<Author> getAuthors() {
-        return authors;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public Long getId() {
@@ -139,11 +133,11 @@ public class Book {
     }
 
 
-    public LiteratureKind getLiteratureKindId() {
-        return literatureKindId;
+    public LiteratureKind getKind() {
+        return kind;
     }
 
-    public void setLiteratureKindId(LiteratureKind literatureKindId) {
-        this.literatureKindId = literatureKindId;
+    public void setKind(LiteratureKind kind) {
+        this.kind = kind;
     }
 }

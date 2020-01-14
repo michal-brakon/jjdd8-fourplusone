@@ -3,9 +3,9 @@ package com.infoshareacademy.mapper;
 import com.infoshareacademy.domain.api.GenreJson;
 import com.infoshareacademy.domain.entity.Genre;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 
-@Stateless
+@RequestScoped
 public class GenreMapper {
 
     public Genre mapApiRequestToEntity(GenreJson genreJson) {

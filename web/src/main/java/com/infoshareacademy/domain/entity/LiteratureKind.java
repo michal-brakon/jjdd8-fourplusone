@@ -1,7 +1,10 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-
+@NamedQuery(
+        name = "Kind.findAuthorByName",
+        query = "SELECT k FROM LiteratureKind k WHERE k.name = :name"
+)
 @Entity
 @Table(name = "literature_kind", schema = "library")
 public class LiteratureKind {

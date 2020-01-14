@@ -3,10 +3,10 @@ package com.infoshareacademy.mapper;
 import com.infoshareacademy.domain.api.AuthorJson;
 import com.infoshareacademy.domain.entity.Author;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 
-@Stateless
-public class AuthorMapper{
+@RequestScoped
+public class AuthorMapper {
 
 
     public Author mapApiRequestToEntity(AuthorJson authorJson) {
@@ -14,5 +14,6 @@ public class AuthorMapper{
         Author author = new Author();
         author.setName(authorJson.getName());
         return author;
+
     }
 }

@@ -3,9 +3,9 @@ package com.infoshareacademy.mapper;
 import com.infoshareacademy.domain.api.EpochJson;
 import com.infoshareacademy.domain.entity.Epoch;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 
-@Stateless
+@RequestScoped
 public class EpochMapper {
 
     public Epoch mapApiRequestToEntity(EpochJson epochJson) {

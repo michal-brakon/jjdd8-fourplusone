@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

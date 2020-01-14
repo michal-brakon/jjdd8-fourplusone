@@ -79,23 +79,28 @@ public class ApiDataInitializer {
             kindDao.addKind(kind);
         });
 
+//
 
+//        List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
+//        genreJsonList.forEach(b -> {
+//            Genre genre = genreMapper.mapApiRequestToEntity(b);
+//            genreDao.addGenre(genre);
+//
+//        });
+//        List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
+//        epochJsonList.forEach(b -> {
+//            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+//            epochDao.addEpoch(epoch);
+//
+//        });
         List<BookJson> bookJsonList = bookApiConsumer.consume(getBookClientTarget(), BookJson.class);
         bookJsonList.forEach(b -> {
             Book book = bookMapper.mapApiToEntity(b);
+            Author authorByName = authorDao.findAuthorByName(b.getAuthor());
+            LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
+            book.setAuthor(authorByName);
+            book.setKind(kindByName);
             bookdao.addBook(book);
-
-        });
-        List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
-        genreJsonList.forEach(b -> {
-            Genre genre = genreMapper.mapApiRequestToEntity(b);
-            genreDao.addGenre(genre);
-
-        });
-        List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
-        epochJsonList.forEach(b -> {
-            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
-            epochDao.addEpoch(epoch);
 
         });
     }
@@ -104,6 +109,7 @@ public class ApiDataInitializer {
         Client client = ClientBuilder.newClient();
         return client.target(GENRE_URI);
     }
+
     private WebTarget getEpochClientTarget() {
         Client client = ClientBuilder.newClient();
         return client.target(EPOCH_URI);
