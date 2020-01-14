@@ -1,10 +1,7 @@
 package com.infoshareacademy.service;
 
 
-import com.infoshareacademy.domain.api.AuthorJson;
-
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;

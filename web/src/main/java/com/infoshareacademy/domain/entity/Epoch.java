@@ -2,8 +2,13 @@ package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 
+@NamedQuery(
+        name = "Epoch.findEpochByName",
+        query = "SELECT e FROM Epoch e WHERE e.name = :name"
+)
 @Entity
-@Table(name = "epoch", schema = "library")
+@Table(name = "epoch", schema = "library",
+        indexes = {@Index(name = "epoch_idx", columnList = "name")})
 public class Epoch {
 
     @Id

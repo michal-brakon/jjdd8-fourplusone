@@ -6,7 +6,8 @@ import javax.persistence.*;
         query = "SELECT k FROM LiteratureKind k WHERE k.name = :name"
 )
 @Entity
-@Table(name = "literature_kind", schema = "library")
+@Table(name = "literature_kind", schema = "library",
+        indexes = {@Index(name = "kind_idx", columnList = "name")})
 public class LiteratureKind {
 
     @Id

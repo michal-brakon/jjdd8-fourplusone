@@ -79,27 +79,31 @@ public class ApiDataInitializer {
             kindDao.addKind(kind);
         });
 
-//
 
-//        List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
-//        genreJsonList.forEach(b -> {
-//            Genre genre = genreMapper.mapApiRequestToEntity(b);
-//            genreDao.addGenre(genre);
-//
-//        });
-//        List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
-//        epochJsonList.forEach(b -> {
-//            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
-//            epochDao.addEpoch(epoch);
-//
-//        });
+        List<GenreJson> genreJsonList = bookApiConsumer.consume(getGenreClientTarget(), GenreJson.class);
+        genreJsonList.forEach(b -> {
+            Genre genre = genreMapper.mapApiRequestToEntity(b);
+            genreDao.addGenre(genre);
+
+        });
+        List<EpochJson> epochJsonList = bookApiConsumer.consume(getEpochClientTarget(), EpochJson.class);
+        epochJsonList.forEach(b -> {
+            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+            epochDao.addEpoch(epoch);
+
+        });
         List<BookJson> bookJsonList = bookApiConsumer.consume(getBookClientTarget(), BookJson.class);
         bookJsonList.forEach(b -> {
             Book book = bookMapper.mapApiToEntity(b);
             Author authorByName = authorDao.findAuthorByName(b.getAuthor());
             LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
+            Genre genreByName = genreDao.findGenreByName(b.getGenre());
+            Epoch epochByName = epochDao.findEpochByName(b.getEpoch());
+
             book.setAuthor(authorByName);
+            book.setGenre(genreByName);
             book.setKind(kindByName);
+            book.setEpoch(epochByName);
             bookdao.addBook(book);
 
         });

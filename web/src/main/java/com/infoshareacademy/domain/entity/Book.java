@@ -35,14 +35,9 @@ public class Book {
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
-    @ManyToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    @JoinTable(name = "genre_set",
-            joinColumns = {
-                    @JoinColumn(name = "book_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "genre_id")})
-    private Set<Genre> genres = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "literature_kind_id")
@@ -114,21 +109,19 @@ public class Book {
         this.coverThumb = coverThumb;
     }
 
-
-    public Set<Genre> getGenres() {
-        return genres;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
-
 
     public Epoch getEpochId() {
         return epochId;
     }
 
-    public void setEpochId(Epoch epochId) {
+    public void setEpoch(Epoch epochId) {
         this.epochId = epochId;
     }
 
