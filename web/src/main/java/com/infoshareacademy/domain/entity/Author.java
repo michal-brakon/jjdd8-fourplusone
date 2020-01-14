@@ -9,6 +9,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "author", schema = "library")
+
+@NamedQueries({ @NamedQuery(name = "Author.ById",
+        query = "SELECT a.name FROM Author a WHERE a.id=:id")
+})
+
 public class Author {
 
     @Id

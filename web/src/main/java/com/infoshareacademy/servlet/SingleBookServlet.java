@@ -34,7 +34,7 @@ public class SingleBookServlet extends HttpServlet {
         }
         Long id = Long.valueOf(param);
 
-        View view = bookService.getView(id);
+
 
         PrintWriter writer = resp.getWriter();
 
@@ -43,8 +43,8 @@ public class SingleBookServlet extends HttpServlet {
                         "singlePage.ftlh");
         Map<String, Object> model = new HashMap<>();
 
-        if (view != null) {
-            model.put("book", view);
+        if (bookService.getView(id) != null) {
+            model.put("book", bookService.getView(id));
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

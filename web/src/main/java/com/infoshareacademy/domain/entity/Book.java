@@ -10,7 +10,10 @@ import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name = "Book.getById",
-                query = "SELECT b FROM Book b WHERE b.id=:id")
+                query = "SELECT b FROM Book b WHERE b.id=:id"),
+
+        @NamedQuery(name = "Book.getAuthorId",
+                query = "select b.id from Author a join Book b on b.id = a.id where b.id=:id")
 })
 
 public class Book {

@@ -2,10 +2,9 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.entity.Book;
-import com.infoshareacademy.mapper.BookMapper;
+import com.infoshareacademy.mapper.view.BookMapper;
 
 import javax.inject.Inject;
-import javax.swing.text.View;
 
 public class BookService {
 
@@ -18,8 +17,8 @@ public class BookService {
         return this.bookDao.getById(id);
     }
 
-    public View getView(Long id) {
-        return bookMapper.mapEntityToView(id);
+    public String getAuthors(Long id) {
+        return bookDao.getBookAuthors(id);
     }
 
 
