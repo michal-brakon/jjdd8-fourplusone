@@ -2,7 +2,6 @@ package com.infoshareacademy.mapper;
 
 
 import com.infoshareacademy.dao.AuthorDao;
-import com.infoshareacademy.domain.api.AuthorJson;
 import com.infoshareacademy.domain.api.BookJson;
 import com.infoshareacademy.domain.entity.Author;
 import com.infoshareacademy.domain.entity.Book;
@@ -15,10 +14,10 @@ import java.util.Set;
 public class BookMapper {
 
     @Inject
-    private AuthorJson authorJson;
+    private AuthorDao authorDao;
 
     @Inject
-    private AuthorDao authorDao;
+    private Author author;
 
     public Book mapApiToEntity(BookJson bookJson) {
 
@@ -29,10 +28,7 @@ public class BookMapper {
         book.setHasAudio(bookJson.getHasAudio());
         book.setSimpleThumb(bookJson.getSimpleThumb());
 
-        if (authorJson.getName().equals(bookJson.getAuthor())){
-           authorDao.findAuthorByName(bookJson.getAuthor());
-            book.setAuthors();
-        }
+        book.setAuthors(Set.of(authorDao.findAuthorByName(author.getAuthorName())));
 
         return book;
     }

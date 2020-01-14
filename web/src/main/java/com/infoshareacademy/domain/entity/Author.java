@@ -9,7 +9,8 @@ import java.util.Set;
         query = "SELECT a FROM Author a WHERE a.name = :name"
 )
 @Entity
-@Table(name = "author", schema = "library")
+@Table(name = "author", schema = "library",
+        indexes = {@Index(name = "author", columnList = "author_name_index", unique = true)})
 public class Author {
 
     @Id

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,11 +17,9 @@ public class BookDao {
     @PersistenceContext
     private EntityManager em;
 
-
     public void addBook(Book book) {
 
         em.persist(book);
         logger.info("New book was added :{}", book);
     }
-
 }
