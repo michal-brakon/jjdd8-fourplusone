@@ -51,6 +51,7 @@ public class LoaderFromFileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.getWriter().println("Load database....");
         Part api = req.getPart("api");
         String apiURL = "";
         try {

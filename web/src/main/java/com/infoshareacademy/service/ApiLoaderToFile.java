@@ -30,19 +30,6 @@ public class ApiLoaderToFile {
     @Inject
     ApiMapper apiMapper;
 
-
-
-    private static final String SETTINGS_FILE = "settings.properties";
-
-    public void getFromURL (String url) throws IOException {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.writeValue(new File(SETTINGS_FILE + "json.txt"), objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .readValue(url, new TypeReference<>() {
-                }));
-    }
-
     public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
 
         String filename = Paths.get(filePart.getSubmittedFileName())

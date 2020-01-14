@@ -13,7 +13,6 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import java.util.List;
 
-//@Startup
 @Singleton
 public class ApiDataInitializer {
 
