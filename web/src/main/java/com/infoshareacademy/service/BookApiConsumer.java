@@ -9,11 +9,11 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import java.net.http.HttpRequest;
 import java.util.List;
 
 @Stateless
-public class BookApiConsumer {
-
+public class BookApiConsumer  {
 
    private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
 
