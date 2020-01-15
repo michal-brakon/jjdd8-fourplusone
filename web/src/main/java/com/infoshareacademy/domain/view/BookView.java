@@ -1,57 +1,15 @@
 package com.infoshareacademy.domain.view;
 
-import javax.inject.Inject;
-
 public class BookView {
 
-    @Inject
-    AuthorView authorView;
-    @Inject
-    KindView kindView;
-    @Inject
-    GenreView genreView;
-    @Inject
-    EpochView epochView;
 
     String title;
     String cover;
     boolean audio;
-    String author = authorView.getName();
-    String kind = kindView.getName();
-    String genre = genreView.getName();
-    String epoch = epochView.getName();
-
-    public AuthorView getAuthorView() {
-        return authorView;
-    }
-
-    public void setAuthorView(AuthorView authorView) {
-        this.authorView = authorView;
-    }
-
-    public KindView getKindView() {
-        return kindView;
-    }
-
-    public void setKindView(KindView kindView) {
-        this.kindView = kindView;
-    }
-
-    public GenreView getGenreView() {
-        return genreView;
-    }
-
-    public void setGenreView(GenreView genreView) {
-        this.genreView = genreView;
-    }
-
-    public EpochView getEpochView() {
-        return epochView;
-    }
-
-    public void setEpochView(EpochView epochView) {
-        this.epochView = epochView;
-    }
+    String author;
+    String kind;
+    String genre;
+    String epoch;
 
     public String getTitle() {
         return title;

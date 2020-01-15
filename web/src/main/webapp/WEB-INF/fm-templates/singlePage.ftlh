@@ -73,18 +73,16 @@
 	<div class="container">
 
 
-		<#if book.id == 1> </#if>
+
 
 		<ul>
 			<li>Tytuł: ${book.title} </li>
-			<li>Autor: ${book.authors} </li>
-			<li>Epoka: ${book.epochid} </li>
-			<li>Cover: ${book.cover} </li>
-			<li>Simple Thumb: ${book.simpleThumb} </li>
-			<li>Audio: ${book.hasAudio}</li>
-			<li>Cover Thumb:${book.coverThumb} </li>
-			<li>Rodzaj: ${book.genres}</li>
-			<li>Typ litereatury: ${book.LiteratureKindId}</li>
+			<li>Autor: ${book.author!} </li>
+			<li>Epoka: ${book.epoch!} </li>
+			<li>Cover: ${book.cover!} </li>
+			<li>Audio: ${book.audio?c!}</li>
+			<li>Rodzaj: ${book.genre!}</li>
+			<li>Typ literatury: ${book.kind!}</li>
 
 		</ul>
 

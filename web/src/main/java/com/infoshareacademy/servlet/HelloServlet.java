@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/hello")
+@WebServlet("")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
@@ -30,7 +30,7 @@ public class HelloServlet extends HttpServlet {
         logger.info("Error-info1");
         logger.debug("Error-debug1");
 
-        Template template = templateProvider.getTemplate(getServletContext(), "emptyTemplate.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();

@@ -12,17 +12,8 @@ public class AuthorView {
     @Inject
     private BookService bookService;
 
-    @Inject private BookDao bookDao;
+    @Inject
+    private BookDao bookDao;
 
-    Long authorID = bookDao.getBookAuthors()
 
-    String name = bookDao.getBookAuthors();
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
