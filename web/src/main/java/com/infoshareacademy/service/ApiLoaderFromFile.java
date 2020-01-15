@@ -89,22 +89,22 @@ public class ApiLoaderFromFile {
             bookdao.addBook(book);});
 
 
-        parserService.parseBookFromFile(file, AuthorJson.class).forEach(b -> {
-            Author author = authorMapper.mapApiRequestToEntity(b);
-            authorDao.addAuthor(author);
-        });
-        parserService.parseBookFromFile(file, EpochJson.class).forEach(b -> {
-            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
-            epochDao.addEpoch(epoch);
-        });
-        parserService.parseBookFromFile(file, GenreJson.class).forEach(b -> {
-            Genre genre = genreMapper.mapApiRequestToEntity(b);
-            genreDao.addGenre(genre);
-        });
-        parserService.parseBookFromFile(file, KindJson.class).forEach(b -> {
-            LiteratureKind kind = kindMapper.mapApiRequestToEntity(b);
-            kindDao.addKind(kind);
-        });
+//        parserService.parseBookFromFile(file, AuthorJson.class).forEach(b -> {
+//            Author author = authorMapper.mapApiRequestToEntity(b);
+//            authorDao.addAuthor(author);
+//        });
+//        parserService.parseBookFromFile(file, EpochJson.class).forEach(b -> {
+//            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+//            epochDao.addEpoch(epoch);
+//        });
+//        parserService.parseBookFromFile(file, GenreJson.class).forEach(b -> {
+//            Genre genre = genreMapper.mapApiRequestToEntity(b);
+//            genreDao.addGenre(genre);
+//        });
+//        parserService.parseBookFromFile(file, KindJson.class).forEach(b -> {
+//            LiteratureKind kind = kindMapper.mapApiRequestToEntity(b);
+//            kindDao.addKind(kind);
+//        });
 
 
 
