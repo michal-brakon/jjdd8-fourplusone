@@ -16,11 +16,12 @@ public class BookDao {
     @PersistenceContext
     private EntityManager em;
 
-
     public void addBook(Book book) {
 
         em.persist(book);
         logger.info("New book was added :{}", book);
+
     }
+
 
 }

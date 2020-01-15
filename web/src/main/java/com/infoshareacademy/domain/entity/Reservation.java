@@ -21,10 +21,10 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @Column(name = "borrow_date", nullable = true)
+    @Column(name = "borrow_date")
     private Date borrowDate;
 
-    @Column(name = "return_date", nullable = true)
+    @Column(name = "return_date")
     private Date returnDate;
 
     public Long getId() {

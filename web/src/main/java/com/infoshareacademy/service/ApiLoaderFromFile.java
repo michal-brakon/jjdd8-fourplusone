@@ -1,9 +1,15 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.dao.BookDao;
-import com.infoshareacademy.domain.entity.Book;
+import com.infoshareacademy.dao.*;
+import com.infoshareacademy.domain.api.AuthorJson;
+import com.infoshareacademy.domain.api.BookJson;
+import com.infoshareacademy.domain.api.EpochJson;
+import com.infoshareacademy.domain.api.GenreJson;
+import com.infoshareacademy.domain.api.KindJson;
+import com.infoshareacademy.domain.entity.*;
 import com.infoshareacademy.exception.ApiFileNotFound;
-import com.infoshareacademy.mapper.ApiMapper;
+import com.infoshareacademy.mapper.*;
+import com.infoshareacademy.mapper.BookMapper;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,13 +24,40 @@ import java.nio.file.Paths;
 public class ApiLoaderFromFile {
 
     @Inject
-    ParserService parserService;
+    private BookApiConsumer bookApiConsumer;
 
     @Inject
-    BookDao bookDao;
+    private BookMapper bookMapper;
 
     @Inject
-    ApiMapper apiMapper;
+    private AuthorMapper authorMapper;
+
+    @Inject
+    private BookDao bookdao;
+
+    @Inject
+    private AuthorDao authorDao;
+
+    @Inject
+    private KindDao kindDao;
+
+    @Inject
+    private KindMapper kindMapper;
+
+    @Inject
+    private GenreDao genreDao;
+
+    @Inject
+    private GenreMapper genreMapper;
+
+    @Inject
+    private EpochDao epochDao;
+
+    @Inject
+    private EpochMapper epochMapper;
+
+    @Inject
+    private ParserService parserService;
 
     public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
 
@@ -43,10 +76,38 @@ public class ApiLoaderFromFile {
 
         fileContent.close();
 
-        parserService.parseBookFromFile(file.getAbsolutePath()).forEach(b -> {
-            Book book = apiMapper.mapApiToEntity(b);
-            bookDao.addBook(book);
+        parserService.parseBookFromFile(file, BookJson.class).forEach(b -> {
+            Book book = bookMapper.mapApiToEntity(b);
+            Author authorByName = authorDao.findAuthorByName(b.getAuthor());
+            LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
+            Genre genreByName = genreDao.findGenreByName(b.getGenre());
+            Epoch epochByName = epochDao.findEpochByName(b.getEpoch());
+            book.setAuthor(authorByName);
+            book.setGenre(genreByName);
+            book.setKind(kindByName);
+            book.setEpoch(epochByName);
+            bookdao.addBook(book);});
+
+
+        parserService.parseBookFromFile(file, AuthorJson.class).forEach(b -> {
+            Author author = authorMapper.mapApiRequestToEntity(b);
+            authorDao.addAuthor(author);
         });
+        parserService.parseBookFromFile(file, EpochJson.class).forEach(b -> {
+            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+            epochDao.addEpoch(epoch);
+        });
+        parserService.parseBookFromFile(file, GenreJson.class).forEach(b -> {
+            Genre genre = genreMapper.mapApiRequestToEntity(b);
+            genreDao.addGenre(genre);
+        });
+        parserService.parseBookFromFile(file, KindJson.class).forEach(b -> {
+            LiteratureKind kind = kindMapper.mapApiRequestToEntity(b);
+            kindDao.addKind(kind);
+        });
+
+
+
         return file;
     }
 }
