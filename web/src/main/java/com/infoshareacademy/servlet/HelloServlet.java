@@ -21,10 +21,14 @@ import java.util.Map;
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
-    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());
+
+
+    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());  //!
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("Error-info1");
+        logger.debug("Error-debug1");
 
         Template template = templateProvider.getTemplate(getServletContext(), "main.ftlh");
         String name = req.getParameter("name");
@@ -36,6 +40,11 @@ public class HelloServlet extends HttpServlet {
             template.process(dataModel, printWriter);
         } catch (TemplateException e) {
             logger.error(e.getMessage());
+            logger.info("Error-info4");
+            logger.debug("Error -debug4");
         }
+        logger.info("Error-info5");
+        logger.debug("Error -debug5");
     }
+
 }
