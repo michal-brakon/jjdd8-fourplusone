@@ -1,8 +1,5 @@
 package com.infoshareacademy.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.exception.ApiFileNotFound;
@@ -16,16 +13,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Properties;
 
 @Stateless
-public class ApiLoaderToFile {
+public class ApiLoaderFromFile {
 
     @Inject
     ParserService parserService;
 
     @Inject
-    BookDao bookdao;
+    BookDao bookDao;
 
     @Inject
     ApiMapper apiMapper;
@@ -38,7 +34,6 @@ public class ApiLoaderToFile {
         if (filename == null || filename.isEmpty()) {
             throw new ApiFileNotFound("No API file has been uploaded");
         }
-
         File file = new File(filename);
         Files.deleteIfExists(file.toPath());
 
@@ -50,9 +45,8 @@ public class ApiLoaderToFile {
 
         parserService.parseBookFromFile(file.getAbsolutePath()).forEach(b -> {
             Book book = apiMapper.mapApiToEntity(b);
-            bookdao.addBook(book);
+            bookDao.addBook(book);
         });
-
         return file;
     }
 }

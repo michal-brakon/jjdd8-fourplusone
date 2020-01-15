@@ -13,6 +13,7 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import java.util.List;
 
+@Startup
 @Singleton
 public class ApiDataInitializer {
 
@@ -23,7 +24,7 @@ public class ApiDataInitializer {
     private ApiMapper apiMapper;
 
     @Inject
-    private BookDao bookdao;
+    private BookDao bookDao;
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
@@ -32,7 +33,7 @@ public class ApiDataInitializer {
         List<BookJson> bookJsonList = bookApiConsumer.consumeBooks();
         bookJsonList.forEach(b -> {
             Book book = apiMapper.mapApiToEntity(b);
-            bookdao.addBook(book);
+            bookDao.addBook(book);
 
         });
     }

@@ -2,8 +2,7 @@ package com.infoshareacademy.servlet;
 
 import com.infoshareacademy.exception.ApiFileNotFound;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.ApiLoaderToFile;
-import com.infoshareacademy.service.BookApiConsumer;
+import com.infoshareacademy.service.ApiLoaderFromFile;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -32,7 +31,7 @@ public class LoaderFromFileServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
     @Inject
-    ApiLoaderToFile apiLoaderToFile;
+    ApiLoaderFromFile apiLoaderFromFile;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -51,11 +50,10 @@ public class LoaderFromFileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.getWriter().println("Load database....");
         Part api = req.getPart("api");
         String apiURL = "";
         try {
-            apiURL = apiLoaderToFile.uploadApiFile(api).getName();
+            apiURL = apiLoaderFromFile.uploadApiFile(api).getName();
         } catch (ApiFileNotFound apiFileNotFound) {
             logger.warn(apiFileNotFound.getMessage());
         }
