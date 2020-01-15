@@ -11,10 +11,10 @@ public class Role {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 45)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "description", nullable = true, length = 255)
+    @Column(name = "description")
     private String description;
 
 

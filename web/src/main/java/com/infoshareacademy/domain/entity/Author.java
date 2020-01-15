@@ -1,19 +1,14 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
+@NamedQuery(
+        name = "Author.findAuthorByName",
+        query = "SELECT a FROM Author a WHERE a.name = :name")
 
 @Entity
-@Table(name = "author", schema = "library")
-
-@NamedQueries({ @NamedQuery(name = "Author.ById",
-        query = "SELECT a.name FROM Author a WHERE a.id=:id")
-})
-
+@Table(name = "author", schema = "library",
+        indexes = {@Index(name = "author_idx", columnList = "name")})
 public class Author {
 
     @Id
@@ -24,18 +19,6 @@ public class Author {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(
-            mappedBy = "authors",
-            fetch = FetchType.LAZY)
-    Set<Book> books = new HashSet<>();
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
 
     public Long getId() {
         return id;
