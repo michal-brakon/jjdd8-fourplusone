@@ -1,9 +1,6 @@
 package com.infoshareacademy.domain.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class BookJson {
     @JsonProperty("kind")

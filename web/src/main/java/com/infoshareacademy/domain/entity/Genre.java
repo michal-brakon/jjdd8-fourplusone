@@ -1,22 +1,22 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
+@NamedQuery(
+        name = "Genre.findGenreByName",
+        query = "SELECT g FROM Genre g WHERE g.name = :name")
 
 @Entity
-@Table(name = "genre", schema = "library")
+@Table(name = "genre", schema = "library",
+        indexes = {@Index(name = "genre_idx", columnList = "name")})
 public class Genre {
-
-    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
-    Set<Book> books = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 15)
+    @Column(name = "name")
     private String name;
 
     public Long getId() {
