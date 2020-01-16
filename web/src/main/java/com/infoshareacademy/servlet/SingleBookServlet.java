@@ -19,6 +19,8 @@ import java.util.Map;
 @WebServlet("/single")
 public class SingleBookServlet extends HttpServlet {
 
+
+
     @Inject
     private BookService bookService;
 
@@ -27,7 +29,7 @@ public class SingleBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+        resp.setContentType("text/html;charset=UTF-8");
         String param = req.getParameter("id");
 
         if (param == null || param.isEmpty()) {
