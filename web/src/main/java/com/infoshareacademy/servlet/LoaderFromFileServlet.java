@@ -1,5 +1,6 @@
 package com.infoshareacademy.servlet;
 
+import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.exception.ApiFileNotFound;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.ApiLoaderFromFile;
@@ -32,6 +33,9 @@ public class LoaderFromFileServlet extends HttpServlet {
 
     @Inject
     ApiLoaderFromFile apiLoaderFromFile;
+
+    @Inject
+    BookDTO bookDTO;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

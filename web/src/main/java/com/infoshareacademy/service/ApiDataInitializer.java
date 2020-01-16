@@ -17,7 +17,7 @@ import javax.ws.rs.client.WebTarget;
 import java.io.IOException;
 import java.util.List;
 
-@Startup
+//@Startup
 @Singleton
 public class ApiDataInitializer {
 
