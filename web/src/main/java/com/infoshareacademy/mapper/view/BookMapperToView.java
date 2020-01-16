@@ -8,8 +8,6 @@ import javax.ejb.Stateless;
 @Stateless
 public class BookMapperToView {
 
-    //Mapper natomiast maa dwie formy metod: mapRequestToEntity oraz mapEntityToView
-
     public BookView mapEntityToView(Book book) {
 
         BookView view = new BookView();
@@ -23,6 +21,5 @@ public class BookMapperToView {
         view.setKind(book.getKind().getName());
 
         return view;
-
     }
 }

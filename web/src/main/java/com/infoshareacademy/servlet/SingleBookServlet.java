@@ -19,8 +19,6 @@ import java.util.Map;
 @WebServlet("/single")
 public class SingleBookServlet extends HttpServlet {
 
-
-
     @Inject
     private BookService bookService;
 
@@ -37,7 +35,6 @@ public class SingleBookServlet extends HttpServlet {
         }
         Long id = Long.valueOf(param);
 
-
         PrintWriter writer = resp.getWriter();
 
         Template template = templateProvider
@@ -45,8 +42,7 @@ public class SingleBookServlet extends HttpServlet {
                         "singlePage.ftlh");
         Map<String, Object> model = new HashMap<>();
 
-        BookView bookView =bookService.getBookViewById(id);
-
+        BookView bookView = bookService.getBookViewById(id);
 
         model.put("book", bookView);
         try {

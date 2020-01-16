@@ -22,15 +22,9 @@ public class BookService {
         return this.bookDao.findById(id);
     }
 
-    //public String getAuthors(Long id) {
- //       return bookDao.getBookAuthors(id);
- //   }
-
     @Transactional
     public BookView getBookViewById(Long id) {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
-
-
 }

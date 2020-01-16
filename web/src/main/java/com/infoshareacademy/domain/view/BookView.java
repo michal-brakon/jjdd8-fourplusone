@@ -2,7 +2,6 @@ package com.infoshareacademy.domain.view;
 
 public class BookView {
 
-
     String title;
     String cover;
     boolean audio;

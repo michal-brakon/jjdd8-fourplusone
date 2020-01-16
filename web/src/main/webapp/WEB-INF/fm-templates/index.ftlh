@@ -16,6 +16,28 @@
 <body>
 <div id="wrapper">
     <header>
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="topleft-info">
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Czego szukasz?" type="text" value=""
+                                       name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search" title="Click to start searching"></span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header>
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -31,7 +53,7 @@
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                                data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="google.pl">Wyszukaj</a></li>
+                                <li><a href="https://google.pl">Wyszukaj</a></li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
