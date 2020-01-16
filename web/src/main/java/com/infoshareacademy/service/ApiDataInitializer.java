@@ -63,7 +63,7 @@ public class ApiDataInitializer {
     private static final String EPOCH_URI = "http://isa-proxy.blueazurit.com/books/epochs/";
 
 
-    @PostConstruct
+ @PostConstruct
     public void setApi() throws IOException {
 
         List<AuthorJson> authorJsons = bookApiConsumer.consume(getAuthorClientTarget(), AuthorJson.class);

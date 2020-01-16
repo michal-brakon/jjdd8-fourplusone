@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class BookDao {
@@ -30,11 +31,12 @@ public class BookDao {
         return (Book)query.getSingleResult();
     }
 
-    public Book findByTitle(){
+    public List<String> findByTitle(String inputParam){
+            Query query = em.createNamedQuery("Book.findByTitle");
+            query.setParameter("inputParam","%"+inputParam+"%");
 
 
-
-        return null;
+        return query.getResultList();
     }
 
 }
