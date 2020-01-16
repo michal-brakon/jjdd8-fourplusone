@@ -34,7 +34,9 @@ public class BookDTO {
 
     @JsonProperty("cover_thumb")
     String coverThumb;
-    String has_audio;
+
+    @JsonProperty("has_audio")
+    Boolean hasAudio;
     String simple_thumb;
 
     public String getKind() {
@@ -93,12 +95,12 @@ public class BookDTO {
         this.coverThumb = coverThumb;
     }
 
-    public String getHas_audio() {
-        return has_audio;
+    public Boolean getHasAudio() {
+        return hasAudio;
     }
 
-    public void setHas_audio(String has_audio) {
-        this.has_audio = has_audio;
+    public void setHasAudio(Boolean hasAudio) {
+        this.hasAudio = hasAudio;
     }
 
     public String getSimple_thumb() {
