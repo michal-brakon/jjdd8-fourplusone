@@ -59,56 +59,56 @@ public class ApiLoaderFromFile {
     @Inject
     private ParserService parserService;
 
-    public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
-
-        String filename = Paths.get(filePart.getSubmittedFileName())
-                .getFileName().toString();
-
-        if (filename == null || filename.isEmpty()) {
-            throw new ApiFileNotFound("No API file has been uploaded");
-        }
-        File file = new File(filename);
-        Files.deleteIfExists(file.toPath());
-
-        InputStream fileContent = filePart.getInputStream();
-
-        Files.copy(fileContent, file.toPath());
-
-        fileContent.close();
-
-        String fileToString = new String(Files.readAllBytes(Paths.get(String.valueOf(file.toPath()))));
-
-        parserService.parse(fileToString, BookJson.class).forEach(b -> {
-            Book book = bookMapper.mapApiToEntity(b);
-            Author authorByName = authorDao.findAuthorByName(b.getAuthor());
-            LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
-            Genre genreByName = genreDao.findGenreByName(b.getGenre());
-            Epoch epochByName = epochDao.findEpochByName(b.getEpoch());
-            book.setAuthor(authorByName);
-            book.setGenre(genreByName);
-            book.setKind(kindByName);
-            book.setEpoch(epochByName);
-            bookdao.addBook(book);});
-
-        parserService.parse(fileToString, AuthorJson.class).forEach(b -> {
-            Author author = authorMapper.mapApiRequestToEntity(b);
-            authorDao.addAuthor(author);
-        });
-        parserService.parse(fileToString, EpochJson.class).forEach(b -> {
-            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
-            epochDao.addEpoch(epoch);
-        });
-        parserService.parse(fileToString, GenreJson.class).forEach(b -> {
-            Genre genre = genreMapper.mapApiRequestToEntity(b);
-            genreDao.addGenre(genre);
-        });
-        parserService.parse(fileToString, KindJson.class).forEach(b -> {
-            LiteratureKind kind = kindMapper.mapApiRequestToEntity(b);
-            kindDao.addKind(kind);
-        });
-
-
-
-        return file;
-    }
+//    public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
+//
+//        String filename = Paths.get(filePart.getSubmittedFileName())
+//                .getFileName().toString();
+//
+//        if (filename == null || filename.isEmpty()) {
+//            throw new ApiFileNotFound("No API file has been uploaded");
+//        }
+//        File file = new File(filename);
+//        Files.deleteIfExists(file.toPath());
+//
+//        InputStream fileContent = filePart.getInputStream();
+//
+//        Files.copy(fileContent, file.toPath());
+//
+//        fileContent.close();
+//
+//        String fileToString = new String(Files.readAllBytes(Paths.get(String.valueOf(file.toPath()))));
+//
+//        parserService.parse(fileToString, BookJson.class).forEach(b -> {
+//            Book book = bookMapper.mapApiToEntity(b);
+//            Author authorByName = authorDao.findAuthorByName(b.getAuthor());
+//            LiteratureKind kindByName = kindDao.findKindByName(b.getKind());
+//            Genre genreByName = genreDao.findGenreByName(b.getGenre());
+//            Epoch epochByName = epochDao.findEpochByName(b.getEpoch());
+//            book.setAuthor(authorByName);
+//            book.setGenre(genreByName);
+//            book.setKind(kindByName);
+//            book.setEpoch(epochByName);
+//            bookdao.addBook(book);});
+//
+//        parserService.parse(fileToString, AuthorJson.class).forEach(b -> {
+//            Author author = authorMapper.mapApiRequestToEntity(b);
+//            authorDao.addAuthor(author);
+//        });
+//        parserService.parse(fileToString, EpochJson.class).forEach(b -> {
+//            Epoch epoch = epochMapper.mapApiRequestToEntity(b);
+//            epochDao.addEpoch(epoch);
+//        });
+//        parserService.parse(fileToString, GenreJson.class).forEach(b -> {
+//            Genre genre = genreMapper.mapApiRequestToEntity(b);
+//            genreDao.addGenre(genre);
+//        });
+//        parserService.parse(fileToString, KindJson.class).forEach(b -> {
+//            LiteratureKind kind = kindMapper.mapApiRequestToEntity(b);
+//            kindDao.addKind(kind);
+//        });
+//
+//
+//
+//        return file;
+//    }
 }

@@ -5,6 +5,7 @@ import com.infoshareacademy.domain.entity.*;
 import com.infoshareacademy.dto.BookDTO;
 
 import javax.inject.Inject;
+import java.util.Set;
 
 public class BookService {
 
@@ -23,6 +24,12 @@ public class BookService {
     @Inject
     private BookDao bookDao;
 
+    public void addBooks (Set<BookDTO> books)  {
+
+        books
+                .forEach(this::addBook);
+    }
+
     public void addBook(BookDTO book) {
 
         String authorName = book.getAuthor();
@@ -37,17 +44,18 @@ public class BookService {
         String genreName = book.getGenre();
         Genre genre = genreService.findOrAdd(genreName);
 
-        Book bookToDao = new Book();
-        bookToDao.setAuthor(author);
-        bookToDao.setKind(kind);
-        bookToDao.setEpoch(epoch);
-        bookToDao.setGenre(genre);
-        bookToDao.setCover(book.getCover());
-        bookToDao.setCoverThumb(book.getCoverThumb());
-        bookToDao.setSimpleThumb(book.getSimple_thumb());
-        bookToDao.setHasAudio(book.getHasAudio());
+        Book bookDaoToEntity = new Book();
 
-        bookDao.addBook(bookToDao);
+        bookDaoToEntity.setAuthor(author);
+        bookDaoToEntity.setKind(kind);
+        bookDaoToEntity.setEpoch(epoch);
+        bookDaoToEntity.setGenre(genre);
+        bookDaoToEntity.setCover(book.getCover());
+        bookDaoToEntity.setCoverThumb(book.getCoverThumb());
+        bookDaoToEntity.setSimpleThumb(book.getSimpleThumb());
+        bookDaoToEntity.setHasAudio(book.getHasAudio());
+
+        bookDao.addBook(bookDaoToEntity);
 
 
     }

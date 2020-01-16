@@ -57,7 +57,7 @@ public class LoaderFromFileServlet extends HttpServlet {
         Part api = req.getPart("api");
         String apiURL = "";
         try {
-            apiURL = apiLoaderFromFile.uploadApiFile(api).getName();
+            apiURL = bookDTO.uploadApiFile(api).getName();
         } catch (ApiFileNotFound apiFileNotFound) {
             logger.warn(apiFileNotFound.getMessage());
         }

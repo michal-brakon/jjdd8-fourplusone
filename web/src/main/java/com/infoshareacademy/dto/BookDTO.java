@@ -37,7 +37,9 @@ public class BookDTO {
 
     @JsonProperty("has_audio")
     Boolean hasAudio;
-    String simple_thumb;
+
+    @JsonProperty("simple_thumb")
+    String simpleThumb;
 
     public String getKind() {
         return kind;
@@ -103,12 +105,12 @@ public class BookDTO {
         this.hasAudio = hasAudio;
     }
 
-    public String getSimple_thumb() {
-        return simple_thumb;
+    public String getSimpleThumb() {
+        return simpleThumb;
     }
 
-    public void setSimple_thumb(String simple_thumb) {
-        this.simple_thumb = simple_thumb;
+    public void setSimpleThumb(String simpleThumb) {
+        this.simpleThumb = simpleThumb;
     }
 
     public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
