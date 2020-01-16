@@ -71,17 +71,21 @@
     </header>
 
     <div class="container">
-        <div class="row">
+        <div class="center-block">
             <div class="col-lg-4">
                 <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Responsive image">
             </div>
             <div class="col-lg-8, text-left">
-				<h2><strong>Tytuł:</strong> <span>${book.title}</span></h2>
-				<h3><strong>Autor:</strong> ${book.author} </h3>
-                    <h4><strong>Epoka:</strong> ${book.epoch} </h4>
-                    <h4><strong>Audio:</strong> ${book.audio?c}</h4>
-                    <h4><strong>Rodzaj:</strong> ${book.genre}</h4>
-                    <h4><strong>Typ literatury:</strong> ${book.kind}</h4>
+                <div class="text-center">
+                    <h2 class="text-primary">Książka:</h2> <h3 class="text-danger">${book.title}</h3>
+                </div>
+                <br>
+
+                <h3 >Autor: ${book.author} </h3>
+                <h4>Epoka: ${book.epoch} </h4>
+                <h4>Audio:${book.audio?c}</h4>
+                <h4>Rodzaj:${book.genre}</h4>
+                <h4>Typ literatury: ${book.kind}</h4>
             </div>
         </div>
     </div>
