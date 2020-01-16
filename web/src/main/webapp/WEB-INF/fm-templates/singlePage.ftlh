@@ -70,20 +70,18 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Responsive image"
-                     height="500" width="400">
+            <div class="col-lg-4">
+                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Responsive image">
             </div>
-            <div class="col-lg-6, d-flex">
-				<p class="text-left"><strong>Title:</strong> ${book.title}</p>
-                    <p class="text-left"><strong>Autor:</strong> ${book.author!} </p>
-                    <p class="text-left"><strong>Epoka:</strong> ${book.epoch!} </p>
-                    <p class="text-left"><strong>Audio:</strong> ${book.audio?c!}</p>
-                    <p class="text-left"><strong>Rodzaj:</strong> ${book.genre!}</p>
-                    <p class="text-left"><strong>Typ literatury:</strong> ${book.kind!}</p>
+            <div class="col-lg-8, text-left">
+				<h2><strong>Tytuł:</strong> <span>${book.title}</span></h2>
+				<h3><strong>Autor:</strong> ${book.author} </h3>
+                    <h4><strong>Epoka:</strong> ${book.epoch} </h4>
+                    <h4><strong>Audio:</strong> ${book.audio?c}</h4>
+                    <h4><strong>Rodzaj:</strong> ${book.genre}</h4>
+                    <h4><strong>Typ literatury:</strong> ${book.kind}</h4>
             </div>
         </div>
     </div>

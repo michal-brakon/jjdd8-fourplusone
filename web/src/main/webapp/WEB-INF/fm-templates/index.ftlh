@@ -196,7 +196,5 @@
 <script src="../../html/js/animate.js"></script>
 <script src="../../html/js/custom.js"></script>
 
-
 </body>
-
 </html>
