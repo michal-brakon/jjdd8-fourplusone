@@ -30,11 +30,20 @@ public class BookDTO {
     String epoch;
     String genre;
     String cover;
+    String kind;
 
     @JsonProperty("cover_thumb")
     String coverThumb;
     String has_audio;
     String simple_thumb;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
 
     public String getAuthor() {
         return author;

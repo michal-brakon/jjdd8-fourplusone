@@ -14,7 +14,6 @@ public class KindService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
     @EJB
     private KindDao kindDao;
 
@@ -22,7 +21,17 @@ public class KindService {
         LiteratureKind k = new LiteratureKind();
         k.setName(kindName);
         kindDao.addKind(k);
+    }
 
+    public LiteratureKind findOrAdd(String name)  {
+
+        LiteratureKind kind = kindDao.findKindByName(name);
+        if (kind == null)  {
+            LiteratureKind newKind = new LiteratureKind();
+            kindDao.addKind(newKind);
+            return newKind;
+        }
+        return kind;
     }
 
 }
