@@ -1,9 +1,11 @@
 package com.infoshareacademy.servlet;
 
+import com.infoshareacademy.Book;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.exception.ApiFileNotFound;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.ApiLoaderFromFile;
+import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -17,10 +19,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet ("/uploader")
 @MultipartConfig
@@ -32,10 +37,10 @@ public class LoaderFromFileServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
     @Inject
-    ApiLoaderFromFile apiLoaderFromFile;
+    BookDTO bookDTO;
 
     @Inject
-    BookDTO bookDTO;
+    BookService bookService;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -54,12 +59,20 @@ public class LoaderFromFileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Part api = req.getPart("api");
-        String apiURL = "";
+//        Part api = req.getPart("api");
+//        String apiURL = "";
+//        try {
+//            apiURL = bookDTO.uploadApiFile(api).getName();
+//        } catch (ApiFileNotFound apiFileNotFound) {
+//            logger.warn(apiFileNotFound.getMessage());
+//        }
+        Part file = req.getPart("api");
+        Set<BookDTO> books = new HashSet<>();
         try {
-            apiURL = bookDTO.uploadApiFile(api).getName();
+            books = bookDTO.parseBooksToDTO(bookDTO.uploadApiFile(file));
         } catch (ApiFileNotFound apiFileNotFound) {
-            logger.warn(apiFileNotFound.getMessage());
+            apiFileNotFound.printStackTrace();
         }
+        bookService.addBooks(books);
     }
 }

@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.infoshareacademy.exception.ApiFileNotFound;
+import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ParserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -18,12 +20,8 @@ import java.util.Set;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Stateless
+@MultipartConfig
 public class BookDTO {
-
-
-    @Inject
-    ParserService parserService;
-
 
     String author;
     String title;
@@ -113,6 +111,21 @@ public class BookDTO {
         this.simpleThumb = simpleThumb;
     }
 
+    @Override
+    public String toString() {
+        return "BookDTO{" +
+               ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", epoch='" + epoch + '\'' +
+                ", genre='" + genre + '\'' +
+                ", cover='" + cover + '\'' +
+                ", kind='" + kind + '\'' +
+                ", coverThumb='" + coverThumb + '\'' +
+                ", hasAudio=" + hasAudio +
+                ", simpleThumb='" + simpleThumb + '\'' +
+                '}';
+    }
+
     public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
 
         String filename = Paths.get(filePart.getSubmittedFileName())
@@ -131,17 +144,20 @@ public class BookDTO {
         fileContent.close();
 
         //String fileToString = new String(Files.readAllBytes(Paths.get(String.valueOf(file.toPath()))));
-
+        parseBooksToDTO(file);
         return file;
     }
 
-    public Set<BookDTO> saveBooksToDTO (File file) throws IOException {
+    public Set<BookDTO> parseBooksToDTO(File file) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         Set<BookDTO> bookSet = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .readValue(file, new TypeReference<>() {
                 });
+
+//        bookSet
+//                .forEach(b -> System.out.println(b.getAuthor()));
 
         return bookSet;
     }

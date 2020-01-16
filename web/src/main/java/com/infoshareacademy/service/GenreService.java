@@ -5,8 +5,11 @@ import com.infoshareacademy.dao.GenreDao;
 import com.infoshareacademy.domain.entity.Epoch;
 import com.infoshareacademy.domain.entity.Genre;
 
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class GenreService {
 
     @Inject
@@ -17,6 +20,7 @@ public class GenreService {
         Genre genre = genreDao.findGenreByName(name);
         if (genre == null)  {
             Genre newGenre = new Genre();
+            newGenre.setName(name);
             genreDao.addGenre(newGenre);
             return newGenre;
         }

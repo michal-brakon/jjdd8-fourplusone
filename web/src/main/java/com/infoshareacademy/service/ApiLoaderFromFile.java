@@ -23,41 +23,41 @@ import java.nio.file.Paths;
 @Stateless
 public class ApiLoaderFromFile {
 
-    @Inject
-    private BookApiConsumer bookApiConsumer;
-
-    @Inject
-    private BookMapper bookMapper;
-
-    @Inject
-    private AuthorMapper authorMapper;
-
-    @Inject
-    private BookDao bookdao;
-
-    @Inject
-    private AuthorDao authorDao;
-
-    @Inject
-    private KindDao kindDao;
-
-    @Inject
-    private KindMapper kindMapper;
-
-    @Inject
-    private GenreDao genreDao;
-
-    @Inject
-    private GenreMapper genreMapper;
-
-    @Inject
-    private EpochDao epochDao;
-
-    @Inject
-    private EpochMapper epochMapper;
-
-    @Inject
-    private ParserService parserService;
+//    @Inject
+//    private BookApiConsumer bookApiConsumer;
+//
+//    @Inject
+//    private BookMapper bookMapper;
+//
+//    @Inject
+//    private AuthorMapper authorMapper;
+//
+//    @Inject
+//    private BookDao bookdao;
+//
+//    @Inject
+//    private AuthorDao authorDao;
+//
+//    @Inject
+//    private KindDao kindDao;
+//
+//    @Inject
+//    private KindMapper kindMapper;
+//
+//    @Inject
+//    private GenreDao genreDao;
+//
+//    @Inject
+//    private GenreMapper genreMapper;
+//
+//    @Inject
+//    private EpochDao epochDao;
+//
+//    @Inject
+//    private EpochMapper epochMapper;
+//
+//    @Inject
+//    private ParserService parserService;
 
 //    public File uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
 //

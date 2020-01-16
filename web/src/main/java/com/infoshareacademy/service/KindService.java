@@ -19,6 +19,7 @@ public class KindService {
 
     public void addKind(String kindName) {
         LiteratureKind k = new LiteratureKind();
+
         k.setName(kindName);
         kindDao.addKind(k);
     }
@@ -28,6 +29,7 @@ public class KindService {
         LiteratureKind kind = kindDao.findKindByName(name);
         if (kind == null)  {
             LiteratureKind newKind = new LiteratureKind();
+            newKind.setName(name);
             kindDao.addKind(newKind);
             return newKind;
         }
