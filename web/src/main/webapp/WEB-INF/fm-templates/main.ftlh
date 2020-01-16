@@ -17,8 +17,6 @@
 
 	<!-- boxed bg -->
 	<link id="bodybg" href="../../html/bodybg/bg1.css" rel="stylesheet" type="text/css"/>
-
-
 </head>
 
 <body>
@@ -26,28 +24,7 @@
 
 <div id="wrapper">
 	<!-- start header -->
-	<header>
-		<div class="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<ul class="topleft-info">
-						</ul>
-					</div>
-					<div class="col-md-6">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Czego szukasz?" type="text" value=""
-									   name="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search" title="Click to start searching"></span>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	<#include "header.ftlh">
 		<div class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -81,46 +58,7 @@
 				</div>
 			</div>
 		</div>
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 col-lg-12">
-						<div class="widget">
-							<h4>Kontakt</h4>
-							<address>
-								<strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
-							</address>
-							<p>
-								<i class="icon-phone"></i> (0048) 123-456-789 <br>
-								<i class="icon-envelope-alt"></i> fourplusone@library.com
-							</p>
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-			<div id="sub-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="copyright">
-								<p>&copy; Sailor Theme - All Right Reserved</p>
-								<div class="credits">
-									<!--
-                    All the links in the footer should remain intact.
-                    You can delete the links only if you purchased the pro version.
-                    Licensing information: https://bootstrapmade.com/license/
-                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Sailor
-                  -->
-									Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+<#include "footers.ftlh">
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
