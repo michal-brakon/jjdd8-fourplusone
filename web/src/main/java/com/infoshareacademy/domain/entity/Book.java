@@ -2,12 +2,16 @@ package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "book", schema = "library")
 
+@NamedQueries({
+        @NamedQuery(name = "Book.getById",
+        query = "SELECT b FROM Book b WHERE b.id=:id"),
+        @NamedQuery(name = "Book.findByTitle",
+                query = "SELECT b.title FROM Book b WHERE b.title=:title")
+})
 public class Book {
 
     @Id
@@ -22,7 +26,7 @@ public class Book {
     @Column(name = "cover")
     private String cover;
 
-    @Column(name = "has_audio", columnDefinition = "Boolean")
+    @Column(name = "has_audio")
     private Boolean hasAudio;
 
     @Column(name = "simple_thumb")

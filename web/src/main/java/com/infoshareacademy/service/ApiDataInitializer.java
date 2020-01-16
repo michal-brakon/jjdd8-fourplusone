@@ -17,8 +17,8 @@ import javax.ws.rs.client.WebTarget;
 import java.io.IOException;
 import java.util.List;
 
-//@Startup
-//@Singleton
+@Startup
+@Singleton
 public class ApiDataInitializer {
 
     @Inject
@@ -56,14 +56,14 @@ public class ApiDataInitializer {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
+    private static final String URI =  "http://isa-proxy.blueazurit.com/books/books/";
     private static final String AUTHOR_URI = "http://isa-proxy.blueazurit.com/books/authors/";
     private static final String KIND_URI = "http://isa-proxy.blueazurit.com/books/kinds/";
     private static final String GENRE_URI = "http://isa-proxy.blueazurit.com/books/genres/";
     private static final String EPOCH_URI = "http://isa-proxy.blueazurit.com/books/epochs/";
 
 
-   // @PostConstruct
+    @PostConstruct
     public void setApi() throws IOException {
 
         List<AuthorJson> authorJsons = bookApiConsumer.consume(getAuthorClientTarget(), AuthorJson.class);
