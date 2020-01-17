@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class KindJson {
 
-    @JsonProperty("kind")
     private String name;
 
     public String getName() {

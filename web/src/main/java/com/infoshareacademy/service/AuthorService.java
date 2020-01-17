@@ -19,10 +19,9 @@ public class AuthorService {
             Author newAuthor = new Author();
             newAuthor.setName(name);
             authorDao.addAuthor(newAuthor);
-            System.out.println("New author added: " + newAuthor.getName());
             return newAuthor;
         }
-        System.out.println("Author added: " + author.getName());
+
         return author;
 
     }

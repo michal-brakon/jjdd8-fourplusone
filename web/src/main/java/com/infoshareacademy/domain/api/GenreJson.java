@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GenreJson {
 
-    @JsonProperty("genre")
+
     private String name;
 
     public String getName() {
