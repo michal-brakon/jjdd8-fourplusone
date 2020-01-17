@@ -7,12 +7,11 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <div id="sb-search" class="sb-search">
-                        <form>
-                            <input class="sb-search-input" placeholder="Czego szukasz?" type="text" onkeyup="showResult(this.value) value=""
-                                   name="search" id="search">
-                            <input class="sb-search-submit" type="submit" value="">
-                            <span class="sb-icon-search" title="Click to start searching"></span>
+                     <form role="form" method="post">
+                            <div class="form-group ajax-search">
+                                <input type="text" class="form-control" id="keyword" placeholder="Enter keyword">
+                                <ul id="content"></ul>
+                            </div>
                         </form>
                     </div>
                 </div>
