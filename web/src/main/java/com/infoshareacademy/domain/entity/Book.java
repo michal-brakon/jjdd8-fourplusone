@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "Book.getById",
         query = "SELECT b FROM Book b WHERE b.id=:id"),
         @NamedQuery(name = "Book.findByTitle",
-                query = "SELECT b.title FROM Book b WHERE b.title LIKE :inputParam")
+                query = "SELECT b FROM Book b WHERE b.title LIKE :inputParam")
 })
 public class Book {
 

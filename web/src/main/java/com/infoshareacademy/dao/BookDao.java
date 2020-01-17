@@ -31,7 +31,7 @@ public class BookDao {
         return (Book)query.getSingleResult();
     }
 
-    public List<String> findByTitle(String inputParam){
+    public List<Book> findByTitle(String inputParam){
             Query query = em.createNamedQuery("Book.findByTitle");
             query.setParameter("inputParam","%"+inputParam+"%");
 
