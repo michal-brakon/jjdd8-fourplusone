@@ -26,12 +26,13 @@ public class KindService {
 
     public LiteratureKind findOrAdd(String name)  {
 
+
         LiteratureKind kind = kindDao.findKindByName(name);
         if (kind == null)  {
-            LiteratureKind newKind = new LiteratureKind();
-            newKind.setName(name);
-            kindDao.addKind(newKind);
-            return newKind;
+            kind = new LiteratureKind();
+            kind.setName(name);
+            kindDao.addKind(kind);
+
         }
         return kind;
     }

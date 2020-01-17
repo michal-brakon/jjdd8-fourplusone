@@ -16,10 +16,9 @@ public class EpochService {
 
         Epoch epoch = epochDao.findEpochByName(name);
         if (epoch == null)  {
-            Epoch newEpoch = new Epoch();
-            newEpoch.setName(name);
-            epochDao.addEpoch(newEpoch);
-            return newEpoch;
+            epoch = new Epoch();
+            epoch.setName(name);
+            epochDao.addEpoch(epoch);
         }
         return epoch;
     }

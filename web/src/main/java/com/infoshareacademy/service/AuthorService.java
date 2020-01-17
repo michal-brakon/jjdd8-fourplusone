@@ -16,13 +16,11 @@ public class AuthorService {
 
         Author author = authorDao.findAuthorByName(name);
         if (author == null) {
-            Author newAuthor = new Author();
-            newAuthor.setName(name);
-            authorDao.addAuthor(newAuthor);
-            return newAuthor;
+            author = new Author();
+            author.setName(name);
+            authorDao.addAuthor(author);
+
         }
-
         return author;
-
     }
 }

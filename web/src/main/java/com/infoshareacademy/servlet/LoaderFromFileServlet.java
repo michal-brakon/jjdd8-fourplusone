@@ -11,6 +11,7 @@ import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -66,7 +67,7 @@ public class LoaderFromFileServlet extends HttpServlet {
         try {
             books = parserService.parse(uploaderService.uploadApiFile(file), BookDTO.class);
         } catch (ApiFileNotFound apiFileNotFound) {
-            apiFileNotFound.printStackTrace();
+            logger.warn(apiFileNotFound.getMessage());
         }
         bookService.addBooks(books);
     }

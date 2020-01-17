@@ -16,10 +16,10 @@ public class GenreService {
 
         Genre genre = genreDao.findGenreByName(name);
         if (genre == null) {
-            Genre newGenre = new Genre();
-            newGenre.setName(name);
-            genreDao.addGenre(newGenre);
-            return newGenre;
+            genre = new Genre();
+            genre.setName(name);
+            genreDao.addGenre(genre);
+
         }
         return genre;
     }
