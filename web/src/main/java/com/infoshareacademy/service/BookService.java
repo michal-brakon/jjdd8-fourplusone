@@ -7,7 +7,9 @@ import com.infoshareacademy.mapper.view.BookMapperToView;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.json.JsonArray;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Stateless
 public class BookService {
@@ -27,4 +29,13 @@ public class BookService {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
+    public List<BookView> getAllBooks() {
+        List<BookView> list = developerDao.find();
+
+
+        return JsonHelper.toArray(devs.stream()
+                .map(d -> devMapper.toShortJson(d))
+                .toArray());
+
+
 }

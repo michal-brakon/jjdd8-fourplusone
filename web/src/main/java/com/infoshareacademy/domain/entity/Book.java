@@ -5,9 +5,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "book", schema = "library")
-
+@NamedQueries(
 @NamedQuery(name = "Book.getById",
-        query = "SELECT b FROM Book b WHERE b.id=:id")
+        query = "SELECT b FROM Book b WHERE b.id=:id"),
+
+        @NamedQuery(name = "Book.findAll",
+                query = "SELECT b FROM Book b")
+)
 
 public class Book {
 
