@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = "")
+@WebServlet("")
 public class HelloServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
@@ -29,8 +29,9 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Error-info1");
         logger.debug("Error-debug1");
+        resp.setContentType("text/html;charset=UTF-8");
 
-        Template template = templateProvider.getTemplate(getServletContext(), "main.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();

@@ -1,1 +1,371 @@
-[{"kind":"Epika","author":"Homer","epoch":"Starożytność","title":"Iliada","genre":"Epos","id":1,"has_audio":false},{"kind":"Epika","author":"Homer","epoch":"Starożytność","title":"Odyseja","genre":"Epos","id":2,"has_audio":false},{"kind":"Epika","author":"Józef Ignacy Kraszewski","epoch":"Pozytywizm","title":"Anafielas","genre":"Epos","id":3,"has_audio":false},{"kind":"Epika","author":"Józef Ignacy Kraszewski","epoch":"Pozytywizm","title":"Anafielas. Pieśń I. Witolorauda","genre":"Epos","id":4,"has_audio":false},{"kind":"Epika","author":"Józef Ignacy Kraszewski","epoch":"Pozytywizm","title":"Anafielas. Pieśń III. Witoldowe boje","genre":"Epos","id":6,"has_audio":false},{"kind":"Liryka","author":"Autor nieznany","epoch":"Średniowiecze","title":"Niedola Nibelungów","genre":"Epos","id":7,"has_audio":false},{"kind":"Liryka","author":"Ludovico Ariosto","epoch":"Renesans","title":"Orland szalony","genre":"Epos","id":8,"has_audio":false},{"kind":"Liryka","author":"Ludovico Ariosto","epoch":"Renesans","title":"Orland szalony, tom II","genre":"Epos","id":9,"has_audio":false},{"kind":"Liryka","author":"Ludovico Ariosto","epoch":"Renesans","title":"Orland szalony, tom I","genre":"Epos","id":10,"has_audio":false},{"kind":"Liryka","author":"Ludovico Ariosto","epoch":"Renesans","title":"Orland szalony, tom III","genre":"Epos","id":11,"has_audio":false},{"kind":"Liryka","author":"Mikołaj Sęp Szarzyński","epoch":"Barok","title":"Do Anusie (Anusiu! byś mie tem chciała darować...)","genre":"Erotyk, Fraszka","id":12,"has_audio":false},{"kind":"Liryka","author":"Mikołaj Sęp Szarzyński","epoch":"Barok","title":"Do Kasie (Im pilniej na twoje oblicze nadobne...)","genre":"Erotyk, Fraszka","id":13,"has_audio":false},{"kind":"Liryka","author":"Mikołaj Sęp Szarzyński","epoch":"Barok","title":"Do Kasie (Jako lód taje przezroczysty z lekka...)","genre":"Erotyk, Fraszka","id":14,"has_audio":false},{"kind":"Liryka","author":"Mikołaj Sęp Szarzyński","epoch":"Barok","title":"Do Zosie (Będę się zawsze dziwował twojej pikności...)","genre":"Erotyk, Fraszka","id":15,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Abuzei i Tair","genre":"Bajka, Przypowieść","id":16,"has_audio":true},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Adaś","genre":"Bajka","id":17,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Adelka","genre":"Bajka","id":18,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Alegoria","genre":"Bajka, Przypowieść","id":19,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Alinka","genre":"Bajka","id":20,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Anielka","genre":"Bajka","id":21,"has_audio":false},{"kind":"Epika","author":"Aleksander Świętochowski","epoch":"Pozytywizm","title":"Asbe","genre":"Bajka","id":22,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Wyżeł i brytan","genre":"Bajka, Przypowieść","id":23,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Wyżeł i brytan II","genre":"Bajka, Przypowieść","id":24,"has_audio":false},{"kind":"Epika","author":"Józef Ignacy Kraszewski","epoch":"Pozytywizm","title":"Z chłopa król","genre":"Bajka","id":25,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Żaby i bocian","genre":"Bajka, Przypowieść","id":26,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zając","genre":"Bajka","id":27,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Zajączek","genre":"Bajka, Przypowieść","id":28,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zboże we młynie","genre":"Bajka","id":29,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zdzisławek","genre":"Bajka","id":30,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Żebrak i kamień","genre":"Bajka","id":31,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zegarki","genre":"Bajka","id":32,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zgodne rodzeństwo","genre":"Bajka","id":33,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Ziemia i potok","genre":"Bajka, Przypowieść","id":34,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Żółw i mysz","genre":"Bajka, Przypowieść","id":35,"has_audio":true},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Źrebiec i koń stary","genre":"Bajka, Przypowieść","id":36,"has_audio":true},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zuzia i pokrzywa","genre":"Bajka","id":37,"has_audio":false},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Zwierciadło Rózi","genre":"Bajka","id":38,"has_audio":false},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Zwierściadło podchlebne","genre":"Bajka, Przypowieść","id":39,"has_audio":true},{"kind":"Epika","author":"Ignacy Krasicki","epoch":"Oświecenie","title":"Zwierzęta i niedźwiedź","genre":"Bajka, Przypowieść","id":40,"has_audio":true},{"kind":"Epika","author":"Stanisław Jachowicz","epoch":"Romantyzm","title":"Żydek","genre":"Bajka","id":41,"has_audio":false},{"kind":"qwerty","author":"qwreter","epoch":"qwer","title":"wqer","genre":"wewr","id":42,"has_audio":true}]
+[
+  {
+    "kind": "Epika",
+    "author": "Homer",
+    "epoch": "Starożytność",
+    "title": "Iliada",
+    "genre": "Epos",
+    "id": 1,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Homer",
+    "epoch": "Starożytność",
+    "title": "Odyseja",
+    "genre": "Epos",
+    "id": 2,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Józef Ignacy Kraszewski",
+    "epoch": "Pozytywizm",
+    "title": "Anafielas",
+    "genre": "Epos",
+    "id": 3,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Józef Ignacy Kraszewski",
+    "epoch": "Pozytywizm",
+    "title": "Anafielas. Pieśń I. Witolorauda",
+    "genre": "Epos",
+    "id": 4,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Józef Ignacy Kraszewski",
+    "epoch": "Pozytywizm",
+    "title": "Anafielas. Pieśń III. Witoldowe boje",
+    "genre": "Epos",
+    "id": 6,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Autor nieznany",
+    "epoch": "Średniowiecze",
+    "title": "Niedola Nibelungów",
+    "genre": "Epos",
+    "id": 7,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Ludovico Ariosto",
+    "epoch": "Renesans",
+    "title": "Orland szalony",
+    "genre": "Epos",
+    "id": 8,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Ludovico Ariosto",
+    "epoch": "Renesans",
+    "title": "Orland szalony, tom II",
+    "genre": "Epos",
+    "id": 9,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Ludovico Ariosto",
+    "epoch": "Renesans",
+    "title": "Orland szalony, tom I",
+    "genre": "Epos",
+    "id": 10,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Ludovico Ariosto",
+    "epoch": "Renesans",
+    "title": "Orland szalony, tom III",
+    "genre": "Epos",
+    "id": 11,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Mikołaj Sęp Szarzyński",
+    "epoch": "Barok",
+    "title": "Do Anusie (Anusiu! byś mie tem chciała darować...)",
+    "genre": "Erotyk, Fraszka",
+    "id": 12,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Mikołaj Sęp Szarzyński",
+    "epoch": "Barok",
+    "title": "Do Kasie (Im pilniej na twoje oblicze nadobne...)",
+    "genre": "Erotyk, Fraszka",
+    "id": 13,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Mikołaj Sęp Szarzyński",
+    "epoch": "Barok",
+    "title": "Do Kasie (Jako lód taje przezroczysty z lekka...)",
+    "genre": "Erotyk, Fraszka",
+    "id": 14,
+    "has_audio": false
+  },
+  {
+    "kind": "Liryka",
+    "author": "Mikołaj Sęp Szarzyński",
+    "epoch": "Barok",
+    "title": "Do Zosie (Będę się zawsze dziwował twojej pikności...)",
+    "genre": "Erotyk, Fraszka",
+    "id": 15,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Abuzei i Tair",
+    "genre": "Bajka, Przypowieść",
+    "id": 16,
+    "has_audio": true
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Adaś",
+    "genre": "Bajka",
+    "id": 17,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Adelka",
+    "genre": "Bajka",
+    "id": 18,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Alegoria",
+    "genre": "Bajka, Przypowieść",
+    "id": 19,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Alinka",
+    "genre": "Bajka",
+    "id": 20,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Anielka",
+    "genre": "Bajka",
+    "id": 21,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Aleksander Świętochowski",
+    "epoch": "Pozytywizm",
+    "title": "Asbe",
+    "genre": "Bajka",
+    "id": 22,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Wyżeł i brytan",
+    "genre": "Bajka, Przypowieść",
+    "id": 23,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Wyżeł i brytan II",
+    "genre": "Bajka, Przypowieść",
+    "id": 24,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Józef Ignacy Kraszewski",
+    "epoch": "Pozytywizm",
+    "title": "Z chłopa król",
+    "genre": "Bajka",
+    "id": 25,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Żaby i bocian",
+    "genre": "Bajka, Przypowieść",
+    "id": 26,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zając",
+    "genre": "Bajka",
+    "id": 27,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Zajączek",
+    "genre": "Bajka, Przypowieść",
+    "id": 28,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zboże we młynie",
+    "genre": "Bajka",
+    "id": 29,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zdzisławek",
+    "genre": "Bajka",
+    "id": 30,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Żebrak i kamień",
+    "genre": "Bajka",
+    "id": 31,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zegarki",
+    "genre": "Bajka",
+    "id": 32,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zgodne rodzeństwo",
+    "genre": "Bajka",
+    "id": 33,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Ziemia i potok",
+    "genre": "Bajka, Przypowieść",
+    "id": 34,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Żółw i mysz",
+    "genre": "Bajka, Przypowieść",
+    "id": 35,
+    "has_audio": true
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Źrebiec i koń stary",
+    "genre": "Bajka, Przypowieść",
+    "id": 36,
+    "has_audio": true
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zuzia i pokrzywa",
+    "genre": "Bajka",
+    "id": 37,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Zwierciadło Rózi",
+    "genre": "Bajka",
+    "id": 38,
+    "has_audio": false
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Zwierściadło podchlebne",
+    "genre": "Bajka, Przypowieść",
+    "id": 39,
+    "has_audio": true
+  },
+  {
+    "kind": "Epika",
+    "author": "Ignacy Krasicki",
+    "epoch": "Oświecenie",
+    "title": "Zwierzęta i niedźwiedź",
+    "genre": "Bajka, Przypowieść",
+    "id": 40,
+    "has_audio": true
+  },
+  {
+    "kind": "Epika",
+    "author": "Stanisław Jachowicz",
+    "epoch": "Romantyzm",
+    "title": "Żydek",
+    "genre": "Bajka",
+    "id": 41,
+    "has_audio": false
+  },
+  {
+    "kind": "qwerty",
+    "author": "qwreter",
+    "epoch": "qwer",
+    "title": "wqer",
+    "genre": "wewr",
+    "id": 42,
+    "has_audio": true
+  }
+]
