@@ -73,18 +73,18 @@
     <div class="container">
         <div class="center-block">
             <div class="col-lg-4">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Responsive image">
+                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Okładka">
             </div>
             <div class="col-lg-8, text-left">
                 <div class="text-center">
-                    <h2 class="text-primary">Książka:</h2> <h3 class="text-danger">${book.title}</h3>
+                    <h2 class="text-primary">Książka:</h2>
+                    <h3 class="text-danger">${book.title}</h3>
                 </div>
                 <br>
-
-                <h3 >Autor: ${book.author} </h3>
+                <h3>Autor: ${book.author} </h3>
                 <h4>Epoka: ${book.epoch} </h4>
-                <h4>Audio:${book.audio?c}</h4>
-                <h4>Rodzaj:${book.genre}</h4>
+                <h4>Wersja audio: ${book.audio?then('Dostępna','Brak')}</h4>
+                <h4>Rodzaj: ${book.genre}</h4>
                 <h4>Typ literatury: ${book.kind}</h4>
             </div>
         </div>
@@ -113,12 +113,6 @@
                         <div class="copyright">
                             <p>&copy; Sailor Theme - All Right Reserved</p>
                             <div class="credits">
-                                <!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Sailor
-              -->
                                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                             </div>
                         </div>

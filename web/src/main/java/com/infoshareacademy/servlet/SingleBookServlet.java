@@ -50,6 +50,5 @@ public class SingleBookServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-
     }
 }
