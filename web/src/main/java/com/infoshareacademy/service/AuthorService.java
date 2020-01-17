@@ -12,17 +12,17 @@ public class AuthorService {
     @Inject
     private AuthorDao authorDao;
 
-    public Author findOrAdd(String name)  {
+    public Author findOrAdd(String name) {
 
         Author author = authorDao.findAuthorByName(name);
-        if (author == null)  {
+        if (author == null) {
             Author newAuthor = new Author();
             newAuthor.setName(name);
             authorDao.addAuthor(newAuthor);
-            System.out.println("New author added: "+newAuthor.getName());
+            System.out.println("New author added: " + newAuthor.getName());
             return newAuthor;
         }
-        System.out.println("Author added: "+author.getName());
+        System.out.println("Author added: " + author.getName());
         return author;
 
     }

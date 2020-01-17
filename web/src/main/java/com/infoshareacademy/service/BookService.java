@@ -6,7 +6,7 @@ import com.infoshareacademy.dto.BookDTO;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.Set;
+import java.util.List;
 
 @Stateless
 public class BookService {
@@ -26,7 +26,7 @@ public class BookService {
     @Inject
     private BookDao bookDao;
 
-    public void addBooks (Set<BookDTO> books)  {
+    public void addBooks (List<BookDTO> books)  {
 
         books
                 .forEach(this::addBook);
@@ -49,23 +49,14 @@ public class BookService {
         Book bookDaoToEntity = new Book();
 
         bookDaoToEntity.setAuthor(author);
-        System.out.println("Autor: "+author.getName());
         bookDaoToEntity.setKind(kind);
-        System.out.println("Kind: "+kind.getName());
         bookDaoToEntity.setEpoch(epoch);
-        System.out.println("Epoch: "+genre.getName());
         bookDaoToEntity.setGenre(genre);
-        System.out.println("Genre: "+genre.getName());
         bookDaoToEntity.setTitle(book.getTitle());
-        System.out.println("Title: "+book.getTitle());
         bookDaoToEntity.setCover(book.getCover());
-        System.out.println("Cover: "+book.getCover());
         bookDaoToEntity.setCoverThumb(book.getCoverThumb());
-        System.out.println("CoverThumb: "+book.getCoverThumb());
         bookDaoToEntity.setSimpleThumb(book.getSimpleThumb());
-        System.out.println("SimpleThumb: "+book.getSimpleThumb());
         bookDaoToEntity.setHasAudio(book.getHasAudio());
-        System.out.println("Audio: "+book.getHasAudio());
 
         bookDao.addBook(bookDaoToEntity);
     }
