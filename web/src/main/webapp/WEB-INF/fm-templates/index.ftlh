@@ -159,7 +159,7 @@
 <script src="../../html/js/jquery.appear.js"></script>
 <script src="../../html/js/stellar.js"></script>
 <script src="../../html/js/classie.js"></script>
-<script src="../../html/js/uisearch.js"></script>
+<script src="../../html/js/search.js"></script>
 <script src="../../html/js/jquery.cubeportfolio.min.js"></script>
 <script src="../../html/js/google-code-prettify/prettify.js"></script>
 <script src="../../html/js/animate.js"></script>

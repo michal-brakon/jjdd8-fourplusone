@@ -26,7 +26,7 @@ public class BookService {
     }
 
 
-
+    @Transactional
     public List<BookView> findByTitle(String inputParam){
          List<Book> bookList = bookDao.findByTitle(inputParam);
            return bookList.stream()

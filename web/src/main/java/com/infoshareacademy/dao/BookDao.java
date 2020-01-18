@@ -36,7 +36,7 @@ public class BookDao {
             query.setParameter("inputParam","%"+inputParam+"%");
 
 
-        return query.getResultList();
+        return query.setMaxResults(5).getResultList();
     }
 
 }

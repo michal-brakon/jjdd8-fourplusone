@@ -1,4 +1,7 @@
 <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../../html/js/search.js"></script>
+
     <div class="top">
         <div class="container">
             <div class="row">
@@ -7,12 +10,10 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                     <form role="form" method="post">
-                            <div class="form-group ajax-search">
-                                <input type="text" class="form-control" id="keyword" placeholder="Enter keyword">
-                                <ul id="content"></ul>
-                            </div>
-                        </form>
+                     <form role="form" method="post"  id="sb-search" enctype="multipart/form-data">
+                           <input type="text" id="input" autocomplete="off"  placeholder="Enter keyword">
+                         <div id="out" ></div>
+                           </form>
                     </div>
                 </div>
             </div>
