@@ -3,10 +3,10 @@
 
 
 $(document).ready(function () {
-    $("#input").keypress(function () {
+    $("#sbb-input").keyup(function () {
     if ($(this).val().length >= 3) {
         $.ajax({
-            url: '/api/search'+$(this).val(),
+            url: '/api/search/'+$(this).val(),
             type: 'GET',
             success: function (result) {
 

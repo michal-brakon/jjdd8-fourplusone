@@ -33,7 +33,7 @@ public class BookDao {
 
     public List<Book> findByTitle(String inputParam){
             Query query = em.createNamedQuery("Book.findByTitle");
-            query.setParameter("inputParam","%"+inputParam+"%");
+            query.setParameter("inputParam","%"+inputParam.trim()+"%");
 
 
         return query.setMaxResults(5).getResultList();

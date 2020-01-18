@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-6">
                      <form role="form" method="post"  id="sb-search" enctype="multipart/form-data">
-                           <input type="text" id="input" autocomplete="off"  placeholder="Enter keyword">
+                           <input type="text" id="sbb-input" autocomplete="off"  placeholder="Enter keyword">
                          <div id="out" ></div>
                            </form>
                     </div>
