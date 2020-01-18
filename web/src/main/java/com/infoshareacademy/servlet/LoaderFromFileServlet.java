@@ -71,5 +71,6 @@ public class LoaderFromFileServlet extends HttpServlet {
             logger.warn(apiFileNotFound.getMessage());
         }
         bookService.addBooks(books);
+        resp.sendRedirect("/");
     }
 }
