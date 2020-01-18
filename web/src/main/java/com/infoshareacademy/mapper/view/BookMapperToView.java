@@ -19,6 +19,7 @@ public class BookMapperToView {
 
         BookView view = new BookView();
 
+
 //        view.setAudio(book.getHasAudio());
 //        view.setCover(book.getCover());
         view.setTitle(book.getTitle());

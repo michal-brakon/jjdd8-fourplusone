@@ -10,7 +10,14 @@ import javax.validation.constraints.NotNull;
         query = "SELECT b FROM Book b WHERE b.id=:id"),
 
         @NamedQuery(name = "Book.findAll",
-                query = "SELECT b FROM Book b")}
+                query = "SELECT b FROM Book b"),
+
+@NamedQuery(name = "Book.getId",
+query = "SELECT b.id FROM Book b"),
+
+        @NamedQuery(name = "Books.details",
+        query = "SELECT b FROM Book b WHERE b.id in :ids")
+}
 )
 
 public class Book {
