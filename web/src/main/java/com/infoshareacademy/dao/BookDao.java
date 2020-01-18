@@ -38,12 +38,12 @@ public class BookDao {
 
     }
 
-    public List<Book> getBooksForPagination () {
+    public List<Book> getBooksForPagination (int start, int end) {
         Query ids = em.createNamedQuery("Book.getId");
         List<Integer> booksIds = ids.getResultList();
         Query query = em.createNamedQuery("Books.details");
 
-        query.setParameter("ids", booksIds.subList(0,21));
+        query.setParameter("ids", booksIds.subList(start,end));
         return query.getResultList();
     }
 }

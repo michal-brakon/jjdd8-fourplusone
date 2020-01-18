@@ -21,7 +21,7 @@ public class CatalogueApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        List<BookView> bookViewList = bookService.getAllBooksView();
+        List<BookView> bookViewList = bookService.booksForPagination();
         return Response.ok().entity(bookViewList).build();
     }
 

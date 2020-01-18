@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT b FROM Book b"),
 
 @NamedQuery(name = "Book.getId",
-query = "SELECT b.id FROM Book b"),
+query = "SELECT b.id FROM Book b order by b.id"),
 
         @NamedQuery(name = "Books.details",
         query = "SELECT b FROM Book b WHERE b.id in :ids")

@@ -37,12 +37,12 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
-    public List<BookView> booksForPagination() {
-
-        List<Book> booksPagination = bookDao.getBooksForPagination();
-        return booksPagination.stream().map(book -> bookMapperToView.mapEntityToView(book))
-                .collect(Collectors.toList());
-
-    }
+//    @Transactional
+//    public List<BookView> booksForPagination() {
+//
+//        List<Book> booksPagination = bookDao.getBooksForPagination();
+//        return booksPagination.stream().map(book -> bookMapperToView.mapEntityToView(book))
+//                .collect(Collectors.toList());
+//
+//    }
 }
