@@ -21,6 +21,4 @@ public class BookApiConsumer {
         response.close();
         return parserService.parse(resp, tClass);
     }
-
-
 }

@@ -1,5 +1,7 @@
 package com.infoshareacademy.domain.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class EpochJson {
 
     private String name;
