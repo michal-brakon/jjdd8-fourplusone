@@ -65,7 +65,8 @@ public class LoaderFromFileServlet extends HttpServlet {
         Part file = req.getPart("api");
         List<BookDTO> books = new ArrayList<>();
         try {
-            books = parserService.parse(uploaderService.uploadApiFile(file), BookDTO.class);
+            String json = uploaderService.uploadApiFile(file);
+            books = parserService.parse(json, BookDTO.class);
         } catch (ApiFileNotFound apiFileNotFound) {
             logger.warn(apiFileNotFound.getMessage());
         }
