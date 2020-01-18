@@ -32,9 +32,9 @@ public class BookDao {
     }
 
     public List<Book> findAll() {
-    List list = this.em.createNamedQuery("Book.findAll")
-            .getResultList();
-    return list;
+          Query query=em.createNamedQuery("Book.findAll");
+
+    return  query.getResultList();
 
     }
 }

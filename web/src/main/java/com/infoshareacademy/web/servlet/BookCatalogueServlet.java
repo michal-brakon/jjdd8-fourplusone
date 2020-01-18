@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@WebServlet("/single")
-public class SingleBookServlet extends HttpServlet {
+@WebServlet("/catalogue")
+public class BookCatalogueServlet extends HttpServlet {
 
     @Inject
     private BookService bookService;
@@ -28,23 +29,15 @@ public class SingleBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String param = req.getParameter("id");
-
-        if (param == null || param.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-        Long id = Long.valueOf(param);
 
         PrintWriter writer = resp.getWriter();
+        List<BookView> bookViewList = bookService.getAllBooksView();
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
-                        "singlePage.ftlh");
+                        "catalogue.ftlh");
         Map<String, Object> model = new HashMap<>();
-
-        BookView bookView = bookService.getBookViewById(id);
-
-        model.put("book", bookView);
+        model.put("catalogue", bookViewList);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
@@ -52,3 +45,12 @@ public class SingleBookServlet extends HttpServlet {
         }
     }
 }
+
+
+
+
+
+
+
+
+

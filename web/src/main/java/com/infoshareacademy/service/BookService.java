@@ -7,9 +7,9 @@ import com.infoshareacademy.mapper.view.BookMapperToView;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.json.JsonArray;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class BookService {
@@ -29,13 +29,12 @@ public class BookService {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
-    public List<BookView> getAllBooks() {
-        List<BookView> list = developerDao.find();
 
+    @Transactional
+    public List<BookView> getAllBooksView() {
+        List<Book> bookViews = bookDao.findAll();
+        return bookViews.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
 
-        return JsonHelper.toArray(devs.stream()
-                .map(d -> devMapper.toShortJson(d))
-                .toArray());
-
-
+    }
 }
