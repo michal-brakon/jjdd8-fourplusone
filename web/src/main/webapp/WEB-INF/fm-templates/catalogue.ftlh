@@ -107,47 +107,28 @@
 <div class="container">
     <div class="col-sm-12 col-lg-12 row">
         <script>
-
-            function getUrlVars() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                    vars[key] = value;
-                });
-                return vars;
-            }
-
             function changeVal() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                    vars[key] = value;
+                    var url = new URL(documesnt.URL);
+                    var query = url.search;
+                    var searchParams = new URLSearchParams(query);
+                    searchParams.get("bookNum");
 
-
-                });
-                var number = getUrlVars()["bookNum"];
-                var num2 = number + 20;
-
-                vars[key] = number;
-                return vars;
-            }
+                    searchParams.set("bookNum", parseInt(searchParams.get("bookNum")) + 20);
+                    url.search = searchParams.toString();
+                    var new_url = url.toString();
+                    return new_url;
+                }
 
         </script>
         <nav aria-label="Pagination">
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
-                <li class="page-item"><a class="page-link" href="" onclick="getUrlVars();">Aktualna strona</a></li>
-
-
-
-                <li class="page-item"><a class="page-link" href="" onclick="changeVal();"
-
-
-
-
-                    >Następna strona</a></li>
+                <li class="page-item"><a class="page-link" href=" ">Poprzednia</a></li>
+                <li class="page-item"><a class="page-link" href="">Aktualna strona</a></li>
+                <li class="page-item"><a class="page-link" href=" " >Następna</a></li>
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=5790">Ostatnia strona</a></li>
             </ul>
         </nav>
-
     </div>
 </div>
 
