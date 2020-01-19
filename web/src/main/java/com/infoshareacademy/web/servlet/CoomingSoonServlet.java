@@ -31,13 +31,13 @@ public class CoomingSoonServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         PrintWriter writer = resp.getWriter();
-        List<BookView> bookViewList = bookService.booksForPagination();
+
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
                         "comingSoon.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("soon", bookViewList);
+        model.put("soon", writer);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

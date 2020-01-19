@@ -95,4 +95,13 @@ public class BookService {
                 .collect(Collectors.toList());
 
     }
+    @Transactional
+   public List<BookView> books333(int in) {
+
+        List<Book> bbb = bookDao.get333(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
 }

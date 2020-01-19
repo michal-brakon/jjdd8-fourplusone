@@ -38,13 +38,34 @@ public class BookDao {
 
     }
 
-    public List<Book> getBooksForPagination () {
+
+    public List<Book> findBooksLimit(int pageNumber) {
+        Query query = em.createNamedQuery("Book.findAll");
+        int limit = 21;
+        query.setMaxResults(limit);
+        query.setFirstResult((pageNumber -1) * limit);
+        return query.getResultList();
+    }
+
+
+    public List<Book> getBooksForPagination() {
         Query ids = em.createNamedQuery("Book.getId");
         List<Integer> booksIds = ids.getResultList();
         Query query = em.createNamedQuery("Books.details");
-        query.setParameter("ids", booksIds.subList(0,21));
+        query.setParameter("ids", booksIds.subList(0,20));
         return query.getResultList();
     }
+
+    public List<Book> get333 (int in){
+
+        Query query = em.createNamedQuery("Book.findAll");
+        query.setFirstResult(in);
+        query.setMaxResults(20);
+
+
+        return query.getResultList();
+    }
+
 }
 
 

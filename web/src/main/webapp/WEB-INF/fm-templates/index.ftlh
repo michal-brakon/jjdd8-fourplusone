@@ -57,7 +57,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/catalogue">Książki</a></li>
+                                        <li><a href="/catalogue?bookNum=0">Książki</a></li>
                                         <li><a href="/soon">AudioBooki</a></li>
                                     </ul>
                                 </li>
@@ -80,7 +80,7 @@
                                 <img src="../../html/img/slides/flexslider/1.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p> Dla tych co umieją czytać</p>
-                                    <a href="/catalogue" class="btn btn-theme">Książki</a>
+                                    <a href="/catalogue?bookNum=0" class="btn btn-theme">Książki</a>
                                 </div>
                             </li>
                             <li>

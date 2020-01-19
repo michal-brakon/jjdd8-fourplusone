@@ -12,6 +12,7 @@
     <link href="../../html/css/style.css" rel="stylesheet"/>
     <link id="t-colors" href="../../html/skins/default.css" rel="stylesheet"/>
     <link id="bodybg" href="../../html/bodybg/bg1.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 <div id="wrapper">
@@ -57,7 +58,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/catalogue">Książki</a></li>
+                                        <li><a href="/catalogue?bookNum=0">Książki</a></li>
                                         <li><a href="/soon">AudioBooki</a></li>
                                     </ul>
                                 </li>
@@ -103,6 +104,28 @@
 </div>
 </div>
 
+<div class="container">
+    <div class="col-sm-12 col-lg-12 row">
+        <script>
+
+            function getURL() {
+
+                alert("The URL of this page is: " + window.location.href);
+
+            }
+
+        </script>
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
+                <li class="page-item"><a class="page-link" href="getURL();">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=5790">Ostatnia strona</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</div>
 
 <footer>
     <div class="container">
@@ -133,6 +156,8 @@
 </footer>
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+
 
 <script src="../../html/js/jquery.min.js"></script>
 <script src="../../html/js/modernizr.custom.js"></script>

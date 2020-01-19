@@ -30,8 +30,15 @@ public class BookCatalogueServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
+        String param = req.getParameter("bookNum");
+        if (param == null || param.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+            int num = Integer.parseInt(param);
+
         PrintWriter writer = resp.getWriter();
-        List<BookView> bookViewList = bookService.booksForPagination();
+        List<BookView> bookViewList = bookService.books333(num);
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
