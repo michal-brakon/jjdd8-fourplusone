@@ -10,7 +10,16 @@ public class BookView {
     String kind;
     String genre;
     String epoch;
+    String cover_thumb;
 
+
+    public String getCover_thumb() {
+        return cover_thumb;
+    }
+
+    public void setCover_thumb(String cover_thumb) {
+        this.cover_thumb = cover_thumb;
+    }
 
     public long getId() {
         return id;

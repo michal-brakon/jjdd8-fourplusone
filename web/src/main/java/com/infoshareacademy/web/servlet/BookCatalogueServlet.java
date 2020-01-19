@@ -31,13 +31,13 @@ public class BookCatalogueServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         PrintWriter writer = resp.getWriter();
-      //  List<BookView> bookViewList = bookService.booksForPagination();
+        List<BookView> bookViewList = bookService.booksForPagination();
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
                         "catalogue.ftlh");
         Map<String, Object> model = new HashMap<>();
-   //     model.put("catalogue", bookViewList);
+        model.put("catalogue", bookViewList);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

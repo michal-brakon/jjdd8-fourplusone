@@ -73,45 +73,61 @@
     <section>
         <div class="container">
             <#list catalogue>
-                <#items as cat>
-                    <ul>
-                        <li>Tytuł: ${cat.title!}</li>
-                    </ul>
-                    <br/><br/>
-                    ==============================================
-                    <br/><br/>
-                </#items>
+            <#items as cat>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td><img src="https://wolnelektury.pl/media/${cat.cover_thumb!}"
+                             alt="Okładka"></td>
+                    <td><div class="text-center">
+                            <h3 class="text-danger"> <a href="/single?id=${cat.id}">Książka: ${cat.title} </a></h3>
+                            <h3>Autor: ${cat.author} </h3>
+                        </div></td>
+                </tr>
+                </tbody>
+            </table>
+            </#items>
             </#list>
-
         </div>
     </section>
-    <footer>
-        <div class="container">
-            <div class="col-sm-12 col-lg-12 row">
-                <div class="widget">
-                    <h4>Kontakt</h4>
-                    <address>
-                        <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
-                    </address>
-                    <p>
-                        <i class="icon-phone"></i> (0048) 123-456-789 <br>
-                        <i class="icon-envelope-alt"></i> fourplusone@library.com
-                    </p>
-                </div>
+</div>
+</div>
+
+
+<footer>
+    <div class="container">
+        <div class="col-sm-12 col-lg-12 row">
+            <div class="widget">
+                <h4>Kontakt</h4>
+                <address>
+                    <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
+                </address>
+                <p>
+                    <i class="icon-phone"></i> (0048) 123-456-789 <br>
+                    <i class="icon-envelope-alt"></i> fourplusone@library.com
+                </p>
             </div>
         </div>
-        <div id="sub-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p>&copy; Sailor Theme - All Right Reserved</p>
-                        <div class="credits">
-                        </div>
+    </div>
+    <div id="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>&copy; Sailor Theme - All Right Reserved</p>
+                    <div class="credits">
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 

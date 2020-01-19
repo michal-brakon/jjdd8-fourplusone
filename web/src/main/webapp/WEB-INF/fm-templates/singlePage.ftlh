@@ -81,7 +81,7 @@
                     <h3 class="text-danger">${book.title}</h3>
                 </div>
                 <br>
-<#--                <h3>Autor: ${book.id} </h3>-->
+                <h3>ID: ${book.id} </h3>
                 <h3>Autor: ${book.author} </h3>
                 <h4>Epoka: ${book.epoch} </h4>
                 <h4>Wersja audio: ${book.audio?then('Dostępna','Brak')}</h4>
