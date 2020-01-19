@@ -108,18 +108,42 @@
     <div class="col-sm-12 col-lg-12 row">
         <script>
 
-            function getURL() {
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
 
-                alert("The URL of this page is: " + window.location.href);
+            function changeVal() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
 
+
+                });
+                var number = getUrlVars()["bookNum"];
+                var num2 = number + 20;
+
+                vars[key] = number;
+                return vars;
             }
 
         </script>
         <nav aria-label="Pagination">
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
-                <li class="page-item"><a class="page-link" href="getURL();">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="" onclick="getUrlVars();">Aktualna strona</a></li>
+
+
+
+                <li class="page-item"><a class="page-link" href="" onclick="changeVal();"
+
+
+
+
+                    >Następna strona</a></li>
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=5790">Ostatnia strona</a></li>
             </ul>
         </nav>
@@ -173,7 +197,7 @@
 <script src="../../html/js/google-code-prettify/prettify.js"></script>
 <script src="../../html/js/animate.js"></script>
 <script src="../../html/js/custom.js"></script>
-
+<script src="../../html/js/pagination.js"></script>
 </body>
 
 </html>
