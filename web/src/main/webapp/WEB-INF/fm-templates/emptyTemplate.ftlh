@@ -57,13 +57,13 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="comingsoon.ftlh">Książki</a></li>
-                                        <li><a href="comingsoon.ftlh">AudioBooki</a></li>
+                                        <li><a href="/catalogue">Książki</a></li>
+                                        <li><a href="/soon">AudioBooki</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="comingsoon.ftlh">Zaloguj/Rejestracja</a></li>
+                        <li><a href="/soon">Zaloguj/Rejestracja</a></li>
                     </ul>
                 </div>
             </div>

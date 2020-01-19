@@ -23,7 +23,7 @@
     <!-- start header -->
     <header>
         <div class="text-center margintop50">
-            <a href="index.ftlh"> <img src="../../html/img/logo.png" alt="" width="199" height="52"/></a>
+            <a href="/"> <img src="../../html/img/logo.png" alt="" width="199" height="52"/></a>
         </div>
 
     </header>
@@ -35,7 +35,7 @@
                     <div class="text-center">
                         <h2>Pracujemy nad tym. Zdążymy na czas!</h2>
 
-                        <a class="btn btn-primary" href="index.ftlh" role="button">Strona główna</a>
+                        <a class="btn btn-primary" href="/" role="button">Strona główna</a>
                     </div>
                 </div>
             </div>

@@ -57,13 +57,13 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="comingsoon.ftlh">Książki</a></li>
-                                        <li><a href="comingsoon.ftlh">AudioBooki</a></li>
+                                        <li><a href="/catalogue">Książki</a></li>
+                                        <li><a href="/soon">AudioBooki</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="comingsoon.ftlh">Zaloguj/Rejestracja</a></li>
+                        <li><a href="/soon">Zaloguj/Rejestracja</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,14 +80,14 @@
                                 <img src="../../html/img/slides/flexslider/1.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p> Dla tych co umieją czytać</p>
-                                    <a href="comingsoon.ftlh" class="btn btn-theme">Książki</a>
+                                    <a href="/catalogue" class="btn btn-theme">Książki</a>
                                 </div>
                             </li>
                             <li>
                                 <img src="../../html/img/slides/flexslider/2.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p>Dla tych co wolą słuchać</p>
-                                    <a href="comingsoon.ftlh" class="btn btn-theme">AudioBooki</a>
+                                    <a href="/soon" class="btn btn-theme">AudioBooki</a>
                                 </div>
                             </li>
                         </ul>
