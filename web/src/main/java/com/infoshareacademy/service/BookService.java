@@ -43,18 +43,16 @@ public class BookService {
     }
     public void addBook(BookDTO book) {
 
-        String[] authorsNames = new String[2];
+        String[] authorsNames;
         List<Author> authors = new ArrayList<>();
 
         String authorName = book.getAuthor();
 
-        authorsNames = authorName.split(", ");
-        if (authorsNames.length > 1) {
-            System.out.println(Arrays.deepToString(authorsNames));
-        }
-        Arrays.stream(authorsNames).forEach(a -> authors.add(authorService.findOrAdd(a)));
+        authorsNames = authorName.split(",");
 
-        //Author author = authorService.findOrAdd(authorName);
+        Arrays.stream(authorsNames)
+                .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
+        );
 
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
