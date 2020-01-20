@@ -74,6 +74,15 @@ public class BookService {
         return this.bookDao.findById(id);
     }
 
+
+    @Transactional
+    public List<BookView> findByTitle(String inputParam){
+         List<Book> bookList = bookDao.findByTitle(inputParam);
+           return bookList.stream()
+                   .map(b -> bookMapperToView.mapEntityToView(b))
+                   .collect(Collectors.toList());
+          }
+
     @Transactional
     public BookView getBookViewById(Long id) {
         Book book = getById(id);
