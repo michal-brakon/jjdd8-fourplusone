@@ -127,7 +127,7 @@
 
                 <li class="page-item"><a class="page-link" href="">Aktualna strona</a></li>
 
-                <#if (next < 5790)>
+                <#if (next < 5791)>
                     <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a></li>
 
                 <#else>
