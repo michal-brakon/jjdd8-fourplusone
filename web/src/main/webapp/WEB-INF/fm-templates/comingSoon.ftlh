@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h2>Pracujemy nad tym. Zdążymy na czas!</h2>
+                        <h2>Pracujemy nad tym. Zdążymy do ostatecznego demo!</h2>
 
                         <a class="btn btn-primary" href="/" role="button">Strona główna</a>
                     </div>

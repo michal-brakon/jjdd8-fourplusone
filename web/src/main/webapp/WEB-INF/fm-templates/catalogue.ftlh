@@ -114,7 +114,7 @@
 
 
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
-                <#if (previous > 20)>
+                <#if (previous > -1)>
                     <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}"">Poprzednia</a>
                     </li>
 
