@@ -37,9 +37,9 @@ public class BookCatalogueServlet extends HttpServlet {
         }
             int num = Integer.parseInt(param);
 
-        int next = num+20;
+        long next = num+20;
 
-        int previous = num-20;
+        long previous = num-20;
 
         PrintWriter writer = resp.getWriter();
         List<BookView> bookViewList = bookService.books333(num);

@@ -112,13 +112,13 @@
 
 
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
-                <#if (next < 20)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}"">Poprzednia</a>
+                <#if (previous > 20)>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous?string.number}"">Poprzednia</a>
                     </li>
 
                 <#else>
                     <li style="display: none " class="page-item"><a class="page-link"
-                                                                    href="/catalogue?bookNum=${previous}">Poprzednia</a>
+                                                                    href="/catalogue?bookNum=${previous?string.number}">Poprzednia</a>
                     </li>
                 </#if>
 
@@ -126,10 +126,10 @@
                 <li class="page-item"><a class="page-link" href="">Aktualna strona</a></li>
 
                 <#if (next < 5790)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a></li>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next?string.number}">Następna</a></li>
 
                 <#else>
-                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a>
+                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next?string.number}">Następna</a>
                     </li>
 
                 </#if>
