@@ -37,6 +37,10 @@ public class BookCatalogueServlet extends HttpServlet {
         }
             int num = Integer.parseInt(param);
 
+        int next = num+20;
+
+        int previous = num-20;
+
         PrintWriter writer = resp.getWriter();
         List<BookView> bookViewList = bookService.books333(num);
 
@@ -45,6 +49,8 @@ public class BookCatalogueServlet extends HttpServlet {
                         "catalogue.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("catalogue", bookViewList);
+        model.put("next", next);
+        model.put("previous", previous);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

@@ -106,26 +106,33 @@
 
 <div class="container">
     <div class="col-sm-12 col-lg-12 row">
-        <script>
-            function changeVal() {
-                    var url = new URL(documesnt.URL);
-                    var query = url.search;
-                    var searchParams = new URLSearchParams(query);
-                    searchParams.get("bookNum");
 
-                    searchParams.set("bookNum", parseInt(searchParams.get("bookNum")) + 20);
-                    url.search = searchParams.toString();
-                    var new_url = url.toString();
-                    return new_url;
-                }
-
-        </script>
         <nav aria-label="Pagination">
             <ul class="pagination">
+
+
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
-                <li class="page-item"><a class="page-link" href=" ">Poprzednia</a></li>
+                <#if (next < 20)>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}"">Poprzednia</a>
+                    </li>
+
+                <#else>
+                    <li style="display: none " class="page-item"><a class="page-link"
+                                                                    href="/catalogue?bookNum=${previous}">Poprzednia</a>
+                    </li>
+                </#if>
+
+
                 <li class="page-item"><a class="page-link" href="">Aktualna strona</a></li>
-                <li class="page-item"><a class="page-link" href=" " >Następna</a></li>
+
+                <#if (next < 5790)>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a></li>
+
+                <#else>
+                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a>
+                    </li>
+
+                </#if>
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=5790">Ostatnia strona</a></li>
             </ul>
         </nav>
@@ -161,7 +168,6 @@
 </footer>
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-
 
 
 <script src="../../html/js/jquery.min.js"></script>
