@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 @Stateless
 public class BookMapperToView {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookMapperToView.class.getName());
 
     @Transactional
     public BookView mapEntityToView(Book book) {
@@ -20,7 +19,6 @@ public class BookMapperToView {
         view.setAudio(book.getHasAudio());
         view.setCover(book.getCover());
         view.setTitle(book.getTitle());
-//        logger.info("tytuł" + book.getTitle());
         view.setAuthor(book.getAuthor().getName());
         view.setEpoch(book.getEpochId().getName());
         view.setGenre(book.getGenre().getName());

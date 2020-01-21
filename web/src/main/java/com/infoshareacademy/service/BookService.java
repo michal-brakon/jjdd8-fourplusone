@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -35,27 +34,23 @@ public class BookService {
     private GenreService genreService;
 
 
-    public void addBooks (List<BookDTO> books)  {
+    public void addBooks(List<BookDTO> books) {
 
         books
                 .forEach(this::addBook);
     }
+
     public void addBook(BookDTO book) {
 
         String authorName = book.getAuthor();
         Author author = authorService.findOrAdd(authorName);
-
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
-
         String epochName = book.getEpoch();
         Epoch epoch = epochService.findOrAdd(epochName);
-
         String genreName = book.getGenre();
         Genre genre = genreService.findOrAdd(genreName);
-
         Book bookDaoToEntity = new Book();
-
         bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
@@ -65,7 +60,6 @@ public class BookService {
         bookDaoToEntity.setCoverThumb(book.getCoverThumb());
         bookDaoToEntity.setSimpleThumb(book.getSimpleThumb());
         bookDaoToEntity.setHasAudio(book.getHasAudio());
-
         bookDao.addBook(bookDaoToEntity);
     }
 
@@ -81,27 +75,11 @@ public class BookService {
     }
 
     @Transactional
-    public List<BookView> getAllBooksView() {
-        List<Book> bookViews = bookDao.findAll();
-        return bookViews.stream().map(book -> bookMapperToView.mapEntityToView(book))
-                .collect(Collectors.toList());
-    }
+    public List<BookView> getBookViewForPagination(int in) {
 
-    @Transactional
-    public List<BookView> booksForPagination() {
-
-        List<Book> booksPagination = bookDao.getBooksForPagination();
-        return booksPagination.stream().map(book -> bookMapperToView.mapEntityToView(book))
-                .collect(Collectors.toList());
-
-    }
-    @Transactional
-   public List<BookView> books333(int in) {
-
-        List<Book> bbb = bookDao.get333(in);
+        List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
                 .collect(Collectors.toList());
 
     }
-
 }

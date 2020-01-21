@@ -3,6 +3,7 @@ package com.infoshareacademy.web.servlet;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
+import com.infoshareacademy.service.PaginationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -26,6 +27,9 @@ public class BookCatalogueServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+    @Inject
+    private PaginationService paginationService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -35,14 +39,14 @@ public class BookCatalogueServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-            int num = Integer.parseInt(param);
+        int num = Integer.parseInt(param);
 
-        long next = num+20;
+        int next = paginationService.add(num);
 
-        long previous = num-20;
+        int previous = paginationService.reduce(num);
 
         PrintWriter writer = resp.getWriter();
-        List<BookView> bookViewList = bookService.books333(num);
+        List<BookView> bookViewList = bookService.getBookViewForPagination(num);
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
@@ -58,9 +62,6 @@ public class BookCatalogueServlet extends HttpServlet {
         }
     }
 }
-
-
-
 
 
 
