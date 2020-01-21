@@ -1,0 +1,25 @@
+version: '3'
+services:
+  
+  db:
+    image: mysql
+    ports:
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=library
+
+  wildfly:
+    build:
+    context: ./web
+    links:
+       	-db
+    depends_on:
+        -db
+  ports:
+    	-4320:8080
+ 	-4321:9990
+  environment:
+ 	-TZ=Europe/Warsaw 
