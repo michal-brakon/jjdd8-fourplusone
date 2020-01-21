@@ -8,10 +8,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Stateless
 public class BookDao {
+
+    private final int BOOK_LIMIT = 20;
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
@@ -47,8 +50,17 @@ public class BookDao {
     public List<Book> getBooksForPagination(int in) {
         Query query = em.createNamedQuery("Book.findAll");
         query.setFirstResult(in);
-        query.setMaxResults(20);
+        query.setMaxResults(BOOK_LIMIT);
         return query.getResultList();
+    }
+
+    public int getNumberOfPages() {
+
+        int fullPages = em.createNamedQuery("Book.countAll").getFirstResult() / BOOK_LIMIT;
+        if (em.createNamedQuery("Book.countAll").getFirstResult() % BOOK_LIMIT != 0) {
+            fullPages++;
+        }
+        return fullPages;
     }
 }
 
