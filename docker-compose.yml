@@ -5,11 +5,16 @@ services:
     image: mysql
     container_name: "mysql"
     ports:
-      - "4326:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=library
+    command: ["mysqld",
+              "--character-set-server=utf8",
+              "--collation-server=utf8_unicode_ci",
+              "--init-connect='SET NAMES UTF8;'",
+              "--innodb-flush-log-at-trx-commit=0" ]
 
   wildfly:
     build:
@@ -21,4 +26,6 @@ services:
     ports:
       - "0.0.0.0:4320:8080"
       - "0.0.0.0:4321:9990"
+    environment:
+      - T2=Europe/Warsaw
 

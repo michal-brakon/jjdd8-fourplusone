@@ -1,6 +1,8 @@
 FROM jboss/wildfly
 
-RUN /opt/jboss/wildfly/bin/add-user.sh root root --silent
+RUN /opt/jboss/wildfly/bin/add-user.sh admin Admin#70365 --silent
+
+USER root
 
 
 ADD target/four-plus-one.war /opt/jboss/wildfly/standalone/deployments/
@@ -14,4 +16,5 @@ RUN tar -xvf openjdk-13_linux-x64_bin.tar.gz
 RUN export JAVA_HOME=/opt/jboss/jdk-13/
 RUN export PATH=$PATH:/opt/jboss/jdk-13/bin
 RUN echo "JAVA_HOME=/opt/jboss/jdk-13" >> /opt/jboss/wildfly/bin/standalone.conf
+
 
