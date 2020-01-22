@@ -9,6 +9,8 @@ import com.infoshareacademy.mapper.view.BookMapperToView;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,7 @@ public class BookService {
     private GenreService genreService;
 
 
-    public void addBooks(List<BookDTO> books) {
+    public void addBooks (List<BookDTO> books)  {
 
         books
                 .forEach(this::addBook);
@@ -42,16 +44,30 @@ public class BookService {
 
     public void addBook(BookDTO book) {
 
+        String[] authorsNames;
+        List<Author> authors = new ArrayList<>();
+
         String authorName = book.getAuthor();
-        Author author = authorService.findOrAdd(authorName);
+
+        authorsNames = authorName.split(",");
+
+        Arrays.stream(authorsNames)
+                .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
+        );
+
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
+
         String epochName = book.getEpoch();
         Epoch epoch = epochService.findOrAdd(epochName);
+
         String genreName = book.getGenre();
         Genre genre = genreService.findOrAdd(genreName);
+
         Book bookDaoToEntity = new Book();
-        bookDaoToEntity.setAuthor(author);
+
+        authors.forEach(a -> bookDaoToEntity.setAuthor(a));
+        //bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -60,6 +76,7 @@ public class BookService {
         bookDaoToEntity.setCoverThumb(book.getCoverThumb());
         bookDaoToEntity.setSimpleThumb(book.getSimpleThumb());
         bookDaoToEntity.setHasAudio(book.getHasAudio());
+
         bookDao.addBook(bookDaoToEntity);
     }
 
