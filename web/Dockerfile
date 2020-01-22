@@ -13,8 +13,6 @@ RUN cd /opt
 RUN yum -y install wget
 RUN wget https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/GPL/openjdk-13_linux-x64_bin.tar.gz
 RUN tar -xvf openjdk-13_linux-x64_bin.tar.gz
-RUN export JAVA_HOME=/opt/jboss/jdk-13/
-RUN export PATH=$PATH:/opt/jboss/jdk-13/bin
 RUN echo "JAVA_HOME=/opt/jboss/jdk-13" >> /opt/jboss/wildfly/bin/standalone.conf
 
 
