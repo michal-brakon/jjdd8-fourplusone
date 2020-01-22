@@ -35,11 +35,11 @@ public class BookCatalogueServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-            int num = Integer.parseInt(param);
+        int num = Integer.parseInt(param);
 
-        long next = num+20;
+        long next = num + 20;
 
-        long previous = num-20;
+        long previous = num - 20;
 
         PrintWriter writer = resp.getWriter();
         List<BookView> bookViewList = bookService.books333(num);

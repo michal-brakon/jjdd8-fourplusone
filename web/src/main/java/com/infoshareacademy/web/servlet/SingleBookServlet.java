@@ -5,6 +5,8 @@ import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +20,8 @@ import java.util.Map;
 
 @WebServlet("/single")
 public class SingleBookServlet extends HttpServlet {
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Inject
     private BookService bookService;
@@ -48,7 +52,7 @@ public class SingleBookServlet extends HttpServlet {
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            logger.warn("FreemarkerTemplate error");
         }
     }
 }

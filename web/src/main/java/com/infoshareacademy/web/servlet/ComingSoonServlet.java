@@ -1,10 +1,11 @@
 package com.infoshareacademy.web.servlet;
 
-import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet("/soon")
-public class CoomingSoonServlet extends HttpServlet {
+public class ComingSoonServlet extends HttpServlet {
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Inject
     private BookService bookService;
@@ -41,7 +43,7 @@ public class CoomingSoonServlet extends HttpServlet {
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            logger.warn("FreemarkerTemplate error");
         }
     }
 }
