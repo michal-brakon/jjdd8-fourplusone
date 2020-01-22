@@ -55,8 +55,8 @@ public class BookDao {
     }
 
     public int getNumberOfRecords() {
+       return  ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
 
-       return em.createNamedQuery("Book.countAll").getFirstResult();
     }
 }
 

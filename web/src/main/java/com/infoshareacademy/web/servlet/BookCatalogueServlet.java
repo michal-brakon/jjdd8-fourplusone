@@ -45,7 +45,7 @@ public class BookCatalogueServlet extends HttpServlet {
 
         int previous = paginationService.reduce(num);
 
-        int lastPageView = paginationService.numOfRecords(num);
+        int lastPageView = paginationService.getLastPage();
 
         PrintWriter writer = resp.getWriter();
         List<BookView> bookViewList = bookService.getBookViewForPagination(num);
@@ -65,9 +65,3 @@ public class BookCatalogueServlet extends HttpServlet {
         }
     }
 }
-
-
-
-
-
-

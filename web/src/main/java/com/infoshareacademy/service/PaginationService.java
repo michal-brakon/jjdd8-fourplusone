@@ -19,7 +19,7 @@ public class PaginationService {
         return num - 20;
     }
 
-    public int numOfRecords(int num) {
+    public int getLastPage() {
 
         return bookDao.getNumberOfRecords() - 20;
     }

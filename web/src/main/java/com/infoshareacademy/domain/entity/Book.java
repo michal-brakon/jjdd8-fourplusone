@@ -19,7 +19,7 @@ query = "SELECT b.id FROM Book b order by b.id"),
         query = "SELECT b FROM Book b WHERE b.id in :ids"),
 
         @NamedQuery(name = "Book.countAll",
-                query = "SELECT count(b) FROM Book b"),
+                query = "SELECT COUNT(b) FROM Book b"),
 }
 )
 
