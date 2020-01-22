@@ -92,10 +92,12 @@
                         <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a></li>
 
                     <#else>
-                        <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a>
+                        <li style="display: none " class="page-item"><a class="page-link"
+                                                                        href="/catalogue?bookNum=${next}">>></a>
                         </li>
                     </#if>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia strona</a></li>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia
+                            strona</a></li>
                 </ul>
             </nav>
         </div>
@@ -156,7 +158,8 @@
                     <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a>
                     </li>
                 </#if>
-                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia strona</a></li>
+                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia strona</a>
+                </li>
             </ul>
         </nav>
     </div>

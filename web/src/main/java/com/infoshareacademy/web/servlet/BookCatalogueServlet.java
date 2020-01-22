@@ -33,35 +33,39 @@ public class BookCatalogueServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
 
         String param = req.getParameter("bookNum");
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        int num = Integer.parseInt(param);
-
-        int next = paginationService.add(num);
-
-        int previous = paginationService.reduce(num);
-
-        int lastPageView = paginationService.getLastPage();
-
-        PrintWriter writer = resp.getWriter();
-        List<BookView> bookViewList = bookService.getBookViewForPagination(num);
-
-        Template template = templateProvider
-                .getTemplate(getServletContext(),
-                        "catalogue.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("catalogue", bookViewList);
-        model.put("next", next);
-        model.put("previous", previous);
-        model.put("lastPageView", lastPageView);
         try {
-            template.process(model, writer);
-        } catch (TemplateException e) {
-            e.printStackTrace();
+            int num = Integer.parseInt(param);
+
+            int next = paginationService.add(num);
+
+            int previous = paginationService.reduce(num);
+
+            int lastPageView = paginationService.getLastPage();
+
+            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+
+            Template template = templateProvider
+                    .getTemplate(getServletContext(),
+                            "catalogue.ftlh");
+            Map<String, Object> model = new HashMap<>();
+            model.put("catalogue", bookViewList);
+            model.put("next", next);
+            model.put("previous", previous);
+            model.put("lastPageView", lastPageView);
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                e.printStackTrace();
+            }
+        } catch (NumberFormatException e) {
+            writer.println("Złe dane");
         }
     }
 }

@@ -6,17 +6,17 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "book", schema = "library")
 @NamedQueries({
-@NamedQuery(name = "Book.getById",
-        query = "SELECT b FROM Book b WHERE b.id=:id"),
+        @NamedQuery(name = "Book.getById",
+                query = "SELECT b FROM Book b WHERE b.id=:id"),
 
         @NamedQuery(name = "Book.findAll",
                 query = "SELECT b FROM Book b"),
 
-@NamedQuery(name = "Book.getId",
-query = "SELECT b.id FROM Book b order by b.id"),
+        @NamedQuery(name = "Book.getId",
+                query = "SELECT b.id FROM Book b order by b.id"),
 
         @NamedQuery(name = "Books.details",
-        query = "SELECT b FROM Book b WHERE b.id in :ids"),
+                query = "SELECT b FROM Book b WHERE b.id in :ids"),
 
         @NamedQuery(name = "Book.countAll",
                 query = "SELECT COUNT(b) FROM Book b"),
@@ -79,7 +79,6 @@ public class Book {
         this.id = id;
     }
 
-
     public String getTitle() {
         return title;
     }
@@ -87,7 +86,6 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
     public String getCover() {
         return cover;
@@ -97,7 +95,6 @@ public class Book {
         this.cover = cover;
     }
 
-
     public Boolean getHasAudio() {
         return hasAudio;
     }
@@ -106,7 +103,6 @@ public class Book {
         this.hasAudio = hasAudio;
     }
 
-
     public String getSimpleThumb() {
         return simpleThumb;
     }
@@ -114,7 +110,6 @@ public class Book {
     public void setSimpleThumb(String simpleThumb) {
         this.simpleThumb = simpleThumb;
     }
-
 
     public String getCoverThumb() {
         return coverThumb;
@@ -139,7 +134,6 @@ public class Book {
     public void setEpoch(Epoch epochId) {
         this.epochId = epochId;
     }
-
 
     public LiteratureKind getKind() {
         return kind;

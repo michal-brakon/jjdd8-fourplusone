@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Stateless
@@ -55,7 +54,7 @@ public class BookDao {
     }
 
     public int getNumberOfRecords() {
-       return  ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
+        return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
 
     }
 }

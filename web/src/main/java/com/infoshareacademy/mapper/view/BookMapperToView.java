@@ -2,15 +2,12 @@ package com.infoshareacademy.mapper.view;
 
 import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
 @Stateless
 public class BookMapperToView {
-
 
     @Transactional
     public BookView mapEntityToView(Book book) {

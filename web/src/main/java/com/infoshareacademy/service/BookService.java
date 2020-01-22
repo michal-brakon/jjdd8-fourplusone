@@ -75,7 +75,7 @@ public class BookService {
     }
 
     @Transactional
-    public List<BookView> getBookViewForPagination(int in) {
+    public List<BookView> getBooksForPagination(int in) {
 
         List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
