@@ -45,6 +45,8 @@ public class BookCatalogueServlet extends HttpServlet {
 
         int previous = paginationService.reduce(num);
 
+        int lastPageView = paginationService.numOfRecords(num);
+
         PrintWriter writer = resp.getWriter();
         List<BookView> bookViewList = bookService.getBookViewForPagination(num);
 
@@ -55,6 +57,7 @@ public class BookCatalogueServlet extends HttpServlet {
         model.put("catalogue", bookViewList);
         model.put("next", next);
         model.put("previous", previous);
+        model.put("lastPageView", lastPageView);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

@@ -54,13 +54,9 @@ public class BookDao {
         return query.getResultList();
     }
 
-    public int getNumberOfPages() {
+    public int getNumberOfRecords() {
 
-        int fullPages = em.createNamedQuery("Book.countAll").getFirstResult() / BOOK_LIMIT;
-        if (em.createNamedQuery("Book.countAll").getFirstResult() % BOOK_LIMIT != 0) {
-            fullPages++;
-        }
-        return fullPages;
+       return em.createNamedQuery("Book.countAll").getFirstResult();
     }
 }
 
