@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="widget">
-                        <h4>Kontakt</h4>
+                        <h4>KontaktTEST</h4>
                         <address>
                             <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
                         </address>
