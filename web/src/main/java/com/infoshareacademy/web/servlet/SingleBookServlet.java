@@ -5,8 +5,11 @@ import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +21,7 @@ import java.util.Map;
 
 @WebServlet("/single")
 public class SingleBookServlet extends HttpServlet {
-
+    private static final Logger logger = LoggerFactory.getLogger(SingleBookServlet.class.getName());  //!
     @Inject
     private BookService bookService;
 
@@ -29,6 +32,36 @@ public class SingleBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
         String param = req.getParameter("id");
+
+        if (param == null || param.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        Long id = Long.valueOf(param);
+
+        PrintWriter writer = resp.getWriter();
+
+        Template template = templateProvider
+                .getTemplate(getServletContext(),
+                        "singlePage.ftlh");
+        Map<String, Object> model = new HashMap<>();
+
+        BookView bookView = bookService.getBookViewById(id);
+
+        model.put("book", bookView);
+        try {
+            template.process(model, writer);
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        String param = req.getParameter("id");
+        String score = req.getParameter("score");
+
+       logger.info("Parametr score = []", score);
 
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);

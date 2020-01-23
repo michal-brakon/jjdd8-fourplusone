@@ -94,7 +94,16 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="widget">
-                        <h4>KontaktTEST</h4>
+                        <h4>KontaktTEST2</h4>
+                        <form action="/single?id=1" method="post">
+                            <input type="radio" name="score" value="1" checked> 1 Star<br>
+                            <input type="radio" name="score" value="2" checked> 2 Star<br>
+                            <input type="radio" name="score" value="3" checked> 3 Star<br>
+                            <input type="radio" name="score" value="4" checked> 4 Star<br>
+                            <input type="radio" name="score" value="5" checked> 5 Star<br>
+                            <input type="submit" value="Submit">
+
+                        </form>
                         <address>
                             <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
                         </address>
