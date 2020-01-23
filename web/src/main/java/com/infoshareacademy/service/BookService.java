@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-@Transactional
 public class BookService {
 
     @Inject
@@ -44,7 +43,7 @@ public class BookService {
     private GenreService genreService;
 
 
-    public void addBooks(List<BookDTO> books) {
+    public void addBooks (List<BookDTO> books)  {
 
         books
                 .forEach(this::addBook);
@@ -61,7 +60,7 @@ public class BookService {
 
         Arrays.stream(authorsNames)
                 .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
-                );
+        );
 
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
@@ -74,7 +73,8 @@ public class BookService {
 
         Book bookDaoToEntity = new Book();
 
-        authors.forEach(bookDaoToEntity::setAuthor);
+        authors.forEach(a -> bookDaoToEntity.setAuthor(a));
+        //bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -100,14 +100,14 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-
-    public com.infoshareacademy.domain.view.BookView getBookViewById(Long id) {
+    @Transactional
+    public BookView getBookViewById(Long id) {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
 
-
-    public List<com.infoshareacademy.domain.view.BookView> getBooksForPagination(int in) {
+    @Transactional
+    public List<BookView> getBooksForPagination(int in) {
 
         List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))

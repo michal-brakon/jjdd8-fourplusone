@@ -5,6 +5,8 @@ import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +22,7 @@ import java.util.Map;
 @WebServlet("/sracz")
 public class CoomingSoonServlet extends HttpServlet {
 
-    @Inject
-    private BookService bookService;
+    private static final Logger logger = LoggerFactory.getLogger(CoomingSoonServlet.class.getName());
 
     @Inject
     private TemplateProvider templateProvider;
@@ -32,7 +33,6 @@ public class CoomingSoonServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
 
-
         Template template = templateProvider
                 .getTemplate(getServletContext(),
                         "comingSoon.ftlh");
@@ -41,7 +41,7 @@ public class CoomingSoonServlet extends HttpServlet {
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            logger.error("Template error");
         }
     }
 }

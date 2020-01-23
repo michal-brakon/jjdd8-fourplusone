@@ -23,7 +23,7 @@ public class HelloServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());  //!
+    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

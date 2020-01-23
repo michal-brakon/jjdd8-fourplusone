@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Optional;
 
 @Stateless
 public class BookDao {
@@ -25,18 +24,18 @@ public class BookDao {
 
         em.persist(book);
         logger.info("New book was added :{}", book);
-
     }
 
-    public Optional<Book> findById(Long id) {
-        return Optional.ofNullable(em.find(Book.class, id));
+    public Book findById(Long id) {
+        Query query = em.createNamedQuery("Book.getById");
+        query.setParameter("id", id);
+        return (Book) query.getSingleResult();
     }
-
 
     public List<Book> findAll() {
         Query query = em.createNamedQuery("Book.findAll");
 
-        return query.getResultList();
+    return  query.getResultList();
 
     }
 
@@ -51,7 +50,7 @@ public class BookDao {
         Query query = em.createNamedQuery("Book.findAll");
         int limit = 21;
         query.setMaxResults(limit);
-        query.setFirstResult((pageNumber -1) * limit);
+        query.setFirstResult((pageNumber - 1) * limit);
         return query.getResultList();
     }
 
@@ -59,8 +58,7 @@ public class BookDao {
         Query query = em.createNamedQuery("Book.findAll");
         query.setFirstResult(in);
         query.setMaxResults(BOOK_LIMIT);
-        return query.getResultList();
-    }
+        return query.getResultList();   }
 
     public int getNumberOfRecords() {
         return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
@@ -71,8 +69,6 @@ public class BookDao {
         em.merge(book);
         logger.info("Book has been update {}", book);
     }
-
-
 }
 
 

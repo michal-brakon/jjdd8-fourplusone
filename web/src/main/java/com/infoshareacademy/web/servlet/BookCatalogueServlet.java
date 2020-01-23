@@ -6,6 +6,8 @@ import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.PaginationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,8 @@ import java.util.Map;
 
 @WebServlet("/catalogue")
 public class BookCatalogueServlet extends HttpServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(BookCatalogueServlet.class.getName());
 
     @Inject
     private BookService bookService;
@@ -40,7 +44,14 @@ public class BookCatalogueServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        try {
+
+        Template wrongInput = templateProvider
+                .getTemplate(getServletContext(),
+                        "wrongInput.ftlh");
+        Map<String, Object> wrongInputModel = new HashMap<>();
+
+
+        if (param.matches("^[0-9]*$")) {
             int num = Integer.parseInt(param);
 
             int next = paginationService.add(num);
@@ -62,10 +73,13 @@ public class BookCatalogueServlet extends HttpServlet {
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {
-                e.printStackTrace();
+                logger.error("Template error");
             }
-        } catch (NumberFormatException e) {
-            writer.println("Złe dane");
+        } else wrongInputModel.put("name", writer);
+        try {
+            wrongInput.process(wrongInputModel, writer);
+        } catch (TemplateException e) {
+            logger.error("Template error");
         }
     }
 }
