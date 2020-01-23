@@ -27,7 +27,9 @@ public class BookDao {
     }
 
     public Book findById(Long id) {
-        return em.find(Book.class, id);
+        Query query = em.createNamedQuery("Book.getById");
+        query.setParameter("id", id);
+        return (Book) query.getSingleResult();
     }
 
     public List<Book> findAll() {

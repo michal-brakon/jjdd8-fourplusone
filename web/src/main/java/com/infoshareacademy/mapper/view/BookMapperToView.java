@@ -21,7 +21,7 @@ public class BookMapperToView {
         view.setGenre(book.getGenre().getName());
         view.setKind(book.getKind().getName());
         view.setId(book.getId());
-        view.setCover_thumb(book.getCoverThumb());
+        view.setCoverThumb(book.getCoverThumb());
 
         return view;
     }

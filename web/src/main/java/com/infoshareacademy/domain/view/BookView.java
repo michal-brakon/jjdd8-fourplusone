@@ -17,7 +17,7 @@ public class BookView {
         return cover_thumb;
     }
 
-    public void setCover_thumb(String cover_thumb) {
+    public void setCoverThumb(String cover_thumb) {
         this.cover_thumb = cover_thumb;
     }
 
