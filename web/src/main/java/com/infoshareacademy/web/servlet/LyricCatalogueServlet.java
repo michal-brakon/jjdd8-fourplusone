@@ -58,13 +58,13 @@ public class LyricCatalogueServlet extends HttpServlet {
 
             int previous = paginationService.reduce(num);
 
-            int lastPageView = paginationService.getLastPage();
+            int lastPageView = paginationService.getLasPageEpic();
 
-            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+            List<BookView> bookViewList = bookService.getEpicBooksForPagination(num);
 
             Template template = templateProvider
                     .getTemplate(getServletContext(),
-                            "catalogue.ftlh");
+                            "epic-catalogue.ftlh");
             Map<String, Object> model = new HashMap<>();
             model.put("catalogue", bookViewList);
             model.put("next", next);
@@ -75,11 +75,13 @@ public class LyricCatalogueServlet extends HttpServlet {
             } catch (TemplateException e) {
                 logger.error("Template error");
             }
-        } else wrongInputModel.put("name", writer);
-        try {
-            wrongInput.process(wrongInputModel, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
+        } else {
+            try {
+                wrongInputModel.put("name", writer);
+                wrongInput.process(wrongInputModel, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
         }
     }
 }

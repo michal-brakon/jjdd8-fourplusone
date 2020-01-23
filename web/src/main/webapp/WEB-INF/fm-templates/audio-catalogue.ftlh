@@ -61,9 +61,9 @@
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
-                                        <li><a href="/audioCatalogue?bookNum=0">Liryka</a></li>
-                                        <li><a href="/audioCatalogue?bookNum=0">Epika</a></li>
-                                        <li><a href="/audioCatalogue?bookNum=0">Dramat</a></li>
+                                        <li><a href="/lyricCatalogue?bookNum=0">Liryka</a></li>
+                                        <li><a href="epicCatalogue?bookNum=0">Epika</a></li>
+                                        <li><a href="/dramaCatalogue?bookNum=0">Dramat</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>

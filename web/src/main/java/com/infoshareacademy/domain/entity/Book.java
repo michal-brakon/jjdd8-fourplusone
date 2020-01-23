@@ -28,10 +28,10 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT COUNT(b) FROM Book b WHERE b.hasAudio = true"),
 
         @NamedQuery(name = "Book.findEpic",
-                query = "SELECT b FROM Book b WHERE b.kind = Epika"),
+                query = "SELECT b FROM Book b WHERE b.kind = 1"),
 
         @NamedQuery(name = "Book.countEpic",
-                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = Epika"),
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 1")
 }
 )
 
@@ -66,10 +66,9 @@ public class Book {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind kind;
-
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
