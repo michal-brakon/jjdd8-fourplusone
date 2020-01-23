@@ -18,7 +18,7 @@ query = "SELECT b.id FROM Book b order by b.id"),
         @NamedQuery(name = "Books.details",
         query = "SELECT b FROM Book b WHERE b.id in :ids"),
         @NamedQuery(name = "Book.findByTitle",
-                query = "SELECT b.title FROM Book b WHERE b.title=:title")
+                query = "SELECT b FROM Book b WHERE b.title LIKE :inputParam ")
 }
 )
 

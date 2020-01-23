@@ -1,9 +1,6 @@
 package com.infoshareacademy.domain.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class GenreJson {
-
 
     private String name;
 
