@@ -1,10 +1,12 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -14,13 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@WebServlet("/single")
-public class SingleBookServlet extends HttpServlet {
+@WebServlet("/soon")
+public class CoomingSoonServlet extends HttpServlet {
 
-    @Inject
-    private BookService bookService;
+    private static final Logger logger = LoggerFactory.getLogger(CoomingSoonServlet.class.getName());
 
     @Inject
     private TemplateProvider templateProvider;
@@ -28,27 +30,27 @@ public class SingleBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String param = req.getParameter("id");
-
-        if (param == null || param.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-        Long id = Long.valueOf(param);
 
         PrintWriter writer = resp.getWriter();
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
-                        "singlePage.ftlh");
+                        "comingSoon.ftlh");
         Map<String, Object> model = new HashMap<>();
-
-        BookView bookView = bookService.getBookViewById(id);
-
-        model.put("book", bookView);
+        model.put("soon", writer);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            logger.error("Template error");
         }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -66,12 +66,12 @@
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                                data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="../../WEB-INF/fm-templates/comingsoon.ftlh">Wyszukaj</a></li>
+                                <li><a href="../../WEB-INF/fm-templates/comingSoon.ftlh">Wyszukaj</a></li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../../WEB-INF/fm-templates/comingsoon.ftlh">Książki</a></li>
-                                        <li><a href="../../WEB-INF/fm-templates/comingsoon.ftlh">AudioBooki</a></li>
+                                        <li><a href="../../WEB-INF/fm-templates/comingSoon.ftlh">Książki</a></li>
+                                        <li><a href="../../WEB-INF/fm-templates/comingSoon.ftlh">AudioBooki</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -70,107 +70,25 @@
         </div>
     </header>
 
-    <section id="featured" class="bg">
+    <section>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="main-slider" class="main-slider flexslider">
-                        <ul class="slides">
-                            <li>
-                                <img src="../../html/img/slides/flexslider/1.jpg" alt=""/>
-                                <div class="flex-caption">
-                                    <p> Dla tych co umieją czytać</p>
-                                    <a href="/catalogue?bookNum=0" class="btn btn-theme">Książki</a>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="../../html/img/slides/flexslider/2.jpg" alt=""/>
-                                <div class="flex-caption">
-                                    <p>Dla tych co wolą słuchać</p>
-                                    <a href="/soon" class="btn btn-theme">AudioBooki</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h2>Nieprawidłowa wartość parametru</h2>
 
-    </section>
-    <section class="callaction">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="cta-text">
-                        <h2>Biblioteka zespołu <span>Four+One</span></h2>
-                        <p> powstała w ramach zajęć kursu w Infoshare Academy. W projekt zaangażowanych było pięć osób,
-                            dla których praca nad
-                            projektem była częścią kursu Junior Java Developer. Naszym celem jest propagowanie
-                            czytelnictwa wśród internautów,
-                            a wszytkie pozycje dostępne są dzięki serwisowi wolnelektury.pl </p>
+                                <a class="btn btn-primary" href="catalogue?bookNum=0" role="button">Katalog</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="cta-btn">
-                        <img src="../../html/img/zyj.jpg" alt="Czytaj książki - żyj dłuzej."/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section id="content">
-        <div id="parallax1" class="parallax text-light text-center marginbot50" data-stellar-background-ratio="0.5">
-            <div class="container">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="align-center color-white txt-shadow row appear stats">
-                        <div class="icon">
-                            <i class="fa fa-book fa-5x"></i>
-                        </div>
-                        <strong id="counter-coffee" class="number">5561</strong><br/>
-                        <span class="text">Książki</span>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="align-center color-white txt-shadow row appear stats">">
-                        <div class="icon">
-                            <i class="fa fa-music fa-5x"></i>
-                        </div>
-                        <strong id="counter-music" class="number">855</strong><br/>
-                        <span class="text">AudioBook</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="col-sm-12 col-md-12 row ">
-                <div class="testimonialslide clearfix flexslider row">
-                    <ul class="slides">
-                        <li>
-                            <blockquote>
-                                Każda znajdująca się tu książka, każdy tom, posiadają własną duszę. I to
-                                zarówno duszę tego, kto daną książkę napisał, jak i dusze tych, którzy tę
-                                książkę przeczytali i tak mocno ją przeżyli, że zawładnęła ich wyobraźnią.
-                            </blockquote>
-                            <h5>Carlos Ruiz Zafón</h5>
-                        </li>
-                        <li>
-                            <blockquote>
-                                Czytanie dobrych książek jest niczym rozmowa z najwspanialszymi ludźmi
-                                minionych czasów.
-                            </blockquote>
-                            <h5>Kartezjusz</h5>
-                        </li>
-                        <li>
-                            <blockquote>
-                                Kocham książkę dlatego, że wprowadza mnie w mój własny świat, że odkrywa we
-                                mnie bogactwa, których nie przeczuwałem.
-                            </blockquote>
-                            <h5> Jarosław Iwaszkiewicz</h5>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <!--put here whatever you want -->
+
+
         </div>
     </section>
     <footer>
@@ -219,4 +137,5 @@
 <script src="../../html/js/custom.js"></script>
 
 </body>
+
 </html>

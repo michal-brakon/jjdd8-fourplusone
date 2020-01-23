@@ -41,6 +41,7 @@ public class BookService {
         books
                 .forEach(this::addBook);
     }
+
     public void addBook(BookDTO book) {
 
         String[] authorsNames;
@@ -88,5 +89,14 @@ public class BookService {
     public BookView getBookViewById(Long id) {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
+    }
+
+    @Transactional
+    public List<BookView> getBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
     }
 }
