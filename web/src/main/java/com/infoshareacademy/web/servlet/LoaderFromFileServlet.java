@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.exception.ApiFileNotFound;

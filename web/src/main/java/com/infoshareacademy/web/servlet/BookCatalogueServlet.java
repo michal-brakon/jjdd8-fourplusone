@@ -6,6 +6,7 @@ import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.PaginationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,26 +46,39 @@ public class BookCatalogueServlet extends HttpServlet {
             return;
         }
 
-        int num = Integer.parseInt(param);
-
-        int next = paginationService.add(num);
-
-        int previous = paginationService.reduce(num);
-
-        int lastPageView = paginationService.getLastPage();
-
-        List<BookView> bookViewList = bookService.getBooksForPagination(num);
-
-        Template template = templateProvider
+        Template wrongInput = templateProvider
                 .getTemplate(getServletContext(),
-                        "catalogue.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("catalogue", bookViewList);
-        model.put("next", next);
-        model.put("previous", previous);
-        model.put("lastPageView", lastPageView);
+                        "wrongInput.ftlh");
+        Map<String, Object> wrongInputModel = new HashMap<>();
+
+
+        if (param.matches("^[0-9]*$")) {
+            int num = Integer.parseInt(param);
+
+            int next = paginationService.add(num);
+
+            int previous = paginationService.reduce(num);
+
+            int lastPageView = paginationService.getLastPage();
+
+            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+
+            Template template = templateProvider
+                    .getTemplate(getServletContext(),
+                            "catalogue.ftlh");
+            Map<String, Object> model = new HashMap<>();
+            model.put("catalogue", bookViewList);
+            model.put("next", next);
+            model.put("previous", previous);
+            model.put("lastPageView", lastPageView);
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
+        } else wrongInputModel.put("name", writer);
         try {
-            template.process(model, writer);
+            wrongInput.process(wrongInputModel, writer);
         } catch (TemplateException e) {
             logger.error("Template error");
         }

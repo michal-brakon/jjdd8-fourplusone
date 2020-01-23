@@ -25,9 +25,6 @@ public class CoomingSoonServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(CoomingSoonServlet.class.getName());
 
     @Inject
-    private BookService bookService;
-
-    @Inject
     private TemplateProvider templateProvider;
 
     @Override
@@ -35,7 +32,6 @@ public class CoomingSoonServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         PrintWriter writer = resp.getWriter();
-
 
         Template template = templateProvider
                 .getTemplate(getServletContext(),
