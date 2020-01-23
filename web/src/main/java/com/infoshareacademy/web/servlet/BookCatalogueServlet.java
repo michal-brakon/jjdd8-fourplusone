@@ -44,32 +44,29 @@ public class BookCatalogueServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+
+        int num = Integer.parseInt(param);
+
+        int next = paginationService.add(num);
+
+        int previous = paginationService.reduce(num);
+
+        int lastPageView = paginationService.getLastPage();
+
+        List<BookView> bookViewList = bookService.getBooksForPagination(num);
+
+        Template template = templateProvider
+                .getTemplate(getServletContext(),
+                        "catalogue.ftlh");
+        Map<String, Object> model = new HashMap<>();
+        model.put("catalogue", bookViewList);
+        model.put("next", next);
+        model.put("previous", previous);
+        model.put("lastPageView", lastPageView);
         try {
-            int num = Integer.parseInt(param);
-
-            int next = paginationService.add(num);
-
-            int previous = paginationService.reduce(num);
-
-            int lastPageView = paginationService.getLastPage();
-
-            List<BookView> bookViewList = bookService.getBooksForPagination(num);
-
-            Template template = templateProvider
-                    .getTemplate(getServletContext(),
-                            "catalogue.ftlh");
-            Map<String, Object> model = new HashMap<>();
-            model.put("catalogue", bookViewList);
-            model.put("next", next);
-            model.put("previous", previous);
-            model.put("lastPageView", lastPageView);
-            try {
-                template.process(model, writer);
-            } catch (TemplateException e) {
-                logger.error("Template error");
-            }
-        } catch (NumberFormatException e) {
-            writer.println("Złe dane");
+            template.process(model, writer);
+        } catch (TemplateException e) {
+            logger.error("Template error");
         }
     }
 }
