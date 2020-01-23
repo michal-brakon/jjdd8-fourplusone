@@ -77,26 +77,26 @@
         <div class="col-sm-12 col-lg-12 row">
             <nav aria-label="Pagination">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
+                    <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=0">Pierwsza strona</a></li>
                     <#if (previous > -1)>
-                        <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}""><<</a>
+                        <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${previous}""><<</a>
                         </li>
 
                     <#else>
                         <li style="display: none " class="page-item"><a class="page-link"
-                                                                        href="/catalogue?bookNum=${previous}"><<</a>
+                                                                        href="/audioCatalogue?bookNum=${previous}"><<</a>
                         </li>
                     </#if>
 
-                    <#if (next < 5791)>
-                        <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a></li>
+                    <#if (next < 662)>
+                        <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${next}">>></a></li>
 
                     <#else>
                         <li style="display: none " class="page-item"><a class="page-link"
-                                                                        href="/catalogue?bookNum=${next}">>></a>
+                                                                        href="/audioCatalogue?bookNum=${next}">>></a>
                         </li>
                     </#if>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia
+                    <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${lastPageView}">Ostatnia
                             strona</a></li>
                 </ul>
             </nav>
@@ -140,25 +140,25 @@
     <div class="col-sm-12 col-lg-12 row">
         <nav aria-label="Pagination">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
+                <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=0">Pierwsza strona</a></li>
                 <#if (previous > -1)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}""><<</a>
+                    <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${previous}""><<</a>
                     </li>
 
                 <#else>
                     <li style="display: none " class="page-item"><a class="page-link"
-                                                                    href="/catalogue?bookNum=${previous}"><<</a>
+                                                                    href="/audioCatalogue?bookNum=${previous}"><<</a>
                     </li>
                 </#if>
 
-                <#if (next < 5791)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a></li>
+                <#if (next < 662)>
+                    <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${next}">>></a></li>
 
                 <#else>
-                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a>
+                    <li style="display: none " class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${next}">>></a>
                     </li>
                 </#if>
-                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia strona</a>
+                <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${lastPageView}">Ostatnia strona</a>
                 </li>
             </ul>
         </nav>

@@ -58,7 +58,7 @@
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/catalogue?bookNum=0">Książki</a></li>
-                                        <li><a href="/soon">AudioBooki</a></li>
+                                        <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
                                     </ul>
                                 </li>
                             </ul>

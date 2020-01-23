@@ -20,4 +20,7 @@ public class PaginationService {
     }
 
     public int getLastPage(){return bookDao.getNumberOfRecords() - 20;}
+
+    public int getLasPageAudio() {return  bookDao.getNumberOfAudioBooks() - 20;}
+
 }

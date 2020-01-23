@@ -99,4 +99,14 @@ public class BookService {
                 .collect(Collectors.toList());
 
     }
+
+    @Transactional
+    public List<BookView> getAudioBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getAudioBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
 }

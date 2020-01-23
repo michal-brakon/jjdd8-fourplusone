@@ -53,6 +53,18 @@ public class BookDao {
         return query.getResultList();
     }
 
+    public List<Book> getAudioBooksForPagination(int in) {
+        Query query = em.createNamedQuery("Book.findAudioBooks");
+        query.setFirstResult(in);
+        query.setMaxResults(BOOK_LIMIT);
+        return query.getResultList();
+    }
+
+    public int getNumberOfAudioBooks() {
+        return ((Number) em.createNamedQuery("Book.countAudio").getSingleResult()).intValue();
+
+    }
+
     public int getNumberOfRecords() {
         return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
 
