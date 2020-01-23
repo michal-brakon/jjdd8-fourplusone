@@ -16,7 +16,6 @@ public class HealthCheck {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target("/api/health");
         Response response = webTarget.request().get();
-        System.out.println(response.getStatus());
 
         return response.getStatus();
     }
