@@ -30,6 +30,9 @@ public class SingleBookServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         String param = req.getParameter("id");
 
+        req.getSession().setAttribute("book_id", Long.parseLong(param));
+
+
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
