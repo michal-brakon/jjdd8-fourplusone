@@ -18,9 +18,10 @@ query = "SELECT b.id FROM Book b order by b.id"),
         @NamedQuery(name = "Books.details",
         query = "SELECT b FROM Book b WHERE b.id in :ids"),
         @NamedQuery(name = "Book.findByTitle",
-                query = "SELECT b FROM Book b WHERE b.title LIKE :inputParam ")
-}
-)
+                query = "SELECT b FROM Book b JOIN b.author a WHERE b.title LIKE :inputParam OR a.name LIKE :inputParam"),
+  @NamedQuery(name = "Book.countAll",
+        query = "SELECT COUNT(b) FROM Book b")
+})
 
 public class Book {
 

@@ -3,6 +3,7 @@ package com.infoshareacademy.web.servlet;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
+import com.infoshareacademy.service.PaginationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -26,44 +27,45 @@ public class BookCatalogueServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+    @Inject
+    private PaginationService paginationService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
 
         String param = req.getParameter("bookNum");
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+        try {
             int num = Integer.parseInt(param);
 
-        long next = num+20;
+            int next = paginationService.add(num);
 
-        long previous = num-20;
+            int previous = paginationService.reduce(num);
 
-        PrintWriter writer = resp.getWriter();
-        List<BookView> bookViewList = bookService.books333(num);
+            int lastPageView = paginationService.getLastPage();
 
-        Template template = templateProvider
-                .getTemplate(getServletContext(),
-                        "catalogue.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("catalogue", bookViewList);
-        model.put("next", next);
-        model.put("previous", previous);
-        try {
-            template.process(model, writer);
-        } catch (TemplateException e) {
-            e.printStackTrace();
+            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+
+            Template template = templateProvider
+                    .getTemplate(getServletContext(),
+                            "catalogue.ftlh");
+            Map<String, Object> model = new HashMap<>();
+            model.put("catalogue", bookViewList);
+            model.put("next", next);
+            model.put("previous", previous);
+            model.put("lastPageView", lastPageView);
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                e.printStackTrace();
+            }
+        } catch (NumberFormatException e) {
+            writer.println("Złe dane");
         }
     }
 }
-
-
-
-
-
-
-
-
-

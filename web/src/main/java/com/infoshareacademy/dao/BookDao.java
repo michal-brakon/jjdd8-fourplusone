@@ -9,9 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class BookDao {
+
+    private final int BOOK_LIMIT = 20;
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
@@ -24,25 +27,22 @@ public class BookDao {
         logger.info("New book was added :{}", book);
 
     }
-    public Book findById(Long id){
 
-        Query query = em.createNamedQuery("Book.getById");
-        query.setParameter("id",id);
-        return (Book)query.getSingleResult();
+    public Optional<Book> findById(Long id) {
+        return Optional.ofNullable(em.find(Book.class, id));
     }
+
 
     public List<Book> findAll() {
-          Query query=em.createNamedQuery("Book.findAll");
+        Query query = em.createNamedQuery("Book.findAll");
 
-    return  query.getResultList();
+        return query.getResultList();
 
     }
 
-
-
-    public List<Book> findByTitle(String inputParam){
+    public List<Book> findByTitle(String inputParam) {
         Query query = em.createNamedQuery("Book.findByTitle");
-        query.setParameter("inputParam","%"+inputParam.trim()+"%");
+        query.setParameter("inputParam", "%" + inputParam + "%");
 
 
         return query.setMaxResults(5).getResultList();}
@@ -55,24 +55,22 @@ public class BookDao {
         return query.getResultList();
     }
 
-
-    public List<Book> getBooksForPagination() {
-        Query ids = em.createNamedQuery("Book.getId");
-        List<Integer> booksIds = ids.getResultList();
-        Query query = em.createNamedQuery("Books.details");
-        query.setParameter("ids", booksIds.subList(0,20));
-        return query.getResultList();
-    }
-
-    public List<Book> get333 (int in){
-
+    public List<Book> getBooksForPagination(int in) {
         Query query = em.createNamedQuery("Book.findAll");
         query.setFirstResult(in);
-        query.setMaxResults(20);
-
-
+        query.setMaxResults(BOOK_LIMIT);
         return query.getResultList();
     }
+
+    public int getNumberOfRecords() {
+        return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
+    }
+
+
+    public void update(Book book) {
+        em.merge(book);
+    }
+
 
 }
 

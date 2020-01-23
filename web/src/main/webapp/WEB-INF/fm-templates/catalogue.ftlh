@@ -73,6 +73,36 @@
         </div>
     </header>
 
+    <div class="container">
+        <div class="col-sm-12 col-lg-12 row">
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
+                    <#if (previous > -1)>
+                        <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}""><<</a>
+                        </li>
+
+                    <#else>
+                        <li style="display: none " class="page-item"><a class="page-link"
+                                                                        href="/catalogue?bookNum=${previous}"><<</a>
+                        </li>
+                    </#if>
+
+                    <#if (next < 5791)>
+                        <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a></li>
+
+                    <#else>
+                        <li style="display: none " class="page-item"><a class="page-link"
+                                                                        href="/catalogue?bookNum=${next}">>></a>
+                        </li>
+                    </#if>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia
+                            strona</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
     <section>
         <div class="container">
             <#list catalogue>
@@ -108,34 +138,28 @@
 
 <div class="container">
     <div class="col-sm-12 col-lg-12 row">
-
         <nav aria-label="Pagination">
             <ul class="pagination">
-
-
                 <li class="page-item"><a class="page-link" href="/catalogue?bookNum=0">Pierwsza strona</a></li>
                 <#if (previous > -1)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}"">Poprzednia</a>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${previous}""><<</a>
                     </li>
 
                 <#else>
                     <li style="display: none " class="page-item"><a class="page-link"
-                                                                    href="/catalogue?bookNum=${previous}">Poprzednia</a>
+                                                                    href="/catalogue?bookNum=${previous}"><<</a>
                     </li>
                 </#if>
-
-
-                <li class="page-item"><a class="page-link" href="">Aktualna strona</a></li>
 
                 <#if (next < 5791)>
-                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a></li>
+                    <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a></li>
 
                 <#else>
-                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">Następna</a>
+                    <li style="display: none " class="page-item"><a class="page-link" href="/catalogue?bookNum=${next}">>></a>
                     </li>
-
                 </#if>
-                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=5790">Ostatnia strona</a></li>
+                <li class="page-item"><a class="page-link" href="/catalogue?bookNum=${lastPageView}">Ostatnia strona</a>
+                </li>
             </ul>
         </nav>
     </div>
