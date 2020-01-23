@@ -26,6 +26,12 @@ import javax.validation.constraints.NotNull;
 
         @NamedQuery(name = "Book.countAudio",
                 query = "SELECT COUNT(b) FROM Book b WHERE b.hasAudio = true"),
+
+        @NamedQuery(name = "Book.findEpic",
+                query = "SELECT b FROM Book b WHERE b.kind = Epika"),
+
+        @NamedQuery(name = "Book.countEpic",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = Epika"),
 }
 )
 

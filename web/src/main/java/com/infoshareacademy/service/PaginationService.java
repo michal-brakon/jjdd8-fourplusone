@@ -23,4 +23,6 @@ public class PaginationService {
 
     public int getLasPageAudio() {return  bookDao.getNumberOfAudioBooks() - 20;}
 
+    public int getLasPageEpic() {return  bookDao.getNumberOfEpicBooks() - 20;}
+
 }

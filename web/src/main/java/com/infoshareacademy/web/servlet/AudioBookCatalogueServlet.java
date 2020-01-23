@@ -75,11 +75,13 @@ public class AudioBookCatalogueServlet extends HttpServlet {
             } catch (TemplateException e) {
                 logger.error("Template error");
             }
-        } else wrongInputModel.put("name", writer);
-        try {
-            wrongInput.process(wrongInputModel, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
+        } else {
+            try {
+                wrongInputModel.put("name", writer);
+                wrongInput.process(wrongInputModel, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
         }
     }
 }

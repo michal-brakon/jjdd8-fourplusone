@@ -58,14 +58,18 @@
                             <ul class="dropdown-menu">
                                 <li><a href="https://google.pl">Wyszukaj</a></li>
                                 <li class="dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/catalogue?bookNum=0">Książki</a></li>
-                                        <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
+                                        <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
+                                        <li><a href="/audioCatalogue?bookNum=0">Liryka</a></li>
+                                        <li><a href="/audioCatalogue?bookNum=0">Epika</a></li>
+                                        <li><a href="/audioCatalogue?bookNum=0">Dramat</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
                             </ul>
                         </li>
+
                         <li><a href="/soon">Zaloguj/Rejestracja</a></li>
                     </ul>
                 </div>

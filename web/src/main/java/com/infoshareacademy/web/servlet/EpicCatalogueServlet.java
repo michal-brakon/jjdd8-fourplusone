@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("/epicCatalogue")
-public class EpickCatalogueServlet extends HttpServlet {
+public class EpicCatalogueServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(EpickCatalogueServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(EpicCatalogueServlet.class.getName());
 
     @Inject
     private BookService bookService;

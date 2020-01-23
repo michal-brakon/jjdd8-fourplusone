@@ -109,4 +109,13 @@ public class BookService {
 
     }
 
+    @Transactional
+    public List<BookView> getEpicBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getEpicBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
 }

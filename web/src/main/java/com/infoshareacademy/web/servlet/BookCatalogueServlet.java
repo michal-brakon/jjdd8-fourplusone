@@ -6,7 +6,6 @@ import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.PaginationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,11 +75,13 @@ public class BookCatalogueServlet extends HttpServlet {
             } catch (TemplateException e) {
                 logger.error("Template error");
             }
-        } else wrongInputModel.put("name", writer);
-        try {
-            wrongInput.process(wrongInputModel, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
+        } else {
+            try {
+                wrongInputModel.put("name", writer);
+                wrongInput.process(wrongInputModel, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
         }
     }
 }
