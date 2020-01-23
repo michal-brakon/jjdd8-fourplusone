@@ -26,8 +26,8 @@
                     <div class="col-md-6">
                         <div id="sb-search" class="sb-search">
                             <form>
-                                    <input type="text" size="30" onkeyup="showResult(this.value)">
-                                    <div id="livesearch"></div>
+                                    <input type="text" size="30" >
+                                <div id="log"></div>
                                 </form>
                       </div>
                     </div>

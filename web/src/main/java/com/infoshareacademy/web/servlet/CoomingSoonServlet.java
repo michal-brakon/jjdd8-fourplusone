@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/soon")
+@WebServlet("/sracz")
 public class CoomingSoonServlet extends HttpServlet {
 
     @Inject

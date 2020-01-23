@@ -1,11 +1,9 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-
 @NamedQuery(
         name = "Author.findAuthorByName",
         query = "SELECT a FROM Author a WHERE a.name = :name")
-
 @Entity
 @Table(name = "author", schema = "library",
         indexes = {@Index(name = "author_idx", columnList = "name")})

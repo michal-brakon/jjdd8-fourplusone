@@ -69,6 +69,7 @@ public class BookDao {
 
     public void update(Book book) {
         em.merge(book);
+        logger.info("Book has been update {}", book);
     }
 
 

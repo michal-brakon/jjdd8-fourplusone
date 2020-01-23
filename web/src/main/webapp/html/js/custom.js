@@ -172,12 +172,7 @@ jQuery(document).ready(function($) {
 
 
 
-  //search
-  if( $('#sb-search').length ) {
-    new UISearch(document.getElementById('sb-search'));
-  }
-
-  //cube portfolio
+    //cube portfolio
   var gridContainer = $('#grid-container'),
     filtersContainer = $('#filters-container');
 

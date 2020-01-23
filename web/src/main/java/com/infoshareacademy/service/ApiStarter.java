@@ -5,7 +5,6 @@ import com.infoshareacademy.dto.BookDTO;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ApiStarter {
     BookService bookService;
 
     @PostConstruct
-    private void setApi () throws IOException {
+    private void setApi() throws IOException {
 
         List<BookDTO> books = parserService.parse(apiDataInitializer.getApiFromUrl(), BookDTO.class);
         bookService.addBooks(books);

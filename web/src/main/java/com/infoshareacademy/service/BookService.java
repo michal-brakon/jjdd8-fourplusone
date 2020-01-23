@@ -3,7 +3,6 @@ package com.infoshareacademy.service;
 import com.infoshareacademy.dao.AuthorDao;
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.entity.*;
-import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
@@ -45,11 +44,12 @@ public class BookService {
     private GenreService genreService;
 
 
-    public void addBooks (List<BookDTO> books)  {
+    public void addBooks(List<BookDTO> books) {
 
         books
                 .forEach(this::addBook);
     }
+
     public void addBook(BookDTO book) {
 
         String[] authorsNames;
@@ -61,7 +61,7 @@ public class BookService {
 
         Arrays.stream(authorsNames)
                 .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
-        );
+                );
 
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
@@ -74,8 +74,7 @@ public class BookService {
 
         Book bookDaoToEntity = new Book();
 
-        authors.forEach(a -> bookDaoToEntity.setAuthor(a));
-        //bookDaoToEntity.setAuthor(author);
+        authors.forEach(bookDaoToEntity::setAuthor);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -94,21 +93,21 @@ public class BookService {
     }
 
 
-    public List<BookView> findByTitle(String inputParam){
-         List<Book> bookList = bookDao.findByTitle(inputParam);
-           return bookList.stream()
-                   .map(b -> bookMapperToView.mapEntityToView(b))
-                   .collect(Collectors.toList());
-          }
+    public List<com.infoshareacademy.domain.view.BookView> findByTitle(String inputParam) {
+        List<Book> bookList = bookDao.findByTitle(inputParam);
+        return bookList.stream()
+                .map(b -> bookMapperToView.mapEntityToView(b))
+                .collect(Collectors.toList());
+    }
 
 
-    public BookView getBookViewById(Long id) {
+    public com.infoshareacademy.domain.view.BookView getBookViewById(Long id) {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
 
 
-    public List<BookView> getBooksForPagination(int in) {
+    public List<com.infoshareacademy.domain.view.BookView> getBooksForPagination(int in) {
 
         List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
@@ -117,16 +116,43 @@ public class BookService {
     }
 
     public void update(Long bookId, BookDTO bookDTO) {
-             Book book = bookDao.findById(bookId).orElseThrow();
+        Book book = bookDao.findById(bookId).orElseThrow();
 
-            bookMapper.mapRequestToEntity(bookDTO, book);
+        Author author = authorDao.findAuthorByName(bookDTO.getAuthor());
+        book.setAuthor(author);
 
-             Author author = authorDao.findById(userRequest.getTeam()).orElseThrow();
-             user.setTeam(team);
+        String[] authorsNames;
+        List<Author> authors = new ArrayList<>();
 
-             userRepository.update(user);
-         }
+        String authorName = bookDTO.getAuthor();
 
-     }
+        authorsNames = authorName.split(",");
 
-}
+        Arrays.stream(authorsNames)
+                .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
+                );
+
+        String kindName = book.getKind().getName();
+        LiteratureKind kind = kindService.findOrAdd(kindName);
+
+        String epochName = bookDTO.getEpoch();
+        Epoch epoch = epochService.findOrAdd(epochName);
+
+        String genreName = bookDTO.getGenre();
+        Genre genre = genreService.findOrAdd(genreName);
+
+
+
+        authors.forEach(book::setAuthor);
+        book.setKind(kind);
+        book.setEpoch(epoch);
+        book.setGenre(genre);
+        book.setTitle(bookDTO.getTitle());
+        book.setCover(bookDTO.getCover());
+        book.setCoverThumb(bookDTO.getCoverThumb());
+        book.setSimpleThumb(bookDTO.getSimpleThumb());
+        book.setHasAudio(bookDTO.getHasAudio());
+
+        bookDao.update(book);
+    }
+    }

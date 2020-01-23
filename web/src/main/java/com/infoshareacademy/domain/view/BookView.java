@@ -10,15 +10,15 @@ public class BookView {
     String kind;
     String genre;
     String epoch;
-    String cover_thumb;
+    String coverThumb;
 
 
-    public String getCover_thumb() {
-        return cover_thumb;
+    public String getCoverThumb() {
+        return coverThumb;
     }
 
-    public void setCover_thumb(String cover_thumb) {
-        this.cover_thumb = cover_thumb;
+    public void setCoverThumb(String coverThumb) {
+        this.coverThumb = coverThumb;
     }
 
     public long getId() {
