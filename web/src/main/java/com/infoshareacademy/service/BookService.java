@@ -3,6 +3,7 @@ package com.infoshareacademy.service;
 import com.infoshareacademy.dao.AuthorDao;
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.entity.*;
+import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,7 +91,7 @@ public class BookService {
 
 
     public Book getById(Long id) {
-        return this.bookDao.findById(id).orElseThrow();
+        return this.bookDao.findById(id);
     }
 
 
@@ -116,7 +118,7 @@ public class BookService {
     }
 
     public void update(Long bookId, BookDTO bookDTO) {
-        Book book = bookDao.findById(bookId).orElseThrow();
+        Book book = bookDao.findById(bookId);
 
         Author author = authorDao.findAuthorByName(bookDTO.getAuthor());
         book.setAuthor(author);

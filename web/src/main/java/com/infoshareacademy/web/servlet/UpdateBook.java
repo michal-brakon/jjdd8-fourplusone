@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.freemarker.TemplateProvider;
@@ -60,12 +60,16 @@ public class UpdateBook extends HttpServlet {
         String author = req.getParameter("author");
         String kind = req.getParameter("kind");
         String genre = req.getParameter("genre");
-        String hasAudio = req.getParameter("has_audio");
+        Boolean hasAudio = Boolean.valueOf(req.getParameter("has_audio"));
         String cover = req.getParameter("cover");
 
         BookDTO bookDTO = new BookDTO();
         bookDTO.setTitle(title);
         bookDTO.setAuthor(author);
+        bookDTO.setKind(kind);
+        bookDTO.setCover(cover);
+        bookDTO.setGenre(genre);
+        bookDTO.setHasAudio(hasAudio);
         bookService.update(bookId,bookDTO);
 
     }
