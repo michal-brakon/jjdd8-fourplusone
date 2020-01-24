@@ -540,9 +540,4 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
-    <deployments>
-        <deployment name="four-plus-one" runtime-name="four-plus-one.war">
-            <fs-exploded path="/home/adamprzybylowski/jjdd8-fourplusone/web/target/four-plus-one"/>
-        </deployment>
-    </deployments>
-</server>
+    </server>
