@@ -16,60 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-       <script>$(function() {
-            $("#result-div").hide();
-        });
-        function getModal(id){
-            $.ajax({
-                type: "GET",
-                url: "/api/search/" + id,
-                enctype: 'application/json; charset=UTF-8',
-                dataType: 'json',
-                //data: $('#holiday-name').val(),
-                contentType: 'application/json; charset=UTF-8'
-            })
-                .done(
-                    function (resp) {
-                        $('#modal-info-body').html("Holiday name: "+resp.name +" on day "+ resp.date +"<br />"+resp.description);
-                        $('#infoModal').modal('show');
-                    })
-                .fail(
-                    function () {
-                        $('#modal-info-body').html("Ups... Operation failed!!!");
-                        $('#infoModal').modal('show');
-                    });
-        }
-        $('#holiday-quick').keyup(function (e) {
-            e.preventDefault(); // Prevent the form from submitting via the browser
-            $("#result-div").html("");
-            if($('#holiday-quick').val().length >=3) {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/search/" + $('#holiday-quick').val(),
-                    enctype: 'application/json; charset=UTF-8',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8'
-                })
-                    .
-                    done(
-                        function (data) {
-                            $("#result-div").show();
-                            if (data.length==0){
-                                $("#result-div").append('<a href="#" class="list-group-item list-group-item-action list-group-item-warning">No results found!</a>');
-                                return;
-                            }
-                            $("#modalh1id").text("Quick Holiday info");
-                            $.each(data, function (i, item) {
-                                $("#result-div").append('<a href="#" onclick="getModal('+item.id+')" class="list-group-item list-group-item-action list-group-item-primary">'+item.title+'</a>');
-                            });
-                        })
-                    .fail(
-                        function () {
-                            $("#result-div").show();
-                            $("#result-div").html("Fatal error!");
-                        });
-            }
-        });</script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -78,17 +25,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="topleft-info">
-                        </ul>
-                    </div>
+                        <ul class="top-right-info">
+
+
                     <label for="exampleInputHolidayName">Quick live search:</label>
                     <div class="form-group">
                         <input type="text" title="Please insert min 3 char." name="holiday-quick" class="form-control form-control-user" pattern=".{3,}"
                                id="holiday-quick" placeholder="Please enter a minimum of 3 letters..." autocomplete="off">
-                        <div id="result-div" class="list-group" style="margin-top:2px;margin-left:0;z-index: 1000 !important;">
+                        <div id="result-div" class="list-group" style="margin-top:2px;position:absolute;margin-left:0;z-index: 1001 !important; ">
                         </div>
                     </div>
-                    </div>
+                        </ul></div></div>
                 </div>
             </div>
 
