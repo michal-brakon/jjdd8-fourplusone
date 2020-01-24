@@ -58,13 +58,13 @@ public class LyricCatalogueServlet extends HttpServlet {
 
             int previous = paginationService.reduce(num);
 
-            int lastPageView = paginationService.getLasPageEpic();
+            int lastPageView = paginationService.getLasPageLyric();
 
-            List<BookView> bookViewList = bookService.getEpicBooksForPagination(num);
+            List<BookView> bookViewList = bookService.getLyricBooksForPagination(num);
 
             Template template = templateProvider
                     .getTemplate(getServletContext(),
-                            "epic-catalogue.ftlh");
+                            "lyric-catalogue.ftlh");
             Map<String, Object> model = new HashMap<>();
             model.put("catalogue", bookViewList);
             model.put("next", next);

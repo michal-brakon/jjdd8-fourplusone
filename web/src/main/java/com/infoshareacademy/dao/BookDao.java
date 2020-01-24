@@ -101,8 +101,3 @@ public class BookDao {
         return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
     }
 }
-
-
-
-
-

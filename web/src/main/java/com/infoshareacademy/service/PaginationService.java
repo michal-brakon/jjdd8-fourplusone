@@ -25,4 +25,8 @@ public class PaginationService {
 
     public int getLasPageEpic() {return  bookDao.getNumberOfEpicBooks() - 20;}
 
+    public int getLasPageLyric() {return  bookDao.getNumberOfLyricBooks() - 20;}
+
+    public int getLasPageDrama() {return  bookDao.getNumberOfDramaBooks() - 20;}
+
 }

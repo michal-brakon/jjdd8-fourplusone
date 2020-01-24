@@ -58,13 +58,13 @@ public class DramaCatalogueServlet extends HttpServlet {
 
             int previous = paginationService.reduce(num);
 
-            int lastPageView = paginationService.getLasPageEpic();
+            int lastPageView = paginationService.getLasPageDrama();
 
-            List<BookView> bookViewList = bookService.getEpicBooksForPagination(num);
+            List<BookView> bookViewList = bookService.getDramaBooksForPagination(num);
 
             Template template = templateProvider
                     .getTemplate(getServletContext(),
-                            "epic-catalogue.ftlh");
+                            "drama-catalogue.ftlh");
             Map<String, Object> model = new HashMap<>();
             model.put("catalogue", bookViewList);
             model.put("next", next);
