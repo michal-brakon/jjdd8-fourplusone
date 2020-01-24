@@ -67,18 +67,38 @@ public class BookDao {
         return query.getResultList();
     }
 
+    public List<Book> getLyricBooksForPagination(int in) {
+        Query query = em.createNamedQuery("Book.findLyric");
+        query.setFirstResult(in);
+        query.setMaxResults(BOOK_LIMIT);
+        return query.getResultList();
+    }
+
+    public List<Book> getDramacBooksForPagination(int in) {
+        Query query = em.createNamedQuery("Book.findDrama");
+        query.setFirstResult(in);
+        query.setMaxResults(BOOK_LIMIT);
+        return query.getResultList();
+    }
+
     public int getNumberOfEpicBooks() {
         return ((Number) em.createNamedQuery("Book.countEpic").getSingleResult()).intValue();
     }
 
+    public int getNumberOfLyricBooks() {
+        return ((Number) em.createNamedQuery("Book.countLyric").getSingleResult()).intValue();
+    }
+
+    public int getNumberOfDramaBooks() {
+        return ((Number) em.createNamedQuery("Book.countDrama").getSingleResult()).intValue();
+    }
+
     public int getNumberOfAudioBooks() {
         return ((Number) em.createNamedQuery("Book.countAudio").getSingleResult()).intValue();
-
     }
 
     public int getNumberOfRecords() {
         return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
-
     }
 }
 

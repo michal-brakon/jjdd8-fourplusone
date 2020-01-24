@@ -30,8 +30,20 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "Book.findEpic",
                 query = "SELECT b FROM Book b WHERE b.kind = 1"),
 
+        @NamedQuery(name = "Book.findLyric",
+                query = "SELECT b FROM Book b WHERE b.kind = 2"),
+
+        @NamedQuery(name = "Book.findDrama",
+                query = "SELECT b FROM Book b WHERE b.kind = 3"),
+
         @NamedQuery(name = "Book.countEpic",
-                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 1")
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 1"),
+
+        @NamedQuery(name = "Book.countLyric",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 2"),
+
+        @NamedQuery(name = "Book.countDrama",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3")
 }
 )
 
