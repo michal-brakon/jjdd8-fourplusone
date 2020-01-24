@@ -56,7 +56,7 @@
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                                data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="https://google.pl">Wyszukaj</a></li>
+
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
                                     <ul class="dropdown-menu">
@@ -83,7 +83,7 @@
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=0">Pierwsza strona</a></li>
                     <#if (previous > -1)>
-                        <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${previous}""><<</a>
+                        <li class="page-item"><a class="page-link" href="/audioCatalogue?bookNum=${previous}"><<</a>
                         </li>
 
                     <#else>
