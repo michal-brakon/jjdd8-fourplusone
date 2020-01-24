@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -47,8 +46,7 @@ public class BookService {
 
     public void addBooks (List<BookDTO> books)  {
 
-        books
-                .forEach(this::addBook);
+        books.forEach(this::addBook);
     }
 
     public void addBook(BookDTO book) {
@@ -76,7 +74,6 @@ public class BookService {
         Book bookDaoToEntity = new Book();
 
         authors.forEach(a -> bookDaoToEntity.setAuthor(a));
-        //bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -157,4 +154,8 @@ public class BookService {
 
         bookDao.update(book);
     }
+
+    public Long deleteBook(Long id) {
+        return bookDao.delete(id);
     }
+}

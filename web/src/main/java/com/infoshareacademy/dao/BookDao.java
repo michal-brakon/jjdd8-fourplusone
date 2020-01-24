@@ -69,6 +69,11 @@ public class BookDao {
         em.merge(book);
         logger.info("Book has been update {}", book);
     }
+
+    public Long delete(Book book) {
+        em.remove(book);
+    return book.getId();
+    }
 }
 
 

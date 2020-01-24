@@ -1,6 +1,9 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @NamedQuery(
         name = "Author.findAuthorByName",
         query = "SELECT a FROM Author a WHERE a.name = :name")
@@ -16,6 +19,9 @@ public class Author {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "kind")
+    private List<Book> books = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -34,4 +40,11 @@ public class Author {
         this.name = name;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }

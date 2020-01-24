@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/update")
-public class UpdateBook extends HttpServlet {
+public class AdminPanel extends HttpServlet {
 
     @Inject
     private BookService bookService;
@@ -32,8 +32,8 @@ public class UpdateBook extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Template template = templateProvider.getTemplate(getServletContext(), "Admin-site.ftlh");
+        resp.setContentType("text/html; charset=UTF-8");
+        Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
 
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
@@ -73,4 +73,33 @@ public class UpdateBook extends HttpServlet {
         bookService.update(bookId,bookDTO);
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setContentType("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+
+        String title = req.getParameter("title");
+        String author = req.getParameter("author");
+        String kind = req.getParameter("kind");
+        String genre = req.getParameter("genre");
+        Boolean hasAudio = Boolean.valueOf(req.getParameter("has_audio"));
+        String cover = req.getParameter("cover");
+
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setTitle(title);
+        bookDTO.setAuthor(author);
+        bookDTO.setKind(kind);
+        bookDTO.setCover(cover);
+        bookDTO.setGenre(genre);
+        bookDTO.setHasAudio(hasAudio);
+        bookService.addBook(bookDTO);
+
+
+    }
+
+
 }
