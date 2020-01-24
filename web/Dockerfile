@@ -5,7 +5,7 @@ RUN /opt/jboss/wildfly/bin/add-user.sh root root --silent
 
 
 ADD target/web.war /opt/jboss/wildfly/standalone/deployments/
-ADD ../standalone.conf /opt/jboss/wildfly/bin
+ADD standalone.conf /opt/jboss/wildfly/bin
 USER root
 
 RUN cd /opt
