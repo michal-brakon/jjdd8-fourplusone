@@ -34,14 +34,18 @@
                            data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Katalog</a>
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/catalogue?bookNum=0">Książki</a></li>
-                                    <li><a href="/soon">AudioBooki</a></li>
+                                    <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
+                                    <li><a href="/lyricCatalogue?bookNum=0">Liryka</a></li>
+                                    <li><a href="/epicCatalogue?bookNum=0">Epika</a></li>
+                                    <li><a href="/dramaCatalogue?bookNum=0">Dramat</a></li>
                                 </ul>
                             </li>
+                            <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
                         </ul>
                     </li>
+
                     <li><a href="/soon">Zaloguj/Rejestracja</a></li>
                 </ul>
             </div>
