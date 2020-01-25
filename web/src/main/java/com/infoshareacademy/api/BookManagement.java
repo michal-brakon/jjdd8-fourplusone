@@ -19,14 +19,13 @@ public class BookManagement {
     @Path("delete/{id}")
     public Response deleteBook(@PathParam("id") String id){
 
+
         Optional.ofNullable(id).orElseThrow();
+        Long bookId = Long.parseLong(id);
 
-        if (bookService.getBookViewById(){
-        Long bookId =bookService.deleteBook(id);}
-        else {
-            return Response.status(404 , "Książki o takim id nie znaleziono").build();
+
+        return Response.ok().entity(bookService.deleteBook(bookId)).build();
+
+
         }
-
-
-        return Response.ok().build();    }
 }

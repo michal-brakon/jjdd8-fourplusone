@@ -156,6 +156,8 @@ public class BookService {
     }
 
     public Long deleteBook(Long id) {
-        return bookDao.delete(id);
+       Book book= bookDao.findById(id);
+
+        return bookDao.delete(book);
     }
 }

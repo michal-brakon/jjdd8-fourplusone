@@ -31,13 +31,8 @@
         }
     </script>
 
-
     <style>
 
-        .fakeimg {
-            height: 200px;
-            background: #aaa;
-        }
     </style>
 </head>
 <body>
@@ -109,6 +104,78 @@
 
         </div>
 </div>
+<script>
+    $(function () {
+
+        $(document).ready(function () {
+
+            $.ajax({
+                url: '/api/managemant',
+                type: 'GET',
+                success: function (result) {
+
+                    for (var i = 0; i < result.length; i++) {
+                        $("#team").append(
+                            "<option value='" + result[i].id + "'>" + result[i].name + "</option>");
+                    }
+
+                    console.log(result);
+                }
+            });
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get('id');
+
+            if (id != null) {
+                $.ajax({
+                    url: '/api/users/' + id,
+                    type: 'GET',
+                    success: function (result) {
+
+                        $("[name='name']").val(result.name);
+                        $("[name='login']").val(result.login);
+                        $("[name='age']").val(result.age);
+                        $("[name='team']").val(result.teamView.id);
+                        $("[name='save']").attr('type', 'button');
+                        $("[name='save']").attr('value', 'edit');
+
+                        $("[name='save']").click(function () {
+
+                            $.fn.serializeObject = function () {
+                                var o = {};
+                                var a = this.serializeArray();
+                                $.each(a, function () {
+                                    if (o[this.name]) {
+                                        if (!o[this.name].push) {
+                                            o[this.name] = [o[this.name]];
+                                        }
+                                        o[this.name].push(this.value || '');
+                                    } else {
+                                        o[this.name] = this.value || '';
+                                    }
+                                });
+                                return o;
+                            };
+
+                            $.ajax({
+                                type: "PUT",
+                                dataType: 'json',
+                                contentType: 'application/json;charset=UTF-8',
+                                url: '/api/users/' + id,
+                                data: JSON.stringify($('form').serializeObject()),
+                                success: function (data) {
+                                    window.location.href='/users'
+                                }
+                            });
+
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Footer</p>
