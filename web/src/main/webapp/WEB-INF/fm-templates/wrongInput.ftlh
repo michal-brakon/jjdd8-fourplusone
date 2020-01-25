@@ -53,13 +53,14 @@
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                                data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
+                                <li><a href="https://google.pl">Wyszukaj</a></li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
                                         <li><a href="/lyricCatalogue?bookNum=0">Liryka</a></li>
                                         <li><a href="/epicCatalogue?bookNum=0">Epika</a></li>
-                                        <li><a href="/dramaCatalogue?bookNum=0">Dramat</a></li>
+                                        <li><a href="/audioCatalogue?bookNum=0">Dramat</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
@@ -73,39 +74,39 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="center-block">
-            <div class="col-lg-4">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Okładka">
-            </div>
-            <div class="col-lg-8, text-left">
-                <div class="text-center">
-                    <h2 class="text-primary">Książka:</h2>
-                    <h3 class="text-danger">${book.title}</h3>
+    <section>
+        <div class="container">
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h2>Nieprawidłowa wartość parametru</h2>
+
+                                <a class="btn btn-primary" href="catalogue?bookNum=0" role="button">Katalog</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <h3>Autor: ${book.author} </h3>
-                <h4>Epoka: ${book.epoch} </h4>
-                <h4>Wersja audio: ${book.audio?then('Dostępna','Brak')}</h4>
-                <h4>Rodzaj: ${book.genre}</h4>
-                <h4>Typ literatury: ${book.kind}</h4>
-            </div>
+            </section>
+
+            <!--put here whatever you want -->
+
+
         </div>
-    </div>
+    </section>
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12">
-                    <div class="widget">
-                        <h4>Kontakt</h4>
-                        <address>
-                            <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
-                        </address>
-                        <p>
-                            <i class="icon-phone"></i> (0048) 123-456-789 <br>
-                            <i class="icon-envelope-alt"></i> fourplusone@library.com
-                        </p>
-                    </div>
+            <div class="col-sm-12 col-lg-12 row">
+                <div class="widget">
+                    <h4>Kontakt</h4>
+                    <address>
+                        <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
+                    </address>
+                    <p>
+                        <i class="icon-phone"></i> (0048) 123-456-789 <br>
+                        <i class="icon-envelope-alt"></i> fourplusone@library.com
+                    </p>
                 </div>
             </div>
         </div>
@@ -113,11 +114,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="copyright">
-                            <p>&copy; Sailor Theme - All Right Reserved</p>
-                            <div class="credits">
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
+                        <p>&copy; Sailor Theme - All Right Reserved</p>
+                        <div class="credits">
                         </div>
                     </div>
                 </div>
@@ -142,8 +140,6 @@
 <script src="../../html/js/animate.js"></script>
 <script src="../../html/js/custom.js"></script>
 
-
 </body>
 
 </html>
-    

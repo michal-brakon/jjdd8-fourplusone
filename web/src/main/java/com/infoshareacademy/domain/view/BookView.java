@@ -2,7 +2,7 @@ package com.infoshareacademy.domain.view;
 
 public class BookView {
 
-
+    long id;
     String title;
     String cover;
     boolean audio;
@@ -10,6 +10,24 @@ public class BookView {
     String kind;
     String genre;
     String epoch;
+    String cover_thumb;
+
+
+    public String getCover_thumb() {
+        return cover_thumb;
+    }
+
+    public void setCoverThumb(String cover_thumb) {
+        this.cover_thumb = cover_thumb;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

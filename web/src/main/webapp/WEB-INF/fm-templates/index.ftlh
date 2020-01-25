@@ -15,7 +15,64 @@
 </head>
 <body>
 <div id="wrapper">
-   <#include "header.ftlh">
+    <header>
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="topleft-info">
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Czego szukasz?" type="text" value=""
+                                       name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search" title="Click to start searching"></span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="../../html/img/logo.png" alt="" width="199" height="52"/></a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Strona główna</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
+                               data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
+                                        <li><a href="/lyricCatalogue?bookNum=0">Liryka</a></li>
+                                        <li><a href="/epicCatalogue?bookNum=0">Epika</a></li>
+                                        <li><a href="/dramaCatalogue?bookNum=0">Dramat</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="/soon">Zaloguj/Rejestracja</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <section id="featured" class="bg">
         <div class="container">
@@ -27,14 +84,14 @@
                                 <img src="../../html/img/slides/flexslider/1.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p> Dla tych co umieją czytać</p>
-                                    <a href="comingsoon.ftlh" class="btn btn-theme">Książki</a>
+                                    <a href="/catalogue?bookNum=0" class="btn btn-theme">Książki</a>
                                 </div>
                             </li>
                             <li>
                                 <img src="../../html/img/slides/flexslider/2.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p>Dla tych co wolą słuchać</p>
-                                    <a href="comingsoon.ftlh" class="btn btn-theme">AudioBooki</a>
+                                    <a href="/audioCatalogue?bookNum=0" class="btn btn-theme">AudioBooki</a>
                                 </div>
                             </li>
                         </ul>
@@ -159,7 +216,7 @@
 <script src="../../html/js/jquery.appear.js"></script>
 <script src="../../html/js/stellar.js"></script>
 <script src="../../html/js/classie.js"></script>
-<script src="../../html/js/search.js"></script>
+<script src="../../html/js/uisearch.js"></script>
 <script src="../../html/js/jquery.cubeportfolio.min.js"></script>
 <script src="../../html/js/google-code-prettify/prettify.js"></script>
 <script src="../../html/js/animate.js"></script>

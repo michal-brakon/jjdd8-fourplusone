@@ -25,5 +25,5 @@ public class ParserService {
         logger.debug("class name: {}", ts.get(0).getClass().getName());
         return ts;
     }
-
 }
+
