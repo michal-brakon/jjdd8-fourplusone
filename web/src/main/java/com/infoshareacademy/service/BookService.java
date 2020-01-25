@@ -84,7 +84,6 @@ public class BookService {
         return this.bookDao.findById(id);
     }
 
-
     public List<com.infoshareacademy.domain.view.BookView> findByTitle(String inputParam) {
         List<Book> bookList = bookDao.findByTitle(inputParam);
         return bookList.stream()

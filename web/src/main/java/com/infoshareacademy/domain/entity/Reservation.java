@@ -31,7 +31,7 @@ public class Reservation {
     private User userId;
 
     @Column(name = "borrow_date")
-    private Date borrowDate;
+    private Timestamp borrowDate;
 
     @Column(name = "return_date")
     private Date returnDate;
@@ -60,11 +60,11 @@ public class Reservation {
         this.userId = userId;
     }
 
-    public Date getBorrowDate() {
+    public Timestamp getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(Timestamp borrowDate) {
         this.borrowDate = borrowDate;
     }
 

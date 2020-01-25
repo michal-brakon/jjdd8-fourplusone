@@ -26,7 +26,6 @@ public class KindService {
 
     public LiteratureKind findOrAdd(String name)  {
 
-
         LiteratureKind kind = kindDao.findKindByName(name);
         if (kind == null)  {
             kind = new LiteratureKind();

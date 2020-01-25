@@ -7,6 +7,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "library")
+@NamedQuery(name = "User.getById", query = "SELECT u FROM User u WHERE u.id=:id")
+
 public class User {
 
     @Id

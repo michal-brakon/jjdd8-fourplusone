@@ -2,6 +2,7 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.ReservationDao;
 import com.infoshareacademy.domain.entity.Author;
+import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.entity.Reservation;
 import com.infoshareacademy.dto.ReservationDTO;
 import org.slf4j.Logger;
@@ -9,6 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Stateless
 public class ReservationService {
@@ -18,16 +22,24 @@ public class ReservationService {
     @EJB
     private ReservationDao reservationDao;
 
-    public Reservation findOrAdd(Long bookId)  {
+    @EJB
+    private BookService bookService;
 
-        Reservation reservation = reservationDao.findReservationByBook(bookId);
-        if (reservation == null) {
-            reservation = new Reservation();
-            reservation.setBookId(bookId);
-            authorDao.addAuthor(author);
+    @EJB
+    private UserService userService;
 
-        }
-        return author;
+    public void addReservation (ReservationDTO reservation)  {
+
+        Long bookId = reservation.getBookId();
+        Long userId = reservation.getUserId();
+
+        Reservation reservationDaoToEntity = new Reservation();
+
+        reservationDaoToEntity.setBookId(bookService.getById(bookId));
+        reservationDaoToEntity.setUserId(userService.getById(userId));
+        reservationDaoToEntity.setBorrowDate(Timestamp.valueOf(LocalDateTime.now()));
+
+        reservationDao.addReservation(reservationDaoToEntity);
     }
 
 }
