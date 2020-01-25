@@ -1,4 +1,4 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/reservation")
-@MultipartConfig
 public class ReservationServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -17,6 +16,8 @@ public class ReservationServlet extends HttpServlet {
 
         long bookId = (Long) req.getSession().getAttribute("book_id");
         long userId = (Long) req.getSession().getAttribute("user_id");
+
+
 
     }
 

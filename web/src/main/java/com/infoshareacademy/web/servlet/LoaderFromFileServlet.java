@@ -49,7 +49,7 @@ public class LoaderFromFileServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
         Template template = templateProvider.getTemplate(getServletContext(), "upload-json.ftlh");
-        String name = req.getParameter("name");
+        String name = req.getParameter("role");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);

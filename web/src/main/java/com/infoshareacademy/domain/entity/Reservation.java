@@ -6,7 +6,15 @@ import java.sql.Date;
 @Entity
 @Table(name = "reservation", schema = "library")
 
+@NamedQueries({
+        @NamedQuery(name = "Reservation.getByUserId",
+                query = "SELECT r FROM Reservation r WHERE r.userId=:id"),
+        @NamedQuery(name = "Reservation.getByBookId",
+                query = "SELECT r FROM Reservation r WHERE r.bookId=:id")
+})
+
 public class Reservation {
+
 
     @Id
     @Column(name = "id")

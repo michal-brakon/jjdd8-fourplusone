@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
-@Startup
+//@Startup
 @Singleton
 public class ApiStarter {
 
