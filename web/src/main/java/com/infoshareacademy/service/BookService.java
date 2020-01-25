@@ -68,7 +68,6 @@ public class BookService {
         Book bookDaoToEntity = new Book();
 
         authors.forEach(a -> bookDaoToEntity.setAuthor(a));
-        //bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -83,6 +82,14 @@ public class BookService {
 
     public Book getById(Long id) {
         return this.bookDao.findById(id);
+    }
+
+
+    public List<com.infoshareacademy.domain.view.BookView> findByTitle(String inputParam) {
+        List<Book> bookList = bookDao.findByTitle(inputParam);
+        return bookList.stream()
+                .map(b -> bookMapperToView.mapEntityToView(b))
+                .collect(Collectors.toList());
     }
 
     public BookView getBookViewById(Long id) {

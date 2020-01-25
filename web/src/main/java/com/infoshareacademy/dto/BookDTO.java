@@ -3,10 +3,8 @@ package com.infoshareacademy.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.ejb.Stateless;
-import javax.servlet.annotation.MultipartConfig;
 
 @Stateless
-@MultipartConfig
 public class BookDTO {
 
     String author;

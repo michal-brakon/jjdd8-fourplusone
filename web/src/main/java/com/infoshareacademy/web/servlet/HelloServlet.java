@@ -29,7 +29,6 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Error-info1");
         logger.debug("Error-debug1");
-        resp.setContentType("text/html;charset=UTF-8");
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         String name = req.getParameter("name");
