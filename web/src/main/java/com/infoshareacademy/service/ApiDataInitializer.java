@@ -1,18 +1,13 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.dto.BookDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Stateless
 public class ApiDataInitializer {
