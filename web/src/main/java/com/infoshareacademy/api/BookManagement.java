@@ -19,10 +19,12 @@ public class BookManagement {
     @Path("delete/{id}")
     public Response deleteBook(@PathParam("id") String id) {
 
-        if (id.matches("^[0-9]*$")) {
 
+        if (id.matches("^[0-9]*$")) {
             Long bookId = Long.parseLong(id);
-            return Response.ok().entity(bookService.deleteBook(bookId)).build();
+            if(bookId<=bookService.) {
+                return Response.ok().entity(bookService.deleteBook(bookId)).build();
+            }
         }
         return Response.ok().entity(REJECTED).build();
     }

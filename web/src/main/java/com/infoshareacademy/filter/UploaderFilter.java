@@ -10,8 +10,8 @@ import java.io.IOException;
 import static javax.ws.rs.HttpMethod.GET;
 
 @WebFilter(
-        filterName = "UploaderFilter",
-        urlPatterns = {"/uploader"}
+        filterName = "AuthorizationFilter",
+        urlPatterns = {"/*"}
 
 )
 public class UploaderFilter implements Filter {
