@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/catalogue")
-public class BookCatalogueServlet extends HttpServlet {
+@WebServlet("/dramaCatalogue")
+public class DramaCatalogueServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookCatalogueServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(DramaCatalogueServlet.class.getName());
 
     @Inject
     private BookService bookService;
@@ -58,13 +58,13 @@ public class BookCatalogueServlet extends HttpServlet {
 
             int previous = paginationService.reduce(num);
 
-            int lastPageView = paginationService.getLastPage();
+            int lastPageView = paginationService.getLasPageDrama();
 
-            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+            List<BookView> bookViewList = bookService.getDramaBooksForPagination(num);
 
             Template template = templateProvider
                     .getTemplate(getServletContext(),
-                            "catalogue.ftlh");
+                            "drama-catalogue.ftlh");
             Map<String, Object> model = new HashMap<>();
             model.put("catalogue", bookViewList);
             model.put("next", next);

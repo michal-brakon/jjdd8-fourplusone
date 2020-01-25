@@ -40,7 +40,7 @@
                                 <img src="../../html/img/slides/flexslider/2.jpg" alt=""/>
                                 <div class="flex-caption">
                                     <p>Dla tych co wolą słuchać</p>
-                                    <a href="/soon" class="btn btn-theme">AudioBooki</a>
+                                    <a href="/audioCatalogue?bookNum=0" class="btn btn-theme">AudioBooki</a>
                                 </div>
                             </li>
                         </ul>

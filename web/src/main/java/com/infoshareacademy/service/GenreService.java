@@ -19,7 +19,6 @@ public class GenreService {
             genre = new Genre();
             genre.setName(name);
             genreDao.addGenre(genre);
-
         }
         return genre;
     }

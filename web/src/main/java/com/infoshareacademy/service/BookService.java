@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
+@Transactional
 public class BookService {
 
     @Inject
@@ -44,7 +45,7 @@ public class BookService {
     private GenreService genreService;
 
 
-    public void addBooks (List<BookDTO> books)  {
+    public void addBooks(List<BookDTO> books) {
 
         books.forEach(this::addBook);
     }
@@ -60,7 +61,7 @@ public class BookService {
 
         Arrays.stream(authorsNames)
                 .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
-        );
+                );
 
         String kindName = book.getKind();
         LiteratureKind kind = kindService.findOrAdd(kindName);
@@ -86,7 +87,6 @@ public class BookService {
         bookDao.addBook(bookDaoToEntity);
     }
 
-
     public Book getById(Long id) {
         return this.bookDao.findById(id);
     }
@@ -99,13 +99,11 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     public BookView getBookViewById(Long id) {
         Book book = getById(id);
         return bookMapperToView.mapEntityToView(book);
     }
 
-    @Transactional
     public List<BookView> getBooksForPagination(int in) {
 
         List<Book> bbb = bookDao.getBooksForPagination(in);
@@ -160,4 +158,37 @@ public class BookService {
 
         return bookDao.delete(book);
     }
+
+    public List<BookView> getAudioBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getAudioBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<BookView> getEpicBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getEpicBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<BookView> getDramaBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getDramacBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<BookView> getLyricBooksForPagination(int in) {
+
+        List<Book> bbb = bookDao.getLyricBooksForPagination(in);
+        return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
+                .collect(Collectors.toList());
+
+    }
+
 }
