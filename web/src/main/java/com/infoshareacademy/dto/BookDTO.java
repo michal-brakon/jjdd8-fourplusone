@@ -7,12 +7,12 @@ import javax.ejb.Stateless;
 @Stateless
 public class BookDTO {
 
-    String author;
-    String title;
-    String epoch;
-    String genre;
-    String cover;
-    String kind;
+    private String author;
+    private String title;
+    private String epoch;
+    private String genre;
+    private String cover;
+    private String kind;
 
     @JsonProperty("cover_thumb")
     String coverThumb;

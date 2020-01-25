@@ -2,9 +2,11 @@ package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "reservation", schema = "library")
+
 
 @NamedQueries({
         @NamedQuery(name = "Reservation.getByUserId",
@@ -15,14 +17,13 @@ import java.sql.Date;
 
 public class Reservation {
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", unique = true)
     private Book bookId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,7 +44,6 @@ public class Reservation {
         this.id = id;
     }
 
-
     public Book getBookId() {
         return bookId;
     }
@@ -51,7 +51,6 @@ public class Reservation {
     public void setBookId(Book bookId) {
         this.bookId = bookId;
     }
-
 
     public User getUserId() {
         return userId;
@@ -61,7 +60,6 @@ public class Reservation {
         this.userId = userId;
     }
 
-
     public Date getBorrowDate() {
         return borrowDate;
     }
@@ -69,7 +67,6 @@ public class Reservation {
     public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
-
 
     public Date getReturnDate() {
         return returnDate;

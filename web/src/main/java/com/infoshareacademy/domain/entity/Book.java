@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "book", schema = "library")
+@Table(name = "book", schema = "library" )
 @NamedQueries({
         @NamedQuery(name = "Book.getById",
                 query = "SELECT b FROM Book b WHERE b.id=:id"),
@@ -88,6 +88,10 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id", unique = true)
+    private Reservation reservation;
 
     public Author getAuthor() {
         return author;

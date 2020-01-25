@@ -22,7 +22,6 @@ public class LiveSearch {
 
         List<BookView> bookViews = bookService.findByTitle(param);
 
-
         return Response.ok().entity(bookViews).build();
     }
 }
