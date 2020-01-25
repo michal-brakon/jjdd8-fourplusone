@@ -1,8 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
-import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -16,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@WebServlet("/sracz")
+@WebServlet("/soon")
 public class CoomingSoonServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(CoomingSoonServlet.class.getName());
