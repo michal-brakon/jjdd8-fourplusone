@@ -1,5 +1,7 @@
 package com.infoshareacademy.domain.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -67,11 +69,18 @@ public class Book {
     @Column(name = "has_audio")
     private Boolean hasAudio;
 
-    @Column(name = "simple_thumb")
     private String simpleThumb;
+    @Column(name = "simple_thumb")
 
     @Column(name = "cover_thumb")
     private String coverThumb;
+
+    @Column(name = "reservation_count", nullable = false)
+    @ColumnDefault("0")
+    private int reservationCount;
+
+    @Column(name = "is_reserved")
+    private Boolean isReserved;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epoch_id")
