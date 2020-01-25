@@ -1,9 +1,11 @@
 package com.infoshareacademy.service;
 
+import com.infoshareacademy.dao.AuthorDao;
 import com.infoshareacademy.dao.BookDao;
 import com.infoshareacademy.domain.entity.*;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
+import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
 
 import javax.ejb.Stateless;
@@ -20,6 +22,12 @@ public class BookService {
 
     @Inject
     private BookDao bookDao;
+
+    @Inject
+    private AuthorDao authorDao;
+
+    @Inject
+    private BookMapper bookMapper;
 
     @Inject
     private BookMapperToView bookMapperToView;
@@ -68,7 +76,6 @@ public class BookService {
         Book bookDaoToEntity = new Book();
 
         authors.forEach(a -> bookDaoToEntity.setAuthor(a));
-        //bookDaoToEntity.setAuthor(author);
         bookDaoToEntity.setKind(kind);
         bookDaoToEntity.setEpoch(epoch);
         bookDaoToEntity.setGenre(genre);
@@ -83,6 +90,14 @@ public class BookService {
 
     public Book getById(Long id) {
         return this.bookDao.findById(id);
+    }
+
+
+    public List<com.infoshareacademy.domain.view.BookView> findByTitle(String inputParam) {
+        List<Book> bookList = bookDao.findByTitle(inputParam);
+        return bookList.stream()
+                .map(b -> bookMapperToView.mapEntityToView(b))
+                .collect(Collectors.toList());
     }
 
     public BookView getBookViewById(Long id) {

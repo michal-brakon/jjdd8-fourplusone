@@ -17,44 +17,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
 </head>
 <body>
 <div id="wrapper">
     <#include "header-nav.ftlh">
 
-    <div class="container">
-        <div class="center-block">
-            <div class="col-lg-4">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Okładka">
-            </div>
-            <div class="col-lg-8, text-left">
-                <div class="text-center">
-                    <h2 class="text-primary">Książka:</h2>
-                    <h3 class="text-danger">${book.title}</h3>
-                </div>
-                <br>
-                <h3>Autor: ${book.author} </h3>
-                <h4>Epoka: ${book.epoch} </h4>
-                <h4>Wersja audio: ${book.audio?then('Dostępna','Brak')}</h4>
-                <h4>Rodzaj: ${book.genre}</h4>
-                <h4>Typ literatury: ${book.kind}</h4>
-            </div>
+
+    <section>
+        <div class="container">
+
+
+            <!--put here whatever you want -->
+
+
         </div>
-    </div>
+    </section>
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12">
-                    <div class="widget">
-                        <h4>Kontakt</h4>
-                        <address>
-                            <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
-                        </address>
-                        <p>
-                            <i class="icon-phone"></i> (0048) 123-456-789 <br>
-                            <i class="icon-envelope-alt"></i> fourplusone@library.com
-                        </p>
-                    </div>
+            <div class="col-sm-12 col-lg-12 row">
+                <div class="widget">
+                    <h4>Kontakt</h4>
+                    <address>
+                        <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk
+                    </address>
+                    <p>
+                        <i class="icon-phone"></i> (0048) 123-456-789 <br>
+                        <i class="icon-envelope-alt"></i> fourplusone@library.com
+                    </p>
                 </div>
             </div>
         </div>
@@ -62,11 +52,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="copyright">
-                            <p>&copy; Sailor Theme - All Right Reserved</p>
-                            <div class="credits">
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
+                        <p>&copy; Sailor Theme - All Right Reserved</p>
+                        <div class="credits">
                         </div>
                     </div>
                 </div>
@@ -91,8 +78,6 @@
 <script src="../../html/js/animate.js"></script>
 <script src="../../html/js/custom.js"></script>
 
-
 </body>
 
 </html>
-    
