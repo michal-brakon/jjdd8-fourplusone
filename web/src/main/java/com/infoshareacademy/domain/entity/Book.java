@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
          @NamedQuery(name = "Book.findByTitle",
                 query = "SELECT b FROM Book b JOIN b.author a WHERE b.title LIKE :inputParam OR a.name LIKE :inputParam"),
 
-         @NamedQuery(name = "Book.findAudioBooks",
+        @NamedQuery(name = "Book.findAudioBooks",
                 query = "SELECT b FROM Book b WHERE b.hasAudio = true"),
 
         @NamedQuery(name = "Book.countAudio",
@@ -49,8 +49,6 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3")
 }
 )
-
-
 
 public class Book {
 

@@ -14,6 +14,11 @@
     <link href="../../html/css/style.css" rel="stylesheet"/>
     <link id="t-colors" href="../../html/skins/default.css" rel="stylesheet"/>
     <link id="bodybg" href="../../html/bodybg/bg1.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -65,7 +70,7 @@
                         <tr>
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
-                                            src="https://wolnelektury.pl/media/${cat.cover_thumb!}"
+                                            src="https://wolnelektury.pl/media/${cat.coverThumb!}"
                                             alt="Okładka"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">
@@ -143,10 +148,8 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
 
-<script src="../../html/js/jquery.min.js"></script>
 <script src="../../html/js/modernizr.custom.js"></script>
 <script src="../../html/js/jquery.easing.1.3.js"></script>
-<script src="../../html/js/bootstrap.min.js"></script>
 <script src="../../html/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="../../html/plugins/flexslider/flexslider.config.js"></script>
 <script src="../../html/js/jquery.appear.js"></script>

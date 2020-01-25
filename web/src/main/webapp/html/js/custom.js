@@ -172,7 +172,7 @@ jQuery(document).ready(function($) {
 
 
 
-    //cube portfolio
+  //cube portfolio
   var gridContainer = $('#grid-container'),
     filtersContainer = $('#filters-container');
 

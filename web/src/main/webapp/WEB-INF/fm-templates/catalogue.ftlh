@@ -70,7 +70,7 @@
                         <tr>
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
-                                            src="https://wolnelektury.pl/media/${cat.cover_thumb!}"
+                                            src="https://wolnelektury.pl/media/${cat.coverThumb!}"
                                             alt="Okładka"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">
@@ -148,10 +148,8 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
 
-<script src="../../html/js/jquery.min.js"></script>
 <script src="../../html/js/modernizr.custom.js"></script>
 <script src="../../html/js/jquery.easing.1.3.js"></script>
-<script src="../../html/js/bootstrap.min.js"></script>
 <script src="../../html/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="../../html/plugins/flexslider/flexslider.config.js"></script>
 <script src="../../html/js/jquery.appear.js"></script>

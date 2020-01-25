@@ -76,10 +76,8 @@
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
-<script src="../../html/js/jquery.min.js"></script>
 <script src="../../html/js/modernizr.custom.js"></script>
 <script src="../../html/js/jquery.easing.1.3.js"></script>
-<script src="../../html/js/bootstrap.min.js"></script>
 <script src="../../html/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="../../html/plugins/flexslider/flexslider.config.js"></script>
 <script src="../../html/js/jquery.appear.js"></script>

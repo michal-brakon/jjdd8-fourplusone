@@ -1,6 +1,6 @@
 $(function() {
 	$("#result-div").hide();
-});
+		  });
 $('#holiday-quick').keyup(function (e) {
 	e.preventDefault(); // Prevent the form from submitting via the browser
 	$("#result-div").html("");
@@ -17,15 +17,15 @@ $('#holiday-quick').keyup(function (e) {
 					$("#result-div").show();
 					if (data.length==0){
 						return;
-					}
+			 }
 					$.each(data, function (i, item) {
 						$("#result-div").append('<a href="/single?id='+item.id+'" class="list-group-item list-group-item-action list-group-item-primary">'+item.title+'</a>');
-					});
+	   });
 				})
 			.fail(
 				function () {
 					$("#result-div").show();
 					$("#result-div").html("Fatal error!");
-				});
+	   });
 	}
-});
+	});
