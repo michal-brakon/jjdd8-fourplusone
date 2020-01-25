@@ -22,10 +22,8 @@ public class BookManagement {
 
         if (id.matches("^[0-9]*$")) {
             Long bookId = Long.parseLong(id);
-            if(bookId<=bookService.) {
-                return Response.ok().entity(bookService.deleteBook(bookId)).build();
+                            return Response.ok().entity(bookService.deleteBook(bookId)).build();
             }
-        }
-        return Response.ok().entity(REJECTED).build();
+            return Response.ok().entity(REJECTED).build();
     }
 }

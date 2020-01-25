@@ -32,8 +32,8 @@ public class AdminPanel extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
-        Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
+
+               Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
 
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
@@ -51,9 +51,7 @@ public class AdminPanel extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
+
 
         Long bookId = Long.valueOf(req.getParameter("id"));
         String title = req.getParameter("title");
@@ -76,10 +74,6 @@ public class AdminPanel extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.setContentType("text/html; charset=UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
 
 
         String title = req.getParameter("title");
