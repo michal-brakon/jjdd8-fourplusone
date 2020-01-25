@@ -14,69 +14,16 @@
     <link href="../../html/css/style.css" rel="stylesheet"/>
     <link id="t-colors" href="../../html/skins/default.css" rel="stylesheet"/>
     <link id="bodybg" href="../../html/bodybg/bg1.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
 </head>
 <body>
 <div id="wrapper">
-    <header>
-        <div class="top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul class="topleft-info">
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Czego szukasz?" type="text" value=""
-                                       name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search" title="Click to start searching"></span>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <header>
-        <div class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/"><img src="../../html/img/logo.png" alt="" width="199" height="52"/></a>
-                </div>
-                <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Strona główna</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
-                               data-delay="0" data-close-others="false">Biblioteka <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-
-                                <li class="dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Książki</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/catalogue?bookNum=0">Wszystkie pozycje</a></li>
-                                        <li><a href="/lyricCatalogue?bookNum=0">Liryka</a></li>
-                                        <li><a href="/epicCatalogue?bookNum=0">Epika</a></li>
-                                        <li><a href="/dramaCatalogue?bookNum=0">Dramat</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="/soon">Zaloguj/Rejestracja</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-
+   <#include "header-nav.ftlh">
     <div class="container">
         <div class="col-sm-12 col-lg-12 row">
             <nav aria-label="Pagination">
@@ -122,7 +69,7 @@
                         <tr>
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
-                                            src="https://wolnelektury.pl/media/${cat.cover_thumb!}"
+                                            src="https://wolnelektury.pl/media/${cat.coverThumb!}"
                                             alt="Okładka"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">
@@ -200,10 +147,8 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
 
-<script src="../../html/js/jquery.min.js"></script>
 <script src="../../html/js/modernizr.custom.js"></script>
 <script src="../../html/js/jquery.easing.1.3.js"></script>
-<script src="../../html/js/bootstrap.min.js"></script>
 <script src="../../html/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="../../html/plugins/flexslider/flexslider.config.js"></script>
 <script src="../../html/js/jquery.appear.js"></script>

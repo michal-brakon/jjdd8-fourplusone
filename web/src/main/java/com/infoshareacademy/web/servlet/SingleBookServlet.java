@@ -31,7 +31,6 @@ public class SingleBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         String param = req.getParameter("id");
 
         req.getSession().setAttribute("book_id", Long.parseLong(param));
