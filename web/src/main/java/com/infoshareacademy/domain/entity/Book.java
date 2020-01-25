@@ -20,6 +20,30 @@ import javax.validation.constraints.NotNull;
 
         @NamedQuery(name = "Book.countAll",
                 query = "SELECT COUNT(b) FROM Book b"),
+
+        @NamedQuery(name = "Book.findAudioBooks",
+                query = "SELECT b FROM Book b WHERE b.hasAudio = true"),
+
+        @NamedQuery(name = "Book.countAudio",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.hasAudio = true"),
+
+        @NamedQuery(name = "Book.findEpic",
+                query = "SELECT b FROM Book b WHERE b.kind = 1"),
+
+        @NamedQuery(name = "Book.findLyric",
+                query = "SELECT b FROM Book b WHERE b.kind = 2"),
+
+        @NamedQuery(name = "Book.findDrama",
+                query = "SELECT b FROM Book b WHERE b.kind = 3"),
+
+        @NamedQuery(name = "Book.countEpic",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 1"),
+
+        @NamedQuery(name = "Book.countLyric",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 2"),
+
+        @NamedQuery(name = "Book.countDrama",
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3")
 }
 )
 
@@ -57,7 +81,6 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind kind;
-
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")

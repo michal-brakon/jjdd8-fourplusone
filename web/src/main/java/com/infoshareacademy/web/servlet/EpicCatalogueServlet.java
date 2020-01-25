@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/catalogue")
-public class BookCatalogueServlet extends HttpServlet {
+@WebServlet("/epicCatalogue")
+public class EpicCatalogueServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookCatalogueServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(EpicCatalogueServlet.class.getName());
 
     @Inject
     private BookService bookService;
@@ -58,13 +58,13 @@ public class BookCatalogueServlet extends HttpServlet {
 
             int previous = paginationService.reduce(num);
 
-            int lastPageView = paginationService.getLastPage();
+            int lastPageView = paginationService.getLasPageEpic();
 
-            List<BookView> bookViewList = bookService.getBooksForPagination(num);
+            List<BookView> bookViewList = bookService.getEpicBooksForPagination(num);
 
             Template template = templateProvider
                     .getTemplate(getServletContext(),
-                            "catalogue.ftlh");
+                            "epic-catalogue.ftlh");
             Map<String, Object> model = new HashMap<>();
             model.put("catalogue", bookViewList);
             model.put("next", next);
