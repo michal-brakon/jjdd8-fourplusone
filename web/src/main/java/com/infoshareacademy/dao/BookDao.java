@@ -38,13 +38,6 @@ public class BookDao {
         return query.getResultList();
     }
 
-    public List<Book> findByTitle(String inputParam) {
-        Query query = em.createNamedQuery("Book.findByTitle");
-        query.setParameter("inputParam", "%" + inputParam + "%");
-
-
-        return query.setMaxResults(5).getResultList();}
-
     public List<Book> findBooksLimit(int pageNumber) {
         Query query = em.createNamedQuery("Book.findAll");
         int limit = 21;
