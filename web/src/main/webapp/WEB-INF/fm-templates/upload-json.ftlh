@@ -19,23 +19,7 @@
 
 <p id="demo"></p>
 
-<script>
-    function myFunction() {
-        var txt;
-        if (confirm("Press a button ${name} !")) {
-            txt = "You pressed OK! ";
-        } else {
-            txt = "You pressed Cancel!";
-        }
-        document.getElementById("demo").innerHTML = txt;
-    }
-    </script>
-    $.ajax({
-        type : "POST",
-        cache: false,
-        url : "localhost:8080",
-    success: function myFunction()
-    })
+
 
 
 </body>

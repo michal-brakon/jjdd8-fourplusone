@@ -107,7 +107,10 @@ public class BookDao {
     public int getNumberOfRecords() {
         return ((Number) em.createNamedQuery("Book.countAll").getSingleResult()).intValue();
     }
-    public void haveBeenReserved() {
+    public void haveBeenReserved(Book book) {
+        em.merge(book);
+
+        logger.debug("Reservation counter set to {} ", book.getReservationCount());
         
     }
 }

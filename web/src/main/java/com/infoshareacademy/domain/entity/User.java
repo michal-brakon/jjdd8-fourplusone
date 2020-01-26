@@ -27,7 +27,7 @@ public class User {
     @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Role roleId;
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
     public Long getId() {

@@ -21,6 +21,9 @@
 <body>
 <div id="wrapper">
     <#include "header-nav.ftlh">
+    <div class="col-md text-center reserve">
+        <a class="btn btn-primary nav-button reserve" data-id="${book.id?c}">Zarezerwuj</a>
+    </div>
 
     <div class="container">
         <div class="center-block">
@@ -88,6 +91,7 @@
 <script src="../../html/js/google-code-prettify/prettify.js"></script>
 <script src="../../html/js/animate.js"></script>
 <script src="../../html/js/custom.js"></script>
+<script src="../../html/js/reservation.js"></script>
 
 
 </body>

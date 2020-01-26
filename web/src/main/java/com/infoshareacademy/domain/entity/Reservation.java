@@ -10,9 +10,9 @@ import java.sql.Timestamp;
 
 @NamedQueries({
         @NamedQuery(name = "Reservation.getByUserId",
-                query = "SELECT r FROM Reservation r WHERE r.userId=:id"),
+                query = "SELECT r FROM Reservation r WHERE r.user=:id"),
         @NamedQuery(name = "Reservation.getByBookId",
-                query = "SELECT r FROM Reservation r WHERE r.bookId=:id")
+                query = "SELECT r FROM Reservation r WHERE r.book=:id")
 })
 
 public class Reservation {
@@ -22,19 +22,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id", unique = true)
-    private Book bookId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     @Column(name = "borrow_date")
     private Timestamp borrowDate;
-
-    @Column(name = "return_date")
-    private Date returnDate;
 
     public Long getId() {
         return id;
@@ -44,20 +41,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book bookId) {
+        this.book = bookId;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
     public Timestamp getBorrowDate() {
@@ -68,11 +65,4 @@ public class Reservation {
         this.borrowDate = borrowDate;
     }
 
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
 }

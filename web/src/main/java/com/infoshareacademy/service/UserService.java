@@ -13,6 +13,6 @@ public class UserService {
     UserDao userDao;
 
     public User getById(Long id) {
-        return this.userDao.findById(id);
+        return userDao.findById(id);
     }
 }

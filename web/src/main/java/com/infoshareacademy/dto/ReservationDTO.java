@@ -1,13 +1,13 @@
 package com.infoshareacademy.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ReservationDTO {
 
     private Long userId;
     private Long bookId;
-    private Date borrowDate;
-    private Date returnDate;
+    private Timestamp borrowDate;
 
     public Long getUserId() {
         return userId;
@@ -25,19 +25,11 @@ public class ReservationDTO {
         this.bookId = bookId;
     }
 
-    public Date getBorrowDate() {
+    public Timestamp getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(Timestamp borrowDate) {
         this.borrowDate = borrowDate;
-    }
-
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
     }
 }
