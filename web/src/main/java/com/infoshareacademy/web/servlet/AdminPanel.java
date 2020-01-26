@@ -64,7 +64,7 @@ public class AdminPanel extends HttpServlet {
         bookDTO.setCover(cover);
         bookDTO.setGenre(genre);
         bookDTO.setHasAudio(hasAudio);
-        bookService.update(bookId,bookDTO);
+       // bookService.update(bookId,bookDTO);
 
     }
 

@@ -1,13 +1,13 @@
 $(function() {
 	$("#result-div").hide();
 		  });
-$('#holiday-quick').keyup(function (e) {
+$('#bookSearch').keyup(function (e) {
 	e.preventDefault(); // Prevent the form from submitting via the browser
 	$("#result-div").html("");
-	if($('#holiday-quick').val().length >=3) {
+	if($('#bookSearch').val().length >=3) {
 		$.ajax({
 			type: "GET",
-			url: "/api/search/" + $('#holiday-quick').val(),
+			url: "/api/search/" + $('#bookSearch').val(),
 			enctype: 'application/json; charset=UTF-8',
 			dataType: 'json',
 			contentType: 'application/json; charset=UTF-8'

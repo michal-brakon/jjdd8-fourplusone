@@ -21,8 +21,6 @@ public class LiveSearch {
     public Response getTitle(@PathParam("param") String param) {
 
         List<BookView> bookViews = bookService.findByTitle(param);
-
-
         return Response.ok().entity(bookViews).build();
     }
 }

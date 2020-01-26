@@ -85,7 +85,11 @@ public class Book {
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind kind;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST,
+                        CascadeType.MERGE,
+                        CascadeType.REFRESH,
+                       CascadeType.DETACH})
     @JoinColumn(name = "author_id")
     private Author author;
 
