@@ -33,9 +33,9 @@ public class UploaderService {
 
         fileContent.close();
 
-        String json = new String(Files.readAllBytes(Paths.get(file.getName())));
+        return new String(Files.readAllBytes(Paths.get(file.getName())));
 
 
-        return json;
+
     }
 }

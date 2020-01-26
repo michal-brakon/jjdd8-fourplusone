@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class BookDao {
@@ -26,10 +27,8 @@ public class BookDao {
         logger.info("New book was added :{}", book);
     }
 
-    public Book findById(Long id) {
-        Query query = em.createNamedQuery("Book.getById");
-        query.setParameter("id", id);
-        return (Book) query.getSingleResult();
+    public Optional<Book> findById(Long id) {
+        return Optional.ofNullable(em.find(Book.class, id));
     }
 
     public List<Book> findAll() {
@@ -113,8 +112,12 @@ public class BookDao {
         logger.info("Book has been update {}", book);
     }
 
-    public Long delete(Book book) {
-        em.remove(book);
-    return book.getId();
+
+    public Book delete(Long id) {
+        Book book = findById(id).orElseThrow();
+        if (book != null) {
+            em.remove(book);
+        }
+        return book;
     }
 }

@@ -11,7 +11,7 @@ import static javax.ws.rs.HttpMethod.GET;
 
 @WebFilter(
         filterName = "AuthorizationFilter",
-        urlPatterns = {"/*"}
+        urlPatterns = {"/uploader"}
 
 )
 public class UploaderFilter implements Filter {

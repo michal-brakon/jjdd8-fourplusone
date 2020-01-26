@@ -36,8 +36,9 @@
     </style>
 </head>
 <body>
+<div class="container p-3 my-3 bg-dark text-white">
 <div class="btn-group">
-    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    <button type="button" class="btn btn-danger dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
       Zarządzanie Książkami
     </button>
@@ -67,6 +68,7 @@
 
 
     </div>
+    </ul>
 
 </div>
 
@@ -176,7 +178,7 @@
     });
 </script>
 
-
+    </div>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Footer</p>
 </div>

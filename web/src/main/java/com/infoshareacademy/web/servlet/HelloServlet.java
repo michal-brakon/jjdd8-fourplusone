@@ -27,8 +27,6 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info("Error-info1");
-        logger.debug("Error-debug1");
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         String name = req.getParameter("name");
@@ -43,8 +41,7 @@ public class HelloServlet extends HttpServlet {
             logger.info("Error-info4");
             logger.debug("Error -debug4");
         }
-        logger.info("Error-info5");
-        logger.debug("Error -debug5");
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.infoshareacademy.email;
+package com.infoshareacademy.service.email;
 import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;

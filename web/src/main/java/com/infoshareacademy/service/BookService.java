@@ -27,9 +27,6 @@ public class BookService {
     private AuthorDao authorDao;
 
     @Inject
-    private BookMapper bookMapper;
-
-    @Inject
     private BookMapperToView bookMapperToView;
 
     @Inject
@@ -153,11 +150,7 @@ public class BookService {
         bookDao.update(book);
     }
 
-    public Long deleteBook(Long id) {
-       Book book= bookDao.findById(id);
 
-        return bookDao.delete(book);
-    }
 
     public List<BookView> getAudioBooksForPagination(int in) {
 

@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
-//@Startup
-//@Singleton
+@Startup
+@Singleton
 public class ApiStarter {
 
     @Inject
@@ -22,7 +22,7 @@ public class ApiStarter {
     @Inject
     BookService bookService;
 
-  //  @PostConstruct
+    @PostConstruct
     private void setApi() throws IOException {
 
         List<BookDTO> books = parserService.parse(apiDataInitializer.getApiFromUrl(), BookDTO.class);
