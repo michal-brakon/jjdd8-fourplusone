@@ -6,15 +6,16 @@ import com.sendgrid.helpers.mail.objects.Email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.enterprise.context.RequestScoped;
 import java.io.IOException;
-
+@RequestScoped
 public class MailSender {
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
 
     private void createMail(Email from, String subject, Email to, Content content) throws IOException {
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(System.getenv("sendgrid.env"));
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         request.setMethod(Method.POST);
         request.setEndpoint("mail/send");

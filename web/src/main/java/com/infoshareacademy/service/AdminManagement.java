@@ -6,6 +6,7 @@ import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
+import com.infoshareacademy.service.email.MailSender;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -38,6 +39,9 @@ public class AdminManagement {
 
     @Inject
     private GenreService genreService;
+
+    @Inject
+    private MailSender mailSender;
 
 
     public BookView remove(Long id) {
