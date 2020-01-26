@@ -4,5 +4,5 @@ $(".reserve").click(function(){
         url : '/api/reserve/' + $(this).attr('data-id'),
             success: function(result)
             {
-                location.reload();
+                alert("Dokonałeś rezerwacji! Potwierdź linkiem wysłanym na email");
         }});   });
