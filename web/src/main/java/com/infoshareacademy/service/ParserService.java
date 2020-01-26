@@ -22,12 +22,12 @@ public class ParserService {
     public <T> List<T> parse(String json, Class<T> tClass) {
         try {
             CollectionType listType = mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).getTypeFactory().constructCollectionType(ArrayList.class, tClass);
-            List<T> ts = mapper.readValue(json, listType);
-            return ts;
-        } catch (IOException e) {
-            logger.debug("class name: {}", e);
+            return mapper.readValue(json, listType);
+
+        } catch (IOException io) {
+            logger.debug("class name: ", io);
         }
-        return null;
+        return new ArrayList<>();
 
     }
 }
