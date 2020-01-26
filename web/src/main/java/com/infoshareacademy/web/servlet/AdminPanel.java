@@ -1,8 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
-import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.freemarker.TemplateProvider;
-import com.infoshareacademy.service.BookService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -23,12 +21,9 @@ import java.util.Map;
 public class AdminPanel extends HttpServlet {
 
     @Inject
-    private BookService bookService;
-    @Inject
     private TemplateProvider templateProvider;
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
+    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,56 +35,8 @@ public class AdminPanel extends HttpServlet {
 
         try {
             template.process(dataModel, printWriter);
-        } catch (TemplateException e) {
-
+        } catch (TemplateException tm) {
+        logger.error("Error in the template proccesing {}", tm);
         }
     }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        Long bookId = Long.valueOf(req.getParameter("id"));
-        String title = req.getParameter("title");
-        String author = req.getParameter("author");
-        String kind = req.getParameter("kind");
-        String genre = req.getParameter("genre");
-        Boolean hasAudio = Boolean.valueOf(req.getParameter("has_audio"));
-        String cover = req.getParameter("cover");
-
-        BookDTO bookDTO = new BookDTO();
-        bookDTO.setTitle(title);
-        bookDTO.setAuthor(author);
-        bookDTO.setKind(kind);
-        bookDTO.setCover(cover);
-        bookDTO.setGenre(genre);
-        bookDTO.setHasAudio(hasAudio);
-       // bookService.update(bookId,bookDTO);
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        String title = req.getParameter("title");
-        String author = req.getParameter("author");
-        String kind = req.getParameter("kind");
-        String genre = req.getParameter("genre");
-        Boolean hasAudio = Boolean.valueOf(req.getParameter("has_audio"));
-        String cover = req.getParameter("cover");
-
-        BookDTO bookDTO = new BookDTO();
-        bookDTO.setTitle(title);
-        bookDTO.setAuthor(author);
-        bookDTO.setKind(kind);
-        bookDTO.setCover(cover);
-        bookDTO.setGenre(genre);
-        bookDTO.setHasAudio(hasAudio);
-        bookService.addBook(bookDTO);
-
-
-    }
-
-
 }

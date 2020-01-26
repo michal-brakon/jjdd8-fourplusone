@@ -2,17 +2,19 @@ package com.infoshareacademy.service;
 
 import com.infoshareacademy.dao.AuthorDao;
 import com.infoshareacademy.dao.BookDao;
-import com.infoshareacademy.domain.entity.*;
+import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
+import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -24,6 +26,9 @@ public class BookService {
 
     @Inject
     private AuthorDao authorDao;
+
+    @Inject
+    private BookMapper bookMapper;
 
     @Inject
     private BookMapperToView bookMapperToView;
@@ -41,46 +46,21 @@ public class BookService {
     private GenreService genreService;
 
 
+    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     public void addBooks(List<BookDTO> books) {
 
         books.forEach(this::addBook);
     }
 
-    public void addBook(BookDTO book) {
+    public void addBook(BookDTO bookDTO) {
 
-        String[] authorsNames;
-        List<Author> authors = new ArrayList<>();
-
-        String authorName = book.getAuthor();
-
-        authorsNames = authorName.split(",");
-
-        Arrays.stream(authorsNames)
-                .forEach(a -> authors.add(authorService.findOrAdd(a.trim()))
-                );
-
-        String kindName = book.getKind();
-        LiteratureKind kind = kindService.findOrAdd(kindName);
-
-        String epochName = book.getEpoch();
-        Epoch epoch = epochService.findOrAdd(epochName);
-
-        String genreName = book.getGenre();
-        Genre genre = genreService.findOrAdd(genreName);
-
-        Book bookDaoToEntity = new Book();
-
-        authors.forEach(a -> bookDaoToEntity.setAuthor(a));
-        bookDaoToEntity.setKind(kind);
-        bookDaoToEntity.setEpoch(epoch);
-        bookDaoToEntity.setGenre(genre);
-        bookDaoToEntity.setTitle(book.getTitle());
-        bookDaoToEntity.setCover(book.getCover());
-        bookDaoToEntity.setCoverThumb(book.getCoverThumb());
-        bookDaoToEntity.setSimpleThumb(book.getSimpleThumb());
-        bookDaoToEntity.setHasAudio(book.getHasAudio());
-
-        bookDao.addBook(bookDaoToEntity);
+        Book book = bookMapper.mapRequestToEntity(bookDTO);
+        book.setAuthor(authorService.findOrAdd(bookDTO.getAuthor()));
+        book.setEpoch(epochService.findOrAdd(bookDTO.getEpoch()));
+        book.setKind(kindService.findOrAdd(bookDTO.getKind()));
+        book.setGenre(genreService.findOrAdd(bookDTO.getGenre()));
+        bookDao.addBook(book);
     }
 
     public Book getById(Long id) {

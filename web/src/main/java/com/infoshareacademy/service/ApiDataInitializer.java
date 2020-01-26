@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class ApiDataInitializer {
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+    private final Logger logger = LoggerFactory.getLogger(ApiDataInitializer.class.getName());
 
     private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
 

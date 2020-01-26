@@ -1,7 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.dto.BookDTO;
-import com.infoshareacademy.exception.ApiFileNotFound;
+import com.infoshareacademy.exception.FileNotFound;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ParserService;
@@ -66,8 +66,8 @@ public class LoaderFromFileServlet extends HttpServlet {
         try {
             String json = uploaderService.uploadApiFile(file);
             books = parserService.parse(json, BookDTO.class);
-        } catch (ApiFileNotFound apiFileNotFound) {
-            logger.warn(apiFileNotFound.getMessage());
+        } catch (FileNotFound fileNotFound) {
+            logger.warn(fileNotFound.getMessage());
         }
         bookService.addBooks(books);
         resp.sendRedirect("/");

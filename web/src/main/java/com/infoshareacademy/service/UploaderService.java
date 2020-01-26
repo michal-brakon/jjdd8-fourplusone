@@ -1,7 +1,7 @@
 package com.infoshareacademy.service;
 
 
-import com.infoshareacademy.exception.ApiFileNotFound;
+import com.infoshareacademy.exception.FileNotFound;
 
 import javax.ejb.Stateless;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,13 +16,13 @@ import java.nio.file.Paths;
 @MultipartConfig
 public class UploaderService {
 
-    public String uploadApiFile(Part filePart) throws ApiFileNotFound, IOException {
+    public String uploadApiFile(Part filePart) throws FileNotFound, IOException {
 
         String filename = Paths.get(filePart.getSubmittedFileName())
                 .getFileName().toString();
 
         if (filename == null || filename.isEmpty()) {
-            throw new ApiFileNotFound("No API file has been uploaded");
+            throw new FileNotFound("No file has been upload");
         }
         File file = new File(filename);
         Files.deleteIfExists(file.toPath());

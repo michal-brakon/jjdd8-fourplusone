@@ -1,6 +1,7 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
+import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
 
 @Entity

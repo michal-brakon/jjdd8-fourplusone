@@ -23,7 +23,7 @@ public class ApiStarter {
     BookService bookService;
 
     @PostConstruct
-    private void setApi() throws IOException {
+    private void setApi()  {
 
         List<BookDTO> books = parserService.parse(apiDataInitializer.getApiFromUrl(), BookDTO.class);
         bookService.addBooks(books);
