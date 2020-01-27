@@ -16,10 +16,10 @@ public class AuthorService {
     public Author add(String name) {
 
         return Optional.ofNullable(authorDao.findAuthorByName(name)).orElseGet(() -> {
-            Author author1 = new Author();
-            author1.setName(name);
-            authorDao.addAuthor(author1);
-            return author1;
+            Author author = new Author();
+            author.setName(name);
+            authorDao.addAuthor(author);
+            return author;
         });
     }
 }

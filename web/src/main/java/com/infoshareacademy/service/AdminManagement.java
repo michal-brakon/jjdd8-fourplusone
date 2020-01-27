@@ -52,13 +52,13 @@ public class AdminManagement {
         Book book = bookDao.findById(id).orElseThrow();
         bookMapper.mapRequestToEntity(bookDTO, book);
 
-        Author author = authorService.findOrAdd(bookDTO.getAuthor());
+        Author author = authorService.add(bookDTO.getAuthor());
         book.setAuthor(author);
-        Genre genre = genreService.findOrAdd(bookDTO.getGenre());
+        Genre genre = genreService.add(bookDTO.getGenre());
         book.setGenre(genre);
-        LiteratureKind kind = kindService.findOrAdd(bookDTO.getKind());
+        LiteratureKind kind = kindService.add(bookDTO.getKind());
         book.setKind(kind);
-        Epoch epoch = epochService.findOrAdd(bookDTO.getEpoch());
+        Epoch epoch = epochService.add(bookDTO.getEpoch());
         book.setEpoch(epoch);
         bookDao.update(book);
     }

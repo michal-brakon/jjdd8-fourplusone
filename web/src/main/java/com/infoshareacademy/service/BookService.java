@@ -45,8 +45,6 @@ public class BookService {
     private GenreService genreService;
 
 
-    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
-
     public void addBooks(List<BookDTO> books) {
 
         books.forEach(this::addBook);
@@ -84,11 +82,7 @@ public class BookService {
         List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
                 .collect(Collectors.toList());
-
     }
-
-
-
 
     public List<BookView> getAudioBooksForPagination(int in) {
 

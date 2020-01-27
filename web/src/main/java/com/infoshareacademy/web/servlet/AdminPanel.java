@@ -36,7 +36,7 @@ public class AdminPanel extends HttpServlet {
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException tm) {
-        logger.error("Error in the template proccesing {}", tm);
+            logger.error("Error in the template proccesing {}", tm);
         }
     }
 }

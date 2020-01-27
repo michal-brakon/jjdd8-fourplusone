@@ -112,9 +112,7 @@ public class BookDao {
 
     public Book delete(Long id) {
         Book book = findById(id).orElseThrow();
-        if (book != null) {
-            em.remove(book);
-        }
+        em.remove(book);
         return book;
     }
 }

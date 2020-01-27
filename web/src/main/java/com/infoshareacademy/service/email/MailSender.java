@@ -1,5 +1,9 @@
 package com.infoshareacademy.service.email;
-import com.sendgrid.*;
+
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
@@ -8,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.IOException;
+
 @RequestScoped
 public class MailSender {
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
@@ -34,9 +39,8 @@ public class MailSender {
         Email to = new Email(userEmail);
         Content content = new Content("text/plain", "Książka została zarezerwowana!\n jeżeli nie zostanie odebrana w ciągu 48 godzin rezerwacja będzie anulowana");
         createMail(from, subject, to, content);
+    }
 
-
-            }
     public void reservationRejected(String userEmail) throws IOException {
 
         Email from = new Email("LibraryFPO@fourplusone.com");
@@ -44,9 +48,6 @@ public class MailSender {
         Email to = new Email(userEmail);
         Content content = new Content("text/plain", "Rezerwacja książki odwołana z przyczyn technicznych . Przepraszamy ");
         createMail(from, subject, to, content);
-
-
-            }
-        }
-
+    }
+}
 

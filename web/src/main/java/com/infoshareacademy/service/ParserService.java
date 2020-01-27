@@ -25,7 +25,7 @@ public class ParserService {
             return mapper.readValue(json, listType);
 
         } catch (IOException io) {
-            logger.debug("class name: ", io);
+            logger.error("class name: ", io);
         }
         return new ArrayList<>();
 
