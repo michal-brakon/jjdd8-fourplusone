@@ -5,6 +5,7 @@ import com.infoshareacademy.domain.entity.Genre;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Stateless
 public class GenreService {
@@ -12,14 +13,13 @@ public class GenreService {
     @Inject
     private GenreDao genreDao;
 
-    public Genre findOrAdd(String name) {
+    public Genre add(String name) {
 
-        Genre genre = genreDao.findGenreByName(name);
-        if (genre == null) {
-            genre = new Genre();
+        return Optional.ofNullable(genreDao.findGenreByName(name)).orElseGet(() -> {
+            Genre genre = new Genre();
             genre.setName(name);
             genreDao.addGenre(genre);
-        }
-        return genre;
+            return genre;
+        });
     }
 }

@@ -14,7 +14,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -56,10 +55,10 @@ public class BookService {
     public void addBook(BookDTO bookDTO) {
 
         Book book = bookMapper.mapRequestToEntity(bookDTO);
-        book.setAuthor(authorService.findOrAdd(bookDTO.getAuthor()));
-        book.setEpoch(epochService.findOrAdd(bookDTO.getEpoch()));
-        book.setKind(kindService.findOrAdd(bookDTO.getKind()));
-        book.setGenre(genreService.findOrAdd(bookDTO.getGenre()));
+        book.setAuthor(authorService.add(bookDTO.getAuthor()));
+        book.setEpoch(epochService.add(bookDTO.getEpoch()));
+        book.setKind(kindService.add(bookDTO.getKind()));
+        book.setGenre(genreService.add(bookDTO.getGenre()));
         bookDao.addBook(book);
     }
 
