@@ -33,8 +33,5 @@ public class UploaderService {
         fileContent.close();
 
         return new String(Files.readAllBytes(Paths.get(file.getName())));
-
-
-
     }
 }
