@@ -45,6 +45,8 @@ public class AdminManagement {
 
 
     public BookView remove(Long id) {
+
+
         return bookMapperToView.mapEntityToView(bookDao.delete(id));
     }
 

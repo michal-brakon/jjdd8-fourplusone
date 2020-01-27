@@ -1,7 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
-
 import com.infoshareacademy.freemarker.TemplateProvider;
+import com.infoshareacademy.service.AdminManagement;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -18,26 +18,37 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/booklist")
-public class bookListServlet extends HttpServlet {
+
+@WebServlet("/list-book")
+public class BookListServlet extends HttpServlet {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass().getName());
 
     @Inject
     private TemplateProvider templateProvider;
 
-    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
+    @Inject
+    private AdminManagement adminManagement;
 
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/booklist.ftlh");
+        PrintWriter writer = resp.getWriter();
 
-        PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
 
+        Template template = this.templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
+
+        dataModel.put("method", req.getMethod());
+        dataModel.put("content", "/admin-site/booklist.ftlh");
+        dataModel.put("books", adminManagement.findAll());
+
         try {
-            template.process(dataModel, printWriter);
-        } catch (TemplateException tm) {
-            logger.error("Error in the template proccesing {}", tm);
+            template.process(dataModel, writer);
+        } catch (
+                TemplateException e) {
+            LOGGER.error("Issue with processing Freemarker template.{}", e.getMessage());
         }
+
     }
+
 }
