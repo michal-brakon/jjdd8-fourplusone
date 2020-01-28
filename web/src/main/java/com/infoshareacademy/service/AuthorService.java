@@ -5,6 +5,7 @@ import com.infoshareacademy.domain.entity.Author;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Stateless
 public class AuthorService {
@@ -12,15 +13,13 @@ public class AuthorService {
     @Inject
     private AuthorDao authorDao;
 
-    public Author findOrAdd(String name) {
+    public Author add(String name) {
 
-        Author author = authorDao.findAuthorByName(name);
-        if (author == null) {
-            author = new Author();
+        return Optional.ofNullable(authorDao.findAuthorByName(name)).orElseGet(() -> {
+            Author author = new Author();
             author.setName(name);
             authorDao.addAuthor(author);
-
-        }
-        return author;
+            return author;
+        });
     }
 }

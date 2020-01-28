@@ -5,6 +5,7 @@ import com.infoshareacademy.domain.entity.Epoch;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Stateless
 public class EpochService {
@@ -12,14 +13,13 @@ public class EpochService {
     @Inject
     private EpochDao epochDao;
 
-    public Epoch findOrAdd(String name)  {
+    public Epoch add(String name) {
 
-        Epoch epoch = epochDao.findEpochByName(name);
-        if (epoch == null)  {
-            epoch = new Epoch();
+        return Optional.ofNullable(epochDao.findEpochByName(name)).orElseGet(() -> {
+            Epoch epoch = new Epoch();
             epoch.setName(name);
             epochDao.addEpoch(epoch);
-        }
-        return epoch;
+            return epoch;
+        });
     }
 }

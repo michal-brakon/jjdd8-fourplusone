@@ -7,7 +7,6 @@ import java.util.List;
 @NamedQuery(
         name = "Author.findAuthorByName",
         query = "SELECT a FROM Author a WHERE a.name = :name")
-
 @Entity
 @Table(name = "author", schema = "library",
         indexes = {@Index(name = "author_idx", columnList = "name")})
@@ -21,7 +20,7 @@ public class Author {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "kind")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
 
     public Long getId() {

@@ -3,16 +3,18 @@ package com.infoshareacademy.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.ejb.Stateless;
+import javax.servlet.http.Part;
 
 @Stateless
 public class BookDTO {
 
-    String author;
-    String title;
-    String epoch;
-    String genre;
-    String cover;
-    String kind;
+    private String author;
+    private String title;
+    private String epoch;
+    private String genre;
+    private String cover;
+    private String kind;
+    private Part coverPart;
 
     @JsonProperty("cover_thumb")
     String coverThumb;
@@ -95,4 +97,11 @@ public class BookDTO {
         this.simpleThumb = simpleThumb;
     }
 
+    public Part getCoverPart() {
+        return coverPart;
+    }
+
+    public void setCoverPart(Part coverPart) {
+        this.coverPart = coverPart;
+    }
 }
