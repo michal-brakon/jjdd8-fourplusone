@@ -17,26 +17,29 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/admin")
-public class AdminPanel extends HttpServlet {
+
+@WebServlet("/admin/add-book")
+public class AddBookServlet extends HttpServlet {
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass().getName());
 
     @Inject
     private TemplateProvider templateProvider;
 
-    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
+        PrintWriter writer = resp.getWriter();
 
-        PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
 
+        Template template = this.templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
+
+        dataModel.put("content", "/admin-site/add-book.ftlh");
+
         try {
-            template.process(dataModel, printWriter);
-        } catch (TemplateException tm) {
-            logger.error("Error in the template proccesing {}", tm);
+            template.process(dataModel, writer);
+        } catch (
+                TemplateException e) {
+            LOGGER.error("Error while processing freemarker template ", e.getMessage());
         }
     }
 }

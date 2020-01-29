@@ -20,8 +20,6 @@
                     <option value="Epika">Epika</option>
                     <option value="Liryka">Liryka</option>
                     <option value="Dramat">Dramat</option>
-                    <option value="Epika, Liryka">Epika, Liryka</option>
-                    <option value="Dramat współczesny">Dramat współczesny</option>
                 </select>
 
                 <label for="textInput">Gatunek</label>
