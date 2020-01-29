@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class AuthorDao {
@@ -31,7 +32,11 @@ public class AuthorDao {
 
         List<Author> resultList = query.getResultList();
 
-        return resultList.isEmpty() ? null : resultList.get(0);
+        return  resultList.isEmpty() ? null : resultList.get(0);
+    }
+
+    public Optional<Author> findById(String id) {
+            return Optional.ofNullable(em.find(Author.class, id));
     }
 }
 

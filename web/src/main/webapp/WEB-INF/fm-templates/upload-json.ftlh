@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-        <meta charset="UTF-8">
-        <form method="post" action="/uploader" enctype="multipart/form-data">
+    <meta charset="UTF-8">
+    <form method="post" action="/uploader" enctype="multipart/form-data">
         <title>Upload pliku JSON</title>
-                <p></p>
-                <header>Awaryjne ładowanie API z pliku</header>
+        <p></p>
+        <header>Awaryjne ładowanie API z pliku</header>
         <input type="file" accept="application/JSON" name="api">
         <input type="submit" name="upload" value="Upload">
-        </form>
+
+
+
+    </form>
+    <form method="post" action="/user" enctype="multipart/form-data">
+        ID: <input type="text" name="id"/><br/><br/>
+        Name: <input type="text" name="name"/><br/><br/>
+        Login: <input type="text" name="login"/><br/><br/>
+        Password: <input type="password" name="password"/><br/><br/>
+        Age: <input type="text" name="age"/><br/><br/>
+        File: <input type="file" name="image"/><br/><br/>
+
+        <input type="submit" name="save" value="save"/><br/><br/>
+    </form>
 </head>
 <body>
 

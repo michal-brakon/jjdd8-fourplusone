@@ -1,7 +1,6 @@
-package com.infoshareacademy.servlet;
+package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.dto.BookDTO;
-import com.infoshareacademy.exception.ApiFileNotFound;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ParserService;
@@ -11,7 +10,6 @@ import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -47,7 +46,6 @@ public class LoaderFromFileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/html;charset=UTF-8");
         Template template = templateProvider.getTemplate(getServletContext(), "upload-json.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
@@ -68,10 +66,11 @@ public class LoaderFromFileServlet extends HttpServlet {
         try {
             String json = uploaderService.uploadApiFile(file);
             books = parserService.parse(json, BookDTO.class);
-        } catch (ApiFileNotFound apiFileNotFound) {
-            logger.warn(apiFileNotFound.getMessage());
+        } catch (FileNotFoundException fileNotFound) {
+            logger.warn(fileNotFound.getMessage());
         }
         bookService.addBooks(books);
         resp.sendRedirect("/");
     }
+
 }
