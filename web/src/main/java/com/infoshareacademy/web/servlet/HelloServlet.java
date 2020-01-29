@@ -43,7 +43,5 @@ public class HelloServlet extends HttpServlet {
             logger.info("Error-info4");
             logger.debug("Error -debug4");
         }
-
     }
-
 }

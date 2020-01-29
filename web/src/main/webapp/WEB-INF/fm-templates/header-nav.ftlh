@@ -31,6 +31,7 @@
             </div>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
+
                     <li class="active"><a href="/">Strona główna</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
@@ -49,8 +50,12 @@
                         </ul>
                     </li>
                     <li><a href="/soon">Zaloguj/Rejestracja</a></li>
-                    <#if (role) == "admin" || (role) == "superAdmin">
-                        <li><a href="/update">Panel Administratora</a></li>
+                    <#if (role == "admin")>
+                        <li><a href="/admin/update">Panel Administratora</a></li>
+
+                    </#if>
+                    <#if (role == "user")>
+                        <li><a href="/user/reservation">Rezerwacje</a></li>
                     </#if>
                 </ul>
             </div>
