@@ -30,9 +30,11 @@ public class HelloServlet extends HttpServlet {
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
         String name = req.getParameter("name");
+        String role = req.getParameter("role");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);
+        dataModel.put("role", role);
 
         try {
             template.process(dataModel, printWriter);

@@ -21,8 +21,6 @@
 <body>
 <div id="wrapper">
 <#include "header-nav.ftlh">
-
-
     <section id="featured" class="bg">
         <div class="container">
             <div class="row">

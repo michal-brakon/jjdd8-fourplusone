@@ -4,20 +4,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <ul class="top-right-info">
-
-
                         <label for="exampleInputHolidayName">Wyszukiwanie :</label>
                         <div class="form-group">
-                            <input type="text" title="Wyszukiwanie powyżej 3 znaków." name="bookSearch" class="form-control form-control-user" pattern=".{3,}"
+                            <input type="text" title="Wyszukiwanie powyżej 3 znaków." name="bookSearch"
+                                   class="form-control form-control-user" pattern=".{3,}"
                                    id="bookSearch" placeholder="Wyszukiwanie powyżej 3 znaków." autocomplete="off">
-                            <div id="result-div" class="list-group" style="margin-top:2px;position:absolute;margin-left:0;z-index: 1001 !important; ">
+                            <div id="result-div" class="list-group"
+                                 style="margin-top:2px;position:absolute;margin-left:0;z-index: 1001 !important; ">
                             </div>
                         </div>
-                    </ul></div></div>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
-</header><header>
+</header>
+<header>
     <div class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -45,8 +48,10 @@
                             <li><a href="/audioCatalogue?bookNum=0">AudioBooki</a></li>
                         </ul>
                     </li>
-
                     <li><a href="/soon">Zaloguj/Rejestracja</a></li>
+                    <#if (role) == "admin" || (role) == "superAdmin">
+                        <li><a href="/update">Panel Administratora</a></li>
+                    </#if>
                 </ul>
             </div>
         </div>
