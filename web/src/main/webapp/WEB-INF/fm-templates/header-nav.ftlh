@@ -50,11 +50,11 @@
                         </ul>
                     </li>
                     <li><a href="/soon">Zaloguj/Rejestracja</a></li>
-                    <#if (role == "admin")>
+                    <#if (role) == "admin">
                         <li><a href="/admin/update">Panel Administratora</a></li>
 
                     </#if>
-                    <#if (role == "user")>
+                    <#if (role) == "user">
                         <li><a href="/user/reservation">Rezerwacje</a></li>
                     </#if>
                 </ul>

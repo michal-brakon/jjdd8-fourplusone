@@ -17,9 +17,6 @@ public class AuthorizationFilter implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(AuthorizationFilter.class.getName());
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -29,17 +26,11 @@ public class AuthorizationFilter implements Filter {
 
         if (role == null || role.isEmpty()) {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
-        } else if (role.equals("admin")) {
+        } else if (role.equals("admin")|| role.equals("superAdmin")) {
             ((HttpServletResponse) servletResponse).sendRedirect("/admin");
         } else if (role.equals("user")) {
             ((HttpServletResponse) servletResponse).sendRedirect("/user");
-        } else if (role.equals("superAdmin")) {
-            ((HttpServletResponse) servletResponse).sendRedirect("/admin");
         }
         filterChain.doFilter(servletRequest, servletResponse);
-    }
-    @Override
-    public void destroy() {
-
     }
 }
