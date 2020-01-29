@@ -33,6 +33,8 @@ public class AdminPanel extends HttpServlet {
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
 
+        dataModel.put("content", "/admin-site/most-reserved-author.ftlh");
+
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException tm) {

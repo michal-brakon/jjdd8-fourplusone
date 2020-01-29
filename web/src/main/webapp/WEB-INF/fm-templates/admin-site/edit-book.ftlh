@@ -4,7 +4,7 @@
     <div class="dialog">
         <div class="content">
 
-                   <#if Error??>
+            <#if Error??>
                     <h3>Nie można znaleźć książki</h3>
                 <#else>
                     <form method="PUT" action="/">

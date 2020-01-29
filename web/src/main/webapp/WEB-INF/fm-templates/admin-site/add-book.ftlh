@@ -48,14 +48,14 @@
                 <option value="nie">Nie</option>
             </select>
 
-<#--            <div class="form-group">-->
-<#--                <div class="input-group input-file" name="file">-->
-<#--                    <input type="file" class="form-control" placeholder='Wybierz plik okładki z dysku...'/>-->
-<#--                    <span class="input-group-btn">-->
-<#--       			 <button class="btn btn-warning btn-reset" type="button">Zresetuj</button>-->
-<#--    		</span>-->
-<#--                </div>-->
-<#--            </div>-->
+            <div class="form-group">
+                <div class="input-group input-file" name="file">
+                    <input type="file" class="form-control" placeholder='Wybierz plik okładki z dysku...'/>
+                    <span class="input-group-btn">
+       			 <button class="btn btn-warning btn-reset" type="button">Zresetuj</button>
+    		</span>
+                </div>
+            </div>
             <button class="btn btn-success my-4 btn-block" type="button" onclick="adder()">Dodaj książkę</button>
         </form>
     </div>
