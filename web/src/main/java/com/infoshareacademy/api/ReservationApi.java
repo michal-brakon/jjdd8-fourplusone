@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -28,7 +29,7 @@ public class ReservationApi {
     @GET
     @Path("/{id}")
     public Response reserveBook(@PathParam("id") String id,
-                                @Context HttpServletRequest req) throws MessagingException {
+                                @Context HttpServletRequest req) throws MessagingException, IOException {
 
 //        Optional<String> emailOpt = Optional
 //                .ofNullable(req.getSession().getAttribute("email").toString());
