@@ -55,4 +55,8 @@ public class ReservationService {
         reservationDao.removeReservation(reservation);
     }
 
+    public void confirm (Reservation reservation)  {
+        reservation.setConfirm(true);
+        reservationDao.confirm(reservation);
+    }
 }

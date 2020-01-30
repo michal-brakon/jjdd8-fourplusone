@@ -55,4 +55,9 @@ public class ReservationDao {
         }
         return Optional.of((Reservation) query.getResultList().get(0));
     }
+
+    public void confirm (Reservation reservation)  {
+        em.merge(reservation);
+        logger.debug("reservation was confirmed by user", reservation);
+    }
 }
