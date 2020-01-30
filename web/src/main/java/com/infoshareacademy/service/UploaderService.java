@@ -43,7 +43,7 @@ public class UploaderService {
     private String createImagePath() {
         String url;
         url = System.getenv("HOME");
-        Path path = Paths.get(url + "/media/covers/");
+        Path path = Paths.get(url + "../../html/media/covers/");
         if (!Files.exists(path)) {
             try {
                 Files.createDirectories(path);

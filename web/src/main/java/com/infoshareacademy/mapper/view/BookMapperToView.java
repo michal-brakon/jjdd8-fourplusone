@@ -24,7 +24,10 @@ public class BookMapperToView {
         if (book.getCover().contains("book/")) {
             view.setCover("https://wolnelektury.pl/media/"+book.getCover());
             view.setCoverThumb("https://wolnelektury.pl/media/" + book.getCoverThumb());
-        } else {
+        }  else if(book.getCover().isEmpty() || book.getCover()==null) {
+            view.setCover("/missing.jpg");
+            view.setCoverThumb("missing.jpg");        }
+         else {
             view.setCover(book.getCover());
             view.setCoverThumb(book.getCoverThumb());
         }
