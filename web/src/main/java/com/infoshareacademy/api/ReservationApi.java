@@ -44,6 +44,7 @@ public class ReservationApi {
         reservation.setBookId(idParam);
         reservation.setUserId((long) 1);
         reservation.setBorrowDate(Timestamp.valueOf(LocalDateTime.now()));
+        reservation.setExpiredTime(Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)));
 
         reservationService.addReservation(reservation);
 

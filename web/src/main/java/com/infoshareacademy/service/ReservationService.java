@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -40,16 +41,14 @@ public class ReservationService {
 
         reservationDao.addReservation(reservation);
         bookService.increaseReservationCount(bookId);
-
-
     }
 
     public Optional<Reservation> findReservationByBook (Book book)  {
         return reservationDao.findReservationByBook(book);
     }
 
-    public Optional<Reservation> findReservationByToken(String activationLink) {
-        return reservationDao.findReservationByActivationLink(activationLink);
+    public Optional<Reservation> findReservationByToken(String token) {
+        return reservationDao.findReservationByToken(token);
     }
 
     public void removeReservation (Reservation reservation)   {

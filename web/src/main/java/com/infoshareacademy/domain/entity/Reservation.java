@@ -34,8 +34,30 @@ public class Reservation {
     @Column(name = "create_time")
     private Timestamp createTimestamp;
 
+    @Column(name = "expiration_time")
+    private Timestamp expirationTime;
+
     @Column(name = "token")
     private String token;
+
+    @Column(name = "confirmed")
+    private Boolean isConfirm;
+
+    public Boolean getConfirm() {
+        return isConfirm;
+    }
+
+    public void setConfirm(Boolean confirm) {
+        isConfirm = confirm;
+    }
+
+    public Timestamp getExpirationTime() {
+        return expirationTime;
+    }
+
+    public void setExpirationTime(Timestamp expirationTime) {
+        this.expirationTime = expirationTime;
+    }
 
     public String getToken() {
         return token;

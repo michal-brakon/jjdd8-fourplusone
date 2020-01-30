@@ -1,6 +1,5 @@
 package com.infoshareacademy.dto;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ReservationDTO {
@@ -8,6 +7,15 @@ public class ReservationDTO {
     private Long userId;
     private Long bookId;
     private Timestamp borrowDate;
+    private Timestamp expiredTime;
+
+    public Timestamp getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Timestamp expiredTime) {
+        this.expiredTime = expiredTime;
+    }
 
     public Long getUserId() {
         return userId;

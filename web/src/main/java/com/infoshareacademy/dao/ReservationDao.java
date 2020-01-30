@@ -36,7 +36,7 @@ public class ReservationDao {
         return Optional.of((Reservation) query.getResultList().get(0));
     }
 
-    public List<Reservation> findReservationByUser(User user) {
+    public List<Reservation> findReservationByUser (User user) {
         Query query = em.createNamedQuery("Reservation.getByUser");
         query.setParameter("user", user);
         return query.getResultList();
@@ -47,9 +47,9 @@ public class ReservationDao {
         logger.debug("reservation {} was removed", reservation);
     }
 
-    public Optional<Reservation> findReservationByActivationLink (String activationLink) {
+    public Optional<Reservation> findReservationByToken(String token) {
         Query query = em.createNamedQuery("Reservation.getByToken");
-        query.setParameter("token", activationLink);
+        query.setParameter("token", token);
         if (query.getResultList().isEmpty()) {
             return Optional.empty();
         }
