@@ -5,4 +5,5 @@ $(".reserve").click(function(){
             success: function(result)
             {
                 alert("Dokonałeś rezerwacji! Potwierdź linkiem wysłanym na email");
+
         }});   });

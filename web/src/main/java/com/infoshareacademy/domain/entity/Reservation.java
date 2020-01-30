@@ -1,7 +1,6 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -9,10 +8,12 @@ import java.sql.Timestamp;
 
 
 @NamedQueries({
-        @NamedQuery(name = "Reservation.getByUserId",
-                query = "SELECT r FROM Reservation r WHERE r.user=:id"),
-        @NamedQuery(name = "Reservation.getByBookId",
-                query = "SELECT r FROM Reservation r WHERE r.book=:id")
+        @NamedQuery(name = "Reservation.getByUser",
+                query = "SELECT r FROM Reservation r WHERE r.user=:user"),
+        @NamedQuery(name = "Reservation.getByBook",
+                query = "SELECT r FROM Reservation r WHERE r.book=:book"),
+        @NamedQuery(name = "Reservation.getByToken",
+                query = "SELECT r FROM Reservation r WHERE r.token=:token")
 })
 
 public class Reservation {
@@ -30,8 +31,19 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "borrow_date")
-    private Timestamp borrowDate;
+    @Column(name = "create_time")
+    private Timestamp createTimestamp;
+
+    @Column(name = "token")
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;
@@ -57,12 +69,12 @@ public class Reservation {
         this.user = userId;
     }
 
-    public Timestamp getBorrowDate() {
-        return borrowDate;
+    public Timestamp getCreateTimestamp() {
+        return createTimestamp;
     }
 
-    public void setBorrowDate(Timestamp borrowDate) {
-        this.borrowDate = borrowDate;
+    public void setCreateTimestamp(Timestamp borrowDate) {
+        this.createTimestamp = borrowDate;
     }
 
 }

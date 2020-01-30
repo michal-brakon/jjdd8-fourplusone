@@ -12,15 +12,6 @@
 
 </head>
 <body>
-<h2>JavaScript Confirm Box</h2>
-
-
-<button onclick="myFunction()">Try it</button>
-
-<p id="demo"></p>
-
-
-
 
 </body>
 </html>

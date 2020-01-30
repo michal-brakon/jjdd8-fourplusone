@@ -1,7 +1,6 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.Book;
-import com.infoshareacademy.domain.entity.Epoch;
 import com.infoshareacademy.domain.entity.Reservation;
 import com.infoshareacademy.domain.entity.User;
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class ReservationDao {
@@ -27,21 +27,32 @@ public class ReservationDao {
         logger.debug("new reservation was created: {}", reservation);
     }
 
-    public Reservation findReservationByBook(Book bookId) {
-        Query query = em.createNamedQuery("Reservation.getByBookId");
-        query.setParameter("id", bookId.getId());
-        return (Reservation) query.getResultList().get(0);
+    public Optional<Reservation> findReservationByBook(Book book) {
+        Query query = em.createNamedQuery("Reservation.getByBook");
+        query.setParameter("book", book);
+        if (query.getResultList().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of((Reservation) query.getResultList().get(0));
     }
 
-    public List<Reservation> findReservationByUser(User userId)  {
-        Query query = em.createNamedQuery("Reservation.getByUserId");
-        query.setParameter("id", userId.getId());
+    public List<Reservation> findReservationByUser(User user) {
+        Query query = em.createNamedQuery("Reservation.getByUser");
+        query.setParameter("user", user);
         return query.getResultList();
     }
-    public void deleteReservation (Reservation reservation)  {
-        em.remove(reservation);
 
+    public void removeReservation(Reservation reservation) {
+        em.remove(reservation);
         logger.debug("reservation {} was removed", reservation);
     }
 
+    public Optional<Reservation> findReservationByActivationLink (String activationLink) {
+        Query query = em.createNamedQuery("Reservation.getByToken");
+        query.setParameter("token", activationLink);
+        if (query.getResultList().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of((Reservation) query.getResultList().get(0));
+    }
 }

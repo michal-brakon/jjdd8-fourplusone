@@ -1,8 +1,10 @@
 package com.infoshareacademy.web.servlet;
 
+import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
+import com.infoshareacademy.service.ReservationService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -29,17 +31,28 @@ public class SingleBookServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+    @Inject
+    private ReservationService reservationService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         String param = req.getParameter("id");
 
         req.getSession().setAttribute("book_id", Long.parseLong(param));
-
 
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         Long id = Long.valueOf(param);
+
+        Book book = bookService.getById(id);
+
+        boolean isReserved = true;
+
+        if (reservationService.findReservationByBook(book).isEmpty()) {
+            isReserved = false;
+        }
 
         PrintWriter writer = resp.getWriter();
 
@@ -51,6 +64,7 @@ public class SingleBookServlet extends HttpServlet {
         BookView bookView = bookService.getBookViewById(id);
 
         model.put("book", bookView);
+        model.put("isReserved", isReserved);
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

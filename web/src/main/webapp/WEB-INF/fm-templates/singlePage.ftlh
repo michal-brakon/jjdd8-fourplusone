@@ -21,9 +21,11 @@
 <body>
 <div id="wrapper">
     <#include "header-nav.ftlh">
-    <div class="col-md text-center reserve">
-        <a class="btn btn-primary nav-button reserve" data-id="${book.id?c}">Zarezerwuj</a>
-    </div>
+    <#if isReserved == false>
+        <div class="col-md text-center reserve">
+            <a class="btn btn-primary nav-button reserve" data-id="${book.id?c}">Zarezerwuj</a>
+        </div>
+    </#if>
 
     <div class="container">
         <div class="center-block">

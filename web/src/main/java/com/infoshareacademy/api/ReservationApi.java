@@ -4,24 +4,20 @@ import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.dto.ReservationDTO;
 import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ReservationService;
-import org.hibernate.type.LocalDateTimeType;
 
 import javax.ejb.EJB;
 import javax.mail.MessagingException;
-import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.awt.*;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Path("/reserve")
-public class Reservation {
+public class ReservationApi {
 
     @EJB
     BookService bookService;
@@ -50,10 +46,7 @@ public class Reservation {
         reservation.setBorrowDate(Timestamp.valueOf(LocalDateTime.now()));
 
         reservationService.addReservation(reservation);
-//        List<String> recipients = new ArrayList<>();
-//        recipients.add(email);
-//        String subject = "Rezerwacja książki " + "\"" + book.getTitle() + "\"";
-//        emailSenderService.sendMessage(recipients, subject);
+
 
 
         return Response.ok().build();

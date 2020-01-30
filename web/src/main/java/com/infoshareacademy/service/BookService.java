@@ -138,22 +138,11 @@ public class BookService {
     public void increaseReservationCount (Long id) {
 
         Book book = getById(id);
-//        Book newBook = new Book();
-//
-//        newBook.setId(book.getId());
-//        newBook.setTitle(book.getTitle());
-//        newBook.setCoverThumb(book.getCoverThumb());
-//        newBook.setCover(book.getCover());
-//        newBook.setHasAudio(book.getHasAudio());
-//        newBook.setSimpleThumb(book.getSimpleThumb());
-//        newBook.setAuthor(book.getAuthor());
-//        newBook.setEpoch(book.getEpochId());
-//        newBook.setKind(book.getKind());
-//        newBook.setGenre(book.getGenre());
         int reservationCount = book.getReservationCount();
         book.setReservationCount(reservationCount+1);
 
         bookDao.haveBeenReserved(book);
     }
+
 
 }

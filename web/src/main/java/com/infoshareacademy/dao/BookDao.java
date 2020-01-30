@@ -113,4 +113,5 @@ public class BookDao {
         logger.debug("Reservation counter set to {} ", book.getReservationCount());
         
     }
+
 }
