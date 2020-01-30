@@ -22,12 +22,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>13</maven.compiler.source>
     <maven.compiler.target>13</maven.compiler.target>
-    <callback.method>http</callback.method>
-    <callback.host>localhost:8080</callback.host>
-    <jjdd8-fourplusone.callback>http://localhost:8080/oauth2callback</jjdd8-fourplusone.callback>
-    <jjdd8-fourplusone.clientID>273754675187-j6vb8cr8cha8eqqddtjdk3qhuut007bm.apps.googleusercontent.com</jjdd8-fourplusone.clientID>
-    <jjdd8-fourplusone.clientSecret>8nPaTsLKZ1sLlv_CDKCo2NRB</jjdd8-fourplusone.clientSecret>
-    <jjdd8-fourplusone.callback>https://${callback.host}/oauth2callback</jjdd8-fourplusone.callback>
   </properties>
   <dependencies>
     <dependency>
@@ -92,25 +86,52 @@
       <version>4.4.1</version>
     </dependency>
     <dependency>
-      <groupId>com.google.oauth-client</groupId>
-      <artifactId>google-oauth-client</artifactId>
-      <version>1.30.5</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.api-client</groupId>
-      <artifactId>google-api-client</artifactId>
-      <version>1.30.7</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.10.2</version>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
+      <version>1.34.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client-jackson</artifactId>
       <version>1.29.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-storage</artifactId>
+      <version>v1-rev158-1.25.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.api-client</groupId>
+      <artifactId>google-api-client-appengine</artifactId>
+      <version>1.30.7</version>
+    </dependency>
+
+
+
+
+
+    <dependency>
+      <groupId>com.google.api.client</groupId>
+      <artifactId>google-api-client-auth-oauth2</artifactId>
+      <version>1.2.3-alpha</version>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.google.oauth-client</groupId>-->
+<!--      <artifactId>google-oauth-client</artifactId>-->
+<!--      <version>1.30.5</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>com.google.api-client</groupId>-->
+<!--      <artifactId>google-api-client</artifactId>-->
+<!--      <version>1.30.7</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--      <artifactId>jackson-databind</artifactId>-->
+<!--      <version>2.10.2</version>-->
+<!--    </dependency>-->
+
 
   </dependencies>
   <build>
