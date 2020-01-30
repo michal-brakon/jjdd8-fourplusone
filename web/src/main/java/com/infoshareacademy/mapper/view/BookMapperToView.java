@@ -21,8 +21,13 @@ public class BookMapperToView {
         view.setGenre(book.getGenre().getName());
         view.setKind(book.getKind().getName());
         view.setId(book.getId());
-        view.setCoverThumb(book.getCoverThumb());
-
-        return view;
+        if (book.getCover().contains("book/")) {
+            view.setCover("https://wolnelektury.pl/media/"+book.getCover());
+            view.setCoverThumb("https://wolnelektury.pl/media/" + book.getCoverThumb());
+        } else {
+            view.setCover(book.getCover());
+            view.setCoverThumb(book.getCoverThumb());
+        }
+    return view;
     }
 }

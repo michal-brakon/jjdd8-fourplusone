@@ -43,7 +43,6 @@ public class BookManagement {
 
     @POST
     @Path("/add")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(BookDTO bookDTO) {
 

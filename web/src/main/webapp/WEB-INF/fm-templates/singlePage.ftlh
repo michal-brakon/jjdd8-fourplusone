@@ -25,7 +25,7 @@
     <div class="container">
         <div class="center-block">
             <div class="col-lg-4">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Okładka">
+                <img src="${book.cover!}" class="img-fluid" alt="Okładka">
             </div>
             <div class="col-lg-8, text-left">
                 <div class="text-center">

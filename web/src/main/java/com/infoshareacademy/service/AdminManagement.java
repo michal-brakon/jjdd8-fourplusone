@@ -65,8 +65,9 @@ public class AdminManagement {
         bookDao.update(book);
     }
 
-    public void save(BookDTO bookDTO) {
-        bookService.addBook(bookDTO);
+    public Long save(BookDTO bookDTO) {
+
+    return  bookService.addBook(bookDTO);
     }
 
     public List<BookView> findAll() {

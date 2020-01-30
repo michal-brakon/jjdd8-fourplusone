@@ -1,22 +1,6 @@
-<script>function adder() {
-    jQuery.ajax({
-        url: '/api/admin/add',
-        async: true,
-        dataType: 'json',
-        type: 'POST',
-        data: jQuery("form").serialize(),
-    }).done(function () {
-// Handle Success
-        $('.modal-body').text("Książka została dodana");
-        $('#myModal').show();
-
-    }).fail(function (xhr, status, error) {
-            // Handle Failure
-        $('.modal-body').text("Coś poszło nie tak spróbuj jeszcze raz. ")
-    });}</script>
 <div class="container">
     <div class="formadd">
-        <form class="border p-5 " enctype="multipart/form-data">
+        <form class="border p-5 " method="post" action="/admin/add-book" enctype="multipart/form-data">
 
             <p class="h3 mb-4 text-center">Dodaj nową książkę</p>
             <hr>
@@ -47,16 +31,12 @@
                 <option value="tak">Tak</option>
                 <option value="nie">Nie</option>
             </select>
+            <input type="file" name="file"  placeholder='Wybierz plik okładki z dysku...'/>
 
-            <div class="form-group">
-                <div class="input-group input-file" name="file">
-                    <input type="file" class="form-control" placeholder='Wybierz plik okładki z dysku...'/>
-                    <span class="input-group-btn">
-       			 <button class="btn btn-warning btn-reset" type="button">Zresetuj</button>
-    		</span>
-                </div>
-            </div>
-            <button class="btn btn-success my-4 btn-block" type="button" onclick="adder()">Dodaj książkę</button>
+            <button class="btn btn-warning btn-reset" type="button">Zresetuj</button>
+
+
+            <button class="btn btn-success my-4 btn-block" type="submit">Dodaj książkę</button>
         </form>
     </div>
 </div>

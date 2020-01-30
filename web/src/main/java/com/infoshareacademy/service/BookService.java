@@ -7,8 +7,6 @@ import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -50,14 +48,15 @@ public class BookService {
         books.forEach(this::addBook);
     }
 
-    public void addBook(BookDTO bookDTO) {
+    public Long addBook(BookDTO bookDTO) {
 
         Book book = bookMapper.mapRequestToEntity(bookDTO);
         book.setAuthor(authorService.add(bookDTO.getAuthor()));
         book.setEpoch(epochService.add(bookDTO.getEpoch()));
         book.setKind(kindService.add(bookDTO.getKind()));
         book.setGenre(genreService.add(bookDTO.getGenre()));
-        bookDao.addBook(book);
+        return bookDao.addBook(book);
+
     }
 
     public Book getById(Long id) {
