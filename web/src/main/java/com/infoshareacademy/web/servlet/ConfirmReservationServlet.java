@@ -47,11 +47,11 @@ public class ConfirmReservationServlet extends HttpServlet {
                 message = "Rezerwacja potwierdzona pomyślnie";
             } else if (Timestamp.valueOf(LocalDateTime.now()).after(reservation.getExpirationTime())) {
                 message = "Czas ważności linku potwierdzającego upłynął";
-                reservationService.removeReservation(reservation);
+                //reservationService.removeReservation(reservation);
             }
         } else {
             message = "Link nieprawidłowy";
-            reservationService.removeReservation(reservation);
+            //reservationService.removeReservation(reservation);
         }
         Map<String, Object> model = new HashMap<>();
         model.put("message", message);

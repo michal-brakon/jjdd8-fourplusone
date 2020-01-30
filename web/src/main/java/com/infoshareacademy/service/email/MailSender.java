@@ -39,7 +39,7 @@ public class MailSender {
         String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
         Content content = new Content("text/plain",
-                "Link potwierdzający rezerwację: http://fourplusone.jjdd8.is-academy.pl/confirm?token="
+                "Link potwierdzający rezerwację: localhost:8080/confirm?token="
                         +reservation.getToken());
         createMail(from, subject, to, content);
     }
