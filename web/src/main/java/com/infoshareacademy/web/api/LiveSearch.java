@@ -1,4 +1,4 @@
-package com.infoshareacademy.api;
+package com.infoshareacademy.web.api;
 
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.service.BookService;
@@ -21,7 +21,6 @@ public class LiveSearch {
     public Response getTitle(@PathParam("param") String param) {
 
         List<BookView> bookViews = bookService.findByTitle(param);
-
         return Response.ok().entity(bookViews).build();
     }
 }

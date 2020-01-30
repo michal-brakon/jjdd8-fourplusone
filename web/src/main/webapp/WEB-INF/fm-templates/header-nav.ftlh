@@ -8,8 +8,8 @@
 
                         <label for="exampleInputHolidayName">Wyszukiwanie :</label>
                         <div class="form-group">
-                            <input type="text" title="Wyszukiwanie powyżej 3 znaków." name="holiday-quick" class="form-control form-control-user" pattern=".{3,}"
-                                   id="holiday-quick" placeholder="Wyszukiwanie powyżej 3 znaków." autocomplete="off">
+                            <input type="text" title="Wyszukiwanie powyżej 3 znaków." name="bookSearch" class="form-control form-control-user" pattern=".{3,}"
+                                   id="bookSearch" placeholder="Wyszukiwanie powyżej 3 znaków." autocomplete="off">
                             <div id="result-div" class="list-group" style="margin-top:2px;position:absolute;margin-left:0;z-index: 1001 !important; ">
                             </div>
                         </div>

@@ -32,7 +32,7 @@ public class AuthorDao {
 
         List<Author> resultList = query.getResultList();
 
-        return resultList.isEmpty() ? null : resultList.get(0);
+        return  resultList.isEmpty() ? null : resultList.get(0);
     }
 
     public Optional<Author> findById(String id) {

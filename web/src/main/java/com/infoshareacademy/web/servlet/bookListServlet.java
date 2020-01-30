@@ -1,5 +1,6 @@
 package com.infoshareacademy.web.servlet;
 
+
 import com.infoshareacademy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -17,31 +18,26 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("")
-public class HelloServlet extends HttpServlet {
+@WebServlet("/booklist")
+public class bookListServlet extends HttpServlet {
+
     @Inject
     private TemplateProvider templateProvider;
 
-
-    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
-        String name = req.getParameter("name");
+        Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/booklist.ftlh");
+
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("name", name);
 
         try {
             template.process(dataModel, printWriter);
-        } catch (TemplateException e) {
-            logger.error(e.getMessage());
-            logger.info("Error-info4");
-            logger.debug("Error -debug4");
+        } catch (TemplateException tm) {
+            logger.error("Error in the template proccesing {}", tm);
         }
-
     }
-
 }

@@ -1,4 +1,4 @@
-package com.infoshareacademy.api;
+package com.infoshareacademy.web.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

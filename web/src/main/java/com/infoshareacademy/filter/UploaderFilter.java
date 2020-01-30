@@ -10,7 +10,7 @@ import java.io.IOException;
 import static javax.ws.rs.HttpMethod.GET;
 
 @WebFilter(
-        filterName = "UploaderFilter",
+        filterName = "AuthorizationFilter",
         urlPatterns = {"/uploader"}
 
 )
