@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @WebServlet("/oauth2callback")
 public class CallBack extends AbstractAppEngineAuthorizationCodeCallbackServlet {
-
+OAuth o = new OAuth();
     @Override
     protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential)
             throws IOException {
