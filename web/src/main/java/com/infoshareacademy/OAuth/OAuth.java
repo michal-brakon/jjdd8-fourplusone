@@ -25,7 +25,7 @@ public final class OAuth {
 
     private static final String CLIENT_SECRET = "j3gBDSypVttewFE6NuY9xpgq";
 
-    static final String CALLBACK_URI = "http://localhost:8080/oauth2callback";
+    private static final String CALLBACK_URI = "http://localhost:8080/oauth2callback";
 
     private static final List<String> SCOPE = Arrays.asList("https://www.googleapis.com/auth/userinfo.profile;https://www.googleapis.com/auth/userinfo.email".split(";"));
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
@@ -53,9 +53,7 @@ public final class OAuth {
     private void generateStateToken() {
 
         SecureRandom sr1 = new SecureRandom();
-
         stateToken = "google;" + sr1.nextInt();
-
     }
 
     public String getStateToken() {
@@ -80,8 +78,5 @@ public final class OAuth {
         final String jsonIdentity = request.execute().parseAsString();
 
         return jsonIdentity;
-
     }
-
-
 }

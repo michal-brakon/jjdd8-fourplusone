@@ -38,42 +38,55 @@
 <#--    </div>-->
 <#--</div>-->
 
-<div class="g-signin2" data-onsuccess="onSignIn" ></div>
+<div class="g-signin2" data-onsuccess="onSignedIn" data-theme="dark"></div>
+<a href="/" onclick="signOut();" id="signout"></a>
 <script>
-    function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                // ...
-                case R.id.button_sign_out:
-                    signOut();
-                    break;
-                // ...
-            }
-        }
-        private void signOut() {
-            mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    // ...
-                }
-            });
-        }
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut();
     }
 
+    function onSignedIn(googleUser) {
+        const signoutElement = document.getElementById('signout');
+        signoutElement.innerHTML =
+            'Sign out ' + googleUser.getBasicProfile().getEmail();
+    }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+<#--<div class="g-signin2" data-onsuccess="onSignIn" ></div>-->
+<#--<div class="g-signin2" data-onsuccess="revokeAllScopes" ></div>-->
+<#--<script>-->
+
+
+<#--        function onSignIn(googleUser) {-->
+<#--        // Useful data for your client-side scripts:-->
+<#--        var profile = googleUser.getBasicProfile();-->
+<#--        console.log("ID: " + profile.getId()); // Don't send this directly to your server!-->
+<#--        console.log('Full Name: ' + profile.getName());-->
+<#--        console.log('Given Name: ' + profile.getGivenName());-->
+<#--        console.log('Family Name: ' + profile.getFamilyName());-->
+<#--        console.log("Image URL: " + profile.getImageUrl());-->
+<#--        console.log("Email: " + profile.getEmail());-->
+
+<#--        // The ID token you need to pass to your backend:-->
+<#--        var id_token = googleUser.getAuthResponse().id_token;-->
+<#--        console.log("ID Token: " + id_token);-->
+<#--            var revokeAllScopes = function() {-->
+<#--                auth2.disconnect();-->
+<#--            }-->
+
+<#--    }-->
+
+<#--</script>-->
 </body>
 </html>

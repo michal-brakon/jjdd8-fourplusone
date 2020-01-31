@@ -19,7 +19,6 @@ import java.io.IOException;
 
 @WebServlet("/oauth2callback")
 
-
 public class CallBack extends AbstractAuthorizationCodeCallbackServlet {
 
     @Inject
