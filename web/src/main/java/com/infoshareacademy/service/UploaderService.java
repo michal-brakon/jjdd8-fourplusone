@@ -40,10 +40,10 @@ public class UploaderService {
         return new String(Files.readAllBytes(Paths.get(file.getName())));
     }
 
-    private String createImagePath() {
+    public String createImagePath() {
         String url;
         url = System.getenv("HOME");
-        Path path = Paths.get(url + "../../html/media/covers/");
+        Path path = Paths.get(url + "/covers/");
         if (!Files.exists(path)) {
             try {
                 Files.createDirectories(path);
@@ -58,7 +58,7 @@ public class UploaderService {
     }
 
 
-    public String saveFile(Part tmpPart, String filename) throws Exception {
+    public String saveFile(Part tmpPart, String filename) throws IOException {
 
 
         File dstFile = new File(createImagePath() + filename);
@@ -70,7 +70,12 @@ public class UploaderService {
 
         tmpPartInputStream.close();
 
+
         logger.info("file save to {}", dstFile.getAbsolutePath());
-        return dstFile.getAbsolutePath();
+        return filename;
+    }
+
+    public String getUploadImagesFilePath() {
+        return System.getenv("HOME") + "/" + "covers/";
     }
 }

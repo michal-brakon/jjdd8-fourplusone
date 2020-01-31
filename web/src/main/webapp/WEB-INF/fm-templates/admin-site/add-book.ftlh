@@ -1,3 +1,24 @@
+<script>
+    $(function () {
+
+        $(document).ready(function () {
+
+            $.ajax({
+                url: '/api/admin/kind',
+                type: 'GET',
+                success: function (result) {
+
+                    for (var i = 0; i < result.length; i++) {
+                        $("#kind").append(
+                            "<option value='" + result[i].name + "'>" + result[i].name + "</option>");
+                    }
+
+                    console.log(result);
+                }
+            });
+        })
+    })
+</script>
 <div class="container">
     <div class="formadd">
         <form class="border p-5 " method="post" action="/admin/add-book" enctype="multipart/form-data">
@@ -15,10 +36,14 @@
 
             <label for="textInput">Rodzaj</label>
             <select class="browser-default custom-select mb-4" id="select" name="kind" required>
+
+            </select>
+            <label for="textInput">Epoka</label>
+            <select class="browser-default custom-select mb-4" id="select" name="epoch" required>
                 <option value="" disabled="" selected="">Wybierz rodzaj literacki</option>
-                <option value="Epika">Epika</option>
-                <option value="Liryka">Liryka</option>
-                <option value="Dramat">Dramat</option>
+                <option value="jakas">jakas</option>
+                <option value="ptakas">srakas</option>
+                <option value="sgfsdf">asdas</option>
             </select>
 
             <label for="textInput">Gatunek</label>
@@ -31,7 +56,7 @@
                 <option value="tak">Tak</option>
                 <option value="nie">Nie</option>
             </select>
-            <input type="file" name="file"  placeholder='Wybierz plik okładki z dysku...'/>
+            <input type="file" name="file" placeholder='Wybierz plik okładki z dysku...'/>
 
             <button class="btn btn-warning btn-reset" type="button">Zresetuj</button>
 

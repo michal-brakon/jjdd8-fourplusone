@@ -2,16 +2,16 @@ package com.infoshareacademy.web.servlet;
 
 import com.infoshareacademy.service.UploaderService;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.file.Files;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 
     @WebServlet("/images/*")
     public class ImageServlet extends HttpServlet {
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
             String filename = URLDecoder.decode(
                     req.getPathInfo().substring(1), "UTF-8");
-            File file = new File(filename);
+            File file = new File(uploaderService.getUploadImagesFilePath() + filename);
             resp.setHeader("Content-Type",
                     Files.probeContentType(file.toPath()));
             resp.setHeader("Content-Length",

@@ -2,12 +2,17 @@ package com.infoshareacademy.mapper.view;
 
 import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
+import com.infoshareacademy.service.UrlBuilderService;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 @Stateless
 public class BookMapperToView {
+
+    @Inject
+    private UrlBuilderService urlBuilderService;
 
     @Transactional
     public BookView mapEntityToView(Book book) {
@@ -21,16 +26,16 @@ public class BookMapperToView {
         view.setGenre(book.getGenre().getName());
         view.setKind(book.getKind().getName());
         view.setId(book.getId());
-        if (book.getCover().contains("book/")) {
-            view.setCover("https://wolnelektury.pl/media/"+book.getCover());
-            view.setCoverThumb("https://wolnelektury.pl/media/" + book.getCoverThumb());
-        }  else if(book.getCover().isEmpty() || book.getCover()==null) {
-            view.setCover("/missing.jpg");
-            view.setCoverThumb("missing.jpg");        }
-         else {
-            view.setCover(book.getCover());
-            view.setCoverThumb(book.getCoverThumb());
+        if (book.getCover() != null && book.getCover().contains("book/")) {
+            view.setCover(urlBuilderService.buildApiImagesUrlForFile(book.getCover()));
+            view.setCoverThumb(urlBuilderService.buildApiImagesUrlForFile(book.getCoverThumb()));
+        } else if (book.getCover() == null || book.getCover().isEmpty()) {
+            view.setCover(urlBuilderService.buildBaseUrlForFile("html/img/missing.jpg"));
+            view.setCoverThumb(urlBuilderService.buildBaseUrlForFile("html/img/missing.jpg"));
+        } else {
+            view.setCover(urlBuilderService.buildImagesUrlForFile(book.getCover()));
+            view.setCoverThumb(urlBuilderService.buildImagesUrlForFile(book.getCoverThumb()));
         }
-    return view;
+        return view;
     }
 }

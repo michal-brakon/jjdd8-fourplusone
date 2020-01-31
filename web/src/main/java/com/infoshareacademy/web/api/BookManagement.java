@@ -1,8 +1,10 @@
 package com.infoshareacademy.web.api;
 
 import com.infoshareacademy.domain.view.BookView;
+import com.infoshareacademy.domain.view.KindView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.service.AdminManagement;
+import com.infoshareacademy.service.KindService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -12,6 +14,9 @@ import java.util.List;
 
 @Path("/admin")
 public class BookManagement {
+
+    @Inject
+    private KindService kindService;
 
     @Inject
     private AdminManagement adminManagement;
@@ -48,5 +53,12 @@ public class BookManagement {
 
         adminManagement.save(bookDTO);
         return Response.ok().entity(bookDTO).build();
+    }
+    @GET
+    @Path("kind")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllKinds(){
+        List<KindView> kindViews = kindService.getAll();
+     return Response.ok().entity(kindViews).build();
     }
 }

@@ -64,6 +64,8 @@ public class AddBookServlet extends HttpServlet {
         String kind = req.getParameter("kind");
         String genre = req.getParameter("genre");
         String audio = req.getParameter("audio");
+        String epoch = req.getParameter("epoch");
+
         boolean hasAudio = false;
         if (audio.equals("tak")) {
             hasAudio = true;
@@ -75,20 +77,23 @@ public class AddBookServlet extends HttpServlet {
         bookDTO.setKind(kind);
         bookDTO.setGenre(genre);
         bookDTO.setHasAudio(hasAudio);
+        bookDTO.setEpoch(epoch);
         Long id = adminManagement.save(bookDTO);
         String newBookUrl = "";
 
         Part cover = req.getPart("file");
         try {
             newBookUrl = uploaderService.saveFile(cover, "cover_" + id + ".jpg");
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.error("File not found {}", e);
         }
-        bookDTO.setCoverThumb(newBookUrl);
-        bookDTO.setCover(newBookUrl);
-        adminManagement.update(id,bookDTO);
+        if (cover.getSize() != 0) {
+            bookDTO.setCoverThumb(newBookUrl);
+            bookDTO.setCover(newBookUrl);
+            adminManagement.update(id, bookDTO);
+        }
         LOGGER.info("Ksiażka zapisana " + id + title + author);
-        resp.sendRedirect("/single?id="+id);
+        resp.sendRedirect("/single?id=" + id);
 
     }
 }
