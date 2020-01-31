@@ -3,7 +3,6 @@ package com.infoshareacademy.domain.entity;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,9 @@ import java.util.List;
                 query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 2"),
 
         @NamedQuery(name = "Book.countDrama",
-                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3")
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3"),
+        @NamedQuery(name = "Book.getReservationCounter",
+                query = "SELECT b.reservationCount FROM Book b WHERE b.id=:id")
 }
 )
 

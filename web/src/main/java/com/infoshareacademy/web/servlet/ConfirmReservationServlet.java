@@ -40,7 +40,7 @@ public class ConfirmReservationServlet extends HttpServlet {
 
         String message = reservationService
                 .findReservationByToken(token)
-                .map(this::doLogicjkfadshl)
+                .map(this::confirmReservation)
                 .orElseGet(() -> "Link nieprawidłowy");
 
 
@@ -54,7 +54,7 @@ public class ConfirmReservationServlet extends HttpServlet {
         }
     }
 
-    private String doLogicjkfadshl(Reservation reservation) {
+    private String confirmReservation(Reservation reservation) {
 
         if (Timestamp.valueOf(LocalDateTime.now())
                 .before(reservation.getExpirationTime())) {
@@ -66,37 +66,5 @@ public class ConfirmReservationServlet extends HttpServlet {
         }
         }
 
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        String token = req.getParameter("token");
-//        Reservation reservation = reservationService.findReservationByToken(token).ifPresent(this::doLogicjkfadshl);
-//
-//
-//        //Timestamp timestamp = reservation.getCreateTimestamp();
-//        String message = "";
-//        Template template = templateProvider.getTemplate(getServletContext(), "confirm-error.ftlh");
-//
-//
-//        if ((reservationService.findReservationByToken(token)).isPresent()) {
-//            if (Timestamp.valueOf(LocalDateTime.now())
-//                    .before(reservationService.findReservationByToken(token).get().getExpirationTime())) {
-//                reservationService.confirm(reservationService.findReservationByToken(token).get());
-//                message = "Rezerwacja potwierdzona pomyślnie";
-//            } else if (Timestamp.valueOf(LocalDateTime.now()).after(reservationService.findReservationByToken(token).get().getExpirationTime())) {
-//                message = "Czas ważności linku potwierdzającego upłynął";
-//                //reservationService.removeReservation(reservation);
-//            }
-//        } else {
-//            message = "Link nieprawidłowy";
-//            //reservationService.removeReservation(reservation);
-//        }
-//        Map<String, Object> model = new HashMap<>();
-//        model.put("message", message);
-//        try {
-//            template.process(model, resp.getWriter());
-//        } catch (TemplateException e) {
-//            logger.error("Template error");
-//        }
-//    }
     }
 

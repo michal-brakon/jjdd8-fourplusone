@@ -121,4 +121,10 @@ public class BookDao {
         logger.debug("Reservation counter set to {} ", book.getReservationCount());
     }
 
+    public int getReservationCounter(Long id)  {
+        return ((Number) em.createNamedQuery("Book.getReservationCounter")
+                .setParameter("id", id)
+                .getSingleResult())
+                .intValue();
+    }
 }

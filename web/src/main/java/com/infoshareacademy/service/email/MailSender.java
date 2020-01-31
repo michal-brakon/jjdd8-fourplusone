@@ -44,12 +44,12 @@ public class MailSender {
         createMail(from, subject, to, content);
     }
 
-    public void reservationRejected(String userEmail) throws IOException {
+    public void reservationRejected(String userEmail, Reservation reservation) throws IOException {
 
         Email from = new Email("LibraryFPO@fourplusone.com");
-        String subject = "Rezerwacja.";
+        String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
-        Content content = new Content("text/plain", "Rezerwacja książki odwołana z przyczyn technicznych . Przepraszamy ");
+        Content content = new Content("text/plain", "Rezerwacja książki wygasla. ");
         createMail(from, subject, to, content);
     }
 }

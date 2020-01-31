@@ -44,5 +44,12 @@ public class AuthorDao {
 
         logger.debug("Reservation counter set to {} ", author.getReservationCount());
     }
+
+    public int getReservationCounter(String name)  {
+        return ((Number) em.createNamedQuery("Author.getReservationCounter")
+                .setParameter("name", name)
+                .getSingleResult())
+                .intValue();
+    }
 }
 

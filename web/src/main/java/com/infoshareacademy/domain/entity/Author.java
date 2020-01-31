@@ -5,10 +5,13 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+@NamedQueries(value = {
+        @NamedQuery(name = "Author.findAuthorByName",
+                query = "SELECT a FROM Author a WHERE a.name = :name"),
+        @NamedQuery(name = "Author.getReservationCounter",
+                query = "SELECT a.reservationCount FROM Author a WHERE a.name=:name")
+})
 
-@NamedQuery(
-        name = "Author.findAuthorByName",
-        query = "SELECT a FROM Author a WHERE a.name = :name")
 @Entity
 @Table(name = "author", schema = "library",
         indexes = {@Index(name = "author_idx", columnList = "name")})

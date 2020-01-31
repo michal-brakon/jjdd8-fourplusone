@@ -35,7 +35,6 @@ public class ReservationApi {
 //                .ofNullable(req.getSession().getAttribute("email").toString());
 //        String email = emailOpt.get();
 
-
         id = id.replace(",", "");
         Long idParam = Long.parseLong(id);
 
@@ -45,11 +44,9 @@ public class ReservationApi {
         reservation.setBookId(idParam);
         reservation.setUserId((long) 1);
         reservation.setBorrowDate(Timestamp.valueOf(LocalDateTime.now()));
-        reservation.setExpiredTime(Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)));
+        reservation.setExpiredTime(Timestamp.valueOf(LocalDateTime.now().plusMinutes(2)));
 
         reservationService.addReservation(reservation);
-
-
 
         return Response.ok().build();
     }

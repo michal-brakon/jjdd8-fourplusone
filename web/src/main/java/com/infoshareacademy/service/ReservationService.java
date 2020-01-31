@@ -66,7 +66,8 @@ public class ReservationService {
         return reservationDao.findReservationByToken(token);
     }
 
-    public void removeReservation (Reservation reservation)   {
+    public void removeReservation (Reservation reservation) throws IOException {
+        mailSender.reservationRejected("lucas83122@gmail.com", reservation);
         reservationDao.removeReservation(reservation);
     }
 
@@ -80,8 +81,14 @@ public class ReservationService {
         if (!reservations.isEmpty())  {
             reservations.stream()
                     .filter(r -> r.getExpirationTime().toLocalDateTime().isBefore(LocalDateTime.now()))
-                    .forEach(r -> reservationDao.removeReservation(r));
+                    .filter(r -> r.getConfirm()==null)
+                    .forEach(r -> {
+                        try {
+                            removeReservation(r);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
         }
-
     }
 }
