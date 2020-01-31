@@ -1,6 +1,5 @@
 package com.infoshareacademy.service;
 
-import com.infoshareacademy.OAuth.OAuth;
 import com.infoshareacademy.dao.UserDao;
 import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.dto.UserDTO;

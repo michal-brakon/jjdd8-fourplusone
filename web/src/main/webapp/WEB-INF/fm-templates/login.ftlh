@@ -38,20 +38,23 @@
 <#--    </div>-->
 <#--</div>-->
 
-<div class="g-signin2" data-onsuccess="onSignedIn" data-theme="dark"></div>
-<a href="/" onclick="signOut();" id="signout"></a>
-<script>
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut();
-    }
 
-    function onSignedIn(googleUser) {
-        const signoutElement = document.getElementById('signout');
-        signoutElement.innerHTML =
-            'Sign out ' + googleUser.getBasicProfile().getEmail();
-    }
-</script>
+<a href="${url}"> Login</a>
+
+<#--<div class="g-signin2" data-onsuccess="onSignedIn" data-theme="dark"></div>-->
+<#--<a href="/" onclick="signOut();" id="signout"></a>-->
+<#--<script>-->
+<#--    function signOut() {-->
+<#--        var auth2 = gapi.auth2.getAuthInstance();-->
+<#--        auth2.signOut();-->
+<#--    }-->
+
+<#--    function onSignedIn(googleUser) {-->
+<#--        const signoutElement = document.getElementById('signout');-->
+<#--        signoutElement.innerHTML =-->
+<#--            'Sign out ' + googleUser.getBasicProfile().getEmail();-->
+<#--    }-->
+<#--</script>-->
 
 
 

@@ -1,5 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
+
+import com.infoshareacademy.OAuth.GoogleAuthHelper;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -18,21 +20,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/login")
-public class Login extends HttpServlet {
-    @Inject
-    private TemplateProvider templateProvider;
+public class LoginServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class.getName());
+
+    @Inject
+    TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("START");
+        GoogleAuthHelper googleAuthHelper = new GoogleAuthHelper();
+
+        String url = googleAuthHelper.buildLoginUrl();
+
+        logger.info("google url {} ",url);
+
+
 
         Template template = templateProvider.getTemplate(getServletContext(), "login.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("name", name);
-
+        dataModel.put("url", url);
         try {
             template.process(dataModel, printWriter);
         } catch (TemplateException e) {
@@ -43,4 +53,6 @@ public class Login extends HttpServlet {
 
     }
 
+
 }
+
