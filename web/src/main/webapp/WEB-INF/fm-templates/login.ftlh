@@ -53,7 +53,27 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                // ...
+                case R.id.button_sign_out:
+                    signOut();
+                    break;
+                // ...
+            }
+        }
+        private void signOut() {
+            mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    // ...
+                }
+            });
+        }
     }
+
 </script>
 </body>
 </html>

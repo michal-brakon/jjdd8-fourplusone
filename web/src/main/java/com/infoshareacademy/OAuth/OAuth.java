@@ -57,6 +57,7 @@ public final class OAuth {
         stateToken = "google;" + sr1.nextInt();
 
     }
+
     public String getStateToken() {
         return stateToken;
     }
