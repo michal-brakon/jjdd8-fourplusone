@@ -1,9 +1,13 @@
 package com.infoshareacademy.web.api;
 
 import com.infoshareacademy.domain.view.BookView;
+import com.infoshareacademy.domain.view.EpochView;
+import com.infoshareacademy.domain.view.GenreView;
 import com.infoshareacademy.domain.view.KindView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.service.AdminManagement;
+import com.infoshareacademy.service.EpochService;
+import com.infoshareacademy.service.GenreService;
 import com.infoshareacademy.service.KindService;
 
 import javax.inject.Inject;
@@ -15,6 +19,10 @@ import java.util.List;
 @Path("/admin")
 public class BookManagement {
 
+    @Inject
+    private EpochService epochService;
+    @Inject
+    private GenreService genreService;
     @Inject
     private KindService kindService;
 
@@ -54,11 +62,29 @@ public class BookManagement {
         adminManagement.save(bookDTO);
         return Response.ok().entity(bookDTO).build();
     }
+
     @GET
     @Path("kind")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllKinds(){
+    public Response getAllKinds() {
         List<KindView> kindViews = kindService.getAll();
-     return Response.ok().entity(kindViews).build();
+        return Response.ok().entity(kindViews).build();
     }
+
+    @GET
+    @Path("genre")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllGenres() {
+        List<GenreView> genreViews = genreService.getAll();
+        return Response.ok().entity(genreViews).build();
+    }
+
+    @GET
+    @Path("epoch")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllEpoch() {
+        List<EpochView> epochViews = epochService.getAll();
+        return Response.ok().entity(epochViews).build();
+    }
+
 }

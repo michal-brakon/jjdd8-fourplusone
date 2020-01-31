@@ -22,4 +22,7 @@ public class AuthorService {
             return author;
         });
     }
-}
+    public List<AuthorView> getAll(){
+
+    }
+ }

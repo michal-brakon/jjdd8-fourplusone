@@ -1,8 +1,6 @@
 <script>
     $(function () {
-
         $(document).ready(function () {
-
             $.ajax({
                 url: '/api/admin/kind',
                 type: 'GET',
@@ -10,6 +8,44 @@
 
                     for (var i = 0; i < result.length; i++) {
                         $("#kind").append(
+                            "<option value='" + result[i].name + "'>" + result[i].name + "</option>");
+                    }
+
+                    console.log(result);
+                }
+            });
+        })
+    })
+</script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $.ajax({
+                url: '/api/admin/genre',
+                type: 'GET',
+                success: function (result) {
+
+                    for (var i = 0; i < result.length; i++) {
+                        $("#genre").append(
+                            "<option value='" + result[i].name + "'>" + result[i].name + "</option>");
+                    }
+
+                    console.log(result);
+                }
+            });
+        })
+    })
+</script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $.ajax({
+                url: '/api/admin/epoch',
+                type: 'GET',
+                success: function (result) {
+
+                    for (var i = 0; i < result.length; i++) {
+                        $("#epoch").append(
                             "<option value='" + result[i].name + "'>" + result[i].name + "</option>");
                     }
 
@@ -35,20 +71,16 @@
                    name="author" required>
 
             <label for="textInput">Rodzaj</label>
-            <select class="browser-default custom-select mb-4" id="select" name="kind" required>
-
+            <select class="browser-default custom-select mb-4" id="kind" name="kind" required>
             </select>
+
             <label for="textInput">Epoka</label>
-            <select class="browser-default custom-select mb-4" id="select" name="epoch" required>
-                <option value="" disabled="" selected="">Wybierz rodzaj literacki</option>
-                <option value="jakas">jakas</option>
-                <option value="ptakas">srakas</option>
-                <option value="sgfsdf">asdas</option>
+            <select class="browser-default custom-select mb-4" id="epoch" name="epoch" required>
             </select>
 
             <label for="textInput">Gatunek</label>
-            <input type="text" id="textInput" class="form-control mb-4"
-                   placeholder="Podaj gatunek literacki" name="genre" required>
+            <select class="browser-default custom-select mb-4" id="genre" name="genre" required>
+            </select>
 
             <label for="textInput">Audiobook</label>
             <select class="browser-default custom-select mb-4" id="select" name="audio" required>

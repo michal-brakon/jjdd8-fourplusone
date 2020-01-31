@@ -1,10 +1,13 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-
-@NamedQuery(
-        name = "Genre.findGenreByName",
-        query = "SELECT g FROM Genre g WHERE g.name = :name")
+@NamedQueries({
+        @NamedQuery(
+                name = "Genre.findGenreByName",
+                query = "SELECT g FROM Genre g WHERE g.name = :name"
+        ),
+        @NamedQuery(name = "Genre.getAll",
+                query = "SELECT g FROM Genre g ")})
 
 @Entity
 @Table(name = "genre", schema = "library",

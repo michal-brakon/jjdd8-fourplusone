@@ -32,5 +32,10 @@ public class EpochDao {
         List<Epoch> resultList = query.getResultList();
 
         return resultList.isEmpty() ? null : resultList.get(0);
+
+    }
+    public List<Epoch> getAll() {
+        Query query = em.createNamedQuery("Epoch.getAll");
+        return query.getResultList();
     }
 }
