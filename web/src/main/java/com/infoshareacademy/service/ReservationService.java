@@ -12,6 +12,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,6 +31,9 @@ public class ReservationService {
 
     @EJB
     private UserService userService;
+
+    @EJB
+    private AuthorService authorService;
 
     @Inject
     MailSender mailSender;
@@ -48,6 +53,7 @@ public class ReservationService {
 
         reservationDao.addReservation(reservation);
         bookService.increaseReservationCount(bookId);
+        authorService.increaseReservationCount(bookService.getById(bookId).getAuthor());
         mailSender.approveReservation("lucas83122@gmail.com", reservation);
 
     }
@@ -67,5 +73,15 @@ public class ReservationService {
     public void confirm (Reservation reservation)  {
         reservation.setConfirm(true);
         reservationDao.confirm(reservation);
+    }
+
+    public void removeUnconfirmedReservations ()  {
+        List<Reservation> reservations = reservationDao.findAll();
+        if (!reservations.isEmpty())  {
+            reservations.stream()
+                    .filter(r -> r.getExpirationTime().toLocalDateTime().isBefore(LocalDateTime.now()))
+                    .forEach(r -> reservationDao.removeReservation(r));
+        }
+
     }
 }

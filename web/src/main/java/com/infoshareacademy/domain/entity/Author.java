@@ -1,5 +1,7 @@
 package com.infoshareacademy.domain.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,18 @@ public class Author {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
+
+    @Column(name = "reservation_count", nullable = false)
+    @ColumnDefault("0")
+    private int reservationCount;
+
+    public int getReservationCount() {
+        return reservationCount;
+    }
+
+    public void setReservationCount(int reservationCount) {
+        this.reservationCount = reservationCount;
+    }
 
     public Long getId() {
         return id;

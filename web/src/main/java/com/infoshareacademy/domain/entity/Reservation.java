@@ -13,7 +13,9 @@ import java.sql.Timestamp;
         @NamedQuery(name = "Reservation.getByBook",
                 query = "SELECT r FROM Reservation r WHERE r.book=:book"),
         @NamedQuery(name = "Reservation.getByToken",
-                query = "SELECT r FROM Reservation r WHERE r.token=:token")
+                query = "SELECT r FROM Reservation r WHERE r.token=:token"),
+        @NamedQuery(name = "Reservation.findAll",
+                query = "SELECT r FROM Reservation r")
 })
 
 public class Reservation {

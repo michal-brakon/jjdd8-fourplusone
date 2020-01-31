@@ -119,7 +119,6 @@ public class BookDao {
         em.merge(book);
 
         logger.debug("Reservation counter set to {} ", book.getReservationCount());
-
     }
 
 }

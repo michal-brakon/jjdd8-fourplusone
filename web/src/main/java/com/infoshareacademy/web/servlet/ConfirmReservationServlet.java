@@ -32,33 +32,71 @@ public class ConfirmReservationServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfirmReservationServlet.class.getName());
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String token = req.getParameter("token");
-        Reservation reservation = reservationService.findReservationByToken(token).get();
-        Timestamp timestamp = reservation.getCreateTimestamp();
-        String message = "";
         Template template = templateProvider.getTemplate(getServletContext(), "confirm-error.ftlh");
 
-        if ((reservationService.findReservationByToken(token)).isPresent()) {
-            if (Timestamp.valueOf(LocalDateTime.now())
-                    .before(reservation.getExpirationTime())) {
-                reservationService.confirm(reservation);
-                message = "Rezerwacja potwierdzona pomyślnie";
-            } else if (Timestamp.valueOf(LocalDateTime.now()).after(reservation.getExpirationTime())) {
-                message = "Czas ważności linku potwierdzającego upłynął";
-                //reservationService.removeReservation(reservation);
-            }
-        } else {
-            message = "Link nieprawidłowy";
-            //reservationService.removeReservation(reservation);
-        }
+        String token = req.getParameter("token");
+
+        String message = reservationService
+                .findReservationByToken(token)
+                .map(this::doLogicjkfadshl)
+                .orElseGet(() -> "Link nieprawidłowy");
+
+
         Map<String, Object> model = new HashMap<>();
         model.put("message", message);
         try {
             template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
+        } catch (
+                TemplateException e) {
             logger.error("Template error");
         }
     }
-}
+
+    private String doLogicjkfadshl(Reservation reservation) {
+
+        if (Timestamp.valueOf(LocalDateTime.now())
+                .before(reservation.getExpirationTime())) {
+            reservationService.confirm(reservation);
+            return "Rezerwacja potwierdzona pomyślnie";
+        } else  {
+            return "Czas ważności linku potwierdzającego upłynął";
+
+        }
+        }
+
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//        String token = req.getParameter("token");
+//        Reservation reservation = reservationService.findReservationByToken(token).ifPresent(this::doLogicjkfadshl);
+//
+//
+//        //Timestamp timestamp = reservation.getCreateTimestamp();
+//        String message = "";
+//        Template template = templateProvider.getTemplate(getServletContext(), "confirm-error.ftlh");
+//
+//
+//        if ((reservationService.findReservationByToken(token)).isPresent()) {
+//            if (Timestamp.valueOf(LocalDateTime.now())
+//                    .before(reservationService.findReservationByToken(token).get().getExpirationTime())) {
+//                reservationService.confirm(reservationService.findReservationByToken(token).get());
+//                message = "Rezerwacja potwierdzona pomyślnie";
+//            } else if (Timestamp.valueOf(LocalDateTime.now()).after(reservationService.findReservationByToken(token).get().getExpirationTime())) {
+//                message = "Czas ważności linku potwierdzającego upłynął";
+//                //reservationService.removeReservation(reservation);
+//            }
+//        } else {
+//            message = "Link nieprawidłowy";
+//            //reservationService.removeReservation(reservation);
+//        }
+//        Map<String, Object> model = new HashMap<>();
+//        model.put("message", message);
+//        try {
+//            template.process(model, resp.getWriter());
+//        } catch (TemplateException e) {
+//            logger.error("Template error");
+//        }
+//    }
+    }
+

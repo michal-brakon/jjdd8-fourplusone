@@ -38,5 +38,11 @@ public class AuthorDao {
     public Optional<Author> findById(String id) {
             return Optional.ofNullable(em.find(Author.class, id));
     }
+
+    public void haveBeenReserved (Author author)  {
+        em.merge(author);
+
+        logger.debug("Reservation counter set to {} ", author.getReservationCount());
+    }
 }
 

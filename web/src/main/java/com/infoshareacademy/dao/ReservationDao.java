@@ -42,6 +42,11 @@ public class ReservationDao {
         return query.getResultList();
     }
 
+    public List<Reservation> findAll() {
+        Query query = em.createNamedQuery("Reservation.findAll");
+        return query.getResultList();
+    }
+
     public void removeReservation(Reservation reservation) {
         em.remove(reservation);
         logger.debug("reservation {} was removed", reservation);
@@ -60,4 +65,5 @@ public class ReservationDao {
         em.merge(reservation);
         logger.debug("reservation was confirmed by user", reservation);
     }
+
 }

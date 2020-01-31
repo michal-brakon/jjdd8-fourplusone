@@ -22,4 +22,11 @@ public class AuthorService {
             return author;
         });
     }
+    public void increaseReservationCount (Author author) {
+
+        int reservationCount = author.getReservationCount();
+        author.setReservationCount(reservationCount+1);
+
+        authorDao.haveBeenReserved(author);
+    }
 }
