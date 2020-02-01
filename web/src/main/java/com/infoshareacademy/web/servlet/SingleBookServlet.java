@@ -4,7 +4,9 @@ import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
+import com.infoshareacademy.service.RatingService;
 import com.infoshareacademy.service.ReservationService;
+import com.infoshareacademy.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -34,12 +36,20 @@ public class SingleBookServlet extends HttpServlet {
     @Inject
     private ReservationService reservationService;
 
+    @Inject
+    private RatingService ratingService;
+
+    @Inject
+    private UserService userService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String param = req.getParameter("id");
 
         req.getSession().setAttribute("book_id", Long.parseLong(param));
+
+        String userEmail = (String) req.getSession().getAttribute("email");
 
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -49,10 +59,13 @@ public class SingleBookServlet extends HttpServlet {
         Book book = bookService.getById(id);
 
         boolean isReserved = true;
+        boolean isRated = true;
 
         if (reservationService.findReservationByBook(book).isEmpty()) {
             isReserved = false;
         }
+
+        //if (ratingService.checkIsRated(userService.))
 
         PrintWriter writer = resp.getWriter();
 
@@ -78,6 +91,7 @@ public class SingleBookServlet extends HttpServlet {
         String param = req.getParameter("id");
 
         int score = Integer.valueOf(req.getParameter("score"));
+
 
         req.getSession().setAttribute("book_id", Long.parseLong(param));
 

@@ -7,6 +7,7 @@ import com.infoshareacademy.domain.entity.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Stateless
 public class RatingService {
@@ -24,7 +25,30 @@ public class RatingService {
         ratingDao.addRating(rating);
     }
 
-    public void checkIsRated (User user, Book book)  {
+    public boolean checkIsRated (User user, Book book) {
 
+       // boolean isRated = false;
+
+//        if (ratingDao.findRatingByBook(book).isPresent()) {
+//            if (ratingDao.findRatingByBook(book).get().getUser() == user) {
+//                isRated = true;
+//            }
+//        }
+//        return isRated;
+
+        Boolean isRated = ratingDao
+                .findRatingByBook(book)
+                .filter(rating -> rating.getUser() == user)
+                .map(rating -> {
+                    if (rating.getUser() == user) {
+                        return true;
+                    }  else {
+                        return false;
+                    }
+                })
+                .orElse(false);
+
+        return isRated;
     }
 }
+

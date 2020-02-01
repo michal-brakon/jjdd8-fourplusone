@@ -40,7 +40,7 @@ public class ConfirmReservationServlet extends HttpServlet {
 
         String message = reservationService
                 .findReservationByToken(token)
-                .map(this::confirmReservation)
+                .map(reservation -> confirmReservation(reservation))
                 .orElseGet(() -> "Link nieprawidłowy");
 
 
