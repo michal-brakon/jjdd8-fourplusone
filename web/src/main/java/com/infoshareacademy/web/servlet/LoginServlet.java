@@ -26,12 +26,12 @@ public class LoginServlet extends HttpServlet {
 
     @Inject
     TemplateProvider templateProvider;
+    @Inject
+    GoogleAuthHelper googleAuthHelper;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("START");
-        GoogleAuthHelper googleAuthHelper = new GoogleAuthHelper();
-
         String url = googleAuthHelper.buildLoginUrl();
 
         logger.info("google url {} ",url);
@@ -49,6 +49,5 @@ public class LoginServlet extends HttpServlet {
             logger.debug("Error -debug4");
         }
     }
-
 }
 

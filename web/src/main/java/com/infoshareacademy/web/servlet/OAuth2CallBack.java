@@ -45,6 +45,8 @@ public class OAuth2CallBack extends HttpServlet {
 
         userService.addUserToEntity(userDTO);
         logger.info("User Added");
+
+        resp.sendRedirect("");
     }
 }
 
