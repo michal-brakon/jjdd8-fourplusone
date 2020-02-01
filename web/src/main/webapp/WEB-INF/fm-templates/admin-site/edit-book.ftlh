@@ -1,5 +1,4 @@
-
-
+<#setting number_format="#####.#####">
 <div id="editModal">
     <div class="dialog">
         <div class="content">
