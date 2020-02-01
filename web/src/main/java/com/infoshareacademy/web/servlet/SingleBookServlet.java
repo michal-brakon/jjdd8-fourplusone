@@ -35,8 +35,9 @@ public class SingleBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-
+        String name = (String) req.getSession().getAttribute("name");
+        String email = (String) req.getSession().getAttribute("email");
+        String role = (String) req.getSession().getAttribute("role");
 
         String param = req.getParameter("id");
 
@@ -55,10 +56,15 @@ public class SingleBookServlet extends HttpServlet {
         BookView bookView = bookService.getBookViewById(id);
 
         model.put("book", bookView);
-        try {
-            template.process(model, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
+        if (email != null && !email.isEmpty()) {
+            model.put("logged", "yes");
+            model.put("email", email);
+        } else {
+            model.put("logged", "no");}
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
         }
     }
-}

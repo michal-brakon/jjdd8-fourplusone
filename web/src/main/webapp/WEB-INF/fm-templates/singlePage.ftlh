@@ -21,7 +21,6 @@
 <body>
 <div id="wrapper">
     <#include "header-nav.ftlh">
-
     <div class="container">
         <div class="center-block">
             <div class="col-lg-4">
