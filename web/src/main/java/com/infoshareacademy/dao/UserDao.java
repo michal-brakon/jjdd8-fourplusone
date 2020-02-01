@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 import java.util.Optional;
 
 @Stateless
@@ -23,8 +24,13 @@ public class UserDao {
         em.persist(user);
     }
 
-    public Optional<User> findUserByEmail(String email) {
-            return Optional.ofNullable(em.find(User.class, email));
+    public User findUserByEmail(String email) {
+
+        Query query = em.createNamedQuery("User.findByEmail");
+        query.setParameter("email", email);
+
+        List<User> results = query.getResultList();
+        return results.isEmpty() ? null : results.get(0);
         }
     }
 

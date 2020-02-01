@@ -7,7 +7,6 @@ import com.infoshareacademy.mapper.UserMapperToEntity;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.Optional;
 
 @Stateless
 public class UserService {
@@ -24,7 +23,7 @@ public class UserService {
         userDao.addUser(user);
     }
 
-    public Optional<User> findUserByEmail (String email) {
+    public User findUserByEmail (String email) {
         return userDao.findUserByEmail(email);
     }
 }
