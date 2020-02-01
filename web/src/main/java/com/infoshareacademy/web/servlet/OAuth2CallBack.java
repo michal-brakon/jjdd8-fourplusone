@@ -36,7 +36,6 @@ public class OAuth2CallBack extends HttpServlet {
         logger.info("User: " + user);
         JsonObject userInfoJson = Json.createReader(new StringReader(user)).readObject();
         userInfoJson.getJsonString("email");
-//        req.getSession().setAttribute("userID", param);
 
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail(userInfoJson.getString("email"));
@@ -45,7 +44,9 @@ public class OAuth2CallBack extends HttpServlet {
 
         userService.addUserToEntity(userDTO);
         logger.info("User Added");
-
+        req.getSession().setAttribute("email", userDTO.getEmail());
+        req.getSession().setAttribute("name", userDTO.getName());
+        req.getSession().setAttribute("role", userDTO.getRole());
         resp.sendRedirect("");
     }
 }

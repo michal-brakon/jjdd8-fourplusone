@@ -28,11 +28,22 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        String name = (String) req.getSession().getAttribute("name");
+        String email = (String)req.getSession().getAttribute("email");
+        String role = (String)req.getSession().getAttribute("role");
+
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
-        String name = req.getParameter("name");
+
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("name", name);
+        if (email != null && !email.isEmpty()) {
+            dataModel.put("logged", "yes");
+            dataModel.put("email", email);
+        } else {
+            dataModel.put("logged", "no");
+
+        }
 
         try {
             template.process(dataModel, printWriter);
