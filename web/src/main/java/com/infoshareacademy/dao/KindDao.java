@@ -33,4 +33,10 @@ public class KindDao {
 
         return resultList.isEmpty() ? null : resultList.get(0);
     }
+
+    public List<LiteratureKind> getAll() {
+        Query query = em.createNamedQuery("Kind.getAll");
+
+        return query.getResultList();
+    }
 }

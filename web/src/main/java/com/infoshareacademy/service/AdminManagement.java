@@ -44,6 +44,8 @@ public class AdminManagement {
 
 
     public BookView remove(Long id) {
+
+
         return bookMapperToView.mapEntityToView(bookDao.delete(id));
     }
 
@@ -62,8 +64,9 @@ public class AdminManagement {
         bookDao.update(book);
     }
 
-    public void save(BookDTO bookDTO) {
-        bookService.addBook(bookDTO);
+    public Long save(BookDTO bookDTO) {
+
+        return  bookService.addBook(bookDTO);
     }
 
     public List<BookView> findAll() {
