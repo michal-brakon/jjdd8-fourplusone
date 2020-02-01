@@ -26,4 +26,3 @@ hs_err_pid*
 out
 gen
 target/
-target/sendgrid.env
