@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonString;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,13 +47,12 @@ public class OAuth2CallBack extends HttpServlet {
             req.getSession().setAttribute("name", userDTO.getName());
             req.getSession().setAttribute("role", userDTO.getRole());
             resp.sendRedirect("");
-            logger.info("User Added");}
-        else {
+            logger.info("User Added");
+        } else {
             req.getSession().setAttribute("email", userService.findUserByEmail(email).getEmail());
             req.getSession().setAttribute("name", userService.findUserByEmail(email).getName());
             req.getSession().setAttribute("role", userService.findUserByEmail(email).getRole());
             resp.sendRedirect("");
-
         }
     }
 }
