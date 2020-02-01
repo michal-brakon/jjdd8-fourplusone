@@ -100,11 +100,23 @@ public class Book {
                         CascadeType.MERGE,
                         CascadeType.REFRESH,
                        CascadeType.DETACH})
+
     @JoinColumn(name = "author_id")
     private Author author;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private List<Rating> ratings = new ArrayList<>();
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 
     public Author getAuthor() {
         return author;

@@ -30,6 +30,17 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Rating> ratings = new ArrayList<>();
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
     public Long getId() {
         return id;
     }

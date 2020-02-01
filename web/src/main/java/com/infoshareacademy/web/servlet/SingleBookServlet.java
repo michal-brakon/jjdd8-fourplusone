@@ -71,4 +71,44 @@ public class SingleBookServlet extends HttpServlet {
             logger.error("Template error");
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        String param = req.getParameter("id");
+
+        int score = Integer.valueOf(req.getParameter("score"));
+
+        req.getSession().setAttribute("book_id", Long.parseLong(param));
+
+        if (param == null || param.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        Long id = Long.valueOf(param);
+
+        Book book = bookService.getById(id);
+
+        boolean isReserved = true;
+
+        if (reservationService.findReservationByBook(book).isEmpty()) {
+            isReserved = false;
+        }
+
+        PrintWriter writer = resp.getWriter();
+
+        Template template = templateProvider
+                .getTemplate(getServletContext(),
+                        "singlePage.ftlh");
+        Map<String, Object> model = new HashMap<>();
+
+        BookView bookView = bookService.getBookViewById(id);
+
+        model.put("book", bookView);
+        model.put("isReserved", isReserved);
+        try {
+            template.process(model, writer);
+        } catch (TemplateException e) {
+            logger.error("Template error");
+        }
+    }
 }
