@@ -18,6 +18,7 @@
             data: [{
                 type: "line",
                 dataPoints : dataPoints,
+
             }]
         });
         $.getJSON("/api/admin/mostreservedauthors", function(data) {

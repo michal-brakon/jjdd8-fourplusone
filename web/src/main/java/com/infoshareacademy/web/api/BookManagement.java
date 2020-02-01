@@ -1,14 +1,8 @@
 package com.infoshareacademy.web.api;
 
-import com.infoshareacademy.domain.view.BookView;
-import com.infoshareacademy.domain.view.EpochView;
-import com.infoshareacademy.domain.view.GenreView;
-import com.infoshareacademy.domain.view.KindView;
+import com.infoshareacademy.domain.view.*;
 import com.infoshareacademy.dto.BookDTO;
-import com.infoshareacademy.service.AdminManagement;
-import com.infoshareacademy.service.EpochService;
-import com.infoshareacademy.service.GenreService;
-import com.infoshareacademy.service.KindService;
+import com.infoshareacademy.service.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -21,10 +15,15 @@ public class BookManagement {
 
     @Inject
     private EpochService epochService;
+
     @Inject
     private GenreService genreService;
+
     @Inject
     private KindService kindService;
+
+    @Inject
+    private AuthorService authorService;
 
     @Inject
     private AdminManagement adminManagement;
@@ -42,16 +41,6 @@ public class BookManagement {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteBook(@PathParam("id") Long id) {
         return Response.ok().entity(adminManagement.remove(id)).build();
-    }
-
-    @PUT
-    @Path("/edit/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") Long id, BookDTO bookDTO) {
-
-        adminManagement.update(id, bookDTO);
-        return Response.ok().entity(bookDTO).build();
     }
 
     @POST
@@ -85,6 +74,16 @@ public class BookManagement {
     public Response getAllEpoch() {
         List<EpochView> epochViews = epochService.getAll();
         return Response.ok().entity(epochViews).build();
+    }
+
+    @GET
+    @Path("author/{param}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByAuthorName(@PathParam("param") String param) {
+
+
+        List<AuthorView> authorViews = authorService.authorNameLiveSearch(param);
+        return Response.ok().entity(authorViews).build();
     }
 
 }

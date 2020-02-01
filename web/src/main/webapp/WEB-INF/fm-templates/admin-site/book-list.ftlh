@@ -1,3 +1,4 @@
+<#setting number_format="#####.#####">
 <script src="/../../../html/js/datatables/jquery.dataTables.min.js"></script>
 <script src="/../../../html/js/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/../../../html/js/demo/datatables-demo.js"></script>

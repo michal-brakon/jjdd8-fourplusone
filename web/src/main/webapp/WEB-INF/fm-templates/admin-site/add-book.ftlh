@@ -10,8 +10,6 @@
                         $("#kind").append(
                             "<option value='" + result[i].name + "'>" + result[i].name + "</option>");
                     }
-
-                    console.log(result);
                 }
             });
         })
@@ -63,15 +61,15 @@
             <hr>
 
             <label for="textInput">Tytuł</label>
-            <input type="text" id="textInput" class="form-control mb-4" placeholder="Podaj tytuł"
+            <input type="text" class="form-control mb-4" placeholder="Podaj tytuł"
                    name="title" required>
 
             <label for="textInput">Autor</label>
-            <input type="text" id="textInput" class="form-control mb-4" placeholder="Podaj autora"
-                   name="author" required>
+            <input type="text" name="author" class="form-control form-control-user" id="author" autocomplete="off">
+
 
             <label for="textInput">Rodzaj</label>
-            <select class="browser-default custom-select mb-4" id="kind" name="kind" required>
+            <select type="text" class="browser-default custom-select mb-4" id="kind" name="kind" required>
             </select>
 
             <label for="textInput">Epoka</label>

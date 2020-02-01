@@ -11,7 +11,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <!-- Page level custom scripts -->
-
 </head>
 <body>
 <div class="container p-3 my-3 bg-dark text-white">
@@ -63,7 +62,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
+                <h4 class="modal-title">Usuwanie </h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 

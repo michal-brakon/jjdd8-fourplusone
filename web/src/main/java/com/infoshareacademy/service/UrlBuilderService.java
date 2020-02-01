@@ -18,6 +18,6 @@ public class UrlBuilderService {
     }
 
     public String buildApiImagesUrlForFile(String filename) {
-        return buildBaseUrlForFile(filename);
+        return BASE_API_URL + filename;
     }
 }
