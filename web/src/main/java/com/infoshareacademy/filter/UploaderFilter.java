@@ -19,7 +19,7 @@ public class UploaderFilter implements Filter {
         if (role == null || role.isEmpty()) {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
         } else if (role.equals("User") || role.equals("superadmin")){
-            ((HttpServletResponse) servletResponse).sendRedirect("/admin");
+            ((HttpServletRequest) servletRequest).getRequestDispatcher("/admin").forward(servletRequest,servletResponse);
         } else {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
         }
