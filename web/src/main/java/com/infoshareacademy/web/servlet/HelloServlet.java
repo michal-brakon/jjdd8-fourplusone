@@ -40,9 +40,12 @@ public class HelloServlet extends HttpServlet {
             dataModel.put("logged", "yes");
             dataModel.put("email", email);
         } else {
-            dataModel.put("logged", "no");
+            dataModel.put("logged", "no");}
 
+        if(role != null && role.equals("User")) {
+            dataModel.put("user", "yes");
         }
+        else {dataModel.put("user", "no");}
 
         try {
             template.process(dataModel, printWriter);
@@ -51,6 +54,5 @@ public class HelloServlet extends HttpServlet {
             logger.info("Error-info4");
             logger.debug("Error -debug4");
         }
-
     }
 }

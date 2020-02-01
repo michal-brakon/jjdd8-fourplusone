@@ -26,7 +26,6 @@ import java.util.Map;
 public class SingleBookServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(SingleBookServlet.class.getName());
 
-
     @Inject
     private BookService bookService;
 
