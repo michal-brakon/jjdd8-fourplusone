@@ -26,7 +26,7 @@ public class GoogleAuthHelper {
 
     private static final String CLIENT_ID = "273754675187-9rlbmfmo4b4u15h887kkaj9nljgpuajv.apps.googleusercontent.com";
     private static final String CLIENT_SECRET = "j3gBDSypVttewFE6NuY9xpgq";
-    private static final String CALLBACK_URI = "http://localhost:8080/oauth2callback";
+    private static final String CALLBACK_URI = "http://fourplusone.jjdd8.is-academy.pl:4320/oauth2callback";
     private static final Collection<String> SCOPE = Arrays.asList("https://www.googleapis.com/auth/userinfo.profile;https://www.googleapis.com/auth/userinfo.email".split(";"));
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
