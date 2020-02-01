@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonString;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,19 +36,29 @@ public class OAuth2CallBack extends HttpServlet {
 
         logger.info("User: " + user);
         JsonObject userInfoJson = Json.createReader(new StringReader(user)).readObject();
-        userInfoJson.getJsonString("email");
+        JsonString email = userInfoJson.getJsonString("email");
+        String emailString = email.toString();
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setEmail(userInfoJson.getString("email"));
-        userDTO.setName(userInfoJson.getString("name"));
-        userDTO.setRole("User");
 
-        userService.addUserToEntity(userDTO);
-        logger.info("User Added");
-        req.getSession().setAttribute("email", userDTO.getEmail());
-        req.getSession().setAttribute("name", userDTO.getName());
-        req.getSession().setAttribute("role", userDTO.getRole());
-        resp.sendRedirect("");
+
+        if (userService.findUserByEmail(emailString).isEmpty()) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setEmail(userInfoJson.getString("email"));
+            userDTO.setName(userInfoJson.getString("name"));
+            userDTO.setRole("User");
+            userService.addUserToEntity(userDTO);
+            req.getSession().setAttribute("email", userDTO.getEmail());
+            req.getSession().setAttribute("name", userDTO.getName());
+            req.getSession().setAttribute("role", userDTO.getRole());
+            resp.sendRedirect("");
+            logger.info("User Added");}
+        else {
+            req.getSession().setAttribute("email", userService.findUserByEmail(emailString).get().getEmail());
+            req.getSession().setAttribute("name", userService.findUserByEmail(emailString).get().getName());
+            req.getSession().setAttribute("role", userService.findUserByEmail(emailString).get().getRole());
+            resp.sendRedirect("");
+
+        }
     }
 }
 

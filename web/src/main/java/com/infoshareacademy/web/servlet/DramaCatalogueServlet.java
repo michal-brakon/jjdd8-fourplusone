@@ -36,6 +36,9 @@ public class DramaCatalogueServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String name = (String) req.getSession().getAttribute("name");
+        String email = (String) req.getSession().getAttribute("email");
+        String role = (String) req.getSession().getAttribute("role");
 
         PrintWriter writer = resp.getWriter();
 
@@ -70,6 +73,13 @@ public class DramaCatalogueServlet extends HttpServlet {
             model.put("next", next);
             model.put("previous", previous);
             model.put("lastPageView", lastPageView);
+            if (email != null && !email.isEmpty()) {
+                model.put("logged", "yes");
+                model.put("email", email);
+            } else {
+                model.put("logged", "no");
+
+            }
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

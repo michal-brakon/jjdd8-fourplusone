@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user", schema = "library")
+@NamedQueries(
+        @NamedQuery(name = "User.findByEmail",
+        query = "SELECT u FROM User u WHERE u.email LIKE :email"))
 public class User {
 
     @Id

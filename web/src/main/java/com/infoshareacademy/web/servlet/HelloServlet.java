@@ -28,10 +28,9 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         String name = (String) req.getSession().getAttribute("name");
-        String email = (String)req.getSession().getAttribute("email");
-        String role = (String)req.getSession().getAttribute("role");
+        String email = (String) req.getSession().getAttribute("email");
+        String role = (String) req.getSession().getAttribute("role");
 
         Template template = templateProvider.getTemplate(getServletContext(), "index.ftlh");
 
@@ -54,5 +53,4 @@ public class HelloServlet extends HttpServlet {
         }
 
     }
-
 }
