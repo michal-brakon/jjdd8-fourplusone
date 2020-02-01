@@ -19,10 +19,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Role roleId;
-
+    @Column(name = "role")
+    private String role;
 
     public Long getId() {
         return id;
@@ -32,7 +30,6 @@ public class User {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -40,7 +37,6 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getEmail() {
         return email;
@@ -50,14 +46,11 @@ public class User {
         this.email = email;
     }
 
-
-    public Role getRoleId() {
-        return roleId;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setRole(String role) {
+        this.role = role;
     }
-
-
 }

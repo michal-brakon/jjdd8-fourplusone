@@ -36,8 +36,6 @@ public class LoginServlet extends HttpServlet {
 
         logger.info("google url {} ",url);
 
-
-
         Template template = templateProvider.getTemplate(getServletContext(), "login.ftlh");
         String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
@@ -50,9 +48,7 @@ public class LoginServlet extends HttpServlet {
             logger.info("Error-info4");
             logger.debug("Error -debug4");
         }
-
     }
-
 
 }
 
