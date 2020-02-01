@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Path("/reserve")
 public class ReservationApi {
@@ -31,9 +32,9 @@ public class ReservationApi {
     public Response reserveBook(@PathParam("id") String id,
                                 @Context HttpServletRequest req) throws MessagingException, IOException {
 
-//        Optional<String> emailOpt = Optional
-//                .ofNullable(req.getSession().getAttribute("email").toString());
-//        String email = emailOpt.get();
+        Optional<String> emailOpt = Optional
+                .ofNullable(req.getSession().getAttribute("email").toString());
+        String email = emailOpt.get();
 
         id = id.replace(",", "");
         Long idParam = Long.parseLong(id);
@@ -47,6 +48,7 @@ public class ReservationApi {
         reservation.setExpiredTime(Timestamp.valueOf(LocalDateTime.now().plusMinutes(2)));
 
         reservationService.addReservation(reservation);
+
 
         return Response.ok().build();
     }

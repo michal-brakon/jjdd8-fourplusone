@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @WebServlet("/single")
 public class SingleBookServlet extends HttpServlet {
@@ -47,10 +48,6 @@ public class SingleBookServlet extends HttpServlet {
 
         String param = req.getParameter("id");
 
-        req.getSession().setAttribute("book_id", Long.parseLong(param));
-
-        String userEmail = (String) req.getSession().getAttribute("email");
-
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
@@ -64,8 +61,9 @@ public class SingleBookServlet extends HttpServlet {
         if (reservationService.findReservationByBook(book).isEmpty()) {
             isReserved = false;
         }
-
-        //if (ratingService.checkIsRated(userService.))
+        if (req.getSession().getAttribute("email") == null)  {
+            isReserved = true;
+        }
 
         PrintWriter writer = resp.getWriter();
 
@@ -89,11 +87,9 @@ public class SingleBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String param = req.getParameter("id");
+        String scoreStr = req.getParameter("score");
+        Long score = Long.valueOf(scoreStr);
 
-        int score = Integer.valueOf(req.getParameter("score"));
-
-
-        req.getSession().setAttribute("book_id", Long.parseLong(param));
 
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -103,9 +99,15 @@ public class SingleBookServlet extends HttpServlet {
         Book book = bookService.getById(id);
 
         boolean isReserved = true;
+        boolean isRated = true;
 
         if (reservationService.findReservationByBook(book).isEmpty()) {
             isReserved = false;
+        }
+        if (req.getSession().getAttribute("email") != null)  {
+            isReserved = false;
+            String email = req.getSession().getAttribute("email").toString();
+            ratingService.addRating(userService.findUserByEmail, bookService.getById(id), score);
         }
 
         PrintWriter writer = resp.getWriter();

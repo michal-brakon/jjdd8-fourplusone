@@ -27,15 +27,6 @@ public class RatingService {
 
     public boolean checkIsRated (User user, Book book) {
 
-       // boolean isRated = false;
-
-//        if (ratingDao.findRatingByBook(book).isPresent()) {
-//            if (ratingDao.findRatingByBook(book).get().getUser() == user) {
-//                isRated = true;
-//            }
-//        }
-//        return isRated;
-
         Boolean isRated = ratingDao
                 .findRatingByBook(book)
                 .filter(rating -> rating.getUser() == user)

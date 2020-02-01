@@ -36,6 +36,5 @@ public class ApiDataInitializer {
         Client client = ClientBuilder.newClient();
         return client.target(URI);
     }
-
 }
 
