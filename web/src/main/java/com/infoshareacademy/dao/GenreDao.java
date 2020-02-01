@@ -1,6 +1,7 @@
 package com.infoshareacademy.dao;
 
 import com.infoshareacademy.domain.entity.Genre;
+import com.infoshareacademy.domain.entity.LiteratureKind;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +29,11 @@ public class GenreDao {
         query.setParameter("name", name);
         List<Genre> resultList = query.getResultList();
         return resultList.isEmpty() ? null : resultList.get(0);
+    }
+    public List<Genre> getAll() {
+        Query query = em.createNamedQuery("Genre.getAll");
+
+        return query.getResultList();
     }
 }
 

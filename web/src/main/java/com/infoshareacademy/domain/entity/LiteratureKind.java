@@ -3,11 +3,13 @@ package com.infoshareacademy.domain.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-@NamedQuery(
-        name = "Kind.findAuthorByName",
-        query = "SELECT k FROM LiteratureKind k WHERE k.name = :name"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Kind.findAuthorByName",
+                query = "SELECT k FROM LiteratureKind k WHERE k.name = :name"),
+        @NamedQuery(name = "Kind.getAll",
+            query = "SELECT k FROM LiteratureKind k")
+})
 @Entity
 @Table(name = "literature_kind", schema = "library",
         indexes = {@Index(name = "kind_idx", columnList = "name")})

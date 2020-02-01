@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/update")
+@WebServlet("/admin")
 public class AdminPanel extends HttpServlet {
 
     @Inject
@@ -32,6 +32,8 @@ public class AdminPanel extends HttpServlet {
 
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
+
+        dataModel.put("content", "/admin-site/most-reserved-author.ftlh");
 
         try {
             template.process(dataModel, printWriter);

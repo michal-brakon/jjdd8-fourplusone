@@ -22,7 +22,9 @@ public class EncodingFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
         logger.info("Coding type is set");
+        request.setCharacterEncoding(codingType);
         response.setCharacterEncoding(codingType);
+
         filterChain.doFilter(request, response);
     }
 }
