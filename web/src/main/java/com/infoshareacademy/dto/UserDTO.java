@@ -1,13 +1,11 @@
 package com.infoshareacademy.dto;
 
-import javax.ejb.Stateless;
 
-@Stateless
 public class UserDTO {
 
-    String name;
-    String email;
-    String role;
+   private String name;
+   private String email;
+   private String role;
 
 
     public String getName() {

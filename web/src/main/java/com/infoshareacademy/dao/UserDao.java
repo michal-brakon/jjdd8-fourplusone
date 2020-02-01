@@ -18,7 +18,7 @@ public class UserDao {
 
     public void addUser(User user) {
         em.persist(user);
-        logger.debug("new user added {}", user);
+        logger.debug("new user added {}", user.getRole());
     }
 
 }

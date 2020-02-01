@@ -17,6 +17,8 @@ public class UserMapperToEntity {
 
         user.setName(userDTO.getName());
 
+        user.setRole(userDTO.getRole());
+
         return user;
     }
 

@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 
-
 public class GoogleAuthHelper {
     private static final Logger logger = LoggerFactory.getLogger(GoogleAuthHelper.class.getName());
 
@@ -40,19 +39,13 @@ public class GoogleAuthHelper {
 
     private final GoogleAuthorizationCodeFlow flow;
 
-    /**
-     * Constructor initializes the Google Authorization Code Flow with CLIENT ID, SECRET, and SCOPE
-     */
-    public  GoogleAuthHelper() {
-         flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT,
+    public GoogleAuthHelper() {
+        flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT,
                 JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, SCOPE).build();
 
         generateStateToken();
     }
 
-    /**
-     * Builds a login URL based on client ID, secret, callback URI, and scope
-     */
     public String buildLoginUrl() {
 
         final GoogleAuthorizationCodeRequestUrl url = flow.newAuthorizationUrl();
@@ -60,29 +53,18 @@ public class GoogleAuthHelper {
         return url.setRedirectUri(CALLBACK_URI).setState(stateToken).build();
     }
 
-    /**
-     * Generates a secure state token
-     */
-    private void generateStateToken(){
+    private void generateStateToken() {
 
         SecureRandom sr1 = new SecureRandom();
 
-        stateToken = "google;"+sr1.nextInt();
+        stateToken = "google;" + sr1.nextInt();
 
     }
 
-    /**
-     * Accessor for state token
-     */
-    public String getStateToken(){
+    public String getStateToken() {
         return stateToken;
     }
 
-    /**
-     * Expects an Authentication Code, and makes an authenticated request for the user's profile information
-     * @return JSON formatted user profile information
-     * @param authCode authentication code provided by google
-     */
     public String getUserInfoJson(final String authCode) throws IOException {
 
         final GoogleTokenResponse response = flow.newTokenRequest(authCode).setRedirectUri(CALLBACK_URI).execute();

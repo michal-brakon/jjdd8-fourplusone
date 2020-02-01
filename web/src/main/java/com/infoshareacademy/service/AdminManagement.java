@@ -40,8 +40,7 @@ public class AdminManagement {
     @Inject
     private GenreService genreService;
 
-    @Inject
-    private MailSender mailSender;
+
 
 
     public BookView remove(Long id) {

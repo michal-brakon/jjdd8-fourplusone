@@ -1,9 +1,7 @@
 package com.infoshareacademy.web.servlet;
 
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.infoshareacademy.OAuth.GoogleAuthHelper;
-import com.infoshareacademy.domain.entity.User;
 import com.infoshareacademy.dto.UserDTO;
 import com.infoshareacademy.service.UserService;
 import org.slf4j.Logger;
@@ -32,7 +30,7 @@ public class OAuth2CallBack extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         logger.info("REQEST: {}", req.getRequestURI());
-        String  param = req.getParameter("code");
+        String param = req.getParameter("code");
         String user = googleAuthHelper.getUserInfoJson(param);
 
         logger.info("User: " + user);
