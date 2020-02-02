@@ -39,12 +39,10 @@
     </div>
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-            Ulubione
+                aria-expanded="false" href="/">
+            Powrót na Strone
         </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">usuń</a>
-        </div>
+
     </div>
 
     <div class="container" style="margin-top:30px">
