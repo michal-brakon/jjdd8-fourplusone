@@ -56,7 +56,7 @@ public class ReservationService {
         reservationDao.addReservation(reservation);
         bookService.increaseReservationCount(bookId);
         authorService.increaseReservationCount(bookService.getById(bookId).getAuthor());
-        mailSender.approveReservation("lucas83122@gmail.com", reservation);
+        mailSender.approveReservation(reservation.getUser().getEmail(), reservation);
 
     }
 
@@ -69,7 +69,7 @@ public class ReservationService {
     }
 
     public void removeReservation (Reservation reservation) throws IOException {
-        mailSender.reservationRejected("lucas83122@gmail.com", reservation);
+        mailSender.reservationRejected(reservation.getUser().getEmail(), reservation);
         reservationDao.removeReservation(reservation);
     }
 
