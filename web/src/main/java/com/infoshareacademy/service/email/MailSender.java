@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import java.io.IOException;
 
 @Stateless
@@ -50,7 +49,7 @@ public class MailSender {
         Email from = new Email("LibraryFPO@fourplusone.com");
         String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
-        Content content = new Content("text/plain", "Rezerwacja książki wygasla. ");
+        Content content = new Content("text/plain", "Rezerwacja książki wygasła. ");
         createMail(from, subject, to, content);
     }
 }

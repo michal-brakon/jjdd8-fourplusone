@@ -5,7 +5,6 @@ import com.infoshareacademy.dto.ReservationDTO;
 import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ReservationService;
 import com.infoshareacademy.service.UserService;
-import com.infoshareacademy.web.servlet.CoomingSoonServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,9 +26,6 @@ public class ReservationApi {
     private static final Logger logger = LoggerFactory.getLogger(ReservationApi.class.getName());
 
     @EJB
-    BookService bookService;
-
-    @EJB
     ReservationService reservationService;
 
     @EJB
@@ -37,20 +33,12 @@ public class ReservationApi {
 
     @GET
     @Path("/{id}")
-    public Response reserveBook(@PathParam("id") String id,
-                                @Context HttpServletRequest req) throws MessagingException, IOException {
-
-//        Optional<String> emailOpt = Optional
-//                .ofNullable(req.getSession().getAttribute("email").toString());
-//        String email = emailOpt.get();
+    public Response reserveBook(@PathParam("id") String id, @Context HttpServletRequest req) throws MessagingException, IOException {
 
 
-        id = id.replace(",", "");
         Long idParam = Long.parseLong(id);
-        String email = req.getSession().getAttribute("email").toString();
+        String email =(String) req.getSession().getAttribute("email");
         logger.info("email from req Session: {}", email);
-
-        Book book = bookService.getById(idParam);
 
         ReservationDTO reservation = new ReservationDTO();
         reservation.setBookId(idParam);
