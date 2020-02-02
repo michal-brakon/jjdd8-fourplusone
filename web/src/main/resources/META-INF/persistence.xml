@@ -14,6 +14,8 @@
             <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
             <property name="hibernate.cache.use_query_cache" value="false"/>
             <property name="hibernate.generate_statistics" value="true"/>
+                   <property name="javax.persistence.sql-load-script-source"
+                             value="start.sql" />
         </properties>
     </persistence-unit>
 </persistence>
