@@ -47,7 +47,7 @@ public class LoaderFromFileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Template template = templateProvider.getTemplate(getServletContext(), "upload-json.ftlh");
-        String name = req.getParameter("role");
+        String name = req.getParameter("name");
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);

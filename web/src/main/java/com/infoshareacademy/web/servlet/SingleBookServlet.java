@@ -68,8 +68,6 @@ public class SingleBookServlet extends HttpServlet {
             isReserved = true;
         }
 
-        //if (ratingService.checkIsRated(userService.))
-
         PrintWriter writer = resp.getWriter();
 
         Template template = templateProvider

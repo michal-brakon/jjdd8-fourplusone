@@ -1,4 +1,4 @@
-package com.infoshareacademy.api;
+package com.infoshareacademy.web.api;
 
 import com.infoshareacademy.dto.ReservationDTO;
 import com.infoshareacademy.service.ReservationService;
