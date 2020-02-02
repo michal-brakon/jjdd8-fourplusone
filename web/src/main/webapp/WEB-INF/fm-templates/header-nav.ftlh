@@ -58,7 +58,7 @@
                         <#else>
                         <a href="https://accounts.google.com/o/oauth2/auth?client_id=273754675187-9rlbmfmo4b4u15h887kkaj9nljgpuajv.apps.googleusercontent.com&redirect_uri=http://localhost:8080/oauth2callback&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email&state=google;-2106811103">Zaloguj</a>
                         </#if>
-                        <#if admin == "yes" >
+                        <#if superadmin == "yes" >
                     <li><a href="/admin">Panel admina</a></li>
 
                     </#if>

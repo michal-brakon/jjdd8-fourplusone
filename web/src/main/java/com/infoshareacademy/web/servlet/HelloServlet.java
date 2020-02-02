@@ -42,10 +42,10 @@ public class HelloServlet extends HttpServlet {
         } else {
             dataModel.put("logged", "no");}
 
-        if(role != null && role.equals("admin")) {
-            dataModel.put("admin", "yes");
+        if(role != null && role.equals("superadmin")) {
+            dataModel.put("superadmin", "yes");
         }
-        else {dataModel.put("admin", "no");}
+        else {dataModel.put("superadmin", "no");}
 
         try {
             template.process(dataModel, printWriter);

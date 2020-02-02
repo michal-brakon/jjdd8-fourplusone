@@ -1,1 +1,0 @@
-insert into user(email, name, role) values ('fourplusonesuperuser@gmail.com','Four Admin', 'superadmin');
