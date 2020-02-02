@@ -115,4 +115,16 @@ public class BookDao {
         em.remove(book);
         return book;
     }
+    public void haveBeenReserved(Book book) {
+        em.merge(book);
+
+        logger.debug("Reservation counter set to {} ", book.getReservationCount());
+    }
+
+    public int getReservationCounter(Long id)  {
+        return ((Number) em.createNamedQuery("Book.getReservationCounter")
+                .setParameter("id", id)
+                .getSingleResult())
+                .intValue();
+    }
 }

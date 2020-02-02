@@ -1,10 +1,22 @@
 package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "reservation", schema = "library")
+
+
+@NamedQueries({
+        @NamedQuery(name = "Reservation.getByUser",
+                query = "SELECT r FROM Reservation r WHERE r.user=:user"),
+        @NamedQuery(name = "Reservation.getByBook",
+                query = "SELECT r FROM Reservation r WHERE r.book=:book"),
+        @NamedQuery(name = "Reservation.getByToken",
+                query = "SELECT r FROM Reservation r WHERE r.token=:token"),
+        @NamedQuery(name = "Reservation.findAll",
+                query = "SELECT r FROM Reservation r")
+})
 
 public class Reservation {
 
@@ -15,17 +27,47 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
-    private Book bookId;
+    private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
-    @Column(name = "borrow_date")
-    private Date borrowDate;
+    @Column(name = "create_time")
+    private Timestamp createTimestamp;
 
-    @Column(name = "return_date")
-    private Date returnDate;
+    @Column(name = "expiration_time")
+    private Timestamp expirationTime;
+
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "confirmed")
+    private Boolean isConfirm;
+
+    public Boolean getConfirm() {
+        return isConfirm;
+    }
+
+    public void setConfirm(Boolean confirm) {
+        isConfirm = confirm;
+    }
+
+    public Timestamp getExpirationTime() {
+        return expirationTime;
+    }
+
+    public void setExpirationTime(Timestamp expirationTime) {
+        this.expirationTime = expirationTime;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;
@@ -35,39 +77,28 @@ public class Reservation {
         this.id = id;
     }
 
-
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book bookId) {
+        this.book = bookId;
     }
 
-
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
-
-    public Date getBorrowDate() {
-        return borrowDate;
+    public Timestamp getCreateTimestamp() {
+        return createTimestamp;
     }
 
-    public void setBorrowDate(Date borrowDate) {
-        this.borrowDate = borrowDate;
+    public void setCreateTimestamp(Timestamp borrowDate) {
+        this.createTimestamp = borrowDate;
     }
 
-
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
 }

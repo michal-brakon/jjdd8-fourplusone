@@ -30,6 +30,13 @@ public class AuthorService {
             return author;
         });
     }
+    public void increaseReservationCount (Author author) {
+
+        int reservationCount = author.getReservationCount();
+        author.setReservationCount(reservationCount+1);
+
+        authorDao.haveBeenReserved(author);
+    }
 
     public List<AuthorView>     authorNameLiveSearch(String param) {
         List<Author> authorList = authorDao.forLiveSearch(param);

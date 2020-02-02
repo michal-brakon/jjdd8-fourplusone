@@ -23,7 +23,11 @@ public class UserService {
         userDao.addUser(user);
     }
 
-    public User findUserByEmail (String email) {
+    public User findUserByEmail(String email) {
         return userDao.findUserByEmail(email);
+    }
+
+    public User getById(Long id) {
+        return userDao.findById(id);
     }
 }

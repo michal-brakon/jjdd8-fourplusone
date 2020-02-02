@@ -2,12 +2,18 @@ package com.infoshareacademy.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "library")
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(name = "User.findByEmail",
-        query = "SELECT u FROM User u WHERE u.email LIKE :email"))
+                query = "SELECT u FROM User u WHERE u.email =:email"),
+        @NamedQuery(name = "User.getById",
+                query = "SELECT u FROM User u WHERE u.id=:id")
+})
+
 public class User {
 
     @Id
@@ -24,6 +30,20 @@ public class User {
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Rating> ratings = new ArrayList<>();
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +75,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

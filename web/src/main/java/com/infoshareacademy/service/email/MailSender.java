@@ -1,5 +1,6 @@
 package com.infoshareacademy.service.email;
 
+import com.infoshareacademy.domain.entity.Reservation;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
@@ -10,16 +11,15 @@ import com.sendgrid.helpers.mail.objects.Email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import java.io.IOException;
 
-@RequestScoped
+@Stateless
 public class MailSender {
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
 
     private void createMail(Email from, String subject, Email to, Content content) throws IOException {
         Mail mail = new Mail(from, subject, to, content);
-
         SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         request.setMethod(Method.POST);
@@ -32,21 +32,23 @@ public class MailSender {
 
     }
 
-    public void approveReservation(String userEmail) throws IOException {
+    public void approveReservation(String userEmail, Reservation reservation) throws IOException {
 
         Email from = new Email("LibraryFPO@fourplusone.com");
-        String subject = "Rezerwacja.";
+        String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
-        Content content = new Content("text/plain", "Książka została zarezerwowana!\n jeżeli nie zostanie odebrana w ciągu 48 godzin rezerwacja będzie anulowana");
+        Content content = new Content("text/plain",
+                "Link potwierdzający rezerwację: http://fourplusone.jjdd8.is-academy.pl/confirm?token="
+                        +reservation.getToken());
         createMail(from, subject, to, content);
     }
 
-    public void reservationRejected(String userEmail) throws IOException {
+    public void reservationRejected(String userEmail, Reservation reservation) throws IOException {
 
         Email from = new Email("LibraryFPO@fourplusone.com");
-        String subject = "Rezerwacja.";
+        String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
-        Content content = new Content("text/plain", "Rezerwacja książki odwołana z przyczyn technicznych . Przepraszamy ");
+        Content content = new Content("text/plain", "Rezerwacja książki wygasła. ");
         createMail(from, subject, to, content);
     }
 }
