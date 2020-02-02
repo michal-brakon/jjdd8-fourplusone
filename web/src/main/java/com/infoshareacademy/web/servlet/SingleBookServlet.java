@@ -26,7 +26,6 @@ import java.util.Map;
 public class SingleBookServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(SingleBookServlet.class.getName());
 
-
     @Inject
     private BookService bookService;
 
@@ -61,6 +60,10 @@ public class SingleBookServlet extends HttpServlet {
             model.put("email", email);
         } else {
             model.put("logged", "no");}
+        if(role != null && role.equals("superadmin")) {
+            model.put("superadmin", "yes");
+        }
+        else {model.put("superadmin", "no");}
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {
