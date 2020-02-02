@@ -8,7 +8,7 @@ import java.io.IOException;
         filterName = "AuthorizationFilter",
         urlPatterns = {"/admin/*", "/admin"}
 )
-public class UploaderFilter implements Filter {
+public class AuthorizationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -19,7 +19,7 @@ public class UploaderFilter implements Filter {
         if (role == null || role.isEmpty()) {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
         } else if (role.equals("User") || role.equals("superadmin")){
-            ((HttpServletRequest) servletRequest).getRequestDispatcher("/admin").forward(servletRequest,servletResponse);
+            servletRequest.getRequestDispatcher("/admin").forward(servletRequest,servletResponse);
         } else {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
         }

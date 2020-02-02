@@ -60,6 +60,10 @@ public class SingleBookServlet extends HttpServlet {
             model.put("email", email);
         } else {
             model.put("logged", "no");}
+        if(role != null && role.equals("User")) {
+            model.put("user", "yes");
+        }
+        else {model.put("user", "no");}
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

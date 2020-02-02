@@ -77,9 +77,11 @@ public class BookCatalogueServlet extends HttpServlet {
                 model.put("logged", "yes");
                 model.put("email", email);
             } else {
-                model.put("logged", "no");
-
+                model.put("logged", "no");}
+            if(role != null && role.equals("User")) {
+                model.put("user", "yes");
             }
+            else {model.put("user", "no");}
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {
