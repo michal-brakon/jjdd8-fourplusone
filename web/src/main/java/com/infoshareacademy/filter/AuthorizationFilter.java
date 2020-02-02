@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebFilter(
         filterName = "AuthorizationFilter",
-        urlPatterns = {"/admin/*"}
+        urlPatterns = {"/admin"}
 )
 public class AuthorizationFilter implements Filter {
     @Override
@@ -19,6 +19,8 @@ public class AuthorizationFilter implements Filter {
         if (role == null || role.isEmpty()) {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
         } else if (role.equals("admin") || role.equals("superadmin")){
+
+//            filterChain.doFilter(servletRequest, servletResponse);
             servletRequest.getRequestDispatcher("/admin").forward(servletRequest,servletResponse);
         } else {
             ((HttpServletResponse) servletResponse).sendRedirect("/");
