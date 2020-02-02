@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper">z
     <#include "header-nav.ftlh">
     <div class="container">
         <div class="col-sm-12 col-lg-12 row">
@@ -69,7 +69,7 @@
                         <tr>
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
-                                            src="https://wolnelektury.pl/media/${cat.coverThumb!}"
+                                            src="${cat.coverThumb!}"
                                             alt="Okładka"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">

@@ -25,6 +25,12 @@ public class AuthorDao {
         logger.debug("new author was created {}", author);
     }
 
+    public List<Author>forLiveSearch(String param){
+        Query query = em.createNamedQuery("Author.forLiveSearch");
+        query.setParameter("param", "%"+param+"%");
+        query.setMaxResults(5);
+        return query.getResultList();
+    }
     public Author findAuthorByName(String name) {
 
         Query query = em.createNamedQuery("Author.findAuthorByName");
@@ -37,6 +43,11 @@ public class AuthorDao {
 
     public Optional<Author> findById(String id) {
             return Optional.ofNullable(em.find(Author.class, id));
+    }
+
+    public List<Author> getAll() {
+        Query query = em.createNamedQuery("Author.getAll");
+                return query.getResultList();
     }
 
     public void haveBeenReserved (Author author)  {

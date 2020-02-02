@@ -11,17 +11,18 @@ import com.sendgrid.helpers.mail.objects.Email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import java.io.IOException;
 
-@RequestScoped
+@Stateless
 public class MailSender {
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
 
     private void createMail(Email from, String subject, Email to, Content content) throws IOException {
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         request.setMethod(Method.POST);
         request.setEndpoint("mail/send");

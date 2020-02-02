@@ -70,7 +70,7 @@
                         <tr>
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
-                                            src="https://wolnelektury.pl/media/${cat.coverThumb!}"
+                                            src="${cat.coverThumb!}"
                                             alt="Okładka"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">

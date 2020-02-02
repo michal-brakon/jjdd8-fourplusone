@@ -4,6 +4,7 @@ import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.freemarker.TemplateProvider;
 import com.infoshareacademy.service.BookService;
+import com.infoshareacademy.service.UploaderService;
 import com.infoshareacademy.service.RatingService;
 import com.infoshareacademy.service.ReservationService;
 import com.infoshareacademy.service.UserService;
@@ -17,8 +18,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,11 +49,13 @@ public class SingleBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+        String name = (String) req.getSession().getAttribute("name");
+        String email = (String) req.getSession().getAttribute("email");
+        String role = (String) req.getSession().getAttribute("role");
+
         String param = req.getParameter("id");
 
         req.getSession().setAttribute("book_id", Long.parseLong(param));
-
-        String userEmail = (String) req.getSession().getAttribute("email");
 
         if (param == null || param.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -63,6 +69,9 @@ public class SingleBookServlet extends HttpServlet {
 
         if (reservationService.findReservationByBook(book).isEmpty()) {
             isReserved = false;
+        }
+        if (req.getSession().getAttribute("email") == null) {
+            isReserved = true;
         }
 
         //if (ratingService.checkIsRated(userService.))
@@ -78,47 +87,12 @@ public class SingleBookServlet extends HttpServlet {
 
         model.put("book", bookView);
         model.put("isReserved", isReserved);
-        try {
-            template.process(model, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
-        }
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        String param = req.getParameter("id");
-
-        int score = Integer.valueOf(req.getParameter("score"));
-
-
-        req.getSession().setAttribute("book_id", Long.parseLong(param));
-
-        if (param == null || param.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-        Long id = Long.valueOf(param);
-
-        Book book = bookService.getById(id);
-
-        boolean isReserved = true;
-
-        if (reservationService.findReservationByBook(book).isEmpty()) {
-            isReserved = false;
-        }
-
-        PrintWriter writer = resp.getWriter();
-
-        Template template = templateProvider
-                .getTemplate(getServletContext(),
-                        "singlePage.ftlh");
-        Map<String, Object> model = new HashMap<>();
-
-        BookView bookView = bookService.getBookViewById(id);
-
-        model.put("book", bookView);
-        model.put("isReserved", isReserved);
+        if (email != null && !email.isEmpty()) {
+            model.put("logged", "yes");
+            model.put("email", email);
+        } else {
+            model.put("logged", "no");}
         try {
             template.process(model, writer);
         } catch (TemplateException e) {

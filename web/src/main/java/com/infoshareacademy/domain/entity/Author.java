@@ -5,11 +5,15 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-@NamedQueries(value = {
+@NamedQueries({
+        @NamedQuery(name = "Author.forLiveSearch",
+                query = "SELECT a FROM Author a where a.name LIKE :param"),
         @NamedQuery(name = "Author.findAuthorByName",
                 query = "SELECT a FROM Author a WHERE a.name = :name"),
         @NamedQuery(name = "Author.getReservationCounter",
-                query = "SELECT a.reservationCount FROM Author a WHERE a.name=:name")
+                query = "SELECT a.reservationCount FROM Author a WHERE a.name=:name"),
+        @NamedQuery(name = "Author.getAll",
+                query = "SELECT a FROM Author a")
 })
 
 @Entity

@@ -30,7 +30,7 @@
     <div class="container">
         <div class="center-block">
             <div class="col-lg-4">
-                <img src="https://wolnelektury.pl/media/${book.cover!}" class="img-fluid" alt="Okładka">
+                <img src="${book.cover!}" class="img-fluid" alt="Okładka">
             </div>
             <div class="col-lg-8, text-left">
                 <div class="text-center">
@@ -51,15 +51,6 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="widget">
-                        <form action="/single?id=${book.id}" method="post">
-                            <input type="radio" name="score" value="1" checked> 1 Star<br>
-                            <input type="radio" name="score" value="2" checked> 2 Star<br>
-                            <input type="radio" name="score" value="3" checked> 3 Star<br>
-                            <input type="radio" name="score" value="4" checked> 4 Star<br>
-                            <input type="radio" name="score" value="5" checked> 5 Star<br>
-                            <input type="submit" value="Submit">
-
-                        </form>
                         <h4>Kontakt</h4>
                         <address>
                             <strong>Four+One Library</strong><br>Olivia Busines Centre<br>Gdańsk

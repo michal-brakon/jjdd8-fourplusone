@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ReservationService {
     @Inject
     MailSender mailSender;
 
+    @Transactional
     public void addReservation(ReservationDTO reservationDTO) throws IOException {
 
         Long bookId = reservationDTO.getBookId();

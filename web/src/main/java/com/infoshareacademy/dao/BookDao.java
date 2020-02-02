@@ -21,10 +21,10 @@ public class BookDao {
     @PersistenceContext
     private EntityManager em;
 
-    public void addBook(Book book) {
-
+    public Long addBook(Book book) {
         em.persist(book);
         logger.info("New book was added :{}", book);
+        return book.getId();
     }
 
     public Optional<Book> findById(Long id) {

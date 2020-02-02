@@ -1,15 +1,14 @@
 package com.infoshareacademy.domain.entity;
 
 import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "book", schema = "library" )
-@NamedQueries(value = {
+@Table(name = "book", schema = "library")
+@NamedQueries({
         @NamedQuery(name = "Book.getById",
                 query = "SELECT b FROM Book b WHERE b.id=:id"),
 
@@ -25,7 +24,7 @@ import java.util.List;
         @NamedQuery(name = "Book.countAll",
                 query = "SELECT COUNT(b) FROM Book b"),
 
-        @NamedQuery(name = "Book.findByTitle",
+         @NamedQuery(name = "Book.findByTitle",
                 query = "SELECT b FROM Book b JOIN b.author a WHERE b.title LIKE :inputParam OR a.name LIKE :inputParam"),
 
         @NamedQuery(name = "Book.findAudioBooks",
@@ -83,15 +82,27 @@ public class Book {
     @ColumnDefault("0")
     private int reservationCount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.DETACH})
     @JoinColumn(name = "epoch_id")
     private Epoch epochId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.DETACH})
     @JoinColumn(name = "literature_kind_id")
     private LiteratureKind kind;
 

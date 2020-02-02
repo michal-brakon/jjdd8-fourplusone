@@ -7,7 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "library")
-@NamedQuery(name = "User.getById", query = "SELECT u FROM User u WHERE u.id=:id")
+@NamedQueries({
+        @NamedQuery(name = "User.findByEmail",
+                query = "SELECT u FROM User u WHERE u.email =:email"),
+        @NamedQuery(name = "User.getById",
+                query = "SELECT u FROM User u WHERE u.id=:id")
+})
 
 public class User {
 
@@ -23,9 +28,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Role roleId;
+    @Column(name = "role")
+    private String role;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
@@ -57,7 +61,6 @@ public class User {
         this.name = name;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -66,13 +69,12 @@ public class User {
         this.email = email;
     }
 
-
-    public Role getRoleId() {
-        return roleId;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public List<Reservation> getReservations() {
