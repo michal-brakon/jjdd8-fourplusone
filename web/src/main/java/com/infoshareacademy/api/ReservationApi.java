@@ -1,8 +1,6 @@
 package com.infoshareacademy.api;
 
-import com.infoshareacademy.domain.entity.Book;
 import com.infoshareacademy.dto.ReservationDTO;
-import com.infoshareacademy.service.BookService;
 import com.infoshareacademy.service.ReservationService;
 import com.infoshareacademy.service.UserService;
 import org.slf4j.Logger;

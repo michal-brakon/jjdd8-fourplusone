@@ -20,8 +20,7 @@ public class MailSender {
 
     private void createMail(Email from, String subject, Email to, Content content) throws IOException {
         Mail mail = new Mail(from, subject, to, content);
-
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         request.setMethod(Method.POST);
         request.setEndpoint("mail/send");
@@ -39,7 +38,7 @@ public class MailSender {
         String subject = "Rezerwacja książki " + reservation.getBook().getTitle();
         Email to = new Email(userEmail);
         Content content = new Content("text/plain",
-                "Link potwierdzający rezerwację: localhost:8080/confirm?token="
+                "Link potwierdzający rezerwację: http://fourplusone.jjdd8.is-academy.pl/confirm?token="
                         +reservation.getToken());
         createMail(from, subject, to, content);
     }
