@@ -37,6 +37,7 @@ public class EditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         Long id = Long.parseLong(req.getParameter("id"));
         String title = req.getParameter("title");
         String author = req.getParameter("author");
@@ -63,6 +64,9 @@ public class EditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String name = (String) req.getSession().getAttribute("name");
+        String email = (String) req.getSession().getAttribute("email");
+        String role = (String) req.getSession().getAttribute("role");
         String param = req.getParameter("id");
 
         if (param == null || param.isEmpty()) {
@@ -78,6 +82,16 @@ public class EditServlet extends HttpServlet {
         BookView bookView = bookService.getBookViewById(id);
         dataModel.put("content", "/admin-site/edit-book.ftlh");
         dataModel.put("book", bookView);
+        if (email != null && !email.isEmpty()) {
+            dataModel.put("logged", "yes");
+            dataModel.put("email", email);
+        } else {
+            dataModel.put("logged", "no");}
+
+        if(role != null && role.equals("User")) {
+            dataModel.put("user", "yes");
+        }
+        else {dataModel.put("user", "no");}
 
         try {
             template.process(dataModel, writer);

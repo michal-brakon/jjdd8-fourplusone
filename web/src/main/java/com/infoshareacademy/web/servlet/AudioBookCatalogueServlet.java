@@ -78,10 +78,10 @@ public class AudioBookCatalogueServlet extends HttpServlet {
                 model.put("email", email);
             } else {
                 model.put("logged", "no");}
-            if(role != null && role.equals("User")) {
-                model.put("user", "yes");
+            if(role != null && role.equals("admin")) {
+                model.put("admin", "yes");
             }
-            else {model.put("user", "no");}
+            else {model.put("admin", "no");}
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {
