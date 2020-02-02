@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<div id="wrapper">z
+<div id="wrapper">
     <#include "header-nav.ftlh">
     <div class="container">
         <div class="col-sm-12 col-lg-12 row">

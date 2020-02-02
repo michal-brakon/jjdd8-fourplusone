@@ -79,6 +79,10 @@ public class LyricCatalogueServlet extends HttpServlet {
                 model.put("logged", "no");
 
             }
+            if(role != null && role.equals("superadmin")) {
+                model.put("superadmin", "yes");
+            }
+            else {model.put("superadmin", "no");}
             try {
                 template.process(model, writer);
             } catch (TemplateException e) {

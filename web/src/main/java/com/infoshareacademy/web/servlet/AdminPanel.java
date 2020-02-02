@@ -28,10 +28,12 @@ public class AdminPanel extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setContentType("text/html;charset=UTF-8");
         Template template = templateProvider.getTemplate(getServletContext(), "/admin-site/Admin-site.ftlh");
 
         PrintWriter printWriter = resp.getWriter();
         Map<String, Object> dataModel = new HashMap<>();
+
 
         dataModel.put("content", "/admin-site/most-reserved-author.ftlh");
 

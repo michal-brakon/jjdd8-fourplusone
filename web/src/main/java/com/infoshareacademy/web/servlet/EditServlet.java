@@ -37,6 +37,7 @@ public class EditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         Long id = Long.parseLong(req.getParameter("id"));
         String title = req.getParameter("title");
         String author = req.getParameter("author");
@@ -63,6 +64,7 @@ public class EditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         String param = req.getParameter("id");
 
         if (param == null || param.isEmpty()) {
@@ -78,6 +80,7 @@ public class EditServlet extends HttpServlet {
         BookView bookView = bookService.getBookViewById(id);
         dataModel.put("content", "/admin-site/edit-book.ftlh");
         dataModel.put("book", bookView);
+
 
         try {
             template.process(dataModel, writer);

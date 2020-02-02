@@ -30,7 +30,6 @@ import java.util.Map;
 public class SingleBookServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(SingleBookServlet.class.getName());
 
-
     @Inject
     private BookService bookService;
 
@@ -48,7 +47,6 @@ public class SingleBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
         String name = (String) req.getSession().getAttribute("name");
         String email = (String) req.getSession().getAttribute("email");
         String role = (String) req.getSession().getAttribute("role");
@@ -93,10 +91,14 @@ public class SingleBookServlet extends HttpServlet {
             model.put("email", email);
         } else {
             model.put("logged", "no");}
-        try {
-            template.process(model, writer);
-        } catch (TemplateException e) {
-            logger.error("Template error");
+        if(role != null && role.equals("superadmin")) {
+            model.put("superadmin", "yes");
+        }
+        else {model.put("superadmin", "no");}
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e) {
+                logger.error("Template error");
+            }
         }
     }
-}
