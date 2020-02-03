@@ -70,7 +70,7 @@ public class LoaderFromFileServlet extends HttpServlet {
             logger.warn(fileNotFound.getMessage());
         }
         bookService.addBooks(books);
-        resp.sendRedirect("/");
+        resp.sendRedirect("/admin");
     }
 
 }

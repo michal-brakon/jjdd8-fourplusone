@@ -6,9 +6,12 @@ import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,13 +42,12 @@ public class AdminManagement {
     @Inject
     private GenreService genreService;
 
-
+    @Inject
+    private ReservationService reservationService;
 
 
     public BookView remove(Long id) {
-
-
-        return bookMapperToView.mapEntityToView(bookDao.delete(id));
+              return bookMapperToView.mapEntityToView(bookDao.delete(id));
     }
 
     public void update(Long id, BookDTO bookDTO) {
