@@ -40,10 +40,10 @@
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-            Ulubione
+           Powrót na strone
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">usuń</a>
+            <a class="dropdown-item" href="/">Wróć</a>
         </div>
     </div>
 
@@ -52,6 +52,14 @@
         <#if content??>
             <#include "/${content}">
         </#if>
+    </div>
+    <div>
+        <form method="post" action="/uploader" enctype="multipart/form-data">
+
+            <header>Awaryjne ładowanie API z pliku</header>
+            <input type="file" accept="application/JSON" name="api">
+            <input type="submit" name="upload" value="Upload">
+        </form>
     </div>
 
 </div>

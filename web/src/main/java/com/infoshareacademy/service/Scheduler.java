@@ -17,9 +17,4 @@
 //    @Inject
 //    ReservationService reservationService;
 //
-//    @Schedule(hour = "*", minute = "*/5", second = "*", info = "Every 1 minute timer")
-//    public void Schedule () {
-//        reservationService.removeUnconfirmedReservations();
-//        logger.debug("Checking unconfirmed reservations");
-//    }
-//}
+
