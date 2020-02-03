@@ -36,8 +36,8 @@ public class ReservationService {
     @EJB
     private AuthorService authorService;
 
-    @Inject
-    MailSender mailSender;
+    @EJB
+    private MailSender mailSender;
 
     @Transactional
     public void addReservation(ReservationDTO reservationDTO) throws IOException {
