@@ -6,10 +6,12 @@ import com.infoshareacademy.domain.view.BookView;
 import com.infoshareacademy.dto.BookDTO;
 import com.infoshareacademy.mapper.BookMapper;
 import com.infoshareacademy.mapper.view.BookMapperToView;
-import com.infoshareacademy.service.email.MailSender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +42,19 @@ public class AdminManagement {
     @Inject
     private GenreService genreService;
 
+    @Inject
+    private ReservationService reservationService;
 
+    private final Logger logger = LoggerFactory.getLogger(ApiDataInitializer.class.getName());
 
 
     public BookView remove(Long id) {
-
+        Book book = bookDao.findById(id).orElseThrow();
+        try {
+            reservationService.removeReservation(reservationService.findReservationByBook(book).get());
+        } catch (IOException e) {
+            logger.error("no such book {}",e);
+        }
 
         return bookMapperToView.mapEntityToView(bookDao.delete(id));
     }

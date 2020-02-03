@@ -15,7 +15,6 @@ public class EncodingFilter implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(EncodingFilter.class.getName());
 
-
     private final String codingType = "UTF-8";
 
     @Override

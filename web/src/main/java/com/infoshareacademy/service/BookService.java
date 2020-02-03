@@ -81,6 +81,7 @@ public class BookService {
         List<Book> bbb = bookDao.getBooksForPagination(in);
         return bbb.stream().map(book -> bookMapperToView.mapEntityToView(book))
                 .collect(Collectors.toList());
+
     }
 
     public List<BookView> getAudioBooksForPagination(int in) {
@@ -114,5 +115,15 @@ public class BookService {
                 .collect(Collectors.toList());
 
     }
+
+    public void increaseReservationCount (Long id) {
+
+        Book book = getById(id);
+        int reservationCount = book.getReservationCount();
+        book.setReservationCount(reservationCount+1);
+
+        bookDao.haveBeenReserved(book);
+    }
+
 
 }

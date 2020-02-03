@@ -1,8 +1,10 @@
 package com.infoshareacademy.domain.entity;
 
+import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
-import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -47,7 +49,9 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 2"),
 
         @NamedQuery(name = "Book.countDrama",
-                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3")
+                query = "SELECT COUNT(b) FROM Book b WHERE b.kind = 3"),
+        @NamedQuery(name = "Book.getReservationCounter",
+                query = "SELECT b.reservationCount FROM Book b WHERE b.id=:id")
 }
 )
 
@@ -73,6 +77,10 @@ public class Book {
 
     @Column(name = "cover_thumb")
     private String coverThumb;
+
+    @Column(name = "reservation_count", nullable = false)
+    @ColumnDefault("0")
+    private int reservationCount;
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST,
@@ -103,8 +111,23 @@ public class Book {
                         CascadeType.MERGE,
                         CascadeType.REFRESH,
                        CascadeType.DETACH})
+
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private List<Rating> ratings = new ArrayList<>();
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 
     public Author getAuthor() {
         return author;
@@ -184,5 +207,25 @@ public class Book {
 
     public void setKind(LiteratureKind kind) {
         this.kind = kind;
+    }
+
+    public int getReservationCount() {
+        return reservationCount;
+    }
+
+    public void setReservationCount(int reservationCount) {
+        this.reservationCount = reservationCount;
+    }
+
+    public void setEpochId(Epoch epochId) {
+        this.epochId = epochId;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

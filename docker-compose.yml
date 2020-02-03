@@ -27,3 +27,4 @@ services:
       - mysql
     environment:
       - TZ=Europe/Warsaw
+      - SENDGRID_API_KEY=${FPO_SENDGRID_API_KEY}

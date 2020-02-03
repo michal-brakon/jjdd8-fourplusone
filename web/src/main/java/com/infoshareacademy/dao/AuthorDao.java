@@ -49,5 +49,18 @@ public class AuthorDao {
         Query query = em.createNamedQuery("Author.getAll");
                 return query.getResultList();
     }
+
+    public void haveBeenReserved (Author author)  {
+        em.merge(author);
+
+        logger.debug("Reservation counter set to {} ", author.getReservationCount());
+    }
+
+    public int getReservationCounter(String name)  {
+        return ((Number) em.createNamedQuery("Author.getReservationCounter")
+                .setParameter("name", name)
+                .getSingleResult())
+                .intValue();
+    }
 }
 

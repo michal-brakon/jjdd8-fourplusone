@@ -70,7 +70,7 @@
                             <th></th>
                             <td class="col-lg-2"><a href="/single?id=${cat.id}"><img
                                             src="${cat.coverThumb!}"
-                                            alt="Okładka"></a></td>
+                                            alt="Okładka" height="193" width="139"></a></td>
                             <td class="col-lg-10">
                                 <div class="text-center">
                                     <h3 class="text-danger"><a href="/single?id=${cat.id}">${cat.title} </a></h3>

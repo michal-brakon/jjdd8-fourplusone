@@ -33,6 +33,14 @@ public class UserDao {
         return results.isEmpty() ? null : results.get(0);
         }
 
+
 //        ???
+
+    public User findById(Long id) {
+        Query query = em.createNamedQuery("User.getById");
+        query.setParameter("id", id);
+        return (User) query.getResultList().get(0);
+    }
+
     }
 
