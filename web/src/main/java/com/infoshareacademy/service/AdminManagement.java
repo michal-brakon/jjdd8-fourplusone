@@ -45,18 +45,9 @@ public class AdminManagement {
     @Inject
     private ReservationService reservationService;
 
-    private final Logger logger = LoggerFactory.getLogger(ApiDataInitializer.class.getName());
-
 
     public BookView remove(Long id) {
-        Book book = bookDao.findById(id).orElseThrow();
-        try {
-            reservationService.removeReservation(reservationService.findReservationByBook(book).get());
-        } catch (IOException e) {
-            logger.error("no such book {}",e);
-        }
-
-        return bookMapperToView.mapEntityToView(bookDao.delete(id));
+              return bookMapperToView.mapEntityToView(bookDao.delete(id));
     }
 
     public void update(Long id, BookDTO bookDTO) {
