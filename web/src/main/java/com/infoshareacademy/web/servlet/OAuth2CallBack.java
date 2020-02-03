@@ -41,7 +41,7 @@ public class OAuth2CallBack extends HttpServlet {
             UserDTO userDTO = new UserDTO();
             userDTO.setEmail(userInfoJson.getString("email"));
             userDTO.setName(userInfoJson.getString("name"));
-            userDTO.setRole("User");
+            userDTO.setRole("user");
             userService.addUserToEntity(userDTO);
             req.getSession().setAttribute("email", userDTO.getEmail());
             req.getSession().setAttribute("name", userDTO.getName());

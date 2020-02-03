@@ -14,7 +14,7 @@ public class ApiDataInitializer {
 
     private final Logger logger = LoggerFactory.getLogger(ApiDataInitializer.class.getName());
 
-    private static final String URI = "http://isa-proxy.blueazurit.com/books/books/";
+    private static final String URI = "http://isa-proxy.blueazurit.com/books/audiobooks/";
 
     public String getApiFromUrl() {
 
