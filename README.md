@@ -1,1 +1,3 @@
-# jjdd8-team1
+Projekt tworzony podczas kursu w wymiarze 320 godzin przygotowującego do pracy jako Junior Java Developer w InfoShare Academy w Gdańsku. Wykorzystano wersję JDK 13 korzystając z technologii Java EE , Hibernate, system zarządzania bazami danych MySQL.
+Założeniem projektu było stworzenie w pełni funkcjonalnej biblioteki online z możliwością logowania użytkowników i rezerwacji książek. Logowanie użytkowników odbywa się za pośrednictwem konta Google. Dane książek pochodzą z API Wolne Lektury. Aplikacja posiada dwa moduły: konsolowy i webowy.
+Wersja webowa dostępna jest pod adresem www: http://fourplusone.jjdd8.is-academy.pl/.
