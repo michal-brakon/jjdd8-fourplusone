@@ -6,6 +6,7 @@ Wersja webowa dostępna jest pod adresem www: http://fourplusone.jjdd8.is-academ
 Library project which was created during Junior Java Developer course (320h) in Infoshare Academy in Gdansk.
 We used following tehnologies: JDK 13, Java EE, Hibernate, MySQL, Maven. As a team of deveopers we created web applicaton where You can searach and browse books as a not sign in user. After signing in useing Google OAuth You are also able to make reservattion which you have to confirm via activation link sent to your adress. 
 There is also available admind panel where You can add books or edit them.
+
 We used API from https://wolnelektury.pl/api/
 
 Working aplicaton You can find at: http://fourplusone.jjdd8.is-academy.pl/
